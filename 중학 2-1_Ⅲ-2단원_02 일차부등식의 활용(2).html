@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅲ-2단원_02 일차부등식의 활용(2)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title (page 1 only) ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 700;
+}
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Bordered content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 36px;
+}
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7;
+  position: relative;
+}
+.concept-chip__n {
+  background: #338cd7;
+  height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px;
+  padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-left: 26px; padding-right: 0;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th {
+  background: #ebebeb; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; font-weight: 400; line-height: 1.4;
+}
+.concept-table td {
+  background: white; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; line-height: 1.4;
+}
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge {
+  position: absolute; top: 0; left: 16px;
+  display: flex; align-items: center; z-index: 2;
+}
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px;
+  border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px;
+  height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white;
+  font-size: 6px; font-weight: 700; border-radius: 2px;
+  padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+
+/* ─── Right column: 참고 + 풀이TIP ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice section ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7;
+  border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 12px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 5px 16px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── 쏙쏙 유형 익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f;
+  border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-ws { flex: 1; min-height: 24px; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 12px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-prob__hd + .umuri-q { margin-top: -4px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── 개념 한눈에 보기 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 28px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px; margin-bottom: 10px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white;
+  height: 19px; border-radius: 1000px;
+  padding: 0 8px;
+  font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; white-space: nowrap;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.warning-label {
+  background: transparent;
+  color: #ff7373;
+  font-size: 10px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num {
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white;
+  font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start; margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; padding-top: 3px; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum {
+  font-size: 11px; font-weight: 600; color: #4a4a4a;
+  width: 22px; flex-shrink: 0; text-align: left;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── 세트 블록 ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; flex: 1; }
+.set-divider { height: 1px; background: #f0f0f0; flex-shrink: 0; }
+
+/* ─── 형광펜 ─── */
+.hl   { background: #fff5d3; }
+.hl-r { background: #ffd6d6; }
+
+/* ─── Footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; }
+.page-footer::before {
+  content: "";
+  display: block;
+  width: 59px;
+  height: 13px;
+  margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
+  }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .title__num  { letter-spacing: -4.8px !important; }
+  .title__text { letter-spacing: -0.8px !important; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<!-- 타이틀 + 개념01 + 예제01 + 개념익히기 01, 02 -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">일차부등식의 활용(2)</div>
+    </div>
+  </div>
+
+  <!-- 개념01 + 예제01 -->
+  <div class="cbox" style="flex-direction:column; padding:16px 16px 16px 0; gap:12px;">
+    <div class="concept-def" style="padding-right:0;">
+      <div class="concept-def__hd">
+        <div class="concept-chip">
+          <span class="concept-chip__gae">개념</span>
+          <span class="concept-chip__n">01</span>
+        </div>
+        <span class="concept-title">거리·속력·시간에 관한 문제는 어떻게 푸는가?</span>
+      </div>
+      <div class="concept-body">
+        <div>
+          <table class="concept-table" style="width:auto; margin-bottom:4px;">
+            <thead>
+              <tr>
+                <th style="padding:3px 14px;">구분</th>
+                <th style="padding:3px 18px;">공식</th>
+                <th style="padding:3px 14px;">단위</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>거리</td>
+                <td>$(\text{속력}) \times (\text{시간})$</td>
+                <td>km, m</td>
+              </tr>
+              <tr>
+                <td>속력</td>
+                <td>$(\text{거리}) \div (\text{시간})$</td>
+                <td>km/h, m/분</td>
+              </tr>
+              <tr>
+                <td>시간</td>
+                <td>$(\text{거리}) \div (\text{속력})$</td>
+                <td>h, 분</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <span class="concept-sub">왕복하는 경우</span> &ensp;→&ensp; 갈 때와 올 때 거리는 같고 속력이 다름.<br>
+          &emsp;(왕복 총 시간) $= \dfrac{x}{v_1} + \dfrac{x}{v_2}$ &ensp;(단, $x$: 편도 거리, $v_1$: 갈 때 속력, $v_2$: 올 때 속력)
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; min-height:0;">
+      <div class="cbox__left" style="gap:0;">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">01</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">진희는 약속 장소에서 시속 3 km로 서점까지 걸어갔다가 시속 6 km로 달려 돌아오려고 한다. 왕복 시간이 2시간 이내이려면 약속 장소에서 몇 km 이내의 서점을 이용해야 하는지 구하시오. <span style="font-size:8.5px;color:#539e84;">(왕복하는 경우)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>거리 $x$ km로 놓기</li>
+            <li>$\frac{x}{3}+\frac{x}{6}\leq2$</li>
+            <li>$\frac{x}{2}\leq2$ → $x\leq4$</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">4 km 이내</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념익히기 01, 02 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>역에서 기차를 기다리는데 출발 시각까지 1시간의 여유가 있다. 이 시간 동안 근처 상점에 가서 물건을 사려고 하는데 걷는 속력은 시속 4 km이고, 물건을 사는 데 20분이 걸린다고 할 때, 역에서 몇 km 이내에 있는 상점을 이용할 수 있는지 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>강물이 시속 5 km로 흐르는 강에서 시속 15 km인 배를 타고 강물이 흐르는 방향으로 어느 지점까지 내려갔다가 반대 방향으로 거슬러 올라오는 데 총 왕복 시간을 4시간 30분 이내로 하려고 한다. 출발 지점에서 최대 몇 km 떨어진 지점까지 갔다올 수 있는지 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">일차부등식의 활용(2)</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<!-- 개념02 + 예제02 + 개념익히기 03, 04 -->
+<div class="page">
+
+  <!-- 개념02 + 예제02 -->
+  <div class="cbox" style="flex-direction:column; padding:16px 16px 16px 0; gap:10px;">
+    <div class="concept-def" style="padding-right:0;">
+      <div class="concept-def__hd">
+        <div class="concept-chip">
+          <span class="concept-chip__gae">개념</span>
+          <span class="concept-chip__n">02</span>
+        </div>
+        <span class="concept-title">농도에 관한 문제는 어떻게 푸는가?</span>
+      </div>
+      <div class="concept-body">
+        <div>
+          (농도%) $= \dfrac{(\text{용질의 양})}{(\text{용액의 양})} \times 100$ &ensp;→&ensp; (용질의 양) $= \dfrac{\text{농도}}{100} \times (\text{용액의 양})$
+        </div>
+        <div>
+          <table class="concept-table" style="font-size:7.5px;">
+            <thead>
+              <tr>
+                <th style="padding:3px 6px;">경우</th>
+                <th style="padding:3px 10px;">소금(용질)</th>
+                <th style="padding:3px 10px;">소금물(용액)</th>
+                <th style="padding:3px 8px;">농도 변화</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>물 $x$ g 추가</td>
+                <td>변하지 않음</td>
+                <td>$s + x$ (증가)</td>
+                <td class="hl">감소</td>
+              </tr>
+              <tr>
+                <td>물 $x$ g 증발</td>
+                <td>변하지 않음</td>
+                <td>$s - x$ (감소)</td>
+                <td class="hl">증가</td>
+              </tr>
+              <tr>
+                <td>두 소금물 혼합</td>
+                <td>$a_1 + a_2$</td>
+                <td>$s_1 + s_2$</td>
+                <td>중간값</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; min-height:0;">
+      <div class="cbox__left" style="gap:0;">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">6%의 소금물 500 g에 물을 넣어 4% 이하의 소금물을 만들려고 한다. 물을 몇 g 이상 넣어야 하는지 구하시오. <span style="font-size:8.5px;color:#539e84;">(소금물에 물을 넣는 경우)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>물 $x$ g 추가</li>
+            <li>소금: $0.06\times500=30$ g</li>
+            <li>$\frac{30}{500+x}\leq0.04$</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">250 g 이상</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념익히기 03, 04 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>농도가 8%인 소금물 400 g이 있다. 이 소금물에서 물을 증발시켜 농도가 10% 이상 되게 하려고 한다. 몇 g 이상의 물을 증발시켜야 하는가?</div>
+            <div class="prob__choices-stack">
+              <span>① &ensp;40 g 이상</span>
+              <span>② &ensp;60 g 이상</span>
+              <span>③ &ensp;80 g 이상</span>
+              <span>④ &ensp;100 g 이상</span>
+              <span>⑤ &ensp;120 g 이상</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>농도가 20%인 소금물 300 g이 있다. 여기에 물을 더 넣어 10% 이하의 소금물을 만들려고 할 때, 물을 몇 g 이상 넣어야 하는지 구하면?</div>
+            <div class="prob__choices-wrap">
+              <span>① &ensp;150 g</span>
+              <span>② &ensp;200 g</span>
+              <span>③ &ensp;250 g</span>
+              <span>④ &ensp;300 g</span>
+              <span>⑤ &ensp;350 g</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">일차부등식의 활용(2)</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<!-- 예제03+[05,06] | 예제04+[07,08] -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1 : 예제03 (도중에 속력이 바뀌는 경우) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:0;">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">정민이가 집에서 18 km 떨어진 도서관까지 가는데, 처음에는 자전거를 타고 시속 6 km로 가다가 도중에 걸어서 시속 3 km로 갔더니 3시간 30분 이내에 도착했다. 자전거를 탄 거리는 몇 km 이상인지 구하시오. <span style="font-size:8.5px;color:#539e84;">(도중에 속력이 바뀌는 경우)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>자전거 $x$ km, 걷기 $(18{-}x)$ km</li>
+            <li>$\frac{x}{6}+\frac{18-x}{3}\leq\frac{7}{2}$</li>
+            <li>양변 $\times6$ → $x\geq15$</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">15 km 이상</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>A 도시에서 B 도시까지의 거리는 100 km이다. A 도시에서 B 도시까지 가는데 시속 80 km의 기차를 타고 가다가 중간에 시속 60 km의 버스로 갈아탄다고 한다. 1시간 30분 이내로 도착하려고 할 때, 기차를 타고 이동한 거리는 몇 km 이상인지 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>자동차를 타고 210 km 떨어진 약속 장소에 가는데 정오에 출발하여 처음에는 시속 80 km로 달리다가 도중에 시속 100 km로 달렸더니 오후 2시 30분인 약속 시간에 늦지 않았다. 이때 시속 80 km로 달린 거리는 최대 몇 km인가?</div>
+              <div class="prob__choices-wrap">
+                <span>① &ensp;100 km</span>
+                <span>② &ensp;120 km</span>
+                <span>③ &ensp;140 km</span>
+                <span>④ &ensp;160 km</span>
+                <span>⑤ &ensp;180 km</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="set-divider"></div>
+
+  <!-- ── Set 2 : 예제04 (두 소금물을 섞는 경우) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:0;">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">2%의 소금물 200 g과 12%의 소금물 $x$ g을 섞어서 8% 이상의 소금물을 만들려고 한다. 12%의 소금물을 몇 g 이상 섞어야 하는지 구하시오. <span style="font-size:8.5px;color:#539e84;">(두 소금물을 섞는 경우)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>소금의 합 $\geq$ 8%×전체</li>
+            <li>$4+0.12x\geq0.08(200+x)$</li>
+            <li>$0.04x\geq12$ → $x\geq300$</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">300 g 이상</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>20%의 설탕물 300 g과 8%의 설탕물을 섞어서 16% 이상의 설탕물을 만들려고 할 때, 넣을 수 있는 8%의 설탕물의 양의 최댓값을 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>12%의 설탕물 300 g과 7%의 설탕물을 섞어서 농도가 10% 이상인 설탕물을 만들려고 한다. 다음 중 7%의 설탕물의 양이 될 수 없는 것은?</div>
+              <div class="prob__choices-wrap">
+                <span>① &ensp;130 g</span>
+                <span>② &ensp;150 g</span>
+                <span>③ &ensp;170 g</span>
+                <span>④ &ensp;190 g</span>
+                <span>⑤ &ensp;210 g</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차부등식의 활용(2)</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 (개념 한눈에 보기) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">거리·속력·시간에 관한 문제</span>
+      </div>
+      <div class="kaynun-body">
+        <div>
+          <strong>기본 공식</strong><br>
+          &emsp;(거리) $=$ (속력) $\times$ (시간), &ensp;(속력) $=$ (거리) $\div$ (시간), &ensp;(시간) $=$ (거리) $\div$ (속력)
+        </div>
+        <div>
+          <strong>왕복하는 경우</strong> — 갈 때와 올 때의 거리는 같음<br>
+          &emsp;(총 시간) $= \dfrac{x}{v_1} + \dfrac{x}{v_2}$ &ensp; ($x$: 편도 거리, $v_1$: 갈 때 속력, $v_2$: 올 때 속력)
+        </div>
+        <div>
+          <strong>도중에 속력이 바뀌는 경우</strong><br>
+          &emsp;전체 거리 $= d_1 + d_2$, &ensp; 전체 시간 $= \dfrac{d_1}{v_1} + \dfrac{d_2}{v_2}$
+        </div>
+        <ul>
+          <li>시간 단위에 주의: 분 단위는 $\div 60$으로 시간(h)으로 변환</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">농도에 관한 문제</span>
+      </div>
+      <div class="kaynun-body">
+        <div>
+          <strong>기본 공식</strong><br>
+          &emsp;(농도%) $= \dfrac{(\text{용질의 양})}{(\text{용액의 양})} \times 100$, &ensp; (용질의 양) $= \dfrac{\text{농도}}{100} \times$ (용액의 양)
+        </div>
+        <div>
+          <strong>물을 넣거나 증발시키는 경우</strong> — 소금(용질)의 양은 변하지 않음<br>
+          &emsp;물 $x$ g 추가: $\dfrac{a}{s+x} \times 100$ &ensp; (농도 감소)<br>
+          &emsp;물 $x$ g 증발: $\dfrac{a}{s-x} \times 100$ &ensp; (농도 증가) &ensp; ($a$: 소금, $s$: 소금물)
+        </div>
+        <div>
+          <strong>두 소금물을 섞는 경우</strong><br>
+          &emsp;(섞은 후 소금의 양) $=$ (소금물 1의 소금) $+$ (소금물 2의 소금)<br>
+          &emsp;(섞은 후 소금물) $=$ (소금물 1) $+$ (소금물 2)
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차부등식의 활용(2)</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 (개념 한눈에 보기) -->
+
+
+<!-- ═══════════════════════ PAGE 005 (쏙쏙 유형 익히기) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd" style="flex-shrink:0;">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 열 : 01, 02, 03 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:214px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">01</span>
+          </div>
+          <span class="umuri-desc">거리, 속력, 시간 - 왕복하는 경우</span>
+        </div>
+        <div class="umuri-q">
+          진희는 약속 시간보다 2시간 먼저 도착하여 그 시간을 이용하여 햄버거를 사기 위해 햄버거 가게에 간다. 약속 장소에서 햄버거 가게까지 갈 때는 시속 3 km, 돌아올 때는 시속 2 km로 걸었다고 한다. 햄버거를 사는 데 20분이 걸린다면 약속 장소에서 몇 km 이내에 있는 햄버거 가게를 이용할 수 있는지 구하시오.
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:220px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">02</span>
+          </div>
+          <span class="umuri-desc">거리, 속력, 시간 - 도중에 속력이 바뀌는 경우</span>
+        </div>
+        <div class="umuri-q">
+          아침 8시 30분이 등교 시간인 용준이는 아침 8시에 출발하여 분속 50 m로 걷다가 늦을 것 같아서 분속 150 m로 뛰었더니 지각하지 않았다고 한다. 집에서 학교까지의 거리는 2.5 km일 때, 용준이가 걸은 거리는 최대 몇 m인지 구하시오.
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:220px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">03</span>
+          </div>
+          <span class="umuri-desc">거리, 속력, 시간 - 반대 방향으로 출발하는 경우</span>
+        </div>
+        <div class="umuri-q">
+          호정이와 민선이는 같은 지점에서 출발하여 서로 반대 방향으로 직선 도로를 따라 달리고 있다. 호정이는 민선이가 출발한 지 18분 후에 출발하였고 민선이는 시속 4 km, 호정이는 시속 8 km로 달릴 때, 두 사람이 7 km 이상 떨어지는 것은 민선이가 출발한 지 몇 분 후부터인지 구하시오.
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /왼쪽 열 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열 : 04, 05 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:340px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">04</span>
+          </div>
+          <span class="umuri-desc">농도 - 소금물에 물을 증발시키는 경우</span>
+        </div>
+        <div class="umuri-q">
+          3%의 소금물 400 g에서 물을 증발시켜 5% 이상의 소금물을 만들려고 한다. 이때 몇 g 이상의 물을 증발시켜야 하는지 구하시오.
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:330px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">05</span>
+          </div>
+          <span class="umuri-desc">농도 - 두 소금물을 섞는 경우</span>
+        </div>
+        <div class="umuri-q">
+          5%의 소금물 300 g에 10%의 소금물을 섞어서 농도가 8% 이상인 소금물을 만들려고 한다. 10%의 소금물을 몇 g 이상 섞어야 하는가?
+          <div class="umuri-choices-2col" style="margin-top:6px;">
+            <span>① &ensp;400 g</span>
+            <span>② &ensp;450 g</span>
+            <span>③ &ensp;500 g</span>
+            <span>④ &ensp;550 g</span>
+            <span>⑤ &ensp;600 g</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /오른쪽 열 -->
+
+  </div><!-- /umuri-grid -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차부등식의 활용(2)</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 (쏙쏙 유형 익히기) -->
+
+
+<!-- ═══════════════════════ PAGE 006 (빠른정답) ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">일차부등식의 활용(2)</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$\dfrac{4}{3}$ km 이내</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">30 km 이내</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">40 km 이상</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">150 g</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">⑤</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">2 km 이내</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">1000 m</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">47분 후부터</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">160 g 이상</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">②</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /qa2-left -->
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div><!-- /qa2-body -->
+
+  <div class="page-footer" style="margin-top:auto;">
+    <span class="page-footer__topic">일차부등식의 활용(2)</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 (빠른정답) -->
+
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>
