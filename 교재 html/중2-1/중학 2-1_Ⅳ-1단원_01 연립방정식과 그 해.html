@@ -202,9 +202,10 @@ body {
     </div>
   </div>
 
-  <!-- 개념01 박스 -->
+  <!-- 개념01 + 예제01 cbox -->
   <div class="cbox">
     <div class="cbox__left">
+      <!-- 개념01 -->
       <div class="concept-def">
         <div class="concept-def__hd">
           <div class="concept-chip">
@@ -238,30 +239,39 @@ body {
           </div>
         </div>
       </div>
+      <!-- 예제01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 $x$, $y$에 관한 일차방정식이 아닌 것은?</div>
+            <div class="ex-choices-wrap">
+              <span>① $5x+2y=7$</span>
+              <span>② $x-3y+4=0$</span>
+              <span>③ $x^2-2y=1$</span>
+              <span>④ $y=3x-5$</span>
+              <span>⑤ $\dfrac{x}{3}+\dfrac{y}{2}=4$</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="cbox__right">
       <div class="side-note">
         <div class="side-note__hd"><span class="side-bar"></span><span class="side-label">참고</span></div>
         <div class="side-body">$ax+by+c=0$에서 $a\neq0$, $b\neq0$인 조건이 있어야 미지수가 2개임이 보장된다.<br><br>$x$, $y$ 모두 차수가 1이어야 하므로 $xy$, $x^2$, $y^2$ 등의 항은 포함될 수 없다.</div>
       </div>
-    </div>
-  </div>
-
-  <!-- 예제01 -->
-  <div class="ex-wrap">
-    <div class="ex-badge">
-      <span class="ex-badge__pill">예제</span>
-      <span class="ex-badge__num">01</span>
-    </div>
-    <div class="ex-body">
-      <div class="ex-content">
-        <div class="ex-q">다음 중 $x$, $y$에 관한 일차방정식이 아닌 것은?</div>
-        <div class="ex-choices-wrap">
-          <span>① $5x+2y=7$</span>
-          <span>② $x-3y+4=0$</span>
-          <span>③ $x^2-2y=1$</span>
-          <span>④ $y=3x-5$</span>
-          <span>⑤ $\dfrac{x}{3}+\dfrac{y}{2}=4$</span>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+        <div class="tip-body">
+          <ul>
+            <li>항의 차수가 1인지, 미지수가 $x$, $y$ 두 개인지 모두 확인한다.</li>
+            <li>$x^2$, $xy$ 항은 차수가 2 이상이므로 일차방정식이 아니다.</li>
+            <li>등식(=) 형태가 아니면 방정식이 아니다.</li>
+          </ul>
         </div>
       </div>
       <div class="ans-row">
@@ -283,7 +293,6 @@ body {
     </div>
     <div class="practice-inner">
       <div class="prac-grid">
-        <!-- 문제 01 -->
         <div class="prob">
           <div class="prob__hd">
             <span class="prob__num">01</span>
@@ -304,7 +313,6 @@ body {
           </div>
         </div>
         <div class="prac-sep"></div>
-        <!-- 문제 02 -->
         <div class="prob">
           <div class="prob__hd">
             <span class="prob__num">02</span>
@@ -341,17 +349,31 @@ body {
 
   <!-- ── Set 1: 예제02 ── -->
   <div class="set-block">
-    <div class="ex-wrap">
-      <div class="ex-badge">
-        <span class="ex-badge__pill">예제</span>
-        <span class="ex-badge__num">02</span>
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">다음 문장을 미지수가 2개인 일차방정식으로 나타내시오.<br>
+              <span style="display:block;padding:4px 8px;background:rgba(51,140,215,0.06);border-radius:4px;margin-top:3px;">
+              수학 시험에서 배점이 4점인 문제를 $x$개, 6점인 문제를 $y$개 맞혀 총 72점을 받았다.
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ex-body">
-        <div class="ex-content">
-          <div class="ex-q">다음 문장을 미지수가 2개인 일차방정식으로 나타내시오.<br>
-          <span style="display:block;padding:4px 8px;background:rgba(51,140,215,0.06);border-radius:4px;margin-top:3px;">
-          수학 시험에서 배점이 4점인 문제를 $x$개, 6점인 문제를 $y$개 맞혀 총 72점을 받았다.
-          </span>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>각 항목을 미지수로 정한 뒤 (개수)×(점수)의 합을 등식으로 표현한다.</li>
+            </ul>
           </div>
         </div>
         <div class="ans-row">
@@ -360,16 +382,15 @@ body {
         </div>
       </div>
     </div>
-    <!-- 쌍둥이·유사 03-04 -->
     <div class="practice-sec" style="flex:1;">
-      <div class="prac-hd">
-        <div class="prac-hd__tab">
-          <span class="prac-hd__ss">쏙쏙</span>
-          <span class="prac-hd__gn">개념</span>
-          <span class="prac-hd__ih">익히기</span>
-        </div>
-        <div class="prac-hd__line"></div>
+    <div class="prac-hd">
+      <div class="prac-hd__tab">
+        <span class="prac-hd__ss">쏙쏙</span>
+        <span class="prac-hd__gn">개념</span>
+        <span class="prac-hd__ih">익히기</span>
       </div>
+      <div class="prac-hd__line"></div>
+    </div>
       <div class="prac-grid" style="flex:1;">
         <div class="prob">
           <div class="prob__hd">
@@ -408,18 +429,30 @@ body {
     </div>
   </div>
 
-  <div class="set-divider"></div>
-
   <!-- ── Set 2: 예제03 ── -->
   <div class="set-block">
-    <div class="ex-wrap">
-      <div class="ex-badge">
-        <span class="ex-badge__pill">예제</span>
-        <span class="ex-badge__num">03</span>
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">$x$, $y$가 자연수일 때, 일차방정식 $x+3y=10$의 해를 모두 구하시오.</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ex-body">
-        <div class="ex-content">
-          <div class="ex-q">$x$, $y$가 자연수일 때, 일차방정식 $x+3y=10$의 해를 모두 구하시오.</div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>$y$에 자연수 1, 2, 3, …을 대입하여 $x$도 자연수가 되는지 확인한다.</li>
+            </ul>
+          </div>
         </div>
         <div class="ans-row">
           <span class="ans-badge">정답</span>
@@ -427,16 +460,15 @@ body {
         </div>
       </div>
     </div>
-    <!-- 쌍둥이·유사 05-06 -->
     <div class="practice-sec" style="flex:1;">
-      <div class="prac-hd">
-        <div class="prac-hd__tab">
-          <span class="prac-hd__ss">쏙쏙</span>
-          <span class="prac-hd__gn">개념</span>
-          <span class="prac-hd__ih">익히기</span>
-        </div>
-        <div class="prac-hd__line"></div>
+    <div class="prac-hd">
+      <div class="prac-hd__tab">
+        <span class="prac-hd__ss">쏙쏙</span>
+        <span class="prac-hd__gn">개념</span>
+        <span class="prac-hd__ih">익히기</span>
       </div>
+      <div class="prac-hd__line"></div>
+    </div>
       <div class="prac-grid" style="flex:1;">
         <div class="prob">
           <div class="prob__hd">
@@ -486,31 +518,45 @@ body {
 
   <!-- ── Set 1: 예제04 ── -->
   <div class="set-block">
-    <div class="ex-wrap">
-      <div class="ex-badge">
-        <span class="ex-badge__pill">예제</span>
-        <span class="ex-badge__num">04</span>
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">$x$, $y$의 순서쌍 $(4,\,a)$가 일차방정식 $x-2y=-2$의 해일 때, $a$의 값을 구하시오.</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ex-body">
-        <div class="ex-content">
-          <div class="ex-q">$x$, $y$의 순서쌍 $(4,\,a)$가 일차방정식 $x-2y=-2$의 해일 때, $a$의 값을 구하시오.</div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>순서쌍 $(4, a)$를 방정식에 대입: $x=4$, $y=a$로 놓는다.</li>
+              <li>대입 후 $a$에 대한 방정식을 풀어 값을 구한다.</li>
+            </ul>
+          </div>
         </div>
         <div class="ans-row">
           <span class="ans-badge">정답</span>
-          <span class="ans-text">$4-2a=-2$ &ensp;→&ensp; $2a=6$ &ensp;→&ensp; $a=3$</span>
+          <span class="ans-text">$4-2a=-2$ →  $a=3$</span>
         </div>
       </div>
     </div>
-    <!-- 쌍둥이·유사 07-08 -->
     <div class="practice-sec" style="flex:1;">
-      <div class="prac-hd">
-        <div class="prac-hd__tab">
-          <span class="prac-hd__ss">쏙쏙</span>
-          <span class="prac-hd__gn">개념</span>
-          <span class="prac-hd__ih">익히기</span>
-        </div>
-        <div class="prac-hd__line"></div>
+    <div class="prac-hd">
+      <div class="prac-hd__tab">
+        <span class="prac-hd__ss">쏙쏙</span>
+        <span class="prac-hd__gn">개념</span>
+        <span class="prac-hd__ih">익히기</span>
       </div>
+      <div class="prac-hd__line"></div>
+    </div>
       <div class="prac-grid" style="flex:1;">
         <div class="prob">
           <div class="prob__hd">
@@ -538,7 +584,6 @@ body {
     </div>
   </div>
 
-
   <div class="page-footer">
     <span class="page-footer__topic">연립방정식과 그 해</span>
     <span class="page-footer__num">003</span>
@@ -547,7 +592,7 @@ body {
 
 <!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
 <div class="page">
-  <!-- 개념02 박스 -->
+  <!-- 개념02 + 예제05 cbox -->
   <div class="cbox">
     <div class="cbox__left">
       <div class="concept-def">
@@ -573,9 +618,28 @@ body {
               <tr><th>$y$ ($x+y=5$)</th><td>4</td><td>3</td><td>2</td><td class="hl">1</td><td>0</td></tr>
               <tr><th>$y$ ($x+2y=6$)</th><td>2.5</td><td>2</td><td>1.5</td><td class="hl">1</td><td>0.5</td></tr>
             </table>
-            두 방정식을 동시에 만족하는 해: $(x,\,y)=(4,\,1)$
+            두 방정식을 동시에 만족하는 해 : $(x,\,y)=(4,\,1)$
             </div>
           </div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제05 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">05</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 연립방정식 중 $x$, $y$의 순서쌍 $(3,\,1)$을 해로 갖는 것은?</div>
+            <div class="ex-choices-2col">
+              <span>① $\begin{cases}2x+y=5\\3x-y=8\end{cases}$</span>
+              <span>② $\begin{cases}x-y=3\\2x+y=6\end{cases}$</span>
+              <span>③ $\begin{cases}x+y=4\\5x-3y=12\end{cases}$</span>
+              <span>④ $\begin{cases}4x-y=10\\x+2y=6\end{cases}$</span>
+              <span>⑤ $\begin{cases}3x+y=10\\x-2y=2\end{cases}$</span>
+            </div>
           </div>
         </div>
       </div>
@@ -586,33 +650,13 @@ body {
         <div class="tip-body">
           <ul>
             <li>연립방정식의 해는 두 일차방정식을 <strong>모두</strong> 만족해야 한다.</li>
-            <li>순서쌍 $(a,b)$를 대입해 두 방정식이 모두 성립하면 해이다.</li>
+            <li>순서쌍 $(3, 1)$을 두 방정식에 각각 대입해 등식이 성립하는지 확인한다.</li>
           </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 예제05 -->
-  <div class="ex-wrap">
-    <div class="ex-badge">
-      <span class="ex-badge__pill">예제</span>
-      <span class="ex-badge__num">05</span>
-    </div>
-    <div class="ex-body">
-      <div class="ex-content">
-        <div class="ex-q">다음 연립방정식 중 $x$, $y$의 순서쌍 $(3,\,1)$을 해로 갖는 것은?</div>
-        <div class="ex-choices-2col">
-          <span>① $\begin{cases}2x+y=5\\3x-y=8\end{cases}$</span>
-          <span>② $\begin{cases}x-y=3\\2x+y=6\end{cases}$</span>
-          <span>③ $\begin{cases}x+y=4\\5x-3y=12\end{cases}$</span>
-          <span>④ $\begin{cases}4x-y=10\\x+2y=6\end{cases}$</span>
-          <span>⑤ $\begin{cases}3x+y=10\\x-2y=2\end{cases}$</span>
         </div>
       </div>
       <div class="ans-row">
         <span class="ans-badge">정답</span>
-        <span class="ans-text">③&ensp; $x=3$, $y=1$을 대입하면 $3+1=4$ ✓, $15-3=12$ ✓</span>
+        <span class="ans-text">③&ensp; $x=3$, $y=1$ 대입 시 $3+1=4$ ✓, $15-3=12$ ✓</span>
       </div>
     </div>
   </div>
@@ -629,7 +673,6 @@ body {
     </div>
     <div class="practice-inner">
       <div class="prac-grid">
-        <!-- 문제 09 -->
         <div class="prob">
           <div class="prob__hd">
             <span class="prob__num">09</span>
@@ -643,7 +686,6 @@ body {
           </div>
         </div>
         <div class="prac-sep"></div>
-        <!-- 문제 10 -->
         <div class="prob">
           <div class="prob__hd">
             <span class="prob__num">10</span>
@@ -673,34 +715,48 @@ body {
 <!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
 <div class="page" style="gap:8px;">
 
-
-  <!-- ── Set 2: 예제06 ── -->
+  <!-- ── Set 1: 예제06 ── -->
   <div class="set-block">
-    <div class="ex-wrap">
-      <div class="ex-badge">
-        <span class="ex-badge__pill">예제</span>
-        <span class="ex-badge__num">06</span>
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">연립방정식 $\begin{cases}ax-y=5\\x+by=7\end{cases}$의 해가 $x=2$, $y=1$일 때, 상수 $a$, $b$에 대하여 $ab$의 값을 구하시오.</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ex-body">
-        <div class="ex-content">
-          <div class="ex-q">연립방정식 $\begin{cases}ax-y=5\\x+by=7\end{cases}$의 해가 $x=2$, $y=1$일 때, 상수 $a$, $b$에 대하여 $ab$의 값을 구하시오.</div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>해 $(2, 1)$을 첫 번째 식에 대입 → $a$ 결정</li>
+              <li>해 $(2, 1)$을 두 번째 식에 대입 → $b$ 결정</li>
+              <li>두 값을 곱해 $ab$를 구한다.</li>
+            </ul>
+          </div>
         </div>
         <div class="ans-row">
           <span class="ans-badge">정답</span>
-          <span class="ans-text">$2a-1=5$ → $a=3$;&ensp; $2+b=7$ → $b=5$;&ensp; $ab=15$</span>
+          <span class="ans-text">$a=3$, $b=5$ → $ab=15$</span>
         </div>
       </div>
     </div>
-    <!-- 쌍둥이·유사 11-12 -->
     <div class="practice-sec" style="flex:1;">
-      <div class="prac-hd">
-        <div class="prac-hd__tab">
-          <span class="prac-hd__ss">쏙쏙</span>
-          <span class="prac-hd__gn">개념</span>
-          <span class="prac-hd__ih">익히기</span>
-        </div>
-        <div class="prac-hd__line"></div>
+    <div class="prac-hd">
+      <div class="prac-hd__tab">
+        <span class="prac-hd__ss">쏙쏙</span>
+        <span class="prac-hd__gn">개념</span>
+        <span class="prac-hd__ih">익히기</span>
       </div>
+      <div class="prac-hd__line"></div>
+    </div>
       <div class="prac-grid" style="flex:1;">
         <div class="prob">
           <div class="prob__hd">
@@ -741,43 +797,41 @@ body {
     <span class="kaynun-hd__big">개념 정리</span>
   </div>
   <div class="kaynun-box">
-    <!-- 개념01 -->
     <div class="kaynun-sec">
       <div class="kaynun-sec__hd">
         <span class="kaynun-chip">개념 01</span>
         <span class="kaynun-title">미지수가 2개인 일차방정식과 그 해</span>
       </div>
       <div class="kaynun-body">
-        <div><strong>① 미지수가 2개인 일차방정식:</strong> $ax+by+c=0$ ($a\neq0$, $b\neq0$)의 꼴로 나타낼 수 있는 방정식<br>
+        <div><strong>① 미지수가 2개인 일차방정식 :</strong> $ax+by+c=0$ ($a\neq0$, $b\neq0$)의 꼴로 나타낼 수 있는 방정식<br>
         예) $4x-y-5=0$, &ensp; $x+2y=3$</div>
         <div>
-          <strong>② 주의:</strong> 다음은 미지수가 2개인 일차방정식이 아니다.
+          <strong>② 주의 :</strong> 다음은 미지수가 2개인 일차방정식이 아니다.
           <ul>
             <li>$3x+y+2$ &nbsp;→&nbsp; 등식이 아님</li>
             <li>$x+6=0$ &nbsp;→&nbsp; 미지수가 1개</li>
             <li>$x^2+y=1$ &nbsp;→&nbsp; 차수가 2</li>
           </ul>
         </div>
-        <div><strong>③ 해:</strong> 방정식을 참이 되게 하는 $x$, $y$의 값 또는 순서쌍 $(x,\,y)$<br>
-        $x$, $y$가 자연수일 때 $2x+y=8$의 해: $(1,\,6)$, $(2,\,4)$, $(3,\,2)$</div>
+        <div><strong>③ 해 :</strong> 방정식을 참이 되게 하는 $x$, $y$의 값 또는 순서쌍 $(x,\,y)$<br>
+        $x$, $y$가 자연수일 때 $2x+y=8$의 해 : $(1,\,6)$, $(2,\,4)$, $(3,\,2)$</div>
         <table class="kaynun-table" style="width:auto;margin-top:2px;">
           <tr><th>$x$</th><td>1</td><td>2</td><td>3</td></tr>
           <tr><th>$y$</th><td>6</td><td>4</td><td>2</td></tr>
         </table>
       </div>
     </div>
-    <!-- 개념02 -->
     <div class="kaynun-sec">
       <div class="kaynun-sec__hd">
         <span class="kaynun-chip">개념 02</span>
         <span class="kaynun-title">미지수가 2개인 연립일차방정식과 그 해</span>
       </div>
       <div class="kaynun-body">
-        <div><strong>① 연립방정식:</strong> 두 개 이상의 방정식을 한 쌍으로 묶어 나타낸 것<br>
-        미지수가 2개인 일차방정식 두 개를 묶은 것: <strong>미지수가 2개인 연립일차방정식</strong></div>
-        <div><strong>② 해:</strong> 두 방정식을 <strong>동시에</strong> 참이 되게 하는 $x$, $y$의 값 또는 순서쌍 $(x,\,y)$<br>
-        $\begin{cases}x+y=5\\x+2y=6\end{cases}$의 해: $x+y=5$와 $x+2y=6$을 모두 만족하는 $(4,\,1)$</div>
-        <div><strong>③ 해 확인법:</strong> 순서쌍 $(a,\,b)$를 두 방정식에 모두 대입하여 등식이 성립하면 그 연립방정식의 해이다.</div>
+        <div><strong>① 연립방정식 :</strong> 두 개 이상의 방정식을 한 쌍으로 묶어 나타낸 것<br>
+        미지수가 2개인 일차방정식 두 개를 묶은 것 : <strong>미지수가 2개인 연립일차방정식</strong></div>
+        <div><strong>② 해 :</strong> 두 방정식을 <strong>동시에</strong> 참이 되게 하는 $x$, $y$의 값 또는 순서쌍 $(x,\,y)$<br>
+        $\begin{cases}x+y=5\\x+2y=6\end{cases}$의 해 : $x+y=5$와 $x+2y=6$을 모두 만족하는 $(4,\,1)$</div>
+        <div><strong>③ 해 확인법 :</strong> 순서쌍 $(a,\,b)$를 두 방정식에 모두 대입하여 등식이 성립하면 그 연립방정식의 해이다.</div>
       </div>
     </div>
   </div>
@@ -800,14 +854,10 @@ body {
   </div>
 
   <div class="umuri-grid">
-    <!-- 좌측 컬럼 -->
-    <div class="umuri-col">
-      <!-- 유형01 -->
+    <div class="umuri-col" style="gap:3px; height:240px; overflow:hidden;">
       <div class="umuri-prob">
         <div class="umuri-prob__hd">
-          <div class="umuri-prob__left">
-            <span class="umuri-num">01</span>
-          </div>
+          <div class="umuri-prob__left"><span class="umuri-num">01</span></div>
           <span class="umuri-desc">미지수가 2개인 일차방정식 판별</span>
         </div>
         <div class="umuri-q">
@@ -818,19 +868,15 @@ body {
             ⑤ $-x-y=x+2$
           </div>
           <div class="umuri-choices-wrap" style="margin-top:4px;">
-            <span>① ④ &ensp; ② ④,⑤ &ensp; ③ ①,④</span>
+            <span>① ④만 &ensp; ② ④,⑤ &ensp; ③ ①,④</span>
             <span>④ ①,③ &ensp; ⑤ ②,⑤</span>
           </div>
         </div>
       </div>
       <div class="umuri-ws"></div>
-
-      <!-- 유형02 -->
       <div class="umuri-prob">
         <div class="umuri-prob__hd">
-          <div class="umuri-prob__left">
-            <span class="umuri-num">02</span>
-          </div>
+          <div class="umuri-prob__left"><span class="umuri-num">02</span></div>
           <span class="umuri-desc">미지수가 자연수인 일차방정식의 해</span>
         </div>
         <div class="umuri-q">
@@ -841,13 +887,9 @@ body {
         </div>
       </div>
       <div class="umuri-ws"></div>
-
-      <!-- 유형03 -->
       <div class="umuri-prob">
         <div class="umuri-prob__hd">
-          <div class="umuri-prob__left">
-            <span class="umuri-num">03</span>
-          </div>
+          <div class="umuri-prob__left"><span class="umuri-num">03</span></div>
           <span class="umuri-desc">일차방정식의 해를 이용하여 계수 구하기</span>
         </div>
         <div class="umuri-q">
@@ -859,14 +901,10 @@ body {
 
     <div class="umuri-sep"></div>
 
-    <!-- 우측 컬럼 -->
-    <div class="umuri-col">
-      <!-- 유형04 -->
+    <div class="umuri-col" style="gap:3px; height:240px; overflow:hidden;">
       <div class="umuri-prob">
         <div class="umuri-prob__hd">
-          <div class="umuri-prob__left">
-            <span class="umuri-num">04</span>
-          </div>
+          <div class="umuri-prob__left"><span class="umuri-num">04</span></div>
           <span class="umuri-desc">연립방정식 세우기</span>
         </div>
         <div class="umuri-q">
@@ -881,13 +919,9 @@ body {
         </div>
       </div>
       <div class="umuri-ws"></div>
-
-      <!-- 유형05 -->
       <div class="umuri-prob">
         <div class="umuri-prob__hd">
-          <div class="umuri-prob__left">
-            <span class="umuri-num">05</span>
-          </div>
+          <div class="umuri-prob__left"><span class="umuri-num">05</span></div>
           <span class="umuri-desc">일차방정식의 해 개수와 연립방정식 결합</span>
         </div>
         <div class="umuri-q">
@@ -895,13 +929,9 @@ body {
         </div>
       </div>
       <div class="umuri-ws"></div>
-
-      <!-- 유형06 -->
       <div class="umuri-prob">
         <div class="umuri-prob__hd">
-          <div class="umuri-prob__left">
-            <span class="umuri-num">06</span>
-          </div>
+          <div class="umuri-prob__left"><span class="umuri-num">06</span></div>
           <span class="umuri-desc">연립방정식의 해를 알 때 계수 구하기</span>
         </div>
         <div class="umuri-q">
@@ -929,7 +959,6 @@ body {
 
   <div class="qa2-body">
     <div class="qa2-left">
-      <!-- 개념익히기 박스 -->
       <div class="qa2-box">
         <div class="qa2-box__tab">
           <span class="qa2-box__ss">쏙쏙</span>
@@ -970,7 +999,6 @@ body {
         </div>
       </div>
 
-      <!-- 유형익히기 박스 -->
       <div class="qa2-box">
         <div class="qa2-box__tab qa2-box__tab--pink">
           <span class="qa2-box__ss">쏙쏙</span>
@@ -979,7 +1007,7 @@ body {
         </div>
         <div class="qa2-rows">
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">④,⑤</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">②</span></div>
             <div class="qa2-rsep"></div>
             <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">①</span></div>
           </div>
@@ -1006,6 +1034,7 @@ body {
     <span class="page-footer__num">008</span>
   </div>
 </div><!-- /page 008 -->
+
 
 
 <script defer src="./katex/katex.min.js"></script>
