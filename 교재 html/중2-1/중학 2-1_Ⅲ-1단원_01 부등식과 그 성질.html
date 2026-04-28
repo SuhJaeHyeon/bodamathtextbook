@@ -1,7 +1,1606 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅲ-1단원_01 부등식과 그 성질</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* KaTeX 기본 1.21em을 부모와 동일 크기로 맞춤 */
+.katex { font-size: 1em; }
+/* 수식 내부 좌우 간격을 약간 축소 */
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title (page 1 only) ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 700;
+}
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+/* ─── Bordered content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 36px;
+}
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7;
+  position: relative;
+}
+.concept-chip__n {
+  background: #338cd7;
+  height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px;
+  padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+/* 보충 개념 칩 — 오렌지 pill, 숫자 없음 */
+.concept-chip__boogi {
+  background: #ff8945;
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-left: 26px; padding-right: 0;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th {
+  background: #ebebeb; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; font-weight: 400; line-height: 1.4;
+}
+.concept-table td {
+  background: white; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; line-height: 1.4;
+}
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge {
+  position: absolute; top: 0; left: 16px;
+  display: flex; align-items: center; z-index: 2;
+}
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px;
+  border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px;
+  height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; align-items: flex-start; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white;
+  font-size: 6px; font-weight: 700; border-radius: 2px;
+  padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+
+/* ─── Right column: 참고 + 풀이TIP ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice section ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7;
+  border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 12px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 5px 16px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── 쏙쏙 유형 익히기 (개념마무리) ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f;
+  border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-ws { flex: 1; min-height: 24px; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; }
+.umuri-diff { display: flex; align-items: center; gap: 1px; font-size: 6px; font-weight: 700; }
+.umuri-diff__lv { color: #d7d7d7; line-height: 1; }
+.umuri-diff__lv--on { background: #e96a6c; color: white; border-radius: 1000px; padding: 1px 2px; line-height: 1; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 12px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-prob__hd + .umuri-q { margin-top: -4px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* 빠른정답 섹션 구분 */
+.qa-section { font-size: 9px; font-weight: 700; color: #338cd7; padding: 5px 0 3px; border-bottom: 1px solid #338cd7; margin-bottom: 4px; letter-spacing: -0.3px; }
+.qa-section--pink { color: #eb749f; border-color: #eb749f; margin-top: 12px; }
+.qa-num--pink { color: #eb749f !important; display: inline-flex; align-items: center; }
+
+/* ─── Footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; }
+.page-footer::before {
+  content: "";
+  display: block;
+  width: 59px;
+  height: 13px;
+  margin-right: auto;
+  background-image:
+    url("https://drive.google.com/thumbnail?id=1wIybgRCFGdBi5ZyieKnB0TwLp-xss6I2&sz=w1000"),
+    url("https://drive.google.com/uc?export=view&id=1wIybgRCFGdBi5ZyieKnB0TwLp-xss6I2");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+/* ─── 빠른정답 ─── */
+.qa-title { font-size: 18px; font-weight: 700; color: #338cd7; border-bottom: 2px solid #338cd7; padding-bottom: 6px; margin-bottom: 14px; letter-spacing: -1px; }
+.qa-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.qa-table tr { border-bottom: 1px solid #dadde0; }
+.qa-table tr:last-child { border-bottom: none; }
+.qa-table td { padding: 9px 6px; vertical-align: middle; }
+.qa-num { color: #338cd7; font-weight: 700; font-size: 14px; text-align: center; width: 38px; }
+.qa-ans { font-size: 12px; color: #232f39; width: 75px; }
+.qa-gap { width: 16px; }
+.qa-badge { background: #338cd7; color: white; font-size: 16px; font-weight: 700; border-radius: 4px; padding: 2px 8px; }
+.qa-head { font-size: 20px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── 개념 한눈에 보기 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 28px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px;
+  margin-bottom: 10px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white;
+  height: 19px; border-radius: 1000px;
+  padding: 0 8px;
+  font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; white-space: nowrap;
+}
+.kaynun-title {
+  font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px;
+}
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.kaynun-table th {
+  background: #ebebeb; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; font-weight: 400; line-height: 1.4;
+}
+.kaynun-table td {
+  background: white; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; line-height: 1.4;
+}
+.kaynun-table tr > *:first-child { border-left: none; }
+.kaynun-table tr > *:last-child { border-right: none; }
+.warning-label {
+  background: transparent;
+  color: #ff7373;
+  font-size: 10px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row {
+  display: flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
+}
+.qa2-num {
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white;
+  font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start;
+  margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink {
+  border-top-color: #eb749f;
+  border-right-color: #eb749f;
+  border-bottom-color: #eb749f;
+  padding-top: 3px;
+}
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row {
+  display: flex; align-items: center; height: 30px;
+  border-bottom: none;
+}
+.qa2-row:last-child { border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum {
+  font-size: 11px; font-weight: 600; color: #4a4a4a;
+  width: 22px; flex-shrink: 0; text-align: left;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
+  }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .title__num  { letter-spacing: -4.8px !important; }
+  .title__text { letter-spacing: -0.8px !important; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">01</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">부등식과 그 성질</div>
+    </div>
+  </div>
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">부등식이란 무엇인가? — (1) 부등식</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            <strong>부등식</strong> : 부등호 $&gt;$, $&lt;$, $\geq$, $\leq$를 사용하여 두 수 또는 두 식 사이의 대소 관계를 나타낸 식<br>
+            &emsp; 예) $5&gt;2$, &ensp;$x&lt;5$, &ensp;$x+1\geq2$, &ensp;$2-3x\leq5-7x$
+          </div>
+          <div>
+            <strong>좌변</strong> : 부등호 왼쪽의 식<br>
+            <strong>우변</strong> : 부등호 오른쪽의 식<br>
+            <strong>양변</strong> : 좌변과 우변을 함께 이르는 말
+          </div>
+        </div>
+      </div>
+      <!-- 예제 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 부등식인 것을 모두 고르시오. <strong>(정답 2개)</strong></div>
+            <div class="ex-choices-wrap">
+              <span>① &ensp;$7-3=4$</span>
+              <span>② &ensp;$2a&gt;-1$</span>
+              <span>③ &ensp;$3x+5$</span>
+              <span>④ &ensp;$x-4\leq9$</span>
+              <span>⑤ &ensp;$5y-(2y+1)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          등식과의 차이<ul>
+            <li>등식 : 등호(=)로 두 식이 같음 → $x+1=2$</li>
+            <li>부등식 : 부등호로 크기 차이 → $x+1&gt;2$</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>부등호($&gt;,&lt;,\geq,\leq$) 있으면 → 부등식</li>
+          <li>등호(=)만 있으면 → 등식</li>
+          <li>둘 다 없으면 → 단순 식</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">②, ④</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 중 부등식인 것을 모두 고르시오. <strong>(정답 2개)</strong></div>
+            <div class="prob__choices-stack">
+              <span>① &ensp;$-4x+3$</span>
+              <span>② &ensp;$2y-3=5$</span>
+              <span>③ &ensp;$x-3\leq-2x+5$</span>
+              <span>④ &ensp;$y=-3x+2$</span>
+              <span>⑤ &ensp;$2(3-x)&gt;x-3(x+1)$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 보기 중 부등식인 것은 모두 몇 개인가?</div>
+            <div class="prob__boogi">
+              <span>ㄱ. $x-2\geq3$</span>
+              <span>ㄴ. $4-5&lt;-6$</span>
+              <span>ㄷ. $3x-9$</span>
+              <span>ㄹ. $4(x-1)&lt;0$</span>
+              <span>ㅁ. $2\times2+1=3$</span>
+            </div>
+            <div class="prob__choices-2col">
+              <span>① &ensp;1개</span><span>② &ensp;2개</span><span>③ &ensp;3개</span><span>④ &ensp;4개</span><span>⑤ &ensp;5개</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">부등식과 그 성질</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page 1 -->
+
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">부등식이란 무엇인가? — (2) 부등식의 표현</span>
+        </div>
+        <div class="concept-body">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>$a&gt;b$</th><th>$a&lt;b$</th><th>$a\geq b$</th><th>$a\leq b$</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>a는 b보다 크다</td><td>a는 b보다 작다</td>
+                <td>크거나 같다</td><td>작거나 같다</td>
+              </tr>
+              <tr>
+                <td>b 초과</td><td>b 미만</td><td>b 이상</td><td>b 이하</td>
+              </tr>
+              <tr>
+                <td>—</td><td>—</td>
+                <td>b보다 작지 않다</td><td>b보다 크지 않다</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            예) x는 4보다 크다 → $x&gt;4$ &ensp;/&ensp;
+            x는 −2 미만 → $x&lt;-2$<br>
+            x는 $\frac{1}{3}$ 이상 → $x\geq\frac{1}{3}$ &ensp;/&ensp;
+            x는 0보다 크지 않다 → $x\leq0$
+          </div>
+        </div>
+      </div>
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 문장을 부등식으로 나타낸 것으로 <strong>옳지 않은</strong> 것은?</div>
+            <div class="ex-choices-stack">
+              <span>① &ensp;x의 3배에 5를 더한 수는 7보다 크다. → $3x+5&gt;7$</span>
+              <span>② &ensp;x에서 4를 뺀 수의 2배는 17보다 크지 않다. → $2(x-4)\leq17$</span>
+              <span>③ &ensp;한 자루에 600원인 연필 x자루의 가격은 5000원 미만이다. → $600x&lt;5000$</span>
+              <span>④ &ensp;닭 x마리와 개 y마리의 전체 다리 수는 55보다 많다. → $4x+2y&gt;55$</span>
+              <span>⑤ &ensp;시속 5 km로 x시간 걸은 거리는 20 km 이상이다. → $5x\geq20$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          이상·이하 → $\geq$, $\leq$<br>
+          초과·미만 → $&gt;$, $&lt;$<br>
+          "크지 않다" → $\leq$<br>
+          "작지 않다" → $\geq$
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>한글 표현을 부등호로 변환</li>
+          <li>이상·이하 → $\geq$, $\leq$</li>
+          <li>초과·미만 → $&gt;$, $&lt;$</li>
+          <li>실생활 문제 : 단위 확인!</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">④</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 관계를 부등식으로 나타낸 것으로 <strong>옳지 않은</strong> 것은?</div>
+            <div class="prob__choices-stack">
+              <span>① &ensp;z를 2배 하여 5를 더하면 9보다 크다. → $2z+5&gt;9$</span>
+              <span>② &ensp;y의 2배는 10보다 크거나 같다. → $2y\geq10$</span>
+              <span>③ &ensp;한 개에 x원인 볼 10자루의 가격은 8000원 이하이다. → $10+x&gt;8000$</span>
+              <span>④ &ensp;140원짜리 엽서 x장의 가격은 5000원보다 비싸다. → $140x&gt;5000$</span>
+              <span>⑤ &ensp;축구화의 가격이 x원일 때, 20% 할인된 가격이 30000원 미만이다. → $0.8x&lt;30000$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 문장을 부등식으로 바르게 나타낸 것은?</div>
+            <div class="prob__boogi" style="justify-content:center; text-align:center;">한 병에 500원인 주스 x병과 한 봉지에 300원인 과자 2봉지의 값은 2000원보다 적다.</div>
+            <div class="prob__choices-2col">
+              <span>① &ensp;$500x+300\geq2000$</span>
+              <span>② &ensp;$500+x-600\geq2000$</span>
+              <span>③ &ensp;$500+x+300&gt;2000$</span>
+              <span>④ &ensp;$500x+600&lt;2000$</span>
+              <span>⑤ &ensp;$500x-600&gt;2000$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">부등식과 그 성질</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+
+</div><!-- /page 2 -->
+
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">부등식의 해란 무엇인가?</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            <strong>부등식의 해</strong> : 부등식을 참이 되게 하는 미지수의 값<br>
+            <strong>부등식을 푼다</strong> : 부등식의 해를 모두 구하는 것
+          </div>
+          <div><span class="hl">대입 후 좌변·우변 대소 비교<br>→ 부등호 방향과 같으면 참(해) / 다르면 거짓(해 아님)</span></div>
+          <div>
+            <table class="concept-table" style="width:auto; min-width:280px;">
+              <thead><tr><th>$x$</th><th>좌변 값</th><th>비교</th><th>우변</th><th>참·거짓</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>$2\times1+1=3$</td><td>$&lt;$</td><td>4</td><td>거짓</td></tr>
+                <tr><td>2</td><td>$2\times2+1=5$</td><td>$&gt;$</td><td>4</td><td><strong>참</strong></td></tr>
+                <tr><td>3</td><td>$2\times3+1=7$</td><td>$&gt;$</td><td>4</td><td><strong>참</strong></td></tr>
+              </tbody>
+            </table>
+            &ensp;→ $2x+1&gt;4$의 해 : <strong>2, 3</strong>
+          </div>
+        </div>
+      </div>
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 부등식 $7-x\leq2x$의 해가 되는 것을 모두 고르면? <strong>(정답 2개)</strong></div>
+            <div class="ex-choices-wrap" style="grid-template-columns: repeat(5, max-content);">
+              <span>① &ensp;0</span><span>② &ensp;1</span><span>③ &ensp;2</span><span>④ &ensp;3</span><span>⑤ &ensp;4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          미지수에 값을 하나씩 대입하여 부등식이 성립하면 그 값이 해!
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>선택지를 순서대로 대입</li>
+          <li>좌변 값 = 우변 값이면 $\leq$, $\geq$는 참</li>
+          <li>정답 개수를 먼저 확인!</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">④, ⑤</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">05</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 중 [ ] 안의 수가 주어진 부등식의 해가 <strong>아닌</strong> 것은?</div>
+            <div class="prob__choices-stack">
+              <span>① &ensp;$x+8\geq-2$ &ensp;[$-4$]</span>
+              <span>② &ensp;$-4x+1\leq10$ &ensp;[$-2$]</span>
+              <span>③ &ensp;$11-2x&lt;5$ &ensp;[$4$]</span>
+              <span>④&ensp;$-3-3x\geq0$ &ensp;[$-1$]</span>
+              <span>⑤ &ensp;$2x+3\leq3x$ &ensp;[$2$]</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">06</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 중 부등식 $3x+1\leq-3$의 해인 것은?</div>
+            <div class="prob__choices-2col">
+              <span>① &ensp;$-2$</span>
+              <span>② &ensp;$-1$</span>
+              <span>③ &ensp;$0$</span>
+              <span>④ &ensp;$1$</span>
+              <span>⑤ &ensp;$2$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">부등식과 그 성질</span>
+      <span class="page-footer__num">003</span>
+    </div>
+  </div>
+
+</div><!-- /page 3 -->
+
+
+<!-- ═══════════════════════ PAGE 4 ═══════════════════════ -->
+<div class="page">
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">부등식은 어떤 성질을 가질까?</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            <span class="concept-sub">(1) 같은 수를 더하거나 빼는 경우</span><br>
+            $a&lt;b$이면 $a+c&lt;b+c$, &ensp;$a-c&lt;b-c$ &ensp;→&ensp; <strong>방향 그대로</strong>
+          </div>
+          <div>
+            <span class="concept-sub">(2) 같은 양수를 곱하거나 나누는 경우</span><br>
+            $a&lt;b$, $c&gt;0$이면 $ac&lt;bc$, &ensp;$\dfrac{a}{c}&lt;\dfrac{b}{c}$ &ensp;→&ensp; <strong>방향 그대로</strong>
+          </div>
+          <div>
+            <span class="concept-sub">(3) 같은 음수를 곱하거나 나누는 경우</span><br>
+            <span class="hl">$a&lt;b$, $c&lt;0$이면 $ac&gt;bc$, &ensp;$\dfrac{a}{c}&gt;\dfrac{b}{c}$ &ensp;→&ensp; <strong>방향 반드시 반대로 ⚠️</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">04</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">$a&lt;b$일 때, 다음 중 <strong>옳지 않은</strong> 것은?</div>
+            <div class="ex-choices-wrap">
+              <span>① &ensp;$a+2&lt;b+2$</span>
+              <span>② &ensp;$-5a&gt;-5b$</span>
+              <span>③ &ensp;$6-a&lt;6-b$</span>
+              <span>④ &ensp;$2a-3&lt;2b-3$</span>
+              <span>⑤ &ensp;$-\dfrac{a}{3}+1&gt;-\dfrac{b}{3}+1$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          $2&lt;4$에서 :<br>
+          $+2$→$4&lt;6$ 그대로<br>
+          $-2$→$0&lt;2$ 그대로<br>
+          $\times2$→$4&lt;8$ 그대로<br>
+          $\times(-2)$→$-4&gt;-8$ 반대<br>
+          $\div(-2)$→$-1&gt;-2$ 반대
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>양수 곱/나누기 → 그대로</li>
+          <li>음수 곱/나누기 → 반대!</li>
+          <li>뺄셈 = 음수 덧셈 변환</li>
+          <li>$6-a=(-1)\times a+6$</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">③</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">07</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>$a&gt;b&gt;0$일 때, 다음 중 □ 안에 들어갈 부등호의 방향이 나머지 넷과 다른 것은?</div>
+            <div class="prob__choices-2col">
+              <span>① &ensp;$-a$ □ $-b$</span>
+              <span>② &ensp;$a-5$ □ $b-5$</span>
+              <span>③ &ensp;$-3a+1$ □ $-3b+1$</span>
+              <span>④ &ensp;$\dfrac{4}{a}$ □ $\dfrac{4}{b}$</span>
+              <span>⑤ &ensp;$2-\dfrac{a}{3}$ □ $2-\dfrac{b}{3}$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">08</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 중 옳은 것은?</div>
+            <div class="prob__choices-stack">
+              <span>① &ensp;$a\geq b$일 때, $a+(-7)\leq b+(-7)$</span>
+              <span>② &ensp;$a\geq b$일 때, $a^2\geq b^2$</span>
+              <span>③ &ensp;$a&gt;b$일 때, $\dfrac{1}{2}a+2&lt;\dfrac{1}{2}b+2$</span>
+              <span>④ &ensp;$a&lt;b$일 때, $-5a+\dfrac{2}{3}&gt;-5b+\dfrac{2}{3}$</span>
+              <span>⑤ &ensp;$a&gt;b$일 때, $\dfrac{1}{a}&gt;\dfrac{1}{b}$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">부등식과 그 성질</span>
+      <span class="page-footer__num">004</span>
+    </div>
+  </div>
+
+</div><!-- /page 4 -->
+
+
+<!-- ═══════════════════════ PAGE 5 ═══════════════════════ -->
+<div class="page">
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">부등식의 성질 — 조건에서 관계 유도하기</span>
+        </div>
+        <div class="concept-body">
+          <div>주어진 조건 식을 변형하여 $a$와 $b$의 대소 관계를 먼저 파악한 뒤, 성질을 적용한다.</div>
+          <div>
+            예) <span class="hl">$-3a+2&gt;-3b+2$</span> 일 때<br>
+            양변에서 2를 뺌 : $-3a&gt;-3b$<br>
+            → 양변을 $-3$으로 나눔 (음수, 방향 반대) : $a&lt;b$<br>
+            → 이후 $a&lt;b$를 이용하여 각 식에 성질 적용
+          </div>
+        </div>
+      </div>
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">05</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">$-3a+2&gt;-3b+2$일 때, 다음 □ 안에 알맞은 부등호를 써넣으시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $a$ □ $b$</span>
+              <span>(2) $4a-3$ □ $4b-3$</span>
+              <span>(3) $5-7a$ □ $5-7b$</span>
+              <span>(4) $-\dfrac{a}{5}+\dfrac{1}{2}$ □ $-\dfrac{b}{5}+\dfrac{1}{2}$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          조건 식 → 기본 대소관계($a$ □ $b$) 파악 → 성질 적용 순서로!
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>조건에서 $a$, $b$ 관계 먼저 파악</li>
+          <li>$a$, $b$에 곱해지는 숫자가 양수인지 음수인지가 부등호 방향을 결정한다!</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">(1)&ensp;$&lt;$ &ensp;(2)&ensp;$&lt;$ &ensp;(3)&ensp;$&gt;$ &ensp;(4)&ensp;$&gt;$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">09</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>$-4a+3&lt;-4b+3$일 때, 다음 중 옳은 것은?</div>
+            <div class="prob__choices-2col">
+              <span>① &ensp;$a&lt;b$</span>
+              <span>② &ensp;$\dfrac{3}{4}a&lt;\dfrac{3}{4}b$</span>
+              <span>③ &ensp;$\dfrac{3-2a}{4}&lt;\dfrac{3-2b}{4}$</span>
+              <span>④ &ensp;$2-\dfrac{1}{5}a&gt;2-\dfrac{1}{5}b$</span>
+              <span>⑤ &ensp;$-4a-3&gt;-4b-3$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">10</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>$a&gt;b$일 때, 다음 중 옳은 것은?</div>
+            <div class="prob__choices-stack">
+              <span>① &ensp;$a-2&lt;b-2$</span>
+              <span>② &ensp;$-2a&lt;-2b$</span>
+              <span>③ &ensp;$4a+3&lt;4b+3$</span>
+              <span>④ &ensp;$\dfrac{a}{3}-5&lt;\dfrac{b}{3}-5$</span>
+              <span>⑤ &ensp;$-a\times(-1)&lt;-b\times(-1)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">부등식과 그 성질</span>
+      <span class="page-footer__num">005</span>
+    </div>
+  </div>
+
+</div><!-- /page 5 -->
+
+
+<!-- ═══════════════════════ PAGE 6 ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__boogi">보충 개념</span>
+          </div>
+          <span class="concept-title">부등식의 성질을 이용하여 식의 값의 범위 구하기</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            $a&lt;x&lt;b$일 때 $cx+d$의 범위 구하기 :<br>
+            &ensp;❶ 각 변에 $c$를 곱함 — $c&gt;0$이면 방향 그대로, $c&lt;0$이면 방향 반대<br>
+            &ensp;❷ ❶의 결과 각 변에 $d$를 더함
+          </div>
+          <div>
+            예) $-2&lt;x&lt;1$일 때 :<br>
+            &ensp;• $3x+5$ :<br>
+            &ensp;&ensp;$x$에 $\times3$ → $-6&lt;3x&lt;3$<br>
+            &ensp;&ensp;$3x$에 $+5$ → <span class="hl">$-1&lt;3x+5&lt;8$</span><br>
+            &ensp;• $-3x+5$ :<br>
+            &ensp;&ensp;$x$에 $\times(-3)$ → $-3&lt;-3x&lt;6$<br>
+            &ensp;&ensp;$-3x$에 $+5$ → <span class="hl">$2&lt;-3x+5&lt;11$</span>
+          </div>
+        </div>
+      </div>
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">06</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">$-1&lt;a&lt;3$일 때, 다음 값의 범위를 구하시오.</div>
+            <div class="ex-choices-wrap">
+              <span>(1)&ensp;$3a-7$</span>
+              <span>(2)&ensp;$-2a+1$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          양수 계수 : 방향 그대로<br>
+          음수 계수 : 방향 반대<br>
+          음수 곱 후에는 "작은&nbsp;수&nbsp;&lt;&nbsp;식&nbsp;&lt;&nbsp;큰&nbsp;수"로 정리
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>계수 부호 먼저 확인!</li>
+          <li>양수 → 방향 불변</li>
+          <li>음수 → 방향 반대!</li>
+          <li>곱셈 후 덧셈 순서 지키기</li>
+          <li>등호 포함 여부 주의</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">(1)&ensp;$-10 &lt; 3a-7 &lt; 2$&ensp;(2)&ensp;$-5 &lt; -2a+1 &lt; 3$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">11</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>$-1&lt;x\leq3$일 때, $A=2+\dfrac{x}{2}$의 값의 범위는?</div>
+            <div class="prob__choices-2col">
+              <span>① &ensp;$-\dfrac{1}{2}\leq A&lt;3$</span>
+              <span>② &ensp;$1&lt;A\leq3$</span>
+              <span>③ &ensp;$1\leq A&lt;\dfrac{7}{2}$</span>
+              <span>④ &ensp;$\dfrac{3}{2}&lt;A\leq\dfrac{7}{2}$</span>
+              <span>⑤ &ensp;$\dfrac{3}{2}&lt;A\leq\dfrac{9}{2}$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">12</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>$-3\leq x&lt;1$일 때, $A=-2x+3$의 값의 범위는?</div>
+            <div class="prob__choices-2col">
+              <span>① &ensp;$-2&lt;A\leq6$</span>
+              <span>② &ensp;$-1\leq A&lt;9$</span>
+              <span>③ &ensp;$1&lt;A\leq9$</span>
+              <span>④ &ensp;$1\leq A&lt;9$</span>
+              <span>⑤ &ensp;$2&lt;A\leq9$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">부등식과 그 성질</span>
+      <span class="page-footer__num">006</span>
+    </div>
+  </div>
+
+</div><!-- /page 6 -->
+
+
+<!-- ═══════════════════════ PAGE 7 (개념 한눈에 보기) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <!-- 헤더 바 -->
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <!-- 메인 박스 -->
+  <div class="kaynun-box">
+
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">부등식이란?</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>부등식</strong> : 부등호($&gt;$, $&lt;$, $\geq$, $\leq$)를 사용하여 두 수 또는 두 식 사이의 대소 관계를 나타낸 식</div>
+        <ul>
+          <li><strong>좌변</strong> : 부등호 왼쪽의 식 &ensp; <strong>우변</strong> : 부등호 오른쪽의 식 &ensp; <strong>양변</strong> : 좌변과 우변을 함께 이르는 말</li>
+          <li><strong>해</strong> : 부등식을 참이 되게 하는 미지수의 값 &ensp;/&ensp; <strong>부등식을 푼다</strong> : 해를 구하는 것</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">부등식의 표현</span>
+      </div>
+      <div class="kaynun-body">
+        <table class="kaynun-table">
+          <thead>
+            <tr>
+              <th>$a&gt;b$</th><th>$a&lt;b$</th><th>$a\geq b$</th><th>$a\leq b$</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$a$는 $b$보다 크다</td><td>$a$는 $b$보다 작다</td>
+              <td>크거나 같다</td><td>작거나 같다</td>
+            </tr>
+            <tr>
+              <td>$b$ 초과</td><td>$b$ 미만</td><td>$b$ 이상</td><td>$b$ 이하</td>
+            </tr>
+            <tr>
+              <td>—</td><td>—</td>
+              <td>$b$보다 작지 않다</td><td>$b$보다 크지 않다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 개념 03 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">부등식의 성질</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li>$a&lt;b$이면 $a+c&lt;b+c$, $a-c&lt;b-c$ &ensp;(어떤 수 $c$에 대해 성립)</li>
+          <li>$a&lt;b$이고 $c&gt;0$이면 &ensp;$ac&lt;bc$, &ensp;$\dfrac{a}{c}&lt;\dfrac{b}{c}$</li>
+          <li>$a&lt;b$이고 $c&lt;0$이면 &ensp;$ac&gt;bc$, &ensp;$\dfrac{a}{c}&gt;\dfrac{b}{c}$ &ensp;(부등호 방향이 바뀜!)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">부등식과 그 성질</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 7 (개념 한눈에 보기) -->
+
+
+<!-- ═══════════════════════ PAGE 8 (쏙쏙 유형 익히기) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <!-- 쏙쏙 유형 익히기 헤더 -->
+  <div class="umuri-hd" style="flex-shrink:0;">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <!-- 2열 문제 그리드 -->
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 열: 01, 02, 03 -->
+    <div class="umuri-col">
+
+      <!-- 문제 01 -->
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">부등식으로 나타내기</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 옳은 것은?
+          <div class="umuri-choices-stack" style="margin-top:12px;">
+            <span>① &ensp;$x$는 $-3$보다 크다. $\Rightarrow$ $x&gt;-3$</span>
+            <span>② &ensp;$x$는 $5$ 미만이다. $\Rightarrow$ $x&lt;5$</span>
+            <span>③ &ensp;$x$는 $2$ 초과이다. $\Rightarrow$ $x\geq2$</span>
+            <span>④ &ensp;$x$는 $4$ 이상이다. $\Rightarrow$ $x&gt;4$</span>
+            <span>⑤ &ensp;$x$는 $1$ 이하이다. $\Rightarrow$ $x\leq1$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <!-- 문제 02 -->
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">주어진 수를 해로 가지는 부등식</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 $x=3$을 해로 가지는 부등식은?
+          <div class="umuri-choices-wrap" style="margin-top:12px;">
+            <span>① &ensp;$2x-1&gt;7$</span>
+            <span>② &ensp;$5-x\geq3$</span>
+            <span>③ &ensp;$3x+1\leq8$</span>
+            <span>④ &ensp;$-x+2&gt;0$</span>
+            <span>⑤ &ensp;$4x-3\geq10$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <!-- 문제 03 -->
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">조건을 만족시키는 부등식의 해</span>
+        </div>
+        <div class="umuri-q">
+          부등식 $3x-5&lt;4$를 만족시키는 자연수 $x$의 개수는?
+          <div class="umuri-choices-wrap" style="margin-top:12px;">
+            <span>① &ensp;1</span>
+            <span>② &ensp;2</span>
+            <span>③ &ensp;3</span>
+            <span>④ &ensp;4</span>
+            <span>⑤ &ensp;5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+    </div><!-- /왼쪽 열 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열: 04, 05 -->
+    <div class="umuri-col">
+
+      <!-- 문제 04 -->
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">부등식의 기본 성질</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 옳지 않은 것은?
+          <div class="umuri-choices-stack" style="margin-top:12px;">
+            <span>① &ensp;$a&lt;b$이면 $a+3&lt;b+3$</span>
+            <span>② &ensp;$a&lt;b$이면 $a-2&lt;b-2$</span>
+            <span>③ &ensp;$a&lt;b$이면 $3a&lt;3b$</span>
+            <span>④ &ensp;$a&lt;b$이면 $-2a&lt;-2b$</span>
+            <span>⑤ &ensp;$a&lt;b$이면 $\dfrac{a}{4}&lt;\dfrac{b}{4}$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <!-- 문제 05 -->
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">부등식의 성질을 이용하여 식의 값의 범위 구하기</span>
+        </div>
+        <div class="umuri-q">
+          $2\leq x&lt;5$일 때, $A=-3x+1$의 값의 범위는?
+          <div class="umuri-choices-stack" style="margin-top:12px;">
+            <span>① &ensp;$-14&lt;A\leq-5$</span>
+            <span>② &ensp;$-14&lt;A\leq-7$</span>
+            <span>③ &ensp;$-14\leq A&lt;-5$</span>
+            <span>④ &ensp;$-14\leq A&lt;-7$</span>
+            <span>⑤ &ensp;$-14\leq A\leq-5$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+    </div><!-- /오른쪽 열 -->
+
+  </div><!-- /umuri-grid -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">부등식과 그 성질</span>
+    <span class="page-footer__num">008</span>
+  </div>
+
+</div><!-- /page 8 (쏙쏙 유형 익히기) -->
+
+
+<!-- ═══════════════════════ PAGE 9 (빠른정답) ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <!-- 타이틀 행 -->
+  <div class="qa2-title-row">
+    <span class="qa2-num">01</span>
+    <span class="qa2-name">부등식과 그 성질</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <!-- 가로 구분선 -->
+  <div class="qa2-divider"></div>
+
+  <!-- 본문 -->
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③, ⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">①</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">③</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans"></span></div>
+          </div>
+        </div>
+      </div>
 
     </div><!-- /qa2-left -->
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
   </div><!-- /qa2-body -->
-</div><!-- /page (빠른정답) -->
 
+  <div class="qa2-divider"></div>
+
+  <div class="page-footer" style="margin-top:auto;">
+    <span class="page-footer__topic">부등식과 그 성질</span>
+    <span class="page-footer__num">009</span>
+  </div>
+
+</div><!-- /page 9 (빠른정답) -->
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ],
+    throwOnError: false
+  });"></script>
 </body>
 </html>
