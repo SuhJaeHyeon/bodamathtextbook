@@ -16,6 +16,7 @@ body {
   display: flex; flex-direction: column; align-items: center;
   gap: 20px; padding: 20px;
   font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
 }
 .page {
   width: 595px; height: 842px; background: white;
@@ -96,10 +97,11 @@ body {
 .prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
 .prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
 .prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
-.prob__body { font-size: 12px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
-.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 5px 16px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
 .prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
-.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
 .prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; font-size: 10px; color: #232f39; line-height: 15px; }
 /* ─── 유형익히기 ─── */
 .umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
@@ -117,11 +119,12 @@ body {
 .umuri-prob__left { display: flex; align-items: center; gap: 4px; }
 .umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
 .umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
-.umuri-q { font-size: 12px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
 .umuri-prob__hd + .umuri-q { margin-top: -4px; }
-.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 0; font-size: 11px; line-height: 17px; color: #232f39; }
 .umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
-.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
 /* ─── 개념 한눈에 보기 ─── */
 .kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
 .kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
@@ -316,8 +319,12 @@ body {
             </div>
             </div>
             <div class="prob__choices-wrap">
-              <span>① 4개 &ensp; ② 5개 &ensp; ③ 6개 &ensp; ④ 7개 &ensp; ⑤ 8개</span>
-            </div>
+              <span>① 4개</span>
+              <span>② 5개</span>
+              <span>③ 6개</span>
+              <span>④ 7개</span>
+              <span>⑤ 8개</span>
+              </div>
           </div>
         </div>
       </div>
@@ -527,8 +534,12 @@ body {
           <div class="prob__body">
             <div>$x$, $y$가 자연수인 일차방정식 $3x+5y=26$의 해의 개수는?</div>
             <div class="prob__choices-wrap">
-              <span>① 1&ensp; ② 2&ensp; ③ 3&ensp; ④ 4&ensp; ⑤ 5</span>
-            </div>
+              <span>① 1</span>
+              <span>② 2</span>
+              <span>③ 3</span>
+              <span>④ 4</span>
+              <span>⑤ 5</span>
+              </div>
           </div>
         </div>
       </div>
@@ -707,8 +718,12 @@ body {
           <div class="prob__body">
             <div>자연수 $x$, $y$에 대하여 연립방정식 $\begin{cases}2x-y=5\\x-2y=-2\end{cases}$의 해를 $(m,\,n)$이라 할 때, $2m-n$의 값은?</div>
             <div class="prob__choices-wrap">
-              <span>① 2 &ensp; ② 3 &ensp; ③ 4 &ensp; ④ 5 &ensp; ⑤ 6</span>
-            </div>
+              <span>① 2</span>
+              <span>② 3</span>
+              <span>③ 4</span>
+              <span>④ 5</span>
+              <span>⑤ 6</span>
+              </div>
           </div>
         </div>
         <div class="prac-sep"></div>
@@ -793,8 +808,12 @@ body {
           <div class="prob__body">
             <div>연립방정식 $2x-y=2$, $ax-y=2$에서 해가 $(b,\,6)$일 때, 상수 $a+b$의 값은?</div>
             <div class="prob__choices-wrap">
-              <span>① 2 &ensp; ② 4 &ensp; ③ 6 &ensp; ④ 8 &ensp; ⑤ 10</span>
-            </div>
+              <span>① 2</span>
+              <span>② 4</span>
+              <span>③ 6</span>
+              <span>④ 8</span>
+              <span>⑤ 10</span>
+              </div>
           </div>
         </div>
         <div class="prac-sep"></div>
@@ -914,8 +933,12 @@ body {
         <div class="umuri-q">
           $x$, $y$가 자연수일 때, 일차방정식 $3x+2y=21$의 해 중에서 $x>y$인 것은 몇 개인가?
           <div class="umuri-choices-wrap" style="margin-top:4px;">
-            <span>① 1개 &ensp; ② 2개 &ensp; ③ 3개 &ensp; ④ 4개 &ensp; ⑤ 5개</span>
-          </div>
+            <span>① 1개</span>
+            <span>② 2개</span>
+            <span>③ 3개</span>
+            <span>④ 4개</span>
+            <span>⑤ 5개</span>
+            </div>
         </div>
       </div>
       <div class="umuri-ws"></div>

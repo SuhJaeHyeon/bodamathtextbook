@@ -30,6 +30,13 @@
   .katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
   ```
 
+### 한국어 어절 줄바꿈 방지
+```css
+body { word-break: keep-all; }   /* 한국어 어절 중간 줄바꿈 방지 — body 전역 선언 */
+```
+- 어절(띄어쓰기 단위) 중간에서 줄이 바뀌지 않도록 body에 전역 적용
+- 긴 영문자·숫자 연속 문자열이 영역을 벗어날 경우 `overflow-wrap: break-word` 병행 사용
+
 ### 폰트
 | 용도 | 폰트 |
 |------|------|
@@ -260,7 +267,7 @@
     <span class="prob__num">03</span>        <!-- 파랑, Pretendard, 20px, bold:800 -->
     <span class="prob__badge">쌍둥이</span>  <!-- 파랑 3방향 테두리 pill 배지 -->
   </div>
-  <div class="prob__body">                   <!-- 12px, #232f39, gap:10px, margin-left:3px -->
+  <div class="prob__body">                   <!-- 11px, #232f39, gap:10px, margin-left:3px -->
     <div>지문</div>
     <!-- 선지 (아래 규칙 참고) -->
   </div>
@@ -276,9 +283,10 @@
 **문제 선지 정렬 규칙**:
 | 클래스 | 구조 | 사용 조건 |
 |--------|------|----------|
-| `prob__choices-stack` | `flex-column, gap:3px` | 가장 긴 선지 ≥ 14자 또는 1열이 자연스러울 때 |
-| `prob__choices-2col` | `grid 1fr 1fr, gap:8px` | 가장 긴 선지 ≤ 13자 (5선지) |
-| `prob__choices-wrap` | `flex-wrap, gap:5px 16px` | 선지가 아주 짧아 자유 배치 가능할 때 |
+| `prob__choices-stack` | `flex-column, gap:3px` | 가장 긴 선지 ≥ 9자 또는 1열이 자연스러울 때 |
+| `prob__choices-2col` | `grid 1fr 1fr, gap:8px` | 가장 긴 선지 9자~13자 |
+| `prob__choices-3col` | `grid 1fr 1fr 1fr, gap:4px 6px` | 가장 긴 선지 **4자 이상 8자 이하** |
+| `prob__choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 간격 균등 분산 |
 
 ### 5-7. 쏙쏙 유형 익히기 (umuri)
 
@@ -286,24 +294,40 @@
 
 **그리드**: `umuri-grid` — `grid: 1fr auto 1fr`, 가운데 `umuri-sep` (1px, `#f0f0f0`)
 
+**문제 블록 높이 규칙 (컬럼당 문제 수에 따라 결정)**:
+
+| 컬럼당 문제 수 | 블록당 높이 | 컬럼 구현 방법 |
+|:-----------:|:---------:|--------------|
+| 3개 | **240px** | `umuri-col` → `display:grid; grid-template-rows: 240px 240px 240px;` |
+| 2개 | **358px** | `umuri-col` → `display:grid; grid-template-rows: 358px 358px;` |
+
+> 근거: 페이지 가용 높이 ≈ 716px ÷ 3 = 238 ≈ **240px** / ÷ 2 = 358px
+
+`umuri-ws` spacer는 grid 레이아웃 적용 시 불필요하므로 **제거**한다.
+
 **문제 구조**:
 ```html
-<div class="umuri-prob">
-  <div class="umuri-prob__hd">
-    <span class="umuri-num">01</span>             <!-- 핑크, Pretendard, 20px, bold:800 -->
-    <span class="umuri-desc">유형 설명</span>     <!-- 연회색 #9a9a9a, 7px -->
+<!-- umuri-col에 grid 적용 후 umuri-ws 없이 umuri-prob 3개 나열 -->
+<div class="umuri-col" style="display:grid;grid-template-rows:240px 240px 240px;align-items:start;">
+  <div class="umuri-prob">
+    <div class="umuri-prob__hd">
+      <span class="umuri-num">01</span>             <!-- 핑크, Pretendard, 20px, bold:800 -->
+      <span class="umuri-desc">유형 설명</span>     <!-- 연회색 #9a9a9a, 7px -->
+    </div>
+    <div class="umuri-q">지문 + 선지</div>   <!-- 11px, #232f39, line-height:18px -->
   </div>
-  <div class="umuri-q">지문 + 선지</div>
+  <div class="umuri-prob">...</div>
+  <div class="umuri-prob">...</div>
 </div>
-<div class="umuri-ws"></div>  <!-- 여백 spacer, flex:1 -->
 ```
 
 **유형 익히기 선지 클래스**:
-| 클래스 | 구조 |
-|--------|------|
-| `umuri-choices-stack` | `flex-column, gap:3px` |
-| `umuri-choices-2col` | `grid 1fr 1fr, gap:3px 4px` |
-| `umuri-choices-wrap` | `flex-wrap, gap:6px 18px` |
+| 클래스 | 구조 | 사용 조건 |
+|--------|------|----------|
+| `umuri-choices-stack` | `flex-column, gap:3px` | 가장 긴 선지 ≥ 9자 또는 1열이 자연스러울 때 |
+| `umuri-choices-2col` | `grid 1fr 1fr, gap:3px 4px` | 가장 긴 선지 9자~13자 |
+| `umuri-choices-3col` | `grid 1fr 1fr 1fr, gap:3px 4px` | 가장 긴 선지 **4자 이상 8자 이하** |
+| `umuri-choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 간격 균등 분산 |
 
 ### 5-8. 개념 한눈에 보기 (kaynun)
 

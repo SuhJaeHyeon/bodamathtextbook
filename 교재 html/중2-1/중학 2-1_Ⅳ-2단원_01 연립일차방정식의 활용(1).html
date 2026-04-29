@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅳ-2단원_01 연립일차방정식의 활용(1)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all; overflow-wrap: break-word;
+}
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num { color: #338cd7; font-size: 60px; font-weight: 700; letter-spacing: -7.2px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+/* ─── cbox ─── */
+.cbox { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; display: flex; gap: 10px; padding: 16px 16px 16px 0; flex-shrink: 0; }
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right { width: 112px; flex-shrink: 0; border-left: 1px solid #F5F5F5; padding-left: 0; display: flex; flex-direction: column; gap: 10px; }
+/* ─── concept-def ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae { background: rgba(207,207,207,0.2); height: 19px; display: flex; align-items: center; justify-content: center; border-radius: 0 1000px 1000px 0; padding: 3px 9px 3px 6px; margin-right: -6px; font-size: 9px; font-weight: 700; color: #338cd7; position: relative; }
+.concept-chip__n { background: #338cd7; height: 19px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 1000px; padding: 3px 6px; font-size: 12px; font-weight: 700; color: white; position: relative; z-index: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.concept-title { font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 10px; padding-left: 26px; padding-right: 0; }
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th { background: #ebebeb; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 400; line-height: 1.4; }
+.concept-table td { background: white; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 20px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 10px; color: #232f39; line-height: 16px; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+/* ─── Right column ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+/* ─── Practice ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 5px 16px; justify-content: space-between; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; font-size: 10px; color: #232f39; line-height: 15px; }
+/* ─── 유형익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-ws { flex: 1; min-height: 12px; }
+.umuri-prob { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; overflow: hidden; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-prob__hd + .umuri-q { margin-top: -4px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 5px 14px; justify-content: space-between; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 4px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 6px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 6px 7px; font-size: 9.5px; color: #232f39; line-height: 14px; }
+/* ─── 개념 한눈에 보기 ─── */
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 16px 20px 16px 16px; display: flex; flex-direction: column; gap: 24px; flex: 1; min-height: 0; overflow: hidden; margin-bottom: 10px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 5px; letter-spacing: -0.5px; white-space: normal; word-break: keep-all; overflow-wrap: break-word; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table { border-collapse: collapse; font-size: 8.5px; letter-spacing: -0.4px; }
+.kaynun-table th { background: #f2f2f2; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 10px; text-align: center; font-weight: 500; }
+.kaynun-table td { background: white; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 10px; text-align: center; }
+.kaynun-table tr > *:first-child { border-left: none; }
+.kaynun-table tr > *:last-child { border-right: none; }
+.warning-label { background: transparent; color: #ff7373; font-size: 10px; font-weight: 700; margin: 0; padding: 0; border-radius: 0; }
+/* ─── 빠른정답 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; padding-top: 3px; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+/* ─── 세트 블록 ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; flex: 1; min-height: 0; }
+/* ─── 형광펜 ─── */
+.hl { background: #fff5d3; }
+/* ─── Footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOwAAAA0CAYAAACJvtRWAAAACXBIWXMAACxLAAAsSwGlPZapAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAACzdJREFUeAHtnV1sHUcVx/9rJyBQEkx5aUmqTpOAUj6TQoBKoG4qBVIJKQ4QeKmUddokygONIyQknnqD+gIS4LQPUeMi30j0qdA6CKkPRepWqhTKl20kNyG226EJSR74cBxeCNTbOd7d3q/9mN2d3Ttrz08a3/Xu2d17986Zc+bMmbkW2mAT3tC623C8QXwWFWF5WPQ8zKxfD/fSiMVhMBhiscKNrWe9E+KfhtgcQp/wLEwLBT69cNRqwmAw9LCisFvHvSeEojSgD1xY3D3G4hoMnVjsjMcGB/EW9GMRAxhdeMw6B4Oh/9iisGB7OiiVMyCU9QnoyRCW0dz2rHcIxRlC9a4+3Y+hXtiiTIhCDfhUsL0T1UH3+pkorwSFthn6C70neh70fiaCMhXsYyiGLcqLwbXCezhJJ1jbx70pEfSp8kvJyuIAsGfuqJW1RWOinID/AEJlpWs0RTmN8nBEoUbGbtvnijIiCkc2GNRVWPrsiwnH6VmNxRw7mXBMFUn3b4hyCtXD4CtnXGPPRdmF5OcaB9WRZswxeg4now5Y284KddUdC+7CEWtPhjMY/NaKxRynyrsL6iFvpZFw/IAok0hmKLiOA7VeAYf/3qK6GAxI7Rbdi+wNjixM4v70/buoFlKcEykyeRoz+l6pIWAJMtTAN7t3DqAgX7wLeO7rwPwRv/z6G8A3Px4v/4mPZJNfwYMtGhYH8lCFZwnHyaNoQC1M4poTEtegL3IU6l14Br9iRV13GOk4KI9RCRkVXaNuwm5LXJEZ3nww5RpRz9tGuucU+Z2sQwEev1+Uz3XuI4X8kfgImzcCT/2p89heBpzZGy1/n3h98gLisRJdiG52KpLJgi0hE1YQnnANhvKg+zvotQgs/VTcg/KQUQwGtVDfUaahSmMY6ddpoNOll2mMI59Jbgu7RSjkBy4+jy/t+w6+evBRzF6a6zhOykzWt11++IPT+NajJ1bOufDHqQ5551OifDrhhsLK7pjwGOSQeSAfgn6UYUW6YRH7+jb2HlB1DIWCWSqUVZYG5Br0VHIr7J1XXkLjx0/jyrXr+OSO7aJ8DFev3eiQabe+u9fN4/Dxx3HhD1Mro78PfH4Xlm79p1P+/uR7/v92pQ+5HzCUT54ASZnYkGswbkIdDqpHyWhMboX9y0ut7tjspXn85MwE9h48jKWllhKShd30Pn/7tfMt+ZtLtzD+i+eFZT7cYWlJlixxHIpTJm26pMKS1j+VgaF8XOiFrFfBoYZ+DPGF9y1MboW9+Y+WNZ396xx+KhSWLObs5fkOuU3v91+vvtVymUnOt843cOXvnVZ58wYYyoMixC70gUHeVaRo7b/hB+Wo/0mBqjyuNHkY06iePPdk6FL03EGnTZs2dFjTkLs/emfH/0v/9V+3bL4Lby/d6L3ORnkNtbzaJSKUAVW4tKGhKM7nPK9M0qL53VDl3RmUsHtEikDj6k3IQwGgF1Edi8g+jszQGuriwfnN3Ar7mYcO4rXJTi/waw99BVvaFPaq0Oel2/72Pbv34e2LnYGmu4US7xPnhJDs69djb0mTAzgMNJbrov6QwjkoDikvVURS/pVKLXEONVz3Bvcny53mrnL4jUJoJek8GVee5M8F9+PID0PQ5crtEt/xhYP49v6H3/v/gd278MPvf7dD5um2YZ3BHQ/je8dH3vuflPWXP+9MOPotRyLWO/gbDBz1h8GP1Kq+Zpg6KNNf5PCVO02WlI2SbGgozA2KA1/h0wJ4Q8F5HGo4lNvCvnx9A547/gOcEkpKfdItXa7wG/8CfnW59T9Zzr1fHsHFRw5GypM1furPKTcdWBWWZa3DkJyFVhQHfr+YMqN4iqyNdMhqRykmh291k6K/DL4HoKrPbBfKdDr+MvAC39CjfGQpH/lNr/yTvxNN2uVe+dev+fJXbyEJPn/EcmGoM+QGp6XkqYDBbxSGJOTSSFI2jnSUjjEXynSiPueKEs4C990BbBTDMr+/kax4ZEVfmGvJXxKW+I1/Ih311pW+iJNQhw1oO/Op35DikAvsoDoYfPf4AFYP04UUNoQUNMU6FpIHTWgfVD5bg9wcF+pgMHRji7If+SYycLQmKtD4O1kqhmyQRafhnzGsDk4rUdiyoWVjzOoTfad9woSL6MaOlJKUhBTMRjF3kCxjtztqQz5CG0JeTxP5M7yGUCw7rMi5IRzB0FUdFPb0/DFrtbSQdSYc/yRCJRhpO07DIw2oyeih60b1Hd2gTAfvQeZeJDOK6JlUMsq0E/Ge2INIJ6/CcviR6A4KT68rFQ/nFo5aozDoiIOWEtB23NS9LFDljpwH2gXdaw/klSFuTitHOtQPZjHXdJAOh0K0tbDCDT5ZsmWlltOGugeq4+yfsgktjIpZRhzRbnAcJEdxDZnxXGpIbPRaSlfiXAY/42hSlBn433NYd9LgWO0Ka1lwSVnnjmVeEiYr9CW+AkMRWNdrXlzkW0KHGnQKatkSssPoVdAwzXNY8nwZuXZUB0q1U1gaa90DQ10oGlAJc2yLeFJ0vi0hF9ffPAn5KX5Z4MiW3yyFVn1YT91cTQ5DFYRe0DlkI1RUCqoU7fa4kHdto+BQOx4fXrMUw6OVwlqib7DtWW8iw8oScZic4/LhaLl8svmyLnzlIEVtQF0DfV5CJlyeJ4om/P4zR3E45NIic6Ff0GkZzv+WMbz1Ge/Um/mDTtQvqWK5lbVEOI+UXin4MoaWwtFrOPuF+pShe8nhrxRB502ivNUuXBR3P+n90ftsIF/doc9GY6Xtz0U5Wi9z6llovHnEyttxp5zVndCPpOVCZb6LpPPz0kR6JXVRkpunIQytLC3ajqtHHP5zoS5B2JjJ4CB9hRKOiHFYrRMn6Pd+to57yKm0VLnCKKLqgIKhFxt+xdbtWYeegZvhHA6/EWu27WMRMnlx0Zl0EkWk8muf6URKK/q1MwuPWZMZT6UP7ATbshWJZGRWIqAWtYl8cKw+0hZQ1wEOuVX6GeSQlYvDbdtehKR1rkUusejXTrAJz+UjVt6+geyYLpOU41gdqz6owIH+ykow+O9zNOYYuag2+ss0WgkhPEpA79TEFvRD06Mw6Mh+1IeofjqDn0Bjo/+QJ+ggIf5SF4WlAFTab5wY+kOd4gND6H2/NvSbGhnOH+6hNgorGNo+7tkw6MYM6gNHb1/Rhp7YiGgM66Sw1JfVcZhmrZM1GNhPojKyZOMb/YB176iVwipe+b+uMOiFCz97iUNvqGFpROx3oS+se0c9osQhy/gwDBTNdJGfV6E+KX0sKHnHYSk+MSwhlydxg1xgjvhhE7KwNCaadVHzKuh5lvVSWDnoQzrIV3Fkz6GZHw3ko4nii0o7yI8D//2nDdznIa976UjKuSiHJnwLTA0OQ/nQfXIFUeumsDzlOEPyT9yrwkb+YEWYZBCVvUVWoIqoqwP9fmen39Czd1EduRS2Vn1Yy0tVWJm1aHWggWiFz5sYkgcZF9SgGfVSWCuxBazKnVFFVMS7yojlWlzSpvbUSWH53FGrygpdNlGewKuoDjNnuIbUSWHTZuxw6Pfr4knwiH1NVGdlmzDUjrooLF84ajVTZMIJxHWAI1ph6DPQjJK4dXlVQPeow7ipIQKKEnNo3vdbv156/K0B39U8BH2DTy7Sh1SaaCk063otQtqYpEFz1lmiJfc0Vlha8jTjz3SMBiUq0bvfcGSHd70a1jAWJdR7nrbr845IuMKG4sg2bhzlIJsh5WKNY9GfbWe9MUCr6WtcdK4PrLKosMFQGCvc2P6M1/Cs/v6+qRhnncYyzs8fsxowGAw9WO3/sDMeGxzEqFCcambFeFj0BrBovYMZEa+eNr+wbjAk8y5gOOjasJGfsQAAAABJRU5ErkJggg=="); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  body { font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .title__num { letter-spacing: -4.8px !important; }
+  .title__text { letter-spacing: -0.8px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+  <!-- 타이틀 -->
+  <div class="title">
+    <span class="title__num">01</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span>
+        <span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">연립일차방정식의 활용(1)</div>
+    </div>
+  </div>
+
+  <!-- 개념01 풀이순서 + 예제01 cbox -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념01 풀이순서 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">풀이순서</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            연립방정식의 활용 문제는 다음 순서로 푼다.
+            <div style="margin-top:6px;display:flex;flex-direction:column;gap:4px;">
+              <div><span class="concept-sub">① 미지수 정하기</span>&ensp;구하려는 두 양을 $x$, $y$로 놓는다.</div>
+              <div><span class="concept-sub">② 방정식 세우기</span>&ensp;문제의 조건에 맞게 연립방정식을 세운다.</div>
+              <div><span class="concept-sub">③ 방정식 풀기</span>&ensp;세운 연립방정식을 풀어 해를 구한다.</div>
+              <div><span class="concept-sub">④ 확인하기</span>&ensp;구한 해가 문제의 조건에 맞는지 확인한다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제01 자연수 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">두 자리 자연수에서 십의 자리와 일의 자리의 숫자의 합이 8이고, 십의 자리와 일의 자리를 바꾼 수는 처음 수보다 18이 작다. 처음 수를 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd"><span class="side-bar"></span><span class="side-label">참고</span></div>
+        <div class="side-body">십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$로 놓으면<br>
+        ·&ensp;처음 수: $10x+y$<br>
+        ·&ensp;바꾼 수: $10y+x$<br><br>
+        각 조건을 식으로 나타내면<br>
+        $\begin{cases}x+y=8\\10y+x=(10x+y)-18\end{cases}$<br>
+        이를 풀면 $x=5$, $y=3$</div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">53</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 개념익히기 01-02 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>두 자리의 자연수가 있다. 각 자리의 숫자의 합은 12이고, 십의 자리의 숫자와 일의 자리의 숫자를 바꾼 수는 처음 수보다 18이 크다. 처음 수를 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>다음은 재석이의 출석 번호에 대한 설명이다. 재석이의 출석 번호를 구하시오.</div>
+            <div class="prob__boogi">
+              ·&ensp;두 자리의 자연수이다.<br>
+              ·&ensp;일의 자리 숫자는 십의 자리 숫자보다 4가 크다.<br>
+              ·&ensp;십의 자리와 일의 자리를 바꾼 수는 처음 수의 2배보다 10이 더 크다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">001</span>
+  </div>
+</div><!-- /page 001 -->
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page">
+
+  <!-- 개념02 활용유형 + 예제02 cbox -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념02 활용유형 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">활용유형</span>
+        </div>
+        <div class="concept-body" style="gap:6px;">
+          <div><span class="concept-sub">(1) 자연수</span>&ensp;십의 자리 숫자 $x$, 일의 자리 숫자 $y$<br>
+          &ensp;&ensp;처음 수 $=10x+y$,&ensp; 바꾼 수 $=10y+x$</div>
+          <div><span class="concept-sub">(2) 나이</span>&ensp;현재 $x$살인 사람의<br>
+          &ensp;&ensp;$a$년 전: $(x-a)$살,&ensp; $b$년 후: $(x+b)$살</div>
+          <div><span class="concept-sub">(3) 득점·감점</span>&ensp;전체 $n$문제, 맞히면 $a$점, 틀리면 $b$점 감점<br>
+          &ensp;&ensp;$x+y=n$,&ensp; $ax-by=\text{(총점)}$</div>
+          <div><span class="concept-sub">(4) 증가·감소</span>&ensp;작년 남학생 $x$명, 여학생 $y$명일 때<br>
+          &ensp;&ensp;올해 남: $\!\left(1+\dfrac{a}{100}\right)\!x$명,&ensp; 올해 여: $\!\left(1-\dfrac{b}{100}\right)\!y$명</div>
+          <div><span class="concept-sub">(5) 일</span>&ensp;전체 일의 양을 1이라 하면<br>
+          &ensp;&ensp;A 하루 작업량: $\dfrac{1}{x}$,&ensp; B 하루 작업량: $\dfrac{1}{y}$</div>
+        </div>
+      </div>
+      <!-- 예제02 나이 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">현재 어머니와 아들의 나이의 합은 60살이다. 6년 후에는 어머니의 나이가 아들의 나이의 3배가 된다. 현재 어머니의 나이를 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+        <div class="tip-body">
+          <ul>
+            <li>현재 어머니 $x$살, 아들 $y$살로 놓는다.</li>
+            <li>6년 후 나이: 어머니 $(x+6)$살, 아들 $(y+6)$살</li>
+            <li>$x+y=60$, $x+6=3(y+6)$으로 연립방정식을 세운다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">48살</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 개념익히기 03-04 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>현재 어머니의 나이가 딸의 나이보다 36세 더 많고, 6년 후에는 어머니의 나이가 딸의 나이의 2배보다 15가 더 많아진다. 6년 후의 어머니의 나이를 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>현재 아버지와 아들의 나이의 합은 51살이고, 12년 후에 아버지의 나이는 아들의 나이의 2배가 된다. 아버지와 아들의 나이의 차를 구하여라.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">002</span>
+  </div>
+</div><!-- /page 002 -->
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set: 예제03 가격 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">어느 박물관에 어른 3명과 어린이 5명이 입장하면 16600원이고, 어른 4명과 어린이 3명이 입장하면 17000원이다. 어른 한 명의 입장료를 구하시오. <span style="font-size:8.5px;color:#539e84;">(가격, 개수에 대한 문제)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>어른 $x$원, 어린이 $y$원으로 놓는다.</li>
+              <li>(단가)×(인원 수)의 합으로 식을 세운다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">3200원</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>어느 박물관에 어른 15명과 어린이 24명의 입장료가 32400원이고 어른 10명과 어린이 6명의 입장료는 15600원일 때, 어른의 입장료를 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>반지 4개와 목걸이 3개의 가격은 80000원이고, 목걸이가 반지보다 4배 더 비싸다고 할 때, 목걸이 한 개의 가격은?</div>
+              <div class="prob__choices-3col">
+                <span>① 5000원</span><span>② 10000원</span><span>③ 15000원</span>
+                <span>④ 20000원</span><span>⑤ 25000원</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set: 예제04 도형 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">세로의 길이가 가로의 길이보다 8 cm 더 긴 직사각형이 있다. 이 직사각형의 둘레가 60 cm일 때, 직사각형의 넓이를 구하시오. <span style="font-size:8.5px;color:#539e84;">(도형에 대한 문제)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>가로 $x$ cm, 세로 $y$ cm로 놓는다.</li>
+              <li>둘레 $=2(x+y)$임을 이용한다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$209\ \text{cm}^2$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>아랫변의 길이가 윗변의 길이보다 2 cm 더 긴 사다리꼴이 있다. 이 사다리꼴의 높이가 4 cm이고 넓이가 28 cm²일 때, 아랫변의 길이를 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>가로의 길이가 세로의 길이의 2배가 되는 직사각형 모양의 철조망이 있다. 철조망의 둘레가 60 m라고 할 때, 가로의 길이는?</div>
+              <div class="prob__choices-3col">
+                <span>① 10 m</span><span>② 15 m</span><span>③ 20 m</span>
+                <span>④ 25 m</span><span>⑤ 30 m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set: 예제05 득점감점 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">18문제가 출제된 시험에서 한 문제를 맞히면 3점을 얻고 틀리면 1점이 감점된다. 모든 문제를 풀어서 30점을 얻었을 때, 맞힌 문제의 개수를 구하시오. <span style="font-size:8.5px;color:#539e84;">(득점, 감점에 대한 문제)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>맞힌 수 $x$, 틀린 수 $y$로 놓는다.</li>
+              <li>$x+y=18$, $3x-y=30$으로 연립방정식을 세운다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">12개</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>15문제가 출제된 과학 시험에서 한 문제를 맞히면 2점을 얻고 틀리면 1점이 감점된다. 신영이는 15문제를 모두 풀어서 12점을 얻었을 때 신영이가 맞힌 문제의 개수를 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>수현이네 학교의 수학 시험은 4점짜리 문제와 5점짜리 문제가 섞여서 출제되는데 수현이는 18개의 문제를 맞혀서 80점을 받았다. 수현이가 맞힌 4점짜리 문제 수를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set: 예제06 증가감소 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">지난해 어느 학교 전체 학생 수는 700명이었다. 올해는 남학생이 5% 증가하고 여학생이 10% 감소하여 전체 학생 수가 지난해보다 10명 줄었다. 올해 남학생 수를 구하시오. <span style="font-size:8.5px;color:#539e84;">(증가, 감소에 대한 문제)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>지난해 남 $x$명, 여 $y$명으로 놓는다.</li>
+              <li>올해 남: $1.05x$명, 올해 여: $0.9y$명</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">420명</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>어느 학교 매점에서 빵과 우유를 판매한다. 어제 빵과 우유를 합하여 240개가 판매되었는데, 오늘은 판매량이 빵은 10%, 우유는 30% 감소하여 총 188개가 판매되었다. 오늘 빵의 판매량은?</div>
+              <div class="prob__choices-3col">
+                <span>① 90개</span><span>② 95개</span><span>③ 100개</span>
+                <span>④ 105개</span><span>⑤ 110개</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>작년 어느 지역의 남자 인구와 여자 인구의 합은 900명이었다. 올해는 남자 인구가 5% 감소하고 여자 인구가 4% 증가하여 전체 인구가 작년보다 9명 늘었다. 올해 남자 인구를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set: 예제07 이익할인 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">07</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">두 물건 A, B의 원가의 합은 30000원이다. A에 30%의 이익을 붙이고 B에 20%를 할인하여 팔았더니 1500원의 이익이 생겼다. A의 원가를 구하시오. <span style="font-size:8.5px;color:#539e84;">(원가, 정가에 대한 문제)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>A 원가 $x$원, B 원가 $y$원으로 놓는다.</li>
+              <li>이익 $=0.3x-0.2y=1500$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">15000원</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">13</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>어느 출판사에서 새로 제작한 2권의 책을 원가의 20%의 이익을 붙여 정가를 정하였더니 2권의 책의 정가의 합이 26400원이었다. 두 권의 책의 원가의 차이가 2000원일 때, 더 비싼 책의 원가를 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">14</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>어느 라면 회사에서 새로 개발한 두 종류의 라면의 원가에 각각 30%의 이익을 붙여 정가를 정하였다. 두 종류의 라면의 정가의 차는 260원이고 원가의 합은 1600원일 때, 더 저렴한 라면의 정가를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set: 예제08 일 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">08</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">두 사람 A, B가 함께 하면 6일 만에 끝낼 수 있는 일이 있다. A가 3일간 일한 후 나머지를 B가 혼자 12일 만에 끝냈다. A 혼자 이 일을 마치려면 며칠이 걸리는지 구하시오. <span style="font-size:8.5px;color:#539e84;">(일)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>A 혼자 $x$일, B 혼자 $y$일로 놓는다.</li>
+              <li>$\dfrac{1}{x}+\dfrac{1}{y}=\dfrac{1}{6}$,&ensp;$\dfrac{3}{x}+\dfrac{12}{y}=1$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">9일</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">15</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>중석이와 원석이가 같이 하면 8일만에 끝낼 수 있는 일이 있다. 이 일을 중석이가 4일간 작업을 한 후 이어서 원석이가 10일간 작업을 해서 끝마쳤다. 원석이가 혼자서 일을 한다면 며칠이 걸리는지 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">16</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>A가 먼저 8일 동안 일한 후 나머지를 B가 9일 동안 일하면 마칠 수 있는 일이 있다. 이 일을 A가 먼저 16일 동안 일한 후 나머지를 B가 3일 동안 일하여 마쳤을 때, A가 혼자서 이 일을 마치려면 며칠이 걸리는지 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+
+<!-- ═══════════════════════ PAGE 006 개념 한눈에 보기 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <!-- 개념01 풀이순서 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">풀이순서</span>
+      </div>
+      <div class="kaynun-body">
+        <div style="display:flex;flex-direction:column;gap:3px;">
+          <div>① <span style="font-weight:700;">미지수 정하기</span>&ensp;구하려는 두 양을 $x$, $y$로 놓는다.</div>
+          <div>② <span style="font-weight:700;">방정식 세우기</span>&ensp;문제의 조건에 맞게 연립방정식을 세운다.</div>
+          <div>③ <span style="font-weight:700;">방정식 풀기</span>&ensp;세운 연립방정식을 풀어 해를 구한다.</div>
+          <div>④ <span style="font-weight:700;">확인하기</span>&ensp;구한 해가 문제의 조건에 맞는지 확인한다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개념02 활용유형 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">활용유형</span>
+      </div>
+      <div class="kaynun-body">
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div>
+            <span style="font-weight:700;">(1) 자연수에 대한 문제</span><br>
+            십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$로 놓으면<br>
+            &ensp;처음 수 $=10x+y$,&ensp; 십·일의 자리를 바꾼 수 $=10y+x$
+          </div>
+          <div>
+            <span style="font-weight:700;">(2) 나이에 대한 문제</span><br>
+            현재 $x$살인 사람의 $a$년 전은 $(x-a)$살, $b$년 후는 $(x+b)$살
+          </div>
+          <div>
+            <span style="font-weight:700;">(3) 득점·감점에 대한 문제</span><br>
+            맞힌 문제 수를 $x$, 틀린 문제 수를 $y$로 놓으면<br>
+            &ensp;$x+y=\text{(전체 문제 수)}$,&ensp; $ax-by=\text{(총점)}$
+          </div>
+          <div>
+            <span style="font-weight:700;">(4) 증가·감소에 대한 문제</span><br>
+            작년 남학생 $x$명, 여학생 $y$명일 때<br>
+            &ensp;올해 남: $\!\left(1+\dfrac{a}{100}\right)\!x$명,&ensp; 올해 여: $\!\left(1-\dfrac{b}{100}\right)\!y$명
+          </div>
+          <div>
+            <span style="font-weight:700;">(5) 일에 대한 문제</span><br>
+            전체 일의 양을 1이라 하면<br>
+            &ensp;A가 혼자 $x$일에 완성 → A의 하루 작업량 $=\dfrac{1}{x}$<br>
+            &ensp;B가 혼자 $y$일에 완성 → B의 하루 작업량 $=\dfrac{1}{y}$
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 -->
+
+<!-- ═══════════════════════ PAGE 007 유형익히기 ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1;">
+    <!-- 왼쪽 열 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="height:240px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">01</span>
+          </div>
+          <span class="umuri-desc">자연수에 관한 문제</span>
+        </div>
+        <div class="umuri-q">두 자리의 자연수가 있는데 각 자리 숫자의 합을 6배 하면 이 자연수와 같아지고, 십의 자리 숫자와 일의 자리 숫자를 바꾸면 처음 수보다 9만큼 작은 수가 된다고 한다. 이때 처음의 자연수를 구하시오.</div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:240px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">02</span>
+          </div>
+          <span class="umuri-desc">나이에 관한 문제</span>
+        </div>
+        <div class="umuri-q">현재 아버지의 나이는 아들의 나이의 4배인데 10년 후에는 아버지의 나이가 아들의 나이의 2배보다 10살이 더 많게 된다. 현재 아버지와 아들의 나이의 차는?</div>
+        <div class="umuri-choices-wrap">
+          <span>① 24</span><span>② 26</span><span>③ 28</span><span>④ 30</span><span>⑤ 32</span>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:240px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">03</span>
+          </div>
+          <span class="umuri-desc">연립방정식 세우기</span>
+        </div>
+        <div class="umuri-q">주사위를 모두 12번 던져 2의 눈이 $x$번, 3의 눈이 3번, 4의 눈이 5번, 5의 눈이 $y$번 나왔고, 1의 눈과 6의 눈만 나오지 않았다. 나온 눈의 수의 합이 42일 때, $x$, $y$에 대한 연립방정식으로 나타낸 것은?</div>
+        <div class="umuri-choices-stack">
+          <span>① $\begin{cases}x+y=4\\2x+5y=13\end{cases}$ &ensp; ② $\begin{cases}x+y=4\\2x+5y=17\end{cases}$</span>
+          <span>③ $\begin{cases}x+y=6\\2x+5y=13\end{cases}$ &ensp; ④ $\begin{cases}x+y=6\\2x+5y=15\end{cases}$</span>
+          <span>⑤ $\begin{cases}x+y=6\\2x+5y=17\end{cases}$</span>
+        </div>
+      </div>
+
+    </div><!-- /left col -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="height:240px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">04</span>
+          </div>
+          <span class="umuri-desc">도형에 관한 문제</span>
+        </div>
+        <div class="umuri-q">가로의 길이가 10 cm, 세로의 길이가 4 cm인 직사각형이 있다. 이 직사각형의 가로와 세로의 길이를 각각 늘여 새로운 도형을 만들었다. 가로로 늘인 길이는 세로로 늘인 길이보다 3 cm 더 길고, 새로 만든 도형의 넓이는 원래 직사각형의 넓이의 2배일 때, 가로의 길이는 몇 cm 늘었는가?</div>
+        <div class="umuri-choices-3col">
+          <span>① 4 cm</span><span>② 4.5 cm</span><span>③ 5 cm</span>
+          <span>④ 5.5 cm</span><span>⑤ 6 cm</span>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:240px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">05</span>
+          </div>
+          <span class="umuri-desc">득점·감점 문제</span>
+        </div>
+        <div class="umuri-q">갑, 을 두 사람이 가위바위보를 해서 이긴 사람은 두 계단을 올라가고 진 사람은 한 계단을 내려가기로 하였다. 현재 갑은 처음의 위치보다 4계단, 을은 10계단을 올라와 있을 때, 을은 몇 번 이겼는지 구하시오.</div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:240px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">06</span>
+          </div>
+          <span class="umuri-desc">증가·감소 문제</span>
+        </div>
+        <div class="umuri-q">기존 세탁기로 세탁과 행굼을 할 때 사용되는 물의 양은 총 120 L이다. 새로 나온 세탁기를 사용하면 기존 세탁기에 비해 세탁에서의 물 사용량은 10%가 줄고 행굼에서의 물 사용량은 5%가 늘어 총 6 L의 물이 절약된다. 새로 나온 세탁기로 행굼을 할 때 사용되는 물의 양은?</div>
+        <div class="umuri-choices-3col">
+          <span>① 40 L</span><span>② 42 L</span><span>③ 44 L</span>
+          <span>④ 46 L</span><span>⑤ 48 L</span>
+        </div>
+      </div>
+
+    </div><!-- /right col -->
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 -->
+
+<!-- ═══════════════════════ PAGE 008 빠른정답 ═══════════════════════ -->
+<div class="page" style="gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">01</span>
+    <span class="qa2-name">연립일차방정식의 활용(1)</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <!-- 왼쪽: 개념익히기 + 유형익히기 -->
+    <div class="qa2-left">
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">57</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">26</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">57살</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">25</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">1200원</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">8 cm</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">9개</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">10개</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">285명</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">12000원</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">910원</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">15</span><span class="qa2-rans">12일</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">16</span><span class="qa2-rans">20일</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">54</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">8</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">②</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(1)</span>
+    <span class="page-footer__num">008</span>
+  </div>
+</div><!-- /page 008 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });">
+</script>
+</body>
+</html>

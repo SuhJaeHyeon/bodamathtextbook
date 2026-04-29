@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅳ-2단원_02 연립일차방정식의 활용(2)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num { color: #338cd7; font-size: 60px; font-weight: 700; letter-spacing: -7.2px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+/* ─── cbox ─── */
+.cbox { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; display: flex; gap: 10px; padding: 16px 16px 16px 0; flex-shrink: 0; }
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right { width: 112px; flex-shrink: 0; border-left: 1px solid #F5F5F5; padding-left: 0; display: flex; flex-direction: column; gap: 10px; }
+/* ─── concept-def ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae { background: rgba(207,207,207,0.2); height: 19px; display: flex; align-items: center; justify-content: center; border-radius: 0 1000px 1000px 0; padding: 3px 9px 3px 6px; margin-right: -6px; font-size: 9px; font-weight: 700; color: #338cd7; position: relative; }
+.concept-chip__n { background: #338cd7; height: 19px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 1000px; padding: 3px 6px; font-size: 12px; font-weight: 700; color: white; position: relative; z-index: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.concept-title { font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 10px; padding-left: 26px; padding-right: 0; }
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th { background: #ebebeb; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 400; line-height: 1.4; }
+.concept-table td { background: white; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 20px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 10px; color: #232f39; line-height: 16px; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+/* ─── Right column ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+/* ─── Practice ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 16px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; font-size: 10px; color: #232f39; line-height: 15px; }
+/* ─── 유형익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-ws { flex: 1; min-height: 12px; }
+.umuri-prob { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; overflow: hidden; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-prob__hd + .umuri-q { margin-top: -4px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 14px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 6px 7px; font-size: 9.5px; color: #232f39; line-height: 14px; }
+/* ─── 개념 한눈에 보기 ─── */
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 16px 20px 16px 16px; display: flex; flex-direction: column; gap: 20px; flex: 1; min-height: 0; overflow: hidden; margin-bottom: 10px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-sub { font-size: 11px; font-weight: 700; color: #232f39; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 5px; letter-spacing: -0.5px; white-space: normal; word-break: keep-all; overflow-wrap: break-word; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.warning-label { background: transparent; color: #ff7373; font-size: 10px; font-weight: 700; margin: 0; padding: 0; border-radius: 0; }
+.ex-type-label { display: inline-block; background: rgba(83,158,132,0.12); color: #539e84; font-size: 7.5px; font-weight: 700; border-radius: 2px; padding: 1px 5px; margin-left: 5px; vertical-align: middle; white-space: nowrap; letter-spacing: -0.3px; }
+/* ─── 빠른정답 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; padding-top: 3px; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+/* ─── 세트 블록 ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; flex: 1; min-height: 0; }
+/* ─── Footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,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"); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  body { font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .title__num { letter-spacing: -4.8px !important; }
+  .title__text { letter-spacing: -0.8px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+  <!-- 타이틀 -->
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span>
+        <span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">연립일차방정식의 활용(2)</div>
+    </div>
+  </div>
+
+  <!-- 개념01 거리·속력·시간 + 예제01 cbox -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">거리·속력·시간에 대한 문제</span>
+        </div>
+        <div class="concept-body">
+          <div>거리, 속력, 시간에 관한 문제는 <span class="hl">$(\text{거리})=(\text{속력})\times(\text{시간})$</span>의 관계를 이용하여 연립방정식을 세운다.</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div><span class="concept-sub">(1) 편도형</span>&ensp;구간별 거리 $x$, $y$로 놓으면&ensp;$x+y=\text{전체거리}$,&ensp;$\dfrac{x}{a}+\dfrac{y}{b}=\text{전체시간}$</div>
+            <div><span class="concept-sub">(2) 강물·배 형</span>&ensp;정수 속력 $x$ km/h, 강물 속력 $y$ km/h<br>
+            &ensp;&ensp;→ 거슬러 올라갈 때: $(x-y)$ km/h,&ensp; 따라 내려갈 때: $(x+y)$ km/h</div>
+            <div><span class="concept-sub">(3) 따라잡기 형</span>&ensp;(먼저 출발한 사람의 거리)$=$​(나중 출발한 사람의 거리)</div>
+            <div><span class="concept-sub">(4) 순환 트랙 형</span>&ensp;둘레 $L$, A: 분속 $x$, B: 분속 $y$ $(x>y)$<br>
+            &ensp;&ensp;→ 반대 방향: $(x+y)\times t=L$,&ensp; 같은 방향: $(x-y)\times t=L$</div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제01 편도형 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">A 지점에서 B 지점까지 가는데 처음에는 시속 3 km로 걷고, 중간부터 시속 15 km의 버스를 타고 총 2시간 만에 B에 도착하였다. A에서 B까지의 거리가 18 km일 때, 버스를 탄 거리는 몇 km인지 구하시오.<span style="font-size:8.5px;color:#539e84;">(편도형)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd"><span class="side-bar"></span><span class="side-label">참고</span></div>
+        <div class="side-body">걷는 거리 $x$ km, 버스 탄 거리 $y$ km로 놓으면<br>
+        $\begin{cases}x+y=18\\\dfrac{x}{3}+\dfrac{y}{15}=2\end{cases}$<br><br>
+        정리하면<br>
+        $\begin{cases}x+y=18\\5x+y=30\end{cases}$<br><br>
+        풀면 $x=3$, $y=15$</div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$15\,\text{km}$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 개념익히기 01-02 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>A 지점에서 B 지점까지 가는데 처음에는 시속 4 km로 걷고, 중간부터 시속 16 km의 버스를 타고 총 3시간 만에 B에 도착하였다. A에서 B까지의 거리가 24 km일 때, 걸은 거리는 몇 km인지 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>학교에서 공원까지 가는데 걸어서 시속 6 km로 일부를 가고, 나머지를 자전거로 시속 18 km로 갔더니 총 2시간이 걸렸다. 걸어간 거리와 자전거로 간 거리의 합이 24 km일 때, 자전거로 간 거리는 몇 km인지 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">001</span>
+  </div>
+</div><!-- /page 001 -->
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set: 예제03 강물·배 형 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">어떤 배가 강을 16 km 거슬러 올라가는 데 2시간, 강을 따라 내려오는 데 1시간이 걸렸다. 이 배의 정수 속력과 강물의 속력을 각각 구하시오.<span style="font-size:8.5px;color:#539e84;">(강물·배 형)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>정수 속력 $x$ km/h, 강물 속력 $y$ km/h로 놓는다.</li>
+              <li>거슬러: $(x-y)\times2=16$</li>
+              <li>내려와: $(x+y)\times1=16$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">정수 $12$, 강물 $4$ (km/h)</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">03</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>어떤 배가 60 km를 거슬러 올라가는 데 5시간, 강을 따라 내려오는 데 3시간이 걸렸다. 강물의 속력은 시속 몇 km인지 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">04</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>두 지점 A, B 사이를 배로 거슬러 올라가면 6시간, 내려오면 4시간이 걸린다. 강물의 속력이 시속 2 km일 때, 두 지점 A, B 사이의 거리를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set: 예제04 따라잡기 형 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">형이 집에서 출발한 지 20분 후에 동생이 출발하였다. 형은 분속 60 m, 동생은 분속 80 m로 걸을 때, 동생이 출발한 지 몇 분 후에 형을 따라잡는지 구하시오.<span style="font-size:8.5px;color:#539e84;">(따라잡기)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>동생이 출발 후 $t$분에 형을 따라잡는다.</li>
+              <li>형의 이동 시간: $(t+20)$분</li>
+              <li>$60(t+20)=80t$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$60$분 후</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>언니가 집에서 출발한 지 15분 후에 동생이 출발하였다. 언니는 분속 50 m, 동생은 분속 100 m로 걸을 때, 동생이 출발한 지 몇 분 후에 언니를 따라잡는지 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>누나가 분속 80 m로 집에서 출발하였다. 15분 후에 오빠가 자전거를 타고 분속 200 m로 출발하였다. 오빠가 누나를 따라잡는 것은 오빠가 출발한 지 몇 분 후인지 구하시오.</div>
+              <div class="prob__choices-wrap">
+                <span>① 8분 &ensp; ② 10분 &ensp; ③ 12분 &ensp; ④ 14분 &ensp; ⑤ 16분</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">002</span>
+  </div>
+</div><!-- /page 002 -->
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set: 예제07 기차·터널 형 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">길이가 $x$ m인 기차가 길이 800 m인 터널을 완전히 통과하는 데 50초, 길이 400 m인 다리를 완전히 통과하는 데 30초가 걸렸다. 기차의 초속을 구하시오.<span style="font-size:8.5px;color:#539e84;">(기차·터널)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>'완전히 통과' = 기차가 이동한 거리<br>= (기차 길이)+(터널·다리 길이)</li>
+              <li>기차 속력 $v$ m/s로 놓는다.</li>
+              <li>$(x+800)=50v$</li>
+              <li>$(x+400)=30v$</li>
+              <li>두 식을 빼면 $20v=400$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">초속 $20$ m</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>길이가 $x$ m인 기차가 길이 600 m인 터널을 통과하는 데 30초, 길이 1000 m인 철교를 통과하는 데 46초가 걸렸다. 기차의 초속은?</div>
+              <div class="prob__choices-3col">
+                <span>① 초속 20 m</span><span>② 초속 22 m</span><span>③ 초속 24 m</span>
+                <span>④ 초속 25 m</span><span>⑤ 초속 28 m</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>길이가 $x$ m인 기차가 길이 700 m인 터널을 통과하는 데 40초, 길이 300 m인 다리를 통과하는 데 20초가 걸렸다. 기차의 길이를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set: 예제08 순환 트랙 형 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">둘레가 600 m인 운동장에서 A와 B가 같은 지점에서 동시에 출발한다. 반대 방향으로 돌면 2분 후에 처음으로 만나고, 같은 방향으로 돌면 6분 후에 A가 B를 처음으로 따라잡는다. A의 분속을 구하시오.<span style="font-size:8.5px;color:#539e84;">(순환 트랙)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>A: 분속 $x$ m, B: 분속 $y$ m$(x>y)$</li>
+              <li>반대: $2(x+y)=600$</li>
+              <li>같은: $6(x-y)=600$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">분속 $200$ m</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>둘레가 1200 m인 트랙에서 A, B가 같은 지점에서 동시에 출발한다. 반대 방향으로 돌면 4분 후에 처음으로 만나고, 같은 방향으로 돌면 12분 후에 A가 B를 처음으로 따라잡는다. A의 분속과 B의 분속을 각각 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>둘레가 600 m인 운동장에서 A는 분속 $x$ m, B는 분속 $y$ m로 같은 지점에서 동시에 출발하였다. 같은 방향으로 돌면 10분 후에 처음으로 A가 B를 따라잡고, 반대 방향으로 돌면 2분 후에 처음으로 만났다. 이때 $x+y$의 값은?</div>
+              <div class="prob__choices-wrap">
+                <span>① 260 &ensp; ② 280 &ensp; ③ 300 &ensp; ④ 320 &ensp; ⑤ 340</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page">
+
+  <!-- 개념02 농도 + 예제02 cbox -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념02 농도 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">농도에 대한 문제</span>
+        </div>
+        <div class="concept-body" style="gap:8px;">
+          <div>소금물의 농도에 관한 문제는 다음 관계를 이용하여 연립방정식을 세운다.<br>
+          <span class="hl">$(\text{소금의 양})=\dfrac{(\text{농도})}{100}\times(\text{소금물의 양})$</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div><span class="concept-sub">두 소금물을 섞는 경우</span><br>
+            &ensp;(A의 소금의 양)+(B의 소금의 양)=(혼합 소금물의 소금의 양)<br>
+            &ensp;→ $\dfrac{a}{100}x+\dfrac{b}{100}y=\dfrac{c}{100}(x+y)$</div>
+            <div><span class="concept-sub">두 소금물의 농도 $a\%$, $b\%$를 구하는 경우</span><br>
+            &ensp;소금물을 두 번 혼합하는 조건으로 연립방정식을 세운다.</div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제02 농도 혼합 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">06</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">농도가 4%인 소금물 $x$ g과 농도가 10%인 소금물 $y$ g을 섞어서 농도가 6%인 소금물 300 g을 만들려고 한다. $x$, $y$의 값을 각각 구하시오.<span style="font-size:8.5px;color:#539e84;">(혼합형)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd"><span class="side-bar"></span><span class="side-label">참고</span></div>
+        <div class="side-body">소금물을 섞어도 <strong>소금의 양</strong>은 변하지 않는다!</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+        <div class="tip-body">
+          <ul>
+            <li>소금물의 양의 합: $x+y=300$</li>
+            <li>소금의 양의 합:<br>$\frac{4}{100}x+\frac{10}{100}y=\frac{6}{100}\times300$</li>
+            <li>정리하면<br>$\begin{cases}x+y=300\\2x+5y=900\end{cases}$</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$x\!=\!200,\ y\!=\!100$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 개념익히기 03-04 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">11</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>농도가 2%인 소금물 $x$ g과 농도가 12%인 소금물 $y$ g을 섞어서 농도가 7%인 소금물 400 g을 만들려고 한다. $x$와 $y$를 각각 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">12</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>10%의 소금물 $x$ g과 4%의 소금물 $y$ g을 섞어서 6%의 소금물 300 g을 만들려고 한다. 10%의 소금물은 몇 g인지 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set: 예제05 농도 혼합형 (두 소금물 양 구하기) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">07</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">농도가 3%인 소금물과 12%인 소금물을 섞어서 7%의 소금물 450 g을 만들려고 한다. 각각 몇 g씩 섞어야 하는지 구하시오.<span style="font-size:8.5px;color:#539e84;">(혼합형)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>3% 소금물 $x$ g, 12% 소금물 $y$ g</li>
+              <li>$x+y=450$</li>
+              <li>$3x+12y=7\times450$에서<br>$x+4y=1050$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$3\%$: $250$ g, $12\%$: $200$ g</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">13</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>농도가 5%인 소금물과 20%인 소금물을 섞어서 8%의 소금물 600 g을 만들려고 한다. 5%의 소금물은 몇 g인지 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">14</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>농도가 6%인 소금물과 10%인 소금물을 섞어서 농도가 9%인 소금물 400 g을 만들었다. 6%의 소금물은 몇 g인지 구하시오.</div>
+              <div class="prob__choices-wrap">
+                <span>① 60 g &ensp; ② 80 g &ensp; ③ 100 g &ensp; ④ 120 g &ensp; ⑤ 140 g</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set: 예제06 두 농도 구하기 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">08</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">농도가 $a\%$인 소금물 200 g과 $b\%$인 소금물 300 g을 섞으면 8%의 소금물이 되고, $a\%$인 소금물 300 g과 $b\%$인 소금물 200 g을 섞으면 7%의 소금물이 된다. $a$와 $b$를 각각 구하시오.<span style="font-size:8.5px;color:#539e84;">(두 농도)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body">
+            <ul>
+              <li>소금의 양의 합 = 혼합 소금물의 소금양</li>
+              <li>조건 1: $2a+3b=40$</li>
+              <li>조건 2: $3a+2b=35$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$a=5,\ b=10$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid" style="flex:1;">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">15</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>농도가 $a\%$인 소금물 200 g과 $b\%$인 소금물 300 g을 섞으면 7%가 되고, $a\%$인 소금물 300 g과 $b\%$인 소금물 200 g을 섞으면 8%가 된다. $a$와 $b$를 각각 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">16</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>15%의 소금물 $x$ g과 3%의 소금물 $y$ g을 섞어서 7%의 소금물 600 g을 만들었다. $x-y$의 값은?</div>
+              <div class="prob__choices-3col">
+                <span>① $-300$</span><span>② $-200$</span><span>③ $-100$</span>
+                <span>④ $100$</span><span>⑤ $200$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <!-- 개념01 거리·속력·시간 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">거리·속력·시간에 대한 문제</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$(\text{거리})=(\text{속력})\times(\text{시간})$,&ensp; $(\text{속력})=\dfrac{(\text{거리})}{(\text{시간})}$,&ensp; $(\text{시간})=\dfrac{(\text{거리})}{(\text{속력})}$</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div>
+            <span class="kaynun-sub">편도형</span>: 두 구간의 거리의 합=전체 거리, 두 구간의 시간의 합=전체 시간<br>
+            &ensp;→ $x+y=\text{전체거리}$,&ensp; $\dfrac{x}{a}+\dfrac{y}{b}=\text{전체시간}$
+          </div>
+          <div>
+            <span class="kaynun-sub">강물·배 형</span>: 정수 속력 $x$ km/h, 강물 속력 $y$ km/h<br>
+            &ensp;→ 거슬러 올라갈 때 속력: $(x-y)$ km/h&ensp; / &ensp;따라 내려갈 때 속력: $(x+y)$ km/h
+          </div>
+          <div>
+            <span class="kaynun-sub">따라잡기 형</span>: (먼저 출발한 사람의 이동 거리)$=$​(나중에 출발한 사람의 이동 거리)
+          </div>
+          <div>
+            <span class="kaynun-sub">기차·터널 형</span>: 기차가 터널/다리를 완전히 통과할 때<br>
+            &ensp;→ (이동 거리)$=$​(기차 길이)$+$(터널/다리 길이)
+          </div>
+          <div>
+            <span class="kaynun-sub">순환 트랙 형</span>: 둘레 $L$, A: 분속 $x$, B: 분속 $y$ $(x>y)$<br>
+            &ensp;→ 반대 방향: $(x+y)\times t=L$&ensp; / &ensp;같은 방향: $(x-y)\times t=L$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개념02 농도 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">농도에 대한 문제</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$(\text{소금의 양})=\dfrac{(\text{농도})}{100}\times(\text{소금물의 양})$</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div>
+            <span class="kaynun-sub">두 소금물을 섞는 경우</span><br>
+            &ensp;$a\%$의 소금물 $x$ g과 $b\%$의 소금물 $y$ g을 섞어 $c\%$의 소금물을 만들 때<br>
+            &ensp;→ $x+y=\text{(혼합량)}$,&ensp; $\dfrac{a}{100}x+\dfrac{b}{100}y=\dfrac{c}{100}(x+y)$
+          </div>
+          <div>
+            <span class="kaynun-sub">두 소금물의 농도를 구하는 경우</span><br>
+            &ensp;두 가지 혼합 조건으로 연립방정식을 세워 $a$, $b$를 구한다.<br>
+            &ensp;조건 1: $\dfrac{a}{100}\times(\text{양}_1)+\dfrac{b}{100}\times(\text{양}_2)=c_1\%\text{의 소금양}$<br>
+            &ensp;조건 2: $\dfrac{a}{100}\times(\text{양}_3)+\dfrac{b}{100}\times(\text{양}_4)=c_2\%\text{의 소금양}$
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 -->
+<!-- ═══════════════════════ PAGE 007 ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1;">
+    <!-- 왼쪽 열 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="height:230px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">01</span>
+          </div>
+          <span class="umuri-desc">거리·속력·시간 | 편도형</span>
+        </div>
+        <div class="umuri-q">갑이 학교에서 도서관까지 가는데, 처음에는 시속 4 km로 걷다가 도중에 시속 12 km의 버스로 갈아탔더니 총 1시간 30분이 걸렸다. 이 거리가 10 km일 때, 버스를 탄 거리는 몇 km인지 구하시오.</div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:230px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">02</span>
+          </div>
+          <span class="umuri-desc">거리·속력·시간 | 강물·배</span>
+        </div>
+        <div class="umuri-q">배를 타고 32 km를 거슬러 올라가는 데 4시간, 강을 따라 내려오는 데 2시간이 걸렸다. 강물의 속력은 시속 몇 km인지 구하시오.</div>
+        <div class="umuri-choices-3col">
+          <span>① 시속 2 km</span><span>② 시속 4 km</span><span>③ 시속 6 km</span>
+          <span>④ 시속 8 km</span><span>⑤ 시속 10 km</span>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:230px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">03</span>
+          </div>
+          <span class="umuri-desc">거리·속력·시간 | 순환 트랙</span>
+        </div>
+        <div class="umuri-q">둘레가 800 m인 운동장에서 두 사람 A, B가 같은 지점에서 동시에 반대 방향으로 출발하면 4분 후에 처음으로 만나고, 같은 방향으로 출발하면 20분 후에 처음으로 A가 B를 따라잡는다. A의 분속과 B의 분속을 각각 구하시오.</div>
+      </div>
+
+    </div><!-- /left col -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="height:230px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">04</span>
+          </div>
+          <span class="umuri-desc">농도 | 혼합형</span>
+        </div>
+        <div class="umuri-q">농도가 4%인 소금물과 10%인 소금물을 섞어서 6%의 소금물 300 g을 만들려고 한다. 4%의 소금물은 몇 g 섞어야 하는지 구하시오.</div>
+        <div class="umuri-choices-wrap">
+          <span>① 150 g &ensp; ② 180 g &ensp; ③ 200 g &ensp; ④ 220 g &ensp; ⑤ 250 g</span>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:230px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">05</span>
+          </div>
+          <span class="umuri-desc">농도 | 두 농도 구하기</span>
+        </div>
+        <div class="umuri-q">농도가 $a\%$인 소금물 300 g과 $b\%$인 소금물 200 g을 섞으면 9%의 소금물이 되고, $a\%$인 소금물 200 g과 $b\%$인 소금물 300 g을 섞으면 11%의 소금물이 된다. $a+b$의 값은?</div>
+        <div class="umuri-choices-wrap">
+          <span>① 12 &ensp; ② 16 &ensp; ③ 18 &ensp; ④ 20 &ensp; ⑤ 22</span>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+      <div class="umuri-prob" style="height:230px;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">06</span>
+          </div>
+          <span class="umuri-desc">농도 | 혼합 후 물 추가</span>
+        </div>
+        <div class="umuri-q">5%의 소금물 400 g과 $x\%$의 소금물 200 g을 섞었더니 $y\%$의 소금물이 되었다. 이 소금물에 물 200 g을 더 넣었더니 6%의 소금물이 되었다. $x$와 $y$를 각각 구하시오.</div>
+      </div>
+
+    </div><!-- /right col -->
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 -->
+<!-- ═══════════════════════ PAGE 008 ═══════════════════════ -->
+<div class="page" style="gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">연립일차방정식의 활용(2)</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <!-- 왼쪽: 개념익히기 + 유형익히기 -->
+    <div class="qa2-left">
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$8\,\text{km}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$18\,\text{km}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">시속 $4\,\text{km}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$48\,\text{km}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$15$분 후</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">$100\,\text{m}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">A 분속 $200$ m, B 분속 $100$ m</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">$x\!=\!200,\ y\!=\!200$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">$100\,\text{g}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">$480\,\text{g}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">15</span><span class="qa2-rans">$a\!=\!10,\ b\!=\!5$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">16</span><span class="qa2-rans">②</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$6\,\text{km}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">A 분속 $120$ m, B 분속 $80$ m</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">$x\!=\!14,\ y\!=\!8$</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa2-vdivider"></div>
+
+    <!-- 오른쪽: 비워둠 -->
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 활용(2)</span>
+    <span class="page-footer__num">008</span>
+  </div>
+</div><!-- /page 008 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '\\(', right: '\\)', display: false},
+      {left: '$', right: '$', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ]
+  });">
+</script>
+</body>
+</html>

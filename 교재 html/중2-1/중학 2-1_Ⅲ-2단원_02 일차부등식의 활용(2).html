@@ -91,8 +91,9 @@ body {
 .prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
 .prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
 .prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
-.prob__body { font-size: 11.5px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 7px; letter-spacing: -0.5px; margin-left: 3px; }
-.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 3px 12px; font-size: 10.5px; line-height: 17px; color: #232f39; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 7px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 3px 0; font-size: 10.5px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 10.5px; line-height: 17px; color: #232f39; }
 /* ─── 유형익히기 ─── */
 .umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
 .umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
@@ -109,8 +110,9 @@ body {
 .umuri-prob__left { display: flex; align-items: center; gap: 4px; }
 .umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
 .umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
-.umuri-q { font-size: 11.5px; color: #232f39; line-height: 17px; letter-spacing: -0.5px; margin-left: 1px; }
-.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 10.5px; line-height: 17px; color: #232f39; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 0; font-size: 10.5px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 10.5px; line-height: 17px; color: #232f39; }
 /* ─── 개념 한눈에 보기 ─── */
 .kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
 .kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
@@ -899,4 +901,3 @@ body {
   });"></script>
 </body>
 </html>
-     

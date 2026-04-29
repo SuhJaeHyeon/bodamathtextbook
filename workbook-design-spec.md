@@ -54,7 +54,7 @@
 | 예제 번호 | Pretendard Variable | 16px | 700 | color: `--green`, letter-spacing: -1.44px |
 | 문제 번호 | Pretendard Variable | 20px | 800 | letter-spacing: -1.8px, color: `--primary` |
 | 개념 본문 | Pretendard Variable | 11.5px | 400 | letter-spacing: -0.6px, line-height: 18px |
-| 문제 본문 | Pretendard Variable | 12px | 400 | letter-spacing: -0.5px, line-height: 18px |
+| 문제 본문 | Pretendard Variable | 11px | 400 | letter-spacing: -0.5px, line-height: 18px |
 | 연습문제 보기 | Pretendard Variable | 11px | 400 | line-height: 17px |
 | 풀이 TIP 내용 | Pretendard Variable | 8px | 400 | line-height: 1.4 |
 | 개념 표 | Pretendard Variable | 8px | — | letter-spacing: -0.48px |
@@ -135,6 +135,29 @@
   - **내부 구조** : `.ex-content > .ex-q` 만 포함
   - ⛔ **`ex-sol` (풀이 해설) 클래스 사용 금지** — 예제 풀이 해설은 표시하지 않음
   - ⛔ **`ans-row` 를 `ex-body` 안에 넣지 않음** — 정답은 반드시 `.cbox__right` 안에 배치
+
+#### 유형 레이블 — 개념 미연계 예제 전용
+
+- **적용 대상** : `개념정의(.concept-def)`와 같은 `.cbox` 안에 배치되지 않은 예제, 즉 set-block 페이지의 예제 전체
+- **위치** : `.ex-q` 텍스트 **맨 끝**, 문장 부호 바로 뒤 공백 한 칸 뒤에 인라인으로 삽입
+- **내용** : PDF에서 예제를 추출할 당시 유형명을 **그대로** 사용 (소괄호 안에 넣기)
+- **CSS 클래스 없음** — 반드시 인라인 스타일만 사용
+
+```html
+<!-- 형식 -->
+<div class="ex-q">
+  ...문제 텍스트... <span style="font-size:8.5px;color:#539e84;">({유형명})</span>
+</div>
+
+<!-- 예시 -->
+<div class="ex-q">
+  기본 요금이 포함된 비용 문제이다. ... <span style="font-size:8.5px;color:#539e84;">(기본 요금이 포함된 비용 문제)</span>
+</div>
+```
+
+> ⚠️ **개념정의와 같은 `.cbox`에 배치된 예제**(예 : 예제01, 예제02)에는 유형 레이블을 붙이지 않습니다.
+
+> ⚠️ `.ex-type-label` CSS 클래스는 **사용 금지** — 별도 클래스 정의 없이 인라인 스타일만 사용합니다.
 
 ### 오른쪽 사이드 컬럼 (`.cbox__right`)
 - `border-left: 1px dashed #dadde0`, `padding-left: 8px`
@@ -239,11 +262,21 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 
 | 항목 | 올바른 값 | 잘못된 값 (❌) |
 |------|-----------|---------------|
-| `kaynun-hd__small` 텍스트 | `한눈에 보는` | `개념` |
-| `kaynun-hd__big` 텍스트 | `개념 정리` | `한눈에 보기` |
+| `kaynun-hd__small` 텍스트 | `한눈에 보는` | `개념`, `쏙쏙` |
+| `kaynun-hd__big` 텍스트 | `개념 정리` | `한눈에 보기`, `개념` |
 | `kaynun-chip` 텍스트 | `01` / `02` | `개념 01` / `개념 02` / `개념 01 (1)` |
 | `.page` style | `padding-top:36px; gap:0;` | 기본값 그대로 |
 | `.kaynun-title` font-size | `14px` | 13px |
+
+> ⚠️ **`kaynun-hd` HTML 구조 고정** — 자식 요소는 `kaynun-hd__small` + `kaynun-hd__big` 두 개만 사용하며, 텍스트는 아래 템플릿과 **정확히 일치**해야 합니다.
+>
+> ```html
+> <!-- ✅ 유일하게 허용되는 형태 -->
+> <div class="kaynun-hd">
+>   <span class="kaynun-hd__small">한눈에 보는</span>
+>   <span class="kaynun-hd__big">개념 정리</span>
+> </div>
+> ```
 
 > ⚠️ **`.kaynun-chip` 텍스트는 반드시 숫자(두 자리)만 표기한다.** `개념`, `(1)`, `(2)` 등 어떠한 문자도 포함하지 않는다. 개념이 소주제로 분리되어도 chip에는 상위 개념 번호만 표기하고, 소주제 구분은 `.kaynun-title`에서 `(1)`, `(2)` 등으로 표현한다.
 >
@@ -280,7 +313,17 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
     - ⚠️ **텍스트 우선순위**: 입력 문제은행 PDF에서 해당 문제에 표기된 태그(`쌍둥이` / `유사`)를 그대로 추출하여 사용
     - PDF에서 태그를 추출할 수 없는 경우에만 기본값 적용 → 왼쪽 열 `쌍둥이`, 오른쪽 열 `유사`
     - 문제 유형명(왕복형·편도형 등) 절대 사용 금지
-- `.prob__body` — 12px, line-height 18px, letter-spacing: -0.5px
+- `.prob__body` — 11px, line-height 18px, letter-spacing: -0.5px
+
+**문제 선지 정렬 규칙**:
+
+| 클래스 | CSS 구조 | 사용 조건 |
+|--------|---------|----------|
+| `prob__choices-stack` | `flex-column, gap:3px` | 가장 긴 선지 ≥ 9자 또는 1열이 자연스러울 때 |
+| `prob__choices-2col` | `grid 1fr 1fr, gap:8px` | 가장 긴 선지 9자~13자, 2열 배치가 적합할 때 |
+| `prob__choices-3col` | `grid 1fr 1fr 1fr, gap:4px 6px` | 가장 긴 선지 **4자 이상 8자 이하** |
+| `prob__choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 선지 간격 균등 분산 |
+
 - `.prob__boogi` — 조건 박스: border 1px `#dadde0`, border-radius 3px, bg `#fafafa`
 
 ### 페이지 푸터 (`.page-footer`)
@@ -355,6 +398,54 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 | `.qa2-rg` | 문제번호(`.qa2-rnum`) + 정답(`.qa2-rans`) 한 쌍 |
 | `.qa2-row` | `qa2-rg` 2개 + `qa2-rsep` 한 줄 |
 
+#### `.qa2-title-row` 각 요소 고정값
+
+| 요소 | 값 | 비고 |
+|------|----|------|
+| `.qa2-num` | 단원 번호 (예: `01`) | 페이지 상단 `.title__num`과 동일한 번호 |
+| `.qa2-name` | 단원명 텍스트 (예: `연립일차방정식의 활용(1)`) | **스타일은 `.title__text`와 동일** — font-size: 24px, font-weight: 700, color: `#000`, letter-spacing: -1.2px |
+| `.qa2-badge` | **텍스트 고정: `빠른 정답`** | 단원명·페이지 번호 등 다른 텍스트 사용 금지 |
+
+```html
+<!-- 올바른 예시 -->
+<div class="qa2-title-row">
+  <span class="qa2-num">01</span>
+  <span class="qa2-name">연립일차방정식의 활용(1)</span>   ← 단원명
+  <span class="qa2-badge">빠른 정답</span>               ← 고정 텍스트
+</div>
+
+<!-- 잘못된 예시 ❌ -->
+<span class="qa2-badge">연립일차방정식의 활용(1)</span>  <!-- 단원명 금지 -->
+<span class="qa2-badge">빠른정답</span>                  <!-- 띄어쓰기 없는 표기 금지 -->
+```
+
+---
+
+### 유형 익히기 페이지 (`.umuri-*`)
+
+**페이지 레이아웃**
+- `.umuri-grid` — `display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px`
+- `.umuri-col` — `display: flex; flex-direction: column; flex: 1`
+- `.umuri-sep` — 1px `#f0f0f0` 세로 구분선
+- `.umuri-ws` — 컬럼 내 여백: `flex: 1; min-height: 12px`
+
+**문제 칸 (`.umuri-prob`)**
+- 높이 고정: `style="height:240px;"` (3문제 컬럼) 또는 `style="height:358px;"` (2문제 컬럼)
+- `.umuri-q` — **11px**, line-height **18px**, letter-spacing: -0.5px
+- `.umuri-desc` — 7px, weight 600, `#9a9a9a`, 우측 정렬 (문제 유형 레이블)
+
+**유형 익히기 선지 정렬 규칙**:
+
+| 클래스 | CSS 구조 | 사용 조건 |
+|--------|---------|----------|
+| `umuri-choices-stack` | `flex-column, gap:2px` | 가장 긴 선지 ≥ 9자 또는 KaTeX 포함 |
+| `umuri-choices-2col` | `grid 1fr 1fr, gap:2px 4px` | 가장 긴 선지 9자~13자, 2열 적합할 때 |
+| `umuri-choices-3col` | `grid 1fr 1fr 1fr, gap:4px 6px` | 가장 긴 선지 **4자 이상 8자 이하** |
+| `umuri-choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 선지 간격 균등 분산 |
+
+> ⚠️ `prob__choices-*` 와 동일한 기준을 따르되 클래스 이름이 `umuri-choices-*` 로 다릅니다.
+> ⚠️ 선지는 각각 별도의 `<span>`으로 분리합니다 (`justify-content: space-between` / grid 작동을 위해).
+
 ---
 
 ## 6. 수식 렌더링
@@ -407,12 +498,20 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 | 영역 | 원본 소스 | 핵심 원칙 |
 |------|-----------|-----------|
 | 개념 설명 | 개념원리 개념 PDF — 해당 단원 개념 설명 | 정의·단계·예시 풀이·주의 모두 포함; PDF 예시 풀이(예)는 파란 배경 박스로 삽입 |
-| 예제 | 개념원리 개념 PDF — 핵심문제 | 번호 1:1 대응; 개념 미연계 예제는 문제 끝에 유형 레이블 삽입 |
+| 예제 | 개념원리 개념 PDF — 핵심문제 | 번호 1:1 대응; 개념 미연계 예제는 문제 끝에 유형 레이블 삽입 (PDF 추출 당시 유형명을 소괄호에 넣어 인라인 스타일로 표시) |
 | 연습문제 | 단원별 문제지 PDF | 번호 1:1 대응 |
 
 ---
 
 ## 8-1. 콘텐츠 편집 규칙 (HTML 작성 시 반드시 적용)
+
+### 한국어 어절 줄바꿈 방지
+
+- 모든 본문 텍스트에 `word-break: keep-all` 적용 (body 전역 선언)
+- 한국어 어절(띄어쓰기 단위) 중간에서 줄이 바뀌지 않도록 함
+- 긴 영문자/숫자 연속 문자열이 영역을 벗어날 경우 `overflow-wrap: break-word` 병행 사용
+
+---
 
 ### 콜론 앞 공백
 

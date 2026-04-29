@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅳ-1단원_02 연립일차방정식의 풀이</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin, .katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body { background: #adadad; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px; font-family: '윤고딕', 'Yoon Gothic', sans-serif; word-break: keep-all; }
+.page { width: 595px; height: 842px; background: white; display: flex; flex-direction: column; padding: 32px 30px 20px 30px; gap: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num { color: #338cd7; font-size: 60px; font-weight: 700; letter-spacing: -7.2px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+.cbox { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; display: flex; gap: 10px; padding: 16px 16px 16px 0; flex-shrink: 0; }
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right { width: 112px; flex-shrink: 0; border-left: 1px solid #F5F5F5; padding-left: 0; display: flex; flex-direction: column; gap: 10px; }
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae { background: rgba(207,207,207,0.2); height: 19px; display: flex; align-items: center; justify-content: center; border-radius: 0 1000px 1000px 0; padding: 3px 9px 3px 6px; margin-right: -6px; font-size: 9px; font-weight: 700; color: #338cd7; position: relative; }
+.concept-chip__n { background: #338cd7; height: 19px; width: 22px; display: flex; align-items: center; justify-content: center; border-radius: 1000px; padding: 3px 6px; font-size: 12px; font-weight: 700; color: white; position: relative; z-index: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.concept-title { font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 10px; padding-left: 26px; padding-right: 0; }
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th { background: #ebebeb; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 400; line-height: 1.4; }
+.concept-table td { background: white; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 20px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; align-items: flex-start; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 5px 16px; font-size: 11px; line-height: 17px; color: #232f39; justify-content: space-between; }
+.prob__choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-ws { flex: 1; min-height: 10px; }
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 10.5px; line-height: 16px; color: #232f39; justify-content: space-between; }
+.umuri-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 10.5px; line-height: 16px; color: #232f39; }
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 14px 20px 14px 16px; display: flex; flex-direction: column; gap: 20px; flex: 1; min-height: 0; overflow: hidden; margin-top: -1px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 6px; letter-spacing: -0.5px; white-space: normal; word-break: keep-all; overflow-wrap: break-word; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table { border-collapse: collapse; width: 100%; font-size: 8.5px; letter-spacing: -0.48px; }
+.kaynun-table th { background: #f2f2f2; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 500; line-height: 1.4; }
+.kaynun-table td { background: white; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.kaynun-table tr > *:first-child { border-left: none; }
+.kaynun-table tr > *:last-child { border-right: none; }
+.warning-label { color: #ff7373; font-size: 10px; font-weight: 700; }
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; padding-top: 3px; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 26px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+.set-block { display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0; }
+.set-divider { height: 1px; background: #f0f0f0; flex-shrink: 0; }
+.hl { background: #fff5d3; }
+.hl-r { background: #ffd6d6; }
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,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"); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+.numline-wrap { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.numline-choice { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #232f39; }
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">연립일차방정식의 풀이</div>
+    </div>
+  </div>
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">(1) 복잡한 연립방정식의 풀이 - 괄호가 있는 경우</span>
+        </div>
+        <div class="concept-body">
+          <div>분배법칙을 이용하여 괄호를 풀고 동류항을 정리한 후 푼다.</div>
+          <div style="background:rgba(51,140,215,0.07);border-radius:4px;padding:5px 8px;display:flex;gap:6px;font-size:10.5px;line-height:17px;">
+            <span style="color:#338cd7;font-weight:700;flex-shrink:0;">예</span>
+            <div>$\begin{cases}3x-2(x-y)=-2\\3x-6y=-5\end{cases}$<br>❶ 분배법칙 이용 : $3x-2x+2y=-2$ → $x+2y=-2$ ···①<br>❷ 연립방정식 풀기</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 연립방정식을 푸시오.<br>$\begin{cases}2x-3(y-1)=6\\4(x-y)+y=9\end{cases}$</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+        <div class="tip-body"><ul>
+          <li>괄호를 분배법칙으로 먼저 전개</li>
+          <li>동류항 정리 후 연립방정식 풀기</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$x=3,\;y=1$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 05 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>연립방정식 $\begin{cases}3x-2(x+y)=19\\3x-4(x-2y)=11\end{cases}$의 해는?</div>
+            <div class="prob__choices-2col">
+              <div>① $x=21,\;y=12$</div>
+              <div>② $x=29,\;y=5$</div>
+              <div>③ $x=25,\;y=8$</div>
+              <div>④ $x=27,\;y=6$</div>
+              <div>⑤ $x=23,\;y=10$</div>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 06 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>연립방정식 $\begin{cases}x-3y=10\\2(y+4)+x=3\end{cases}$의 해를 $x=m$, $y=n$이라 할 때, $m-n$의 값을 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">001</span>
+  </div>
+</div><!-- /page 001 -->
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page">
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">(2) 복잡한 연립방정식의 풀이 - 계수가 소수·분수인 경우</span>
+        </div>
+        <div class="concept-body">
+          <div><span class="concept-sub">① 계수가 소수인 경우 :</span> 각 방정식의 양변에 10의 거듭제곱(10, 100, …)을 곱하여 계수를 정수로 고쳐서 푼다.</div>
+          <div style="background:rgba(51,140,215,0.07);border-radius:4px;padding:5px 8px;display:flex;gap:6px;font-size:10.5px;line-height:17px;">
+            <span style="color:#338cd7;font-weight:700;flex-shrink:0;">예</span>
+            <div>$\begin{cases}0.2x-1.3y=0.4\\2.1x-1.3y=9.2\end{cases}$<br>❶ ①×10: $2x-13y=4$ ···①'<br>❷ ②×10: $21x-13y=92$ ···②'</div>
+          </div>
+          <div><span class="concept-sub">② 계수가 분수인 경우 :</span> 각 방정식의 양변에 분모의 최소공배수를 곱하여 계수를 정수로 고쳐서 푼다.</div>
+          <div style="background:rgba(51,140,215,0.07);border-radius:4px;padding:5px 8px;display:flex;gap:6px;font-size:10.5px;line-height:17px;">
+            <span style="color:#338cd7;font-weight:700;flex-shrink:0;">예</span>
+            <div>$\begin{cases}\dfrac{x}{4}+\dfrac{y}{8}=1\\2x+3y=10\end{cases}$<br>❶ ①×8: $2x+y=8$ ···①'<br>❷ {①', ②}를 풀면</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 연립방정식을 푸시오. <span style="font-size:8.5px;color:#539e84;">(소수·분수 혼합형)</span><br>$\begin{cases}0.2x+0.3y=1.3\\\dfrac{x}{4}+\dfrac{y}{6}=1\end{cases}$</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd"><span class="side-bar"></span><span class="side-label">참고</span></div>
+        <div class="side-body">소수와 분수가 섞인 연립방정식은 분수를 먼저 정수로 바꾸거나 소수를 먼저 정수로 바꿔서 풀면 된다.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+        <div class="tip-body"><ul>
+          <li>소수: 10의 거듭제곱 곱하기</li>
+          <li>분수: 최소공배수 곱하기</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$x=2,\;y=3$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 07 -->
+        <div class="prob">
+          <div class="prob__hd"><span class="prob__num">03</span><span class="prob__badge">쌍둥이</span></div>
+          <div class="prob__body">
+            <div>다음 연립방정식의 해는?<br>$\begin{cases}0.2(3x-1)+0.7y=1.7\\\dfrac{1}{3}(2y+1)-\dfrac{1}{2}(3x-2)=-1\end{cases}$</div>
+            <div class="prob__choices-2col">
+              <div>① $x=-2,\;y=-1$</div><div>② $x=-1,\;y=-2$</div>
+              <div>③ $x=1,\;y=2$</div><div>④ $x=2,\;y=1$</div>
+              <div>⑤ $x=3,\;y=3$</div>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 08 -->
+        <div class="prob">
+          <div class="prob__hd"><span class="prob__num">04</span><span class="prob__badge">유사</span></div>
+          <div class="prob__body">
+            <div>다음 연립방정식의 해는?<br>$\begin{cases}1.2x-0.04y=2.4\\3x+1.5y=6\end{cases}$</div>
+            <div class="prob__choices-2col">
+              <div>① $x=4,\;y=-2$</div><div>② $x=3,\;y=-2$</div>
+              <div>③ $x=2,\;y=0$</div><div>④ $x=-2,\;y=0$</div>
+              <div>⑤ $x=0,\;y=-3$</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">002</span>
+  </div>
+</div><!-- /page 002 -->
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page">
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">A=B=C 꼴의 방정식 풀기</span>
+        </div>
+        <div class="concept-body">
+          <div>A=B=C 꼴의 방정식은 <span class="hl">A=B, B=C, A=C 중 두 쌍을 골라</span> 연립방정식으로 풀 수 있다. 어떤 두 쌍을 선택해도 결과가 같으므로 <span class="hl">계산이 가장 간단한 두 쌍</span>을 선택한다.</div>
+          <div style="background:rgba(51,140,215,0.07);border-radius:4px;padding:5px 8px;display:flex;gap:6px;font-size:10.5px;line-height:17px;">
+            <span style="color:#338cd7;font-weight:700;flex-shrink:0;">예</span>
+            <div>방정식 $3x-4y=-7x+6y=1$<br>
+            A=C: $3x-4y=1$ ···①&ensp;&ensp;B=C: $-7x+6y=1$ ···②<br>
+            ①×3+②×2: $9x-12y+(-14x+12y)=3+2$ &rarr; $-5x=5$ &rarr; $x=-1$, $y=-1$</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">방정식 $2x-y=4x+y=6$을 푸시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd"><span class="side-bar"></span><span class="side-label">참고</span></div>
+        <div class="side-body">A=B=C에서 세 식 중 가장 계산하기 쉬운 두 쌍을 선택한다. 어느 두 쌍을 골라도 해는 같다.</div>
+      </div>
+      <div style="flex:1;"></div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$x=2,\;y=-2$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 09 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">05</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>연립방정식 $\dfrac{x-3}{2}=\dfrac{3(2y+x)-2}{6}=12$를 만족하는 $y$의 값을 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 10 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">06</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>방정식 $0.5x-0.1y-0.2=0.3x+0.1=1$의 해인 순서쌍 $(x, y)$는?</div>
+            <div class="prob__choices-3col">
+              <div>① $(4,\;-2)$</div>
+              <div>② $(2,\;1)$</div>
+              <div>③ $(-3,\;1)$</div>
+              <div>④ $(3,\;3)$</div>
+              <div>⑤ $(1,\;5)$</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page">
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">(1) 해가 특수한 연립방정식 - 해가 무수히 많은 경우</span>
+        </div>
+        <div class="concept-body">
+          <div>연립방정식 $\begin{cases}ax+by=c\\a'x+b'y=c'\end{cases}$에서 두 방정식이 같은 직선을 나타낼 때,<br>
+          $\dfrac{a}{a'}=\dfrac{b}{b'}=\dfrac{c}{c'}$이면 해가 무수히 많다.</div>
+          <div style="background:rgba(51,140,215,0.07);border-radius:4px;padding:5px 8px;display:flex;gap:6px;font-size:10.5px;line-height:17px;">
+            <span style="color:#338cd7;font-weight:700;flex-shrink:0;">예</span>
+            <div>$\begin{cases}2x+3y=2\\4x+6y=4\end{cases}$<br>❶ $\dfrac{2}{4}=\dfrac{3}{6}=\dfrac{2}{4}=\dfrac{1}{2}$ &rarr; 해가 무수히 많다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">04</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">연립방정식 $\begin{cases}2x-3y=4\\ax-6y=8\end{cases}$가 해가 무수히 많을 때, 상수 $a$의 값을 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd"><span class="side-bar"></span><span class="side-label">참고</span></div>
+        <div class="side-body">
+          <table class="concept-table" style="font-size:7.5px;">
+            <tr><th>비율 조건</th><th>결론</th></tr>
+            <tr><td>$\dfrac{a}{a'}=\dfrac{b}{b'}=\dfrac{c}{c'}$</td><td>해 무수히 많다</td></tr>
+            <tr><td>$\dfrac{a}{a'}=\dfrac{b}{b'}\neq\dfrac{c}{c'}$</td><td>해 없다</td></tr>
+          </table>
+        </div>
+      </div>
+      <div style="flex:1;"></div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$a=4$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 17 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">07</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 중 해가 무수히 많은 연립방정식은?</div>
+            <div class="prob__choices-2col" style="font-size:10px;gap:8px 6px;">
+              <div>① $\begin{cases}-x+\dfrac{y}{3}=\dfrac{1}{5}\\-4x+2y=6\end{cases}$</div>
+              <div>② $\begin{cases}2x+y=3\\4x-2y=6\end{cases}$</div>
+              <div>③ $\begin{cases}x+2y=-2\\2x+y+1=-3-3y\end{cases}$</div>
+              <div>④ $\begin{cases}\dfrac{x}{5}+\dfrac{y}{2}=3\\2x+3y=1\end{cases}$</div>
+              <div>⑤ $\begin{cases}0.1x-0.3y=-1\\2x-6y=-10\end{cases}$</div>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 18 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">08</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>연립방정식 $\begin{cases}3x+y=4\\9x+\square\, y=12\end{cases}$가 해가 무수히 많을 때, $\square$에 알맞은 수는?</div>
+            <div class="prob__choices-wrap">
+              <div>① 1</div><div>② 2</div><div>③ 3</div><div>④ 4</div><div>⑤ 5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page">
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">(2) 해가 특수한 연립방정식 - 해가 없는 경우</span>
+        </div>
+        <div class="concept-body">
+          <div>연립방정식 $\begin{cases}ax+by=c\\a'x+b'y=c'\end{cases}$에서 두 방정식이 평행한 직선을 나타낼 때,<br>
+          $\dfrac{a}{a'}=\dfrac{b}{b'}\neq\dfrac{c}{c'}$이면 해가 없다.</div>
+          <div style="background:rgba(51,140,215,0.07);border-radius:4px;padding:5px 8px;display:flex;gap:6px;font-size:10.5px;line-height:17px;">
+            <span style="color:#338cd7;font-weight:700;flex-shrink:0;">예</span>
+            <div>$\begin{cases}6x+10y=3\\6x+10y=-3\end{cases}$ &ensp;$\dfrac{6}{6}=\dfrac{10}{10}=1$이지만 $\dfrac{3}{-3}=-1\neq1$ &rarr; 해가 없다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">05</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">연립방정식 $\begin{cases}3x-2y=5\\6x+ay=4\end{cases}$가 해가 없을 때, 상수 $a$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(해없음)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+        <div class="tip-body"><ul>
+          <li>$\frac{a}{a'}=\frac{b}{b'}\neq\frac{c}{c'}$ 조건 확인</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$a=-4$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 19 -->
+        <div class="prob">
+          <div class="prob__hd"><span class="prob__num">09</span><span class="prob__badge">쌍둥이</span></div>
+          <div class="prob__body">
+            <div>다음 중 해가 없는 연립방정식은?</div>
+            <div class="prob__choices-2col" style="font-size:10px;gap:8px 6px;">
+              <div>① $\begin{cases}x-2y=7\\3x+y=14\end{cases}$</div>
+              <div>② $\begin{cases}3x+y=2\\x+y=1\end{cases}$</div>
+              <div>③ $\begin{cases}3x+6y=8\\6x+12y=10\end{cases}$</div>
+              <div>④ $\begin{cases}4x-3y=10\\x-y=12\end{cases}$</div>
+              <div>⑤ $\begin{cases}2x+4y=-1\\4x+6y=1\end{cases}$</div>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 20 -->
+        <div class="prob">
+          <div class="prob__hd"><span class="prob__num">10</span><span class="prob__badge">유사</span></div>
+          <div class="prob__body">
+            <div>다음 중 (A)~(E) 안에 알맞은 것으로 바르게 짝지어지지 않은 것을 모두 고르면? (정답 2개)</div>
+            <div class="prob__boogi" style="flex-direction:column;font-size:9px;gap:1px;">
+              <div>연립방정식 $\begin{cases}x-5y=6\quad\cdots㉮\\3x-15y=12\;\cdots㉯\end{cases}$에서</div>
+              <div>$x$의 계수가 같아지도록 ㉮×<u>(A)</u>을(를) 하면 <u>(B)</u> ···㉰</div>
+              <div>㉰과 ㉯의 식을 비교하면 $x$, <u>(C)</u>의 계수는 같은데</div>
+              <div><u>(D)</u>은(는) 같지 않으므로 연립방정식의 해가 <u>(E)</u>.</div>
+            </div>
+            <div class="prob__choices-stack" style="font-size:10px;gap:2px;">
+              <div>① (A) 3</div>
+              <div>② (B) $3x-15y=12$</div>
+              <div>③ (C) $y$</div>
+              <div>④ (D) 상수항</div>
+              <div>⑤ (E) 무수히 많다</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제06 (해를 알 때) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">연립방정식 $\begin{cases}ax+3y=1\\2x-by=7\end{cases}$의 해가 $x=2,\;y=-1$일 때, 상수 $a$, $b$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(해를 알 때)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$a=2,\;b=3$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 쌍둥이 11 -->
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">11</span><span class="prob__badge">쌍둥이</span></div>
+            <div class="prob__body">
+              <div>연립방정식 $\begin{cases}x-2y=a\\x+y=8\end{cases}$의 해가 $(b,\;1)$이라 할 때, $a$, $b$의 값은? (단, $a$는 상수)</div>
+              <div class="prob__choices-2col">
+                <div>① $a=1,\;b=3$</div><div>② $a=-3,\;b=5$</div>
+                <div>③ $a=5,\;b=7$</div><div>④ $a=5,\;b=-5$</div>
+                <div>⑤ $a=5,\;b=-7$</div>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 유사 12 -->
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">12</span><span class="prob__badge">유사</span></div>
+            <div class="prob__body">
+              <div>연립방정식 $\begin{cases}ax+2by=13\\by=ax+2\end{cases}$의 해가 $x=3,\;y=5$일 때, $a$의 값은? (단, $a$, $b$는 상수)</div>
+              <div class="prob__choices-wrap">
+                <div>① $-1$</div><div>② $-2$</div><div>③ $1$</div><div>④ $2$</div><div>⑤ $3$</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set 2: 예제07 (조건식) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">07</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">연립방정식 $\begin{cases}x+2y=7\\3x-y=a\end{cases}$에서 $x$의 값이 $y$의 값보다 1만큼 클 때, 상수 $a$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(조건식)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body"><ul>
+            <li>조건 $x=y+1$을 먼저 세우기</li>
+            <li>연립방정식에 대입하여 풀기</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$a=7$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 쌍둥이 13 -->
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">13</span><span class="prob__badge">쌍둥이</span></div>
+            <div class="prob__body">
+              <div>연립방정식 $\begin{cases}0.1x-0.2y=0.5\\\dfrac{4}{15}x-\dfrac{3}{5}y=a\end{cases}$에서 $x$의 값이 $y$의 값의 4배보다 5만큼 작을 때, 상수 $a$의 값은?</div>
+              <div class="prob__choices-wrap">
+                <div>① 1</div><div>② 2</div><div>③ 3</div><div>④ 4</div><div>⑤ 5</div>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 유사 14 -->
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">14</span><span class="prob__badge">유사</span></div>
+            <div class="prob__body">
+              <div>연립방정식 $\begin{cases}4x-y=10k\\6x-y=-10\end{cases}$의 해를 $x=m$, $y=n$이라 할 때, $m$의 값이 $n$의 값보다 10만큼 작을 때, $k$의 값은?</div>
+              <div class="prob__choices-wrap">
+                <div>① $-2$</div><div>② $-1$</div><div>③ $0$</div><div>④ $1$</div><div>⑤ $2$</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 -->
+
+<!-- ═══════════════════════ PAGE 007 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">08</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">두 연립방정식 $\begin{cases}2x-y=3\\x+2y=4\end{cases}$와 $\begin{cases}ax-y=1\\2x+by=10\end{cases}$의 해가 서로 같을 때, $a+b$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(해가 서로 같을 때)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body"><ul>
+            <li>첫 번째 연립방정식의 해를 먼저 구하기</li>
+            <li>구한 해를 두 번째 연립방정식에 대입</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$a+b=7$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 쌍둥이 15 -->
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">15</span><span class="prob__badge">쌍둥이</span></div>
+            <div class="prob__body">
+              <div>두 연립방정식 $\begin{cases}3x-4y=-5\\ax-by=13\end{cases}$과 $\begin{cases}3ax+5by=-41\\2x+3y=8\end{cases}$의 해가 서로 같을 때, $a-b$의 값을 구하시오. (단, $a$, $b$는 상수)</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 유사 16 -->
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">16</span><span class="prob__badge">유사</span></div>
+            <div class="prob__body">
+              <div>두 연립방정식 $\begin{cases}x-y=3\\2x-3y=4\end{cases}$와 $\begin{cases}(a+1)x-2y=6\\2x-by=4\end{cases}$의 해가 서로 같을 때, $a+b$의 값은? (단, $a$, $b$는 상수)</div>
+              <div class="prob__choices-wrap">
+                <div>① 2</div><div>② 3</div><div>③ 4</div><div>④ 5</div><div>⑤ 6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 -->
+
+<!-- ═══════════════════════ PAGE 008 (한눈에 보기) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+  <div class="kaynun-box">
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">복잡한 연립방정식의 풀이</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li><strong>(1) 괄호 :</strong> 분배법칙으로 괄호를 풀고 동류항을 정리한 후 푼다.</li>
+          <li><strong>(2) 소수 :</strong> 양변에 10의 거듭제곱을 곱하여 계수를 정수로 고친 후 푼다.</li>
+          <li><strong>(3) 분수 :</strong> 양변에 분모의 최소공배수를 곱하여 계수를 정수로 고친 후 푼다.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">A=B=C 꼴의 방정식</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li>A=B=C에서 A=B, B=C, A=C 중 두 쌍을 선택하여 연립방정식으로 풀기</li>
+          <li>계산이 가장 간단한 두 쌍을 선택한다.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">해가 특수한 연립방정식</span>
+      </div>
+      <div class="kaynun-body">
+        <div>연립방정식 $\begin{cases}ax+by=c\\a'x+b'y=c'\end{cases}$에서</div>
+        <table class="kaynun-table">
+          <tr>
+            <th>조건</th>
+            <th>결론</th>
+            <th>그래프</th>
+          </tr>
+          <tr>
+            <td>$\dfrac{a}{a'}=\dfrac{b}{b'}=\dfrac{c}{c'}$</td>
+            <td>해가 무수히 많다</td>
+            <td>두 직선이 일치</td>
+          </tr>
+          <tr>
+            <td>$\dfrac{a}{a'}=\dfrac{b}{b'}\neq\dfrac{c}{c'}$</td>
+            <td>해가 없다</td>
+            <td>두 직선이 평행</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">008</span>
+  </div>
+</div><!-- /page 008 -->
+
+<!-- ═══════════════════════ PAGE 009 (유형 익히기) ═══════════════════════ -->
+<div class="page">
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1;min-height:0;">
+    <!-- Left column: 01, 02, 03 -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:240px 240px 240px;align-items:start;">
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">01</span>
+          </div>
+          <span class="umuri-desc">연립방정식의 풀이(2) - 가감법</span>
+        </div>
+        <div class="umuri-q">
+          <div>다음 연립방정식을 가감법으로 풀 때, 필요한 식을 모두 고르면? (정답 2개)</div>
+          <div style="margin:4px 0;background:rgba(245,245,245,0.6);border-radius:6px;padding:5px 10px;">$\begin{cases}5x+3y=7\quad\cdots①\\4x-7y=15\;\cdots②\end{cases}$</div>
+          <div class="umuri-choices-stack">
+            <div>① $①\times3+②\times(-7)$</div>
+            <div>② $①\times3-②\times7$</div>
+            <div>③ $①\times7-②\times(-3)$</div>
+            <div>④ $①\times(-4)+②\times5$</div>
+            <div>⑤ $①\times4-②\times(-5)$</div>
+          </div>
+        </div>
+      </div>
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">02</span>
+          </div>
+          <span class="umuri-desc">A=B=C 꼴의 방정식의 풀이</span>
+        </div>
+        <div class="umuri-q">
+          방정식 $2x+y+1=6x+2=5x-y-2$를 만족시키는 $y$의 값을 구하시오.
+        </div>
+      </div>
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">03</span>
+          </div>
+          <span class="umuri-desc">연립방정식의 해를 알 때</span>
+        </div>
+        <div class="umuri-q">
+          <div>연립방정식 $\begin{cases}x+3y=10\\ax+y=6\end{cases}$의 해가 $(b-1,\;b+1)$일 때, $a+b$의 값은? (단, $a$는 상수)</div>
+          <div class="umuri-choices-wrap">
+            <div>① 3</div><div>② 4</div><div>③ 5</div><div>④ 6</div><div>⑤ 7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- Right column: 04, 05, 06 -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:240px 240px 240px;align-items:start;">
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">04</span>
+          </div>
+          <span class="umuri-desc">연립방정식의 해와 조건식</span>
+        </div>
+        <div class="umuri-q">
+          연립방정식 $\begin{cases}4x+y=16\\-6x+ay=10\end{cases}$을 만족하는 $x$와 $y$의 값의 비가 $3:4$일 때, 상수 $a$의 값을 구하시오.
+        </div>
+      </div>
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">05</span>
+          </div>
+          <span class="umuri-desc">해가 서로 같은 두 연립방정식</span>
+        </div>
+        <div class="umuri-q">
+          두 연립방정식 $\begin{cases}x-2y=1\\ax+y=-2\end{cases}$와 $\begin{cases}3x-y=8\\x+2y=b\end{cases}$의 해가 서로 같을 때, $a+b$의 값을 구하시오. (단, $a$, $b$는 상수)
+        </div>
+      </div>
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">06</span>
+          </div>
+          <span class="umuri-desc">해가 특수한 연립방정식 - 해없음</span>
+        </div>
+        <div class="umuri-q">
+          <div>연립방정식 $\begin{cases}2x-y=1\\4x+ay=3\end{cases}$이 해를 갖지 않을 때, $a$의 값은?</div>
+          <div class="umuri-choices-wrap">
+            <div>① $-2$</div><div>② $-1$</div><div>③ $1$</div><div>④ $2$</div><div>⑤ $3$</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">009</span>
+  </div>
+</div><!-- /page 009 -->
+
+<!-- ═══════════════════════ PAGE 010 (빠른정답) ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">연립일차방정식의 풀이</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+      <!-- 개념익히기 빠른정답 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+                <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">4</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$-\dfrac{7}{6}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">②⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">15</span><span class="qa2-rans">8</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">16</span><span class="qa2-rans">③</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- 유형익히기 빠른정답 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$-3$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">7</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">4</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">①</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">연립일차방정식의 풀이</span>
+    <span class="page-footer__num">010</span>
+  </div>
+</div><!-- /page 010 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });">
+</script>
+</body>
+</html>

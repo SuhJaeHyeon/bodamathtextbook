@@ -18,6 +18,7 @@ body {
   display: flex; flex-direction: column; align-items: center;
   gap: 20px; padding: 20px;
   font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
 }
 
 /* ─── Page ─── */
@@ -236,10 +237,11 @@ body {
   font-size: 8px; font-weight: 700; color: #338cd7;
   display: inline-flex; align-items: center;
 }
-.prob__body { font-size: 12px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
-.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 5px 16px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
 .prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
-.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
 .prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
 
 /* ─── 쏙쏙 유형 익히기 (개념마무리) ─── */
@@ -275,11 +277,12 @@ body {
 .umuri-diff__lv { color: #d7d7d7; line-height: 1; }
 .umuri-diff__lv--on { background: #e96a6c; color: white; border-radius: 1000px; padding: 1px 2px; line-height: 1; }
 .umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
-.umuri-q { font-size: 12px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
 .umuri-prob__hd + .umuri-q { margin-top: -4px; }
-.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 0; font-size: 11px; line-height: 17px; color: #232f39; }
 .umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
-.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
 
 /* 빠른정답 섹션 구분 */
 .qa-section { font-size: 9px; font-weight: 700; color: #338cd7; padding: 5px 0 3px; border-bottom: 1px solid #338cd7; margin-bottom: 4px; letter-spacing: -0.3px; }
