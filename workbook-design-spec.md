@@ -1,7 +1,11 @@
 # 보다수학 워크북 디자인 스펙
 
 > 중학 2-1 Ⅲ-1단원 · 부등식과 그 성질
-> **v3 — Figma 리브랜딩 완전 반영 (2026-04-24)**
+> **v4 — 참조 파일 2종 엄격 검증 반영 (2026-04-29)**
+>
+> 참조 기준 파일 :
+> - `중학 2-1_Ⅲ-1단원_01 부등식과 그 성질.html` (1차 기준)
+> - `중학 2-1_Ⅲ-1단원_02 일차부등식의 풀이.html` (set-block 구조 기준)
 
 ---
 
@@ -68,11 +72,16 @@
 │   ├── .cbox__left  (flex: 1)      왼쪽: 개념정의 + 예제
 │   │   ├── .concept-def
 │   │   └── .ex-wrap
-│   └── .cbox__right (width: 112px) 오른쪽: 참고 + 풀이TIP
-│       ├── .side-note
-│       └── .tip-box
+│   │       ├── .ex-badge
+│   │       └── .ex-body            ← ex-content > ex-q 만 포함 (ex-sol ❌)
+│   │           └── .ex-content
+│   │               └── .ex-q
+│   └── .cbox__right (width: 112px) 오른쪽: 참고 + 풀이TIP + 정답
+│       ├── .side-note              (선택적)
+│       ├── .tip-box                (선택적)
+│       └── .ans-row                ← ⚠️ 정답은 반드시 cbox__right 안에
 └── .practice-sec                   (쏙쏙 개념 익히기 영역)
-    ├── .practice-inner
+    ├── .practice-inner             ← prac-hd + prac-grid 모두 여기 안에
     │   ├── .prac-hd                (헤더 라인)
     │   └── .prac-grid              (2열 그리드)
     │       ├── .prob               (쌍둥이 문제)
@@ -81,7 +90,8 @@
     └── .page-footer
 ```
 
-> **핵심**: 개념박스 · 예제 · 참고 · 풀이TIP이 모두 하나의 `.cbox`(파란 테두리 박스) 안에 포함됩니다.
+> **핵심**: 개념박스 · 예제 · 참고 · 풀이TIP · 정답이 모두 하나의 `.cbox`(파란 테두리 박스) 안에 포함됩니다.
+> **금지**: `ex-body` 안에 `ans-row` 또는 `ex-sol` 클래스를 절대 넣지 않습니다. 정답(`.ans-row`)은 항상 `.cbox__right` 안에 위치합니다.
 
 | 변수 | 값 |
 |------|----|
@@ -121,13 +131,28 @@
   - `.ex-badge__pill` — `#539e84` pill, white, 9px weight 600, height 18px, border-radius 1000px
   - `.ex-badge__num` — 흰 배경, `#539e84`, 16px weight 700, letter-spacing: -1.44px
 - `.ex-body` — `rgba(245,245,245,0.4)` bg, border-radius 10px; `padding: 22px 10px 12px 31px` (top 22px로 뱃지 여백 확보)
-- `.ans-row` — flex row, gap 4px, align-items center
-  - `.ans-badge` — `#797979` bg, white, 7px bold, border-radius 2px
-  - `.ans-text` — 11px, weight 500, letter-spacing: -1.1px
+  - **내부 구조** : `.ex-content > .ex-q` 만 포함
+  - ⛔ **`ex-sol` (풀이 해설) 클래스 사용 금지** — 예제 풀이 해설은 표시하지 않음
+  - ⛔ **`ans-row` 를 `ex-body` 안에 넣지 않음** — 정답은 반드시 `.cbox__right` 안에 배치
 
 ### 오른쪽 사이드 컬럼 (`.cbox__right`)
 - `border-left: 1px dashed #dadde0`, `padding-left: 8px`
 - `display: flex; flex-direction: column; gap: 10px`
+- 순서 : `.side-note` (선택) → `.tip-box` (선택) → `.ans-row` (필수)
+
+> ⚠️ **tip-box와 ans-row는 항상 cbox__right의 최하단에 위치**해야 한다. 예제 문제는 cbox__left의 하단(개념 정의 아래)에 있으므로, 정답과 TIP이 예제와 시각적으로 나란히 배치되도록 한다.
+>
+> - `.side-note`가 있는 경우 : `flex: 1`이 자동으로 공간을 채워 tip-box/ans-row를 최하단으로 밀어준다.
+> - `.side-note`가 없는 경우 : tip-box 바로 위에 `<div style="flex:1;"></div>` 스페이서를 추가해 동일한 효과를 낸다.
+>
+> ```html
+> <!-- side-note 없는 개념 페이지 예시 -->
+> <div class="cbox__right">
+>   <div style="flex:1;"></div>   <!-- ← 스페이서: tip-box를 최하단으로 밀기 -->
+>   <div class="tip-box">...</div>
+>   <div class="ans-row">...</div>
+> </div>
+> ```
 
 #### 참고 (`.side-note`)
 - `.side-note__hd` — flex, gap 3px, height 12px
@@ -137,9 +162,104 @@
 
 #### 풀이 TIP (`.tip-box`)
 - `.tip-box__hd` — flex, align-items center
-  - `.tip-pill` — `#ff7373` bg, white, 7px bold, height 12px
-  - `.tip-tri` — CSS 삼각형 (border-trick): `border-left: 6px solid #ff7373`
-- `.tip-body` — 8px, line-height 1.4; `li::before { content: "→ "; color: #338cd7; }`
+- `.tip-pill` CSS (참조 파일 기준 — clip-path 화살표 방식):
+
+```css
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }   /* tip-tri는 HTML에 두되 CSS로 숨김 */
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+```
+
+> ⚠️ `tip-tri`는 HTML 마크업에는 `<span class="tip-tri"></span>`으로 남겨두되, CSS에서 `display: none`으로 숨깁니다. `tip-body li::before` 화살표 색은 `#338cd7`(파란색)이 아니라 **`#232f39`(검정)**입니다.
+
+#### 정답 (`.ans-row`) — `.cbox__right` 안에 위치
+- `margin-left: 8px` (추가 들여쓰기)
+- `display: flex; flex-direction: row; align-items: center; gap: 4px`
+- `.ans-badge` — `#797979` bg, white, 7px bold, border-radius 2px
+- `.ans-text` — 11px, weight 500, letter-spacing: -1.1px
+
+### Set-block 페이지 구조 (`.set-block`) — `02 일차부등식의 풀이` 기준
+
+Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
+
+```
+.page  style="gap:8px;"              ← 일반 페이지와 달리 gap을 8px로 줄임
+├── .set-block                       (유형 1세트)
+│   ├── .cbox                        ← cbox 구조 동일하게 적용
+│   │   ├── .cbox__left
+│   │   │   └── .ex-wrap             (예제 문제)
+│   │   └── .cbox__right
+│   │       ├── .tip-box             (선택)
+│   │       └── .ans-row
+│   └── .practice-sec
+│       └── .practice-inner
+│           ├── .prac-hd
+│           └── .prac-grid
+└── .set-block                       (유형 2세트, 필요 시)
+    └── ...같은 구조 반복...
+```
+
+> ⚠️ **set-block 간 `set-divider` 사용 금지** — 두 set-block 사이에 `<div class="set-divider">` 를 넣지 않습니다.
+> ⚠️ **`practice-sec` 안에 반드시 `practice-inner` 감싸기** — `prac-hd`와 `prac-grid`는 항상 `practice-inner` 안에 위치합니다.
+
+---
+
+### 개념 한눈에 보기 페이지 구조 (`.kaynun-*`)
+
+```html
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>   ← ⚠️ "개념" 아님
+    <span class="kaynun-hd__big">개념 정리</span>       ← ⚠️ "한눈에 보기" 아님
+  </div>
+
+  <div class="kaynun-sec">
+    <div class="kaynun-chip">01</div>                   ← ⚠️ "개념 01" 아님, 숫자만
+    <div class="kaynun-title">...</div>
+    <div class="kaynun-body">...</div>
+  </div>
+
+  <div class="kaynun-sec">
+    <div class="kaynun-chip">02</div>
+    ...
+  </div>
+
+</div>
+```
+
+| 항목 | 올바른 값 | 잘못된 값 (❌) |
+|------|-----------|---------------|
+| `kaynun-hd__small` 텍스트 | `한눈에 보는` | `개념` |
+| `kaynun-hd__big` 텍스트 | `개념 정리` | `한눈에 보기` |
+| `kaynun-chip` 텍스트 | `01` / `02` | `개념 01` / `개념 02` / `개념 01 (1)` |
+| `.page` style | `padding-top:36px; gap:0;` | 기본값 그대로 |
+| `.kaynun-title` font-size | `14px` | 13px |
+
+> ⚠️ **`.kaynun-chip` 텍스트는 반드시 숫자(두 자리)만 표기한다.** `개념`, `(1)`, `(2)` 등 어떠한 문자도 포함하지 않는다. 개념이 소주제로 분리되어도 chip에는 상위 개념 번호만 표기하고, 소주제 구분은 `.kaynun-title`에서 `(1)`, `(2)` 등으로 표현한다.
+>
+> ```html
+> <!-- 개념01이 (1)(2)로 나뉘는 경우 -->
+> <span class="kaynun-chip">01</span>   <!-- ✅ -->
+> <span class="kaynun-title">(1) 미지수가 2개인 일차방정식</span>
+>
+> <span class="kaynun-chip">01</span>   <!-- ✅ -->
+> <span class="kaynun-title">(2) 미지수가 2개인 일차방정식 풀기</span>
+>
+> <!-- 절대 금지 -->
+> <span class="kaynun-chip">개념 01 (1)</span>   <!-- ❌ -->
+> <span class="kaynun-chip">개념 01</span>        <!-- ❌ -->
+> ```
+
+---
 
 ### 쏙쏙 개념 익히기 헤더 (`.prac-hd`)
 - `.prac-hd__tab` — border-top/right/bottom 2px `#338cd7`, border-left none; border-radius 0 1000px 1000px 0; padding: 2px 9px 4px 5px
@@ -156,6 +276,9 @@
 - `.prob__hd` — flex, align-items center, gap 2px, margin-bottom 4px
   - `.prob__num` — 20px, weight 800, `#338cd7`, letter-spacing: -1.8px
   - `.prob__badge` — border-top/right/bottom 0.8px `#338cd7`; border-radius 0 1000px 1000px 0; 6px bold `#338cd7`
+    - ⚠️ **텍스트 우선순위**: 입력 문제은행 PDF에서 해당 문제에 표기된 태그(`쌍둥이` / `유사`)를 그대로 추출하여 사용
+    - PDF에서 태그를 추출할 수 없는 경우에만 기본값 적용 → 왼쪽 열 `쌍둥이`, 오른쪽 열 `유사`
+    - 문제 유형명(왕복형·편도형 등) 절대 사용 금지
 - `.prob__body` — 12px, line-height 18px, letter-spacing: -0.5px
 - `.prob__boogi` — 조건 박스: border 1px `#dadde0`, border-radius 3px, bg `#fafafa`
 
@@ -164,21 +287,39 @@
 - `.page-footer__topic` — `#818181`, weight 400
 - `.page-footer__num` — `#232f39`, weight 700 (3자리 zero-padding: "001", "002"...)
 
-### 빠른정답표
-- `.qa-title` — 18px bold `#338cd7`, border-bottom 2px `#338cd7`, letter-spacing: -1px
-- `.qa-num` — 14px bold `#338cd7`, text-align center, width 38px
-- `.qa-ans` — 12px `#232f39`, width 75px
-- `.qa-badge` — `#338cd7` bg, white, 16px bold, border-radius 4px
+### 빠른정답 페이지 (`.qa2-*`)
+
+```
+.page
+├── .qa2-title-row          (단원번호 + 단원명 + "빠른정답" 뱃지)
+├── .qa2-divider
+├── .qa2-body               (flex row)
+│   ├── .qa2-left           ← ⚠️ qa2-box는 반드시 여기에만 넣음
+│   │   ├── .qa2-box        (쏙쏙 개념 익히기)
+│   │   └── .qa2-box        (쏙쏙 유형 익히기, 있을 경우)
+│   ├── .qa2-vdivider
+│   └── .qa2-right          ← 항상 비워둠 (내용 없음)
+└── .page-footer
+```
+
+> ⚠️ **`qa2-box`는 `qa2-left`에만** — 개념 익히기, 유형 익히기 등 모든 정답 박스는 예외 없이 `qa2-left` 안에 순서대로 쌓습니다. `qa2-right`는 레이아웃 균형을 위한 빈 컨테이너로만 사용합니다.
+
+| 요소 | 설명 |
+|------|------|
+| `.qa2-box__tab` | 개념익히기 탭 (파란색 테두리) |
+| `.qa2-box__tab--pink` | 유형익히기 탭 (분홍색 테두리) |
+| `.qa2-rg` | 문제번호(`.qa2-rnum`) + 정답(`.qa2-rans`) 한 쌍 |
+| `.qa2-row` | `qa2-rg` 2개 + `qa2-rsep` 한 줄 |
 
 ---
 
 ## 6. 수식 렌더링
 
 ```html
-<!-- KaTeX CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<!-- KaTeX CSS (로컬) -->
+<link rel="stylesheet" href="./katex/katex.min.css">
 
-<!-- KaTeX JS + auto-render -->
+<!-- KaTeX JS + auto-render (CDN, onload 방식) -->
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body, {
@@ -192,6 +333,7 @@
 
 - 인라인 수식: `$수식$`
 - 블록 수식: `$$수식$$`
+- ⚠️ CSS는 로컬(`./katex/katex.min.css`), JS는 CDN + `onload` 방식 사용. `DOMContentLoaded` 리스너 방식 사용 시 수식이 렌더링되지 않을 수 있음.
 
 ---
 
@@ -237,14 +379,19 @@
 
 ---
 
+### 예제 정답 섹션 (`.ans-text`)
 
-### 예제 정답 섹션 (`.ans-text`, `.side-body`)
-
+- 정답은 **구하는 값만 간결하게** 표기. 서술형 문장 금지.
+- 예) `최대 $3\,\text{km}$` (O) &nbsp;&nbsp; `최대 $3\,\text{km}$ 지점까지 갈 수 있다.` (X)
 - 소문제 번호 닫는 괄호 뒤에 **`&ensp;`** (en space) 추가
 - 형식: `(1)&ensp;$수식$&ensp;(2)&ensp;$수식$`
-- 예) `<span class="ans-text">(1)&ensp;$x<6$&ensp;(2)&ensp;$x\geq-1$</span>`
 
-> 이유: 소문제 번호와 수식 사이의 시각적 간격을 일정하게 유지하기 위함. HTML 일반 공백은 렌더링 시 무시되거나 너무 좁게 보임.
+---
+
+### 참고 (`.side-note`) 작성 규칙
+
+- **핵심문제 번호 출처 표기 금지** — "핵심문제 01, 02" 등의 텍스트를 side-body 첫 줄에 넣지 않습니다.
+- 내용은 개념 유형 설명이나 풀이 힌트만 작성합니다.
 
 ---
 
@@ -252,24 +399,11 @@
 
 - 박스 안 텍스트가 **한 줄**인 경우 → 가운데 정렬 적용
 - 적용 방법: `style="justify-content:center; text-align:center;"`
-- 예) `<div class="prob__boogi" style="justify-content:center; text-align:center;">한 병에 500원인 주스...</div>`
 - **여러 줄 텍스트**인 경우 → 기본값 유지 (가운데 정렬 미적용)
-
-> 이유: 짧은 조건문이 박스 왼쪽에 붙어 있으면 시각적으로 불균형해 보임.
 
 ---
 
 ### 유형 익히기 페이지 (`.umuri-prob`) 높이 고정
 
 - 문제 높이를 **고정값**으로 설정하여 컬럼 내 균등 배치
-- 한 컬럼에 **3개** 배치 시: `style="gap:3px; height:240px; overflow:hidden;"`
-- 한 컬럼에 **2개** 배치 시: `style="gap:3px; height:358px; overflow:hidden;"`
-- `.umuri-ws` (spacer)가 `flex:1`이므로 고정 높이 문제 사이 여백을 자동 분배
-
-> 이유: 고정 높이 없이 content-fit이면 문제마다 높이가 달라 컬럼이 들쭉날쭉해 보임.
-
----
-
-## 9. 미구현 (추후 작업)
-
-- `개념마무리` 페이지 타입 (Figma node 13757:149)
+- 한 컬
