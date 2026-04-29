@@ -98,6 +98,7 @@
 | `.cbox__right` 너비 | 112px |
 | `.cbox` 내부 열 간격 | 10px |
 | `.prac-grid` 열 간격 | 10px |
+| `.practice-inner` gap | 14px |
 
 ---
 
@@ -286,6 +287,49 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 - `margin-top: auto`, flex, justify-content: flex-end, gap 4px, font-size 10px
 - `.page-footer__topic` — `#818181`, weight 400
 - `.page-footer__num` — `#232f39`, weight 700 (3자리 zero-padding: "001", "002"...)
+
+#### 🔴 로고 삽입 규칙 — 반드시 base64 inline 방식 사용
+
+**잘못된 방식 (Google Drive URL) — 로컬 파일에서 로고가 보이지 않음:**
+```css
+/* ❌ 외부 URL 방식 — CORS, 네트워크, 캐시 문제로 로고 미표시 */
+.page-footer::before {
+  background-image:
+    url("https://drive.google.com/thumbnail?id=..."),
+    url("https://drive.google.com/uc?export=view&id=...");
+}
+```
+
+**올바른 방식 (base64 inline):**
+```css
+/* ✅ base64 inline — 인터넷 없이도 항상 표시 */
+.page-footer::before {
+  content: "";
+  display: block;
+  width: 59px;
+  height: 13px;
+  margin-right: auto;
+  background-image: url("data:image/png;base64,iVBORw0KGgo...[full base64]...");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+```
+
+**로고가 사라지는 원인 (분석):**
+1. **Google Drive URL 참조** — 가장 흔한 원인. 로컬 HTML 파일은 외부 URL을 CORS 제한으로 불러오지 못함
+2. **스크립트가 `<style>` 블록을 하드코딩으로 재작성** — Python 구조 변경 스크립트가 `<head>` 전체를 새로 쓸 경우 base64를 누락할 수 있음
+3. **`head_section` 추출 실패** — 파일에서 head를 잘못 추출해 기존 CSS를 덮어쓸 때 발생
+
+**스크립트 작성 시 필수 패턴:**
+```python
+# ✅ 기존 head를 항상 참조 파일에서 추출해 재사용
+with open('reference_file.html') as f:
+    ref = f.read()
+head_section = ref[:ref.find('<body>') + len('<body>')]
+# → head_section에 base64 로고 CSS가 그대로 보존됨
+```
 
 ### 빠른정답 페이지 (`.qa2-*`)
 
