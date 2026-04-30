@@ -104,7 +104,9 @@
 
 ## 5. 컴포넌트 상세
 
-### 타이틀 (`.title`) — 페이지 1 전용
+### 타이틀 (`.title`) — 개념이 있는 첫 번째 페이지에만 배치
+- 한 단원에 `.cbox`(개념+예제) 페이지가 여러 장일 경우, **타이틀은 첫 번째 페이지에만** 들어간다.
+  - 예: 개념01이 (1)~(4)로 쪼개어져 PAGE 001~004에 걸쳐 있으면, `.title`은 PAGE 001에만.
 - `.title__num` — 60px, weight 700, `#338cd7`, letter-spacing: -7.2px
 - `.title__tag` — "개념익히기" 레이블, 8px, weight 700; 파란 "개념" + 검정 "익히기"
 - `.title__text` — 24px, weight 700, `#000`, letter-spacing: -1.2px
@@ -155,6 +157,43 @@
 - `.concept-body` — 11.5px, line-height 18px, flex column gap 10px; padding-left 26px
 - `.concept-table` — 8px, border 0.5px `#848484`, 헤더 bg `#ebebeb`
 - `.hl` — highlight 배경 `#fff5d3`
+
+#### 개념 설명 중 예시 박스 (`.concept-eg`)
+
+- CSS : `rgba(51,140,215,0.06)` bg, border-radius 6px, padding 6px 10px, `display: flex; flex-direction: column; gap: 3px`
+- `.concept-eg__label` — "예" 텍스트, 9px weight 700, `#338cd7`
+- `.concept-eg__content` — `display: block; white-space: nowrap` — 내용 전체를 하나의 블록으로 감싸서 KaTeX가 생성하는 개별 `<span>` 토큰이 flex 열 아이템으로 분리되는 것을 방지
+
+> **왜 `<div class="concept-eg__content">` 가 필요한가?**
+> KaTeX auto-render는 `$...$`를 각각 별도의 `<span>` 으로 변환한다. `.concept-eg`가 `flex-direction: column`이므로, 내용을 래퍼 없이 직접 삽입하면 각 span이 독립 flex row가 되어 토큰 하나씩 줄바꿈되는 문제가 발생한다. `<div class="concept-eg__content">`로 감싸면 KaTeX spans가 해당 div의 인라인 자식으로 흐르고, `white-space: nowrap`이 span 사이의 자동 줄바꿈을 막는다.
+
+**내부 텍스트 줄 구성 원칙**
+
+| 경우 | 기준 | 처리 |
+|------|------|------|
+| **한 줄** | 조건과 결과가 짧고 한 호흡에 읽히는 경우 | 줄바꿈 없이 한 줄로 작성 |
+| **두 줄** | 조건과 계산 과정이 길어 단어 중간에서 줄바꿈 위험이 있는 경우 | `<br>`로 논리적 경계를 명시적으로 지정 |
+
+두 줄 구분 기준:
+- **1행** : 주어진 조건 (예: `기울기 $2$, 점 $(1,\,3)$`)
+- **2행** : 계산 과정 및 결과 (예: `$\Rightarrow$ $3=2\times1+b$ $\Rightarrow$ $b=1$ $\Rightarrow$ $y=2x+1$`)
+
+```html
+<!-- ✅ 한 줄: 조건과 결과가 짧을 때 -->
+<div class="concept-eg" style="margin-top:4px;">
+  <span class="concept-eg__label">예</span>
+  <div class="concept-eg__content">기울기 $2$, $y$절편 $4$ $\Rightarrow$ $y=2x+4$</div>
+</div>
+
+<!-- ✅ 두 줄: 조건(1행)과 계산과정(2행)을 <br>로 구분 -->
+<div class="concept-eg" style="margin-top:4px;">
+  <span class="concept-eg__label">예</span>
+  <div class="concept-eg__content">기울기 $2$, 점 $(1,\,3)$<br>$\Rightarrow$ $3=2\times1+b$ $\Rightarrow$ $b=1$ $\Rightarrow$ $y=2x+1$</div>
+</div>
+```
+
+> ⛔ 내용을 `.concept-eg`에 직접(래퍼 없이) 넣지 않는다 — KaTeX 토큰 분리 문제 발생.
+> ⛔ 자동 줄바꿈은 `<br>`로만 제어한다. `.concept-eg__content` 자체의 `white-space: nowrap`은 KaTeX 렌더링 보조 용도이며, 논리적 줄 구분은 반드시 `<br>`로만 지정한다.
 
 ### 예제 (`.ex-wrap`)
 - `position: relative; padding: 8px 0 0 16px`

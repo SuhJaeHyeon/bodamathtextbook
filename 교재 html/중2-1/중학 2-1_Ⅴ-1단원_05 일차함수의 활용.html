@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅴ-1단원_05 일차함수의 활용</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px dashed #dadde0;
+  padding-left: 8px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 8px;
+  padding-left: 26px;
+}
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-eg {
+  background: rgba(51,140,215,0.06); border-radius: 6px;
+  padding: 5px 8px; font-size: 10.5px; line-height: 17px;
+  color: #232f39; letter-spacing: -0.5px;
+  display: flex; gap: 6px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; flex-shrink: 0; }
+.hl { background: #fff5d3; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill {
+  background: #539e84; color: white; font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px; border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84; font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px; height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #232f39; line-height: 17px; }
+.ex-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── ans-row ─── */
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white; font-size: 6px; font-weight: 700;
+  border-radius: 2px; padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+
+/* ─── Right column ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white; font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px dashed #dadde0; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 8px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 5px 7px; background: none; font-size: 10px; line-height: 16px; }
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── 유형 익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f; border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── 한눈에 개념 정리 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px; padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 22px;
+  flex: 1; min-height: 0; overflow: hidden;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white; height: 19px; border-radius: 1000px;
+  padding: 0 8px; font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 5px;
+  letter-spacing: -0.5px;
+}
+.kaynun-sub { font-size: 11px; font-weight: 700; color: #232f39; }
+
+/* ─── 빠른정답 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num {
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-name { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white; font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start; margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; border-bottom: 1px solid #f5f5f5; }
+.qa2-row:last-child { border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; gap: 4px; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; }
+.qa2-rsep { width: 1px; height: 16px; background: #e0e0e0; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer {
+  display: flex; gap: 4px; align-items: center; justify-content: flex-end;
+  flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px;
+  white-space: nowrap; margin-top: auto;
+}
+.page-footer::before {
+  content: ""; display: block; width: 59px; height: 13px; margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center; background-size: contain; background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important;
+          page-break-after: always; break-after: page; page-break-inside: avoid;
+          overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">05</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">일차함수의 활용</div>
+    </div>
+  </div>
+
+  <!-- 개념 01 + 예제 01 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">일차함수의 활용 문제는 어떻게 푸는가?</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            일차함수의 활용 문제는 다음과 같은 순서로 푼다.<br>
+            ❶ <span class="concept-sub">변수 정하기</span> &ensp;→ 문제의 뜻을 파악하고 변수 $x$, $y$를 정한다.<br>
+            ❷ <span class="concept-sub">일차함수의 식 세우기</span> &ensp;→ $x$와 $y$ 사이의 관계를 식으로 나타낸다.<br>
+            ❸ <span class="concept-sub">답 구하기</span> &ensp;→ 일차함수의 식이나 그래프를 이용하여 필요한 값을 구한다.<br>
+            ❹ <span class="concept-sub">확인하기</span> &ensp;→ 구한 답이 문제의 뜻에 맞는지 확인한다.
+          </div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div>현재 온도 $20$ °C인 물을 끓이면 $1$분마다 $4$ °C씩 올라간다. 온도가 $60$ °C가 되는 것은 몇 분 후?<br>
+            ❶ 끓인 지 $x$분 후 온도를 $y$ °C라 하자. &ensp;❷ $y=4x+20$<br>
+            ❸ $60=4x+20$ $\Rightarrow$ $x=10$ &ensp;∴ $10$분 후</div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제 01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">지면으로부터 높이가 $x$ km인 지점의 기온을 $y$ °C라 하자. 지면의 기온이 $20$ °C이고 $1$ km 높아질 때마다 기온이 $5$ °C씩 내려간다고 할 때, 다음 물음에 답하시오.</div>
+            <div class="ex-choices-stack">
+              <span>(1) $y$를 $x$에 대한 식으로 나타내시오.</span>
+              <span>(2) 기온이 $0$ °C인 지점의 지면으로부터의 높이를 구하시오.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">기온이 "내려간다"는 것은 변화율이 음수임을 의미합니다. 일차함수의 식을 세울 때 부호에 주의하세요.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+        <div class="tip-body"><ul><li>기온 문제 : $y=(\text{처음 기온})+(\text{변화율})\times x$</li><li>"내려간다" → 변화율에 음수 부호</li></ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">(1)&ensp;$y=20-5x$&ensp;(2)&ensp;$4$ km</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 01 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>길이가 $30$ cm인 막대기 모양의 얼음을 실온에 두면 $2$분마다 길이가 $1$ cm씩 짧아진다고 한다. 실온에 둔 지 $x$분 후의 얼음의 길이를 $y$ cm라 할 때, 다음 설명 중 옳은 것은?</div>
+            <div class="prob__choices-stack">
+              <span>① 얼음의 길이는 $1$분마다 $2$ cm씩 짧아진다.</span>
+              <span>② $x$와 $y$ 사이의 관계식은 $y=30-2x$이다.</span>
+              <span>③ $14$분 후의 얼음의 길이는 $7$ cm이다.</span>
+              <span>④ 얼음이 다 녹는 데 걸리는 시간은 $60$분이다.</span>
+              <span>⑤ 얼음의 길이가 $10$ cm가 되는 것은 실온에 둔 지 $10$분 후이다.</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 02 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>길이가 $30$ cm인 용수철 저울이 있다. 이 용수철 저울에 $10$ g의 물건을 달면 용수철의 길이가 $34$ cm가 된다고 한다. 무게가 $40$ g인 물건을 달았을 때, 용수철의 길이는?</div>
+            <div class="prob__choices-3col">
+              <span>① $40$ cm</span><span>② $42$ cm</span><span>③ $44$ cm</span>
+              <span>④ $46$ cm</span><span>⑤ $48$ cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 활용</span>
+    <span class="page-footer__num">001</span>
+  </div>
+</div><!-- /page 001 -->
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page">
+
+  <!-- 개념 02 + 예제 02 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">여러 가지 활용 문제</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            <span class="concept-sub">(1) 온도에 대한 문제</span><br>
+            처음 온도가 $a$ °C이고 $1$분마다 $b$ °C씩 올라갈 때, $x$분 후 온도를 $y$ °C라 하면<br>
+            &ensp;$\Rightarrow$ <span class="hl">$y=a+bx$</span>
+          </div>
+          <div>
+            <span class="concept-sub">(2) 길이에 대한 문제</span><br>
+            처음 길이가 $a$ cm이고 $1$분마다 $b$ cm씩 짧아질 때, $x$분 후 길이를 $y$ cm라 하면<br>
+            &ensp;$\Rightarrow$ <span class="hl">$y=a-bx$</span>
+          </div>
+          <div>
+            <span class="concept-sub">(3) 물의 양에 대한 문제</span><br>
+            처음 물의 양이 $a$ L이고 $1$분마다 $b$ L씩 빠질 때, $x$분 후 남은 물의 양을 $y$ L라 하면<br>
+            &ensp;$\Rightarrow$ <span class="hl">$y=a-bx$</span>
+          </div>
+          <div>
+            <span class="concept-sub">(4) 거리, 속력, 시간에 대한 문제</span><br>
+            시속 $a$ km로 $x$시간 동안 이동한 거리를 $y$ km라 하면<br>
+            &ensp;$\Rightarrow$ <span class="hl">$y=ax$</span> &ensp;<span style="font-size:9px;color:#848484;">(거리) = (속력) × (시간)</span>
+          </div>
+        </div>
+      </div>
+      <!-- 예제 02 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">집에서 학교까지의 거리가 $3$ km이다. 지민이가 집에서 출발하여 분속 $50$ m로 학교를 향해 걷고 있다. 출발한 지 $x$분 후 학교까지 남은 거리를 $y$ km라 할 때, 다음 물음에 답하시오.</div>
+            <div class="ex-choices-stack">
+              <span>(1) $y$를 $x$에 대한 식으로 나타내시오.</span>
+              <span>(2) 학교까지 남은 거리가 $1.5$ km가 되는 것은 출발한 지 몇 분 후인지 구하시오.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+        <div class="tip-body"><ul><li>분속 $50$ m $=$ $\dfrac{50}{1000}$ km/분 $=$ $0.05$ km/분</li><li>남은 거리 $=$ 전체 $-$ 이동 거리</li></ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">(1)&ensp;$y=3-0.05x$&ensp;(2)&ensp;$30$분</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 03 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>연수와 지혜는 $3.2$ km 떨어진 각자의 집에서 연수는 분속 $90$ m로, 지혜는 분속 $70$ m로 서로를 향해 동시에 걷기 시작하였다. 연수와 지혜가 만나는 것은 출발한 지 몇 분 후인가?</div>
+            <div class="prob__choices-3col">
+              <span>① $15$분</span><span>② $20$분</span><span>③ $25$분</span>
+              <span>④ $30$분</span><span>⑤ $35$분</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 04 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>지수와 수호는 $4.2$ km 떨어진 각자의 집에서 지수는 분속 $80$ m의 속력으로, 수호는 분속 $60$ m의 속력으로 서로를 향해 동시에 걷기 시작하였다. 지수와 수호가 만나는 것은 출발한 지 몇 분 후인지 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 활용</span>
+    <span class="page-footer__num">002</span>
+  </div>
+</div><!-- /page 002 -->
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1 : 예제 03 ── -->
+  <div class="set-block" style="flex:1;min-height:0;">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q" style="display:flex;gap:10px;align-items:flex-start;">
+                <div>오른쪽 그림과 같은 직사각형 ABCD에서 점 P가 점 B를 출발하여 변 $\overline{BC}$를 따라 매초 $2$ cm의 속력으로 점 C까지 움직인다. $x$초 후의 삼각형 ABP의 넓이를 $y$ cm²라 할 때, 다음 물음에 답하시오. <span style="font-size:8.5px;color:#539e84;">(도형에 대한 문제)</span><br>
+                (1) $y$를 $x$에 대한 식으로 나타내시오.<br>
+                (2) 삼각형 ABP의 넓이가 $60$ cm²가 되는 것은 점 P가 점 B를 출발한 지 몇 초 후인지 구하시오.</div>
+                <svg width="88" height="72" viewBox="0 0 88 72" style="flex-shrink:0;margin-top:2px;">
+                  <rect x="8" y="4" width="72" height="60" fill="none" stroke="#555" stroke-width="1"/>
+                  <polygon points="8,4 8,64 44,64" fill="rgba(51,140,215,0.12)" stroke="none"/>
+                  <text x="6" y="3" font-size="8" fill="#232f39">A</text>
+                  <text x="82" y="3" font-size="8" fill="#232f39">D</text>
+                  <text x="6" y="72" font-size="8" fill="#232f39">B</text>
+                  <text x="82" y="72" font-size="8" fill="#232f39">C</text>
+                  <text x="44" y="3" font-size="7" fill="#232f39" text-anchor="middle">16 cm</text>
+                  <text x="3" y="36" font-size="7" fill="#232f39" text-anchor="middle" transform="rotate(-90,3,36)">10 cm</text>
+                  <circle cx="44" cy="64" r="2" fill="#232f39"/>
+                  <text x="40" y="72" font-size="8" fill="#232f39">P</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body"><ul><li>삼각형 넓이 $=\dfrac{1}{2}\times$(밑변)$\times$(높이)</li><li>밑변 $\overline{BP}=2x$, 높이 $=$ AB</li></ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">(1)&ensp;$y=10x$&ensp;(2)&ensp;$6$초</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 쌍둥이 05 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div style="display:flex;gap:8px;align-items:flex-start;">
+                <div>다음 그림과 같은 직사각형 ABCD의 변 $\overline{BC}$ 위의 점 P에 대하여 삼각형 ABP의 넓이가 $20$ cm²일 때, $\overline{PC}$의 길이를 구하시오.</div>
+                <svg width="72" height="52" viewBox="0 0 72 52" style="flex-shrink:0;">
+                  <rect x="6" y="4" width="60" height="42" fill="none" stroke="#555" stroke-width="0.8"/>
+                  <polygon points="6,4 6,46 34,46" fill="rgba(51,140,215,0.12)" stroke="none"/>
+                  <text x="4" y="3" font-size="7" fill="#232f39">A</text>
+                  <text x="68" y="3" font-size="7" fill="#232f39">D</text>
+                  <text x="4" y="51" font-size="7" fill="#232f39">B</text>
+                  <text x="68" y="51" font-size="7" fill="#232f39">C</text>
+                  <text x="36" y="3" font-size="6" fill="#232f39" text-anchor="middle">14 cm</text>
+                  <text x="2" y="27" font-size="6" fill="#232f39" text-anchor="middle" transform="rotate(-90,2,27)">5 cm</text>
+                  <circle cx="34" cy="46" r="1.5" fill="#232f39"/>
+                  <text x="31" y="51" font-size="7" fill="#232f39">P</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 유사 06 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div style="display:flex;gap:8px;align-items:flex-start;">
+                <div>다음 그림과 같은 직사각형 ABCD에서 점 P가 점 B를 출발하여 $\overline{BC}$를 따라 점 C까지 매초 $3$ cm씩 움직일 때, $x$초 후의 삼각형 ABP의 넓이를 $y$ cm²라 한다. 삼각형 ABP의 넓이가 $48$ cm²가 되는 것은 점 P가 점 B를 출발한 지 몇 초 후인지 구하시오.</div>
+                <svg width="72" height="52" viewBox="0 0 72 52" style="flex-shrink:0;">
+                  <rect x="6" y="4" width="60" height="42" fill="none" stroke="#555" stroke-width="0.8"/>
+                  <polygon points="6,4 6,46 28,46" fill="rgba(51,140,215,0.12)" stroke="none"/>
+                  <text x="4" y="3" font-size="7" fill="#232f39">A</text>
+                  <text x="68" y="3" font-size="7" fill="#232f39">D</text>
+                  <text x="4" y="51" font-size="7" fill="#232f39">B</text>
+                  <text x="68" y="51" font-size="7" fill="#232f39">C</text>
+                  <text x="36" y="3" font-size="6" fill="#232f39" text-anchor="middle">18 cm</text>
+                  <text x="2" y="27" font-size="6" fill="#232f39" text-anchor="middle" transform="rotate(-90,2,27)">8 cm</text>
+                  <circle cx="28" cy="46" r="1.5" fill="#232f39"/>
+                  <text x="25" y="51" font-size="7" fill="#232f39">P</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set 2 : 예제 04 ── -->
+  <div class="set-block" style="flex:1;min-height:0;">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q" style="display:flex;gap:10px;align-items:flex-start;">
+                <div>다음 그래프는 길이가 $48$ cm인 초에 불을 붙인 후, 경과한 시간과 남은 초의 길이를 나타낸 것이다. 불을 붙인 후 얼마의 시간이 경과해야 남은 초의 길이가 $18$ cm가 되겠는가? <span style="font-size:8.5px;color:#539e84;">(그래프를 이용한 일차함수의 활용)</span></div>
+                <svg width="80" height="62" viewBox="0 0 80 62" style="flex-shrink:0;margin-top:2px;">
+                  <line x1="12" y1="54" x2="72" y2="54" stroke="#555" stroke-width="0.9"/>
+                  <polygon points="72,54 67,51 67,57" fill="#555"/>
+                  <line x1="12" y1="54" x2="12" y2="6" stroke="#555" stroke-width="0.9"/>
+                  <polygon points="12,6 9,12 15,12" fill="#555"/>
+                  <line x1="12" y1="8" x2="62" y2="54" stroke="#338cd7" stroke-width="1.2"/>
+                  <text x="8" y="9" font-size="7" fill="#232f39" text-anchor="end">48</text>
+                  <text x="62" y="60" font-size="7" fill="#232f39" text-anchor="middle">8</text>
+                  <text x="66" y="60" font-size="7" fill="#232f39">x(시간)</text>
+                  <text x="5" y="6" font-size="7" fill="#232f39">y(cm)</text>
+                  <line x1="10" y1="8" x2="12" y2="8" stroke="#555" stroke-width="0.8"/>
+                  <line x1="62" y1="54" x2="62" y2="56" stroke="#555" stroke-width="0.8"/>
+                  <circle cx="12" cy="8" r="1.5" fill="#338cd7"/>
+                </svg>
+              </div>
+              <div class="ex-choices-stack">
+                <span>① $3$시간 &emsp; ② $4$시간 &emsp; ③ $5$시간 &emsp; ④ $6$시간 &emsp; ⑤ $7$시간</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body"><ul><li>두 점을 읽어 기울기를 구한 후 식을 세웁니다.</li><li>$(0,\,48)$, $(8,\,0)$을 이용하세요.</li></ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">③</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 쌍둥이 07 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>다음 그림은 $80$ °C의 물을 냉동실에 넣고 $x$분 후의 물의 온도를 $y$ °C라 할 때, $x$와 $y$ 사이의 관계를 그래프로 나타낸 것이다. $15$분 후의 물의 온도를 구하시오.</div>
+              <svg width="96" height="56" viewBox="0 0 96 56" style="display:block;">
+                <line x1="12" y1="50" x2="84" y2="50" stroke="#555" stroke-width="0.8"/>
+                <polygon points="84,50 79,47 79,53" fill="#555"/>
+                <line x1="12" y1="50" x2="12" y2="6" stroke="#555" stroke-width="0.8"/>
+                <polygon points="12,6 9,12 15,12" fill="#555"/>
+                <line x1="12" y1="8" x2="72" y2="50" stroke="#338cd7" stroke-width="1.2"/>
+                <text x="8" y="9" font-size="7" fill="#232f39" text-anchor="end">80</text>
+                <text x="72" y="56" font-size="7" fill="#232f39" text-anchor="middle">60</text>
+                <text x="76" y="56" font-size="7" fill="#232f39">x(분)</text>
+                <text x="5" y="6" font-size="7" fill="#232f39">y(°C)</text>
+                <line x1="10" y1="8" x2="12" y2="8" stroke="#555" stroke-width="0.8"/>
+                <line x1="72" y1="50" x2="72" y2="52" stroke="#555" stroke-width="0.8"/>
+                <circle cx="12" cy="8" r="1.5" fill="#338cd7"/>
+              </svg>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 유사 08 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>다음 그래프는 섭씨온도 $x$ °C와 화씨온도 $y$ °F 사이의 관계를 나타낸 것이다. 섭씨온도가 $20$ °C일 때의 화씨온도를 구하시오.</div>
+              <svg width="96" height="56" viewBox="0 0 96 56" style="display:block;">
+                <line x1="12" y1="50" x2="84" y2="50" stroke="#555" stroke-width="0.8"/>
+                <polygon points="84,50 79,47 79,53" fill="#555"/>
+                <line x1="12" y1="50" x2="12" y2="6" stroke="#555" stroke-width="0.8"/>
+                <polygon points="12,6 9,12 15,12" fill="#555"/>
+                <line x1="12" y1="43" x2="72" y2="8" stroke="#338cd7" stroke-width="1.2"/>
+                <text x="8" y="9" font-size="7" fill="#232f39" text-anchor="end">212</text>
+                <text x="8" y="44" font-size="7" fill="#232f39" text-anchor="end">32</text>
+                <text x="72" y="56" font-size="7" fill="#232f39" text-anchor="middle">100</text>
+                <text x="76" y="56" font-size="7" fill="#232f39">x(°C)</text>
+                <text x="5" y="6" font-size="7" fill="#232f39">y(°F)</text>
+                <line x1="10" y1="43" x2="12" y2="43" stroke="#555" stroke-width="0.8"/>
+                <line x1="10" y1="8" x2="12" y2="8" stroke="#555" stroke-width="0.8"/>
+                <line x1="72" y1="50" x2="72" y2="52" stroke="#555" stroke-width="0.8"/>
+                <circle cx="12" cy="43" r="1.5" fill="#338cd7"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 활용</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+<!-- ═══════════════════════ PAGE 004 ─ 한눈에 개념 정리 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box" style="margin-top:10px;">
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">일차함수의 활용 문제 풀이 순서</span>
+      </div>
+      <div class="kaynun-body">
+        <div>❶ <span style="font-weight:700;">변수 정하기</span> &ensp;→ 문제의 뜻을 파악하고 변수 $x$, $y$를 정한다.</div>
+        <div>❷ <span style="font-weight:700;">일차함수의 식 세우기</span> &ensp;→ $x$와 $y$ 사이의 관계를 식으로 나타낸다.</div>
+        <div>❸ <span style="font-weight:700;">답 구하기</span> &ensp;→ 일차함수의 식이나 그래프를 이용하여 필요한 값을 구한다.</div>
+        <div>❹ <span style="font-weight:700;">확인하기</span> &ensp;→ 구한 답이 문제의 뜻에 맞는지 확인한다.</div>
+      </div>
+    </div>
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">여러 가지 활용 문제</span>
+      </div>
+      <div class="kaynun-body">
+        <div><span style="font-weight:700;">(1) 온도에 대한 문제</span><br>처음 온도가 $a$ °C이고 $1$분마다 $b$ °C씩 올라갈 때, $x$분 후의 온도를 $y$ °C라 하면<br>$\Rightarrow$ <span style="background:#fff5d3;">$y=a+bx$</span></div>
+        <div><span style="font-weight:700;">(2) 길이에 대한 문제</span><br>처음 길이가 $a$ cm이고 $1$분마다 $b$ cm씩 짧아질 때, $x$분 후의 길이를 $y$ cm라 하면<br>$\Rightarrow$ <span style="background:#fff5d3;">$y=a-bx$</span></div>
+        <div><span style="font-weight:700;">(3) 물의 양에 대한 문제</span><br>처음 물의 양이 $a$ L이고 $1$분마다 $b$ L씩 빠질 때, $x$분 후에 남아 있는 물의 양을 $y$ L라 하면<br>$\Rightarrow$ <span style="background:#fff5d3;">$y=a-bx$</span></div>
+        <div><span style="font-weight:700;">(4) 거리, 속력, 시간에 대한 문제</span><br>시속 $a$ km로 $x$시간 동안 이동한 거리를 $y$ km라 하면<br>$\Rightarrow$ <span style="background:#fff5d3;">$y=ax$</span> &ensp;<span style="font-size:9px;color:#848484;">(거리) = (속력) × (시간)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 활용</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+
+<!-- ═══════════════════════ PAGE 005 ─ 쏙쏙 유형 익히기 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1;min-height:0;">
+    <!-- 왼쪽 컬럼 : 3문제 × 240px -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:240px 240px 240px;align-items:start;">
+
+      <!-- 유형 01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">온도에 대한 문제</span>
+        </div>
+        <div class="umuri-q">
+          지면으로부터 $10$ km까지는 $1$ km 높아질 때마다 기온이 $6$ °C씩 내려간다고 한다. 현재 지면의 기온이 $24$ °C일 때, 기온이 $0$ °C인 지점의 지면으로부터의 높이를 구하시오.
+        </div>
+      </div>
+
+      <!-- 유형 02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">물의 양에 대한 문제</span>
+        </div>
+        <div class="umuri-q">
+          $53$ L의 물이 들어 있는 물통의 마개를 열면 $1$분에 $2.5$ L씩 물이 흘러 나온다고 한다. 마개를 연 지 $x$분 후에 물통에 남아 있는 물의 양을 $y$ L라 할 때, 물통에 들어 있는 물의 양이 $8$ L가 되는 것은 몇 분 후인지 구하시오.
+        </div>
+      </div>
+
+      <!-- 유형 03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">속력에 대한 문제</span>
+        </div>
+        <div class="umuri-q">
+          서울에서 $364$ km 떨어진 제주도 남쪽 해상에 있는 태풍이 $1$시간에 $14$ km의 속력으로 서울로 북상하고 있다. 태풍이 서울에 도달할 때까지 걸리는 시간을 구하시오. (단, 태풍의 중심은 제주도에서 서울까지 직선거리로 움직인다.)
+        </div>
+      </div>
+
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 컬럼 : 2문제 × 358px -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:358px 358px;align-items:start;">
+
+      <!-- 유형 04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">도형에 대한 문제</span>
+        </div>
+        <div class="umuri-q" style="display:flex;gap:10px;align-items:flex-start;">
+          <div>다음 그림과 같은 직사각형 ABCD에서 점 P가 점 B를 출발하여 $\overline{BC}$를 따라 점 C까지 매초 $4$ cm씩 움직일 때, $x$초 후의 삼각형 ABP의 넓이를 $y$ cm²라 한다. 삼각형 ABP의 넓이가 $192$ cm²가 되는 것은 점 P가 점 B를 출발한 지 몇 초 후인지 구하시오.</div>
+          <svg width="88" height="78" viewBox="0 0 88 78" style="flex-shrink:0;margin-top:2px;">
+            <rect x="8" y="4" width="60" height="68" fill="none" stroke="#555" stroke-width="1"/>
+            <polygon points="8,4 8,72 36,72" fill="rgba(235,116,159,0.1)" stroke="none"/>
+            <text x="6" y="3" font-size="8" fill="#232f39">A</text>
+            <text x="70" y="3" font-size="8" fill="#232f39">D</text>
+            <text x="6" y="78" font-size="8" fill="#232f39">B</text>
+            <text x="70" y="78" font-size="8" fill="#232f39">C</text>
+            <text x="38" y="3" font-size="7" fill="#232f39" text-anchor="middle">24 cm</text>
+            <text x="3" y="40" font-size="7" fill="#232f39" text-anchor="middle" transform="rotate(-90,3,40)">32 cm</text>
+            <circle cx="36" cy="72" r="2" fill="#232f39"/>
+            <text x="32" y="78" font-size="8" fill="#232f39">P</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 유형 05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">그래프를 이용한 활용</span>
+        </div>
+        <div class="umuri-q">
+          <div>다음 그래프는 길이가 $40$ cm인 초에 불을 붙인 후, 경과한 시간과 그에 따라 남은 초의 길이를 나타낸 것이다. 불을 붙인 후 얼마의 시간이 경과해야 남은 초의 길이가 $16$ cm가 되겠는가?</div>
+          <svg width="120" height="70" viewBox="0 0 120 70" style="display:block;margin:4px 0;">
+            <line x1="14" y1="60" x2="104" y2="60" stroke="#555" stroke-width="0.9"/>
+            <polygon points="104,60 99,57 99,63" fill="#555"/>
+            <line x1="14" y1="60" x2="14" y2="8" stroke="#555" stroke-width="0.9"/>
+            <polygon points="14,8 11,14 17,14" fill="#555"/>
+            <line x1="14" y1="10" x2="64" y2="60" stroke="#555" stroke-width="1.2"/>
+            <text x="10" y="11" font-size="7" fill="#232f39" text-anchor="end">40</text>
+            <text x="64" y="67" font-size="7" fill="#232f39" text-anchor="middle">5</text>
+            <text x="90" y="67" font-size="7" fill="#232f39">x(시간)</text>
+            <text x="6" y="8" font-size="7" fill="#232f39">y(cm)</text>
+            <line x1="12" y1="10" x2="14" y2="10" stroke="#555" stroke-width="0.8"/>
+            <line x1="64" y1="60" x2="64" y2="62" stroke="#555" stroke-width="0.8"/>
+            <circle cx="14" cy="10" r="1.5" fill="#555"/>
+          </svg>
+          <div class="umuri-choices-3col" style="margin-top:4px;">
+            <span>① $1$시간</span><span>② $2$시간</span><span>③ $3$시간</span>
+            <span>④ $4$시간</span><span>⑤ $5$시간</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 활용</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+
+<!-- ═══════════════════════ PAGE 006 ─ 빠른정답 ═══════════════════════ -->
+<div class="page" style="padding-top:40px;padding-bottom:30px;gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">05</span>
+    <span class="qa2-name">일차함수의 활용</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">30분</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">6 cm</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">4초</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">60 °C</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">68 °F</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">4 km</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">18분</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">26시간</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">3초</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 활용</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$', right: '$', display: false},
+      {left: '$$', right: '$$', display: true}
+    ],
+    throwOnError: false
+  });">
+</script>
+</body>
+</html>
