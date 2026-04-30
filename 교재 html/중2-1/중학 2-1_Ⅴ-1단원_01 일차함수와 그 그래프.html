@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅴ-1단원_01 일차함수와 그 그래프</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 700;
+}
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Bordered content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 36px;
+}
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7;
+  position: relative;
+}
+.concept-chip__n {
+  background: #338cd7;
+  height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px;
+  padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-left: 26px; padding-right: 0;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th {
+  background: #ebebeb; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; font-weight: 400; line-height: 1.4;
+}
+.concept-table td {
+  background: white; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; line-height: 1.4;
+}
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+.hl-r { background: #ffe0e0; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge {
+  position: absolute; top: 0; left: 16px;
+  display: flex; align-items: center; z-index: 2;
+}
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px;
+  border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px;
+  height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; align-items: flex-start; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white;
+  font-size: 6px; font-weight: 700; border-radius: 2px;
+  padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+
+/* ─── Right column: 참고 + 풀이TIP ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice section ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7;
+  border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── 쏙쏙 유형 익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f;
+  border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-ws { flex: 1; min-height: 24px; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; }
+.umuri-diff { display: flex; align-items: center; gap: 1px; font-size: 6px; font-weight: 700; }
+.umuri-diff__lv { color: #d7d7d7; line-height: 1; }
+.umuri-diff__lv--on { background: #e96a6c; color: white; border-radius: 1000px; padding: 1px 2px; line-height: 1; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-prob__hd + .umuri-q { margin-top: -4px; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── Footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; margin-top: auto; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,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"); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row {
+  display: flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
+}
+.qa2-num {
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white;
+  font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start;
+  margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink {
+  border-top-color: #eb749f;
+  border-right-color: #eb749f;
+  border-bottom-color: #eb749f;
+  padding-top: 3px;
+}
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row {
+  display: flex; align-items: center; height: 30px;
+  border-bottom: none;
+}
+.qa2-row:last-child { border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum {
+  font-size: 11px; font-weight: 600; color: #4a4a4a;
+  width: 22px; flex-shrink: 0; text-align: left;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+.warning-label {
+  background: transparent; color: #ff7373;
+  font-size: 10px; font-weight: 700;
+  margin: 0; padding: 0; border-radius: 0;
+}
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── 한눈에 개념 정리 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 28px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px; margin-bottom: 10px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white;
+  height: 19px; border-radius: 1000px;
+  padding: 0 8px;
+  font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; white-space: nowrap;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px; white-space: normal;
+  word-break: keep-all; overflow-wrap: break-word;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
+  }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .title__num  { letter-spacing: -4.8px !important; }
+  .title__text { letter-spacing: -0.8px !important; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">01</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">일차함수와 그 그래프</div>
+    </div>
+  </div>
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">함수란 무엇인가?</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            <strong>함수</strong> : 두 변수 $x$, $y$에 대하여 $x$의 값이 변함에 따라 <span class="hl">$y$의 값이 오직 하나씩 정해지는 대응 관계</span>가 있을 때, $y$를 $x$에 대한 함수라 한다.<br>
+            &ensp; $y$가 $x$에 대한 함수일 때, 기호로 $\boldsymbol{y=f(x)}$와 같이 나타낸다.
+          </div>
+          <div>
+            예) 한 개에 900원인 아이스크림을 $x$개 살 때 지불하는 금액 $y$원<br>
+            &ensp; $y=900x$ → $x$의 각 값에 $y$가 하나씩 정해지므로 $y$는 $x$에 대한 함수이다.
+          </div>
+        </div>
+      </div>
+      <!-- 예제 01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 $y$가 $x$에 대한 함수가 아닌 것을 모두 고르면? <strong>(정답 2개)</strong></div>
+            <div class="ex-choices-stack">
+              <span>① 자연수 $x$의 배수 $y$</span>
+              <span>② 한 변의 길이가 $x$ cm인 정사각형의 둘레의 길이 $y$ cm</span>
+              <span>③ 자연수 $x$보다 작은 자연수 $y$</span>
+              <span>④ 자연수 $x$를 5로 나누었을 때의 나머지 $y$</span>
+              <span>⑤ 물 10 L를 $x$명이 똑같이 나누어 마실 때, 한 사람이 마실 수 있는 물의 양 $y$ L</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          정비례 $y=ax$ ($a\neq0$), 반비례 $y=\dfrac{b}{x}$ ($b\neq0$)는 $x$에 대한 함수이다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>$x$ 값 하나에 $y$ 값이 하나인지 확인</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">①, ③</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 중 $y$가 $x$의 함수가 아닌 것은?</div>
+            <div class="prob__choices-stack">
+              <span>① 한 개에 200원인 과자를 $x$개 살 때의 값 $y$원</span>
+              <span>② 밑변의 길이가 1 cm, 높이가 $x$ cm인 삼각형의 넓이 $y$ cm²</span>
+              <span>③ 자연수 $x$의 약수의 개수 $y$</span>
+              <span>④ 날의 길이 $x$에 대한 밤의 길이 $y$</span>
+              <span>⑤ 자연수 $x$에 대하여 $x$보다 작은 자연수 $y$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 보기 중 $y$가 $x$의 함수인 것의 개수를 구하시오.</div>
+            <div class="prob__boogi" style="flex-direction:column; gap:1px;">
+              <span>ㄱ. 속력 $x$ km/h로 15 km 갈 때 걸린 시간 $y$시간</span>
+              <span>ㄴ. 둘레의 길이가 $x$ cm인 삼각형의 넓이 $y$ cm²</span>
+              <span>ㄷ. 30%의 소금을 품고 있는 소금의 양 $x$ g</span>
+              <span>ㄹ. 자연수 $x$의 약수 $y$</span>
+              <span>ㅁ. 한 장이 $x$원인 지하철 승차권 5장의 값 $y$원</span>
+              <span>ㅂ. 7개짜리 한 세트인 형광펜의 가격이 $x$원일 때 형광펜 1개의 가격 $y$원</span>
+              <span>ㅅ. 정가 $x$원인 우유를 20% 할인한 가격 $y$원</span>
+              <span>ㅇ. 절댓값이 $x$인 수 $y$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">일차함수와 그 그래프</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 개념02 + 예제02 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:12px;">
+        <!-- 개념 02 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">02</span>
+            </div>
+            <span class="concept-title">함숫값이란 무엇인가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              <strong>함숫값</strong> : 함수 $y=f(x)$에서 <span class="hl">$x$의 값에 따라 하나씩 정해지는 $y$의 값</span><br>
+              $f(a)$ : $x=a$일 때 → $f(x)$에 $x$ 대신 $a$를 대입하여 얻은 값<br>
+              예) $f(x)=6x-1$에서 &ensp; $f(-1)=-7$, &ensp; $f(0)=-1$, &ensp; $f(1)=5$
+            </div>
+          </div>
+        </div>
+        <!-- 예제 02 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body" style="gap:10px;">
+            <div class="ex-content">
+              <div class="ex-q">다음 물음에 답하시오.</div>
+              <div class="ex-choices-stack">
+                <span>(1) 함수 $f(x)=\dfrac{1}{3}x-4$에 대하여 $f(-3)+f(6)$의 값을 구하시오.</span>
+                <span>(2) 함수 $f(x)=\dfrac{10}{x}$에 대하여 $f(a)=-5$일 때, $a$의 값을 구하시오.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>$f(a)$ : $x$ 자리에 $a$ 대입</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">(1) $-7$ &ensp; (2) $-2$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">03</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>함수 $f(x)=5x-9$에 대하여 다음 중 옳지 않은 것은?</div>
+              <div class="prob__choices-2col">
+                <span>① &ensp;$f(-2)=-1$</span>
+                <span>② &ensp;$f(-1)=-14$</span>
+                <span>③ &ensp;$f(0)=-9$</span>
+                <span>④ &ensp;$f(1)=-4$</span>
+                <span>⑤ &ensp;$f(2)=1$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">04</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>함수 $f(x)=-4x$에 대하여 $f(-3)+f(-1)+2f(1)$의 값은?</div>
+              <div class="prob__choices-3col">
+                <span>① &ensp;$12$</span>
+                <span>② &ensp;$8$</span>
+                <span>③ &ensp;$4$</span>
+                <span>④ &ensp;$-4$</span>
+                <span>⑤ &ensp;$-8$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">002</span>
+  </div>
+
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 (예제03 set) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제03 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:0;">
+        <!-- 예제 03 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body" style="gap:10px;">
+            <div class="ex-content">
+              <div class="ex-q">함수 $f(x)=ax-1$에 대하여 $f(-2)=-9$일 때, 다음 물음에 답하시오.</div>
+              <div class="ex-choices-stack">
+                <span>(1) 상수 $a$의 값을 구하시오.</span>
+                <span>(2) $f(1)+f(2)+f(3)$의 값을 구하시오.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>$f(a)=k$ 조건으로 상수를 먼저 구한 뒤 함수식 확정</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">(1) $4$ &ensp; (2) $21$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>함수 $f(x)=\dfrac{a}{x}$에 대하여 $f(2)=-4$일 때, $f(3)$의 값을 구하시오. (단, $a$는 상수)</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>함수 $f(x)=\dfrac{15}{x}$에 대하여 $f(-3)=a$, $f(b)=1$일 때, $a+b$의 값은?</div>
+              <div class="prob__choices-wrap">
+                <span>① &ensp;$2$</span>
+                <span>② &ensp;$4$</span>
+                <span>③ &ensp;$6$</span>
+                <span>④ &ensp;$8$</span>
+                <span>⑤ &ensp;$10$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 (예제03 set) -->
+
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 개념03 + 예제04 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:12px;">
+        <!-- 개념 03 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">03</span>
+            </div>
+            <span class="concept-title">일차함수란 무엇인가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              <strong>일차함수</strong> : 함수 $y=f(x)$에서 <span class="hl">$y=ax+b$ ($a$, $b$는 상수, $a\neq0$)</span>와 같이<br>
+              $y$가 $x$에 대한 일차식으로 나타날 때, 이 함수를 $x$에 대한 일차함수라 한다.<br>
+              예) $y=2x$, &ensp; $y=\dfrac{2}{3}x-1$, &ensp; $y=-x$ &ensp;→ 일차함수 ✓<br>
+              &emsp; $y=x^2+2$, &ensp; $y=\dfrac{5}{x}$, &ensp; $y=-3$, &ensp; $y=0$ &ensp;→ 일차함수 ✗
+            </div>
+          </div>
+        </div>
+        <!-- 예제 04 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body" style="gap:10px;">
+            <div class="ex-content">
+              <div class="ex-q">다음 보기 중 $y$가 $x$에 대한 일차함수인 것을 모두 고르시오.</div>
+              <div class="prob__boogi" style="margin:0; font-size:10px; display:grid; grid-template-columns:1fr 1fr; gap:4px 20px;">
+                <span>ㄱ. $y+6=0$</span>
+                <span>ㄴ. $4x+y=3x-1$</span>
+                <span>ㄷ. $y=\dfrac{7}{x}+5$</span>
+                <span>ㄹ. $y=2(x^2+x)-2x^2-9$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>$y$를 $x$에 대해 정리하여 $y=ax+b$ 꼴인지 확인</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">ㄴ, ㄹ</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>다음 중 일차함수인 것은?</div>
+              <div class="prob__choices-stack">
+                <span>① &ensp;$y=5$</span>
+                <span>② &ensp;$y=x^2+2$</span>
+                <span>③ &ensp;$y=4-x$</span>
+                <span>④ &ensp;$y=x^3-3x^2$</span>
+                <span>⑤ &ensp;$y=-5$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>다음 보기에서 $y$가 $x$의 일차함수인 것은 모두 몇 개인가?</div>
+              <div class="prob__boogi" style="display:grid; grid-template-columns:1fr 1fr; gap:2px 8px;">
+                <span>㉠ $y=-x$</span>
+                <span>㉡ $y=x+5$</span>
+                <span>㉢ $y=\dfrac{1}{x}$</span>
+                <span>㉣ $y=x^2-3x-4$</span>
+                <span>㉤ $y=3(2x-1)$</span>
+                <span>㉥ $\dfrac{x}{2}-\dfrac{y}{3}=1$</span>
+                <span>㉦ $y=0\cdot x+4$</span>
+                <span>㉧ $0\cdot y=x+3$</span>
+              </div>
+              <div class="prob__choices-wrap">
+                <span>① &ensp;1개</span>
+                <span>② &ensp;2개</span>
+                <span>③ &ensp;3개</span>
+                <span>④ &ensp;4개</span>
+                <span>⑤ &ensp;5개</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 -->
+
+
+
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제05 ── -->
+    <div class="set-block">
+      <div class="cbox">
+        <div class="cbox__left" style="gap:0;">
+          <!-- 예제 05 -->
+          <div class="ex-wrap">
+            <div class="ex-badge">
+              <span class="ex-badge__pill">예제</span>
+              <span class="ex-badge__num">05</span>
+            </div>
+            <div class="ex-body" style="gap:10px;">
+              <div class="ex-content">
+                <div class="ex-q">다음 중 $y$가 $x$에 대한 일차함수인 것은?</div>
+                <div class="ex-choices-stack">
+                  <span>① 한 변의 길이가 $x$ cm인 정사각형의 넓이 $y$ cm²</span>
+                  <span>② 300 km의 거리를 시속 $x$ km로 달렸을 때 걸린 시간 $y$시간</span>
+                  <span>③ 넓이가 20 cm²인 삼각형의 밑변의 길이가 $x$ cm일 때 높이 $y$ cm</span>
+                  <span>④ $x$각형의 외각의 크기의 합 $y°$</span>
+                  <span>⑤ 하루 중 낮의 길이가 $x$시간일 때, 밤의 길이 $y$시간</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cbox__right">
+          <div style="flex:1;"></div>
+          <div class="tip-box">
+            <div class="tip-box__hd">
+              <span class="tip-pill">풀이 TIP</span>
+              <span class="tip-tri"></span>
+            </div>
+              <div class="tip-body"><ul>
+                <li>각 선택지를 $y=ax+b$ 꼴로 나타낼 수 있는지 확인</li>
+              </ul></div>
+          </div>
+          <div class="ans-row">
+            <span class="ans-badge">정답</span>
+            <span class="ans-text">⑤</span>
+          </div>
+        </div>
+      </div>
+      <div class="practice-sec">
+        <div class="practice-inner">
+          <div class="prac-hd">
+            <div class="prac-hd__tab">
+              <span class="prac-hd__ss">쏙쏙</span>
+              <span class="prac-hd__gn">개념</span>
+              <span class="prac-hd__ih">익히기</span>
+            </div>
+            <div class="prac-hd__line"></div>
+          </div>
+          <div class="prac-grid">
+            <div class="prob">
+              <div class="prob__hd">
+                <span class="prob__num">09</span>
+                <span class="prob__badge">쌍둥이</span>
+              </div>
+              <div class="prob__body">
+                <div>다음 중 $y$가 $x$에 대한 일차함수가 아닌 것은?</div>
+                <div class="prob__choices-stack">
+                  <span>① 100개의 사탕에서 하루에 3개씩 $x$일 동안 먹고 남은 양이 $y$개이다.</span>
+                  <span>② 한 개에 500원하는 과일 $x$개의 값 $y$원이다.</span>
+                  <span>③ 지름의 길이가 $x$인 원의 둘레의 길이가 $y$이다.</span>
+                  <span>④ 밑변의 길이가 10, 높이가 $x$인 삼각형의 넓이가 $y$이다.</span>
+                  <span>⑤ 가로의 길이가 $x$이고 세로의 길이가 $y$인 직사각형의 넓이가 20이다.</span>
+                </div>
+              </div>
+            </div>
+            <div class="prac-sep"></div>
+            <div class="prob">
+              <div class="prob__hd">
+                <span class="prob__num">10</span>
+                <span class="prob__badge">유사</span>
+              </div>
+              <div class="prob__body">
+                <div>다음 보기 중 $y$가 $x$에 관한 일차함수인 것은 모두 몇 개인지 구하시오.</div>
+                <div class="prob__boogi" style="flex-direction:column; gap:1px;">
+                  <span>㉠ 500원짜리 지우개 1개와 $x$원짜리 공책 3권의 값은 $y$원이다.</span>
+                  <span>㉡ 한 변의 길이가 $x$ cm인 정사각형의 넓이는 $y$ cm²이다.</span>
+                  <span>㉢ 시속 $x$ km의 속력으로 $y$시간 동안 걸어간 거리는 5 km이다.</span>
+                  <span>㉣ 길이가 30 cm인 양초에 불을 붙이면 1분에 3 cm씩 타내려간다. 불을 붙인 지 $x$분 후의 양초의 길이는 $y$ cm이다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 개념04 + 예제06 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:12px;">
+        <!-- 개념 04 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">04</span>
+            </div>
+            <span class="concept-title">일차함수 $y=ax+b$의 그래프는 어떻게 그리는가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              <strong>평행이동</strong> : 한 도형을 일정한 방향으로 일정한 거리만큼 이동하는 것 (모양 불변)
+            </div>
+            <div>
+              $y=ax+b$의 그래프 : $y=ax$의 그래프를 <span class="hl">$y$축의 방향으로 $b$만큼 평행이동</span>한 직선<br>
+              &emsp;① $b>0$ → $y$축의 양의 방향으로 $b$만큼 이동<br>
+              &emsp;② $b<0$ → $y$축의 음의 방향으로 $|b|$만큼 이동
+            </div>
+            <div style="display:flex; gap:8px; margin-top:6px;">
+              <svg width="132" height="90" viewBox="0 0 132 90" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0;"><rect x="1" y="1" width="28" height="13" rx="2" fill="#ffe8ee" stroke="#d94060" stroke-width="0.8"/><text x="8" y="10.5" font-size="7.5" fill="#d94060" font-family="serif" font-style="italic">b</text><text x="14" y="10.5" font-size="7.5" fill="#d94060">&gt;0</text><line x1="8" y1="52" x2="125" y2="52" stroke="#555" stroke-width="0.8"/><line x1="56" y1="4" x2="56" y2="85" stroke="#555" stroke-width="0.8"/><polygon points="123,50 123,54 128,52" fill="#555"/><polygon points="54,4 58,4 56,1" fill="#555"/><text x="129" y="55" font-size="6.5" fill="#555" font-family="serif" font-style="italic">x</text><text x="52" y="4" text-anchor="end" font-size="6.5" fill="#555" font-family="serif" font-style="italic">y</text><text x="59" y="56" font-size="6" fill="#555">O</text><line x1="24" y1="84" x2="103" y2="5" stroke="#333" stroke-width="1.3"/><line x1="11" y1="84" x2="90" y2="5" stroke="#d94060" stroke-width="1.3"/><line x1="67" y1="25" x2="73" y2="25" stroke="#d94060" stroke-width="0.9"/><line x1="70" y1="25" x2="70" y2="38" stroke="#d94060" stroke-width="0.9"/><line x1="67" y1="38" x2="73" y2="38" stroke="#d94060" stroke-width="0.9"/><text x="75" y="33.5" font-size="7.5" fill="#d94060" font-family="serif" font-style="italic">b</text><text x="68" y="9" font-size="6" fill="#d94060" font-family="serif" font-style="italic">y=ax+b</text><text x="89" y="23" font-size="6" fill="#333" font-family="serif" font-style="italic">y=ax</text></svg>
+              <svg width="132" height="90" viewBox="0 0 132 90" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0;"><rect x="1" y="1" width="28" height="13" rx="2" fill="#eaf4ea" stroke="#2d8a3e" stroke-width="0.8"/><text x="8" y="10.5" font-size="7.5" fill="#2d8a3e" font-family="serif" font-style="italic">b</text><text x="14" y="10.5" font-size="7.5" fill="#2d8a3e">&lt;0</text><line x1="8" y1="52" x2="125" y2="52" stroke="#555" stroke-width="0.8"/><line x1="56" y1="4" x2="56" y2="85" stroke="#555" stroke-width="0.8"/><polygon points="123,50 123,54 128,52" fill="#555"/><polygon points="54,4 58,4 56,1" fill="#555"/><text x="129" y="55" font-size="6.5" fill="#555" font-family="serif" font-style="italic">x</text><text x="52" y="4" text-anchor="end" font-size="6.5" fill="#555" font-family="serif" font-style="italic">y</text><text x="59" y="56" font-size="6" fill="#555">O</text><line x1="24" y1="84" x2="103" y2="5" stroke="#333" stroke-width="1.3"/><line x1="37" y1="84" x2="116" y2="5" stroke="#2d8a3e" stroke-width="1.3"/><line x1="61" y1="44" x2="67" y2="44" stroke="#2d8a3e" stroke-width="0.9"/><line x1="64" y1="44" x2="64" y2="57" stroke="#2d8a3e" stroke-width="0.9"/><line x1="61" y1="57" x2="67" y2="57" stroke="#2d8a3e" stroke-width="0.9"/><text x="69" y="52.5" font-size="7.5" fill="#2d8a3e" font-family="serif" font-style="italic">|b|</text><text x="84" y="20" font-size="6" fill="#333" font-family="serif" font-style="italic">y=ax</text><text x="79" y="43" font-size="6" fill="#2d8a3e" font-family="serif" font-style="italic">y=ax+b</text></svg>
+            </div>
+          </div>
+        </div>
+        <!-- 예제 06 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body" style="gap:10px;">
+            <div class="ex-content">
+              <div class="ex-q">일차함수 $y=4x+b$의 그래프를 $y$축의 방향으로 3만큼 평행이동하였더니 일차함수 $y=ax+2$의 그래프가 되었다. 이때 상수 $a$, $b$에 대하여 $a+b$의 값을 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="side-note">
+          <div class="side-note__hd">
+            <span class="side-bar"></span>
+            <span class="side-label">참고</span>
+          </div>
+          <div class="side-body">
+            일차함수 $y=ax+b$에서 $x$의 값이 주어지지 않을 때에는 $x$값의 범위를 수 전체로 생각
+          </div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>$y$축 방향으로 $k$만큼 평행이동 → $b$에 $k$를 더함</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$3$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>일차함수 $y=-\dfrac{5}{6}x+1$의 그래프를 $y$축의 방향으로 2만큼 평행이동하면 점 $(3,\,a)$를 지난다. 이때 $a$의 값을 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>일차함수 $y=3x$의 그래프를 $y$축으로 $-2$만큼 평행이동하였더니 점 $(a,\,a+4)$를 지난다고 한다. 이때 $a$의 값을 구하면?</div>
+              <div class="prob__choices-stack">
+                <span>① &ensp;$-3$</span>
+                <span>② &ensp;$3$</span>
+                <span>③ &ensp;$2$</span>
+                <span>④ &ensp;$-2$</span>
+                <span>⑤ &ensp;$4$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════════════════ PAGE 007 (예제07 set) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제07 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:0;">
+        <!-- 예제 07 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">07</span>
+          </div>
+          <div class="ex-body" style="gap:10px;">
+            <div class="ex-content">
+              <div class="ex-q">다음 중 일차함수 $y=-2x+6$의 그래프 위의 점인 것은?</div>
+              <div class="ex-choices-wrap">
+                <span>① $(-3,\,0)$</span>
+                <span>② $(-1,\,4)$</span>
+                <span>③ $(1,\,-4)$</span>
+                <span>④ $(2,\,10)$</span>
+                <span>⑤ $(4,\,-2)$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>점 $(a,b)$가 그래프 위 ↔ $x=a$, $y=b$ 대입 시 등식 성립</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">⑤</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">13</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>일차함수 $y=\dfrac{3}{2}x+6$의 그래프가 두 점 $(a,\,0)$, $(0,\,b)$를 지날 때, $a+b$의 값을 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">14</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>일차함수 $y=3x+a$의 그래프가 점 $(-3,\,2)$를 지날 때, 상수 $a$의 값을 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 007 (예제07 set) -->
+
+
+<!-- ═══════════════════════ PAGE 008 (한눈에 개념 정리) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">함수</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>함수</strong> : 두 변수 $x$, $y$에 대하여 $x$의 값이 변함에 따라 $y$의 값이 오직 하나씩 정해지는 대응 관계가 있을 때, $y$를 $x$에 대한 <strong>함수</strong>라 하고 기호로 $y=f(x)$와 같이 나타낸다.</div>
+        <div>참고 : 정비례 $y=ax$ ($a\neq0$), 반비례 $y=\dfrac{b}{x}$ ($b\neq0$)는 $x$에 대한 함수이다.</div>
+      </div>
+    </div>
+
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">함숫값</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>함숫값</strong> : 함수 $y=f(x)$에서 $x=a$일 때, $f(x)$에 $x$ 대신 $a$를 대입하여 얻은 값 $f(a)$</div>
+        <div>예) $f(x)=6x-1$에서 &ensp; $f(-1)=-7$, &ensp; $f(0)=-1$, &ensp; $f(1)=5$</div>
+      </div>
+    </div>
+
+    <!-- 개념 03 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">일차함수</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>일차함수</strong> : 함수 $y=f(x)$에서 $y=ax+b$ ($a$, $b$는 상수, $a\neq0$)와 같이 $y$가 $x$에 대한 일차식으로 나타날 때, 이 함수를 $x$에 대한 <strong>일차함수</strong>라 한다.</div>
+        <ul>
+          <li>일차함수 ✓ : $y=2x$, &ensp; $y=\dfrac{2}{3}x-1$, &ensp; $y=-x$</li>
+          <li>일차함수 ✗ : $y=x^2+2$, &ensp; $y=\dfrac{5}{x}$, &ensp; $y=-3$, &ensp; $y=0$</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 개념 04 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">04</span>
+        <span class="kaynun-title">일차함수 $y=ax+b$의 그래프</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>평행이동</strong> : 한 도형을 일정한 방향으로 일정한 거리만큼 이동하는 것 (모양 불변)</div>
+        <div>$y=ax+b$의 그래프 : $y=ax$의 그래프를 $y$축의 방향으로 $b$만큼 평행이동한 직선</div>
+        <ul>
+          <li>$b&gt;0$ → $y$축의 <strong>양의 방향</strong>으로 $b$만큼 이동</li>
+          <li>$b&lt;0$ → $y$축의 <strong>음의 방향</strong>으로 $|b|$만큼 이동</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">008</span>
+  </div>
+
+</div><!-- /page 008 (한눈에 개념 정리) -->
+
+
+<!-- ═══════════════════════ <!-- ═══════════════════════ PAGE 009 (유형익히기 01–06) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd" style="flex-shrink:0;">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 열: 01, 02, 03 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">01</span>
+            </div>
+          <span class="umuri-desc">함수</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 $y$가 $x$의 함수가 아닌 것은?
+          <div class="umuri-choices-stack" style="margin-top:4px;">
+            <span>① &ensp;$y=2x-3$</span>
+            <span>② &ensp;$y=$(자연수 $x$와 서로소인 자연수)</span>
+            <span>③ &ensp;$y=8x$</span>
+            <span>④ &ensp;$y=($자연수 $x$보다 작은 소수의 개수$)$</span>
+            <span>⑤ &ensp;$y=-\dfrac{1}{x}$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">02</span>
+            </div>
+          <span class="umuri-desc">함숫값</span>
+        </div>
+        <div class="umuri-q">
+          함수 $f(x)=-\dfrac{18}{x}$에 대하여 $f(-2)$의 값을 구하시오.
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">03</span>
+            </div>
+          <span class="umuri-desc">$f(x)$=(조건)꼴인 함수의 함숫값</span>
+        </div>
+        <div class="umuri-q">
+          함수 $f(x)=$(자연수 $x$를 7로 나눈 나머지)에 대하여 $f(15)+f(31)-f(100)$의 값은?
+          <div class="umuri-choices-wrap" style="margin-top:4px;">
+            <span>① &ensp;$-1$</span>
+            <span>② &ensp;$0$</span>
+            <span>③ &ensp;$1$</span>
+            <span>④ &ensp;$2$</span>
+            <span>⑤ &ensp;$3$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /왼쪽 열 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열: 04, 05, 06 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">04</span>
+            </div>
+          <span class="umuri-desc">함숫값을 이용하여 미지수 구하기</span>
+        </div>
+        <div class="umuri-q">
+          함수 $f(x)=\dfrac{a}{x}$에 대하여 $f(3)=-8$, $f(b)=4$일 때, $ab$의 값을 구하시오. (단, $a$는 상수)
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">05</span>
+            </div>
+          <span class="umuri-desc">함숫값을 이용하여 미지수 구하기</span>
+        </div>
+        <div class="umuri-q">
+          두 함수 $f(x)=\dfrac{2}{3}x$, $g(x)=\dfrac{16}{x}$가 다음 조건을 모두 만족시킬 때, 상수 $b$의 값을 구하시오.
+          <div class="prob__boogi" style="margin-top:6px; font-size:10px; justify-content:center;">
+            $f(18)=a$, &ensp; $f(a)=g(b)$
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">06</span>
+            </div>
+          <span class="umuri-desc">일차함수의 뜻</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 $y$가 $x$에 관한 일차함수인 것만을 있는 대로 고르면?
+          <div class="prob__boogi" style="margin-top:4px; font-size:10px; flex-direction:column; gap:1px;">
+            <span>ㄱ. $x=2x+3$</span>
+            <span>ㄴ. $y=2x+3$</span>
+            <span>ㄷ. $y=\dfrac{2}{x}$</span>
+            <span>ㄹ. $y=-6$</span>
+            <span>ㅁ. $y=-\dfrac{3}{4}x-1$</span>
+          </div>
+          <div class="umuri-choices-wrap" style="margin-top:4px;">
+            <span>① ㄱ, ㄴ</span>
+            <span>② ㄱ, ㄷ</span>
+            <span>③ ㄴ, ㅁ</span>
+            <span>④ ㄷ, ㄹ</span>
+            <span>⑤ ㄹ, ㅁ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /오른쪽 열 -->
+
+  </div><!-- /umuri-grid -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">009</span>
+  </div>
+
+</div><!-- /page 009 -->
+
+
+<!-- ═══════════════════════ <!-- ═══════════════════════ PAGE 010 (유형익히기 07–10) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd" style="flex-shrink:0;">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 열: 07, 08 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">07</span>
+            </div>
+          <span class="umuri-desc">일차함수의 그래프 위의 점</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=-\dfrac{4}{3}x+a$의 그래프가 두 점 $(2,\,-1)$, $(-1,\,b)$를 지날 때, $ab$의 값을 구하시오. (단, $a$는 상수)
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">08</span>
+            </div>
+          <span class="umuri-desc">일차함수의 그래프의 평행이동</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 일차함수 $y=2x$의 그래프를 $y$축의 방향으로 $-3$만큼 평행이동한 그래프는?
+          <div class="umuri-choices-stack" style="margin-top:4px;">
+            <span>① &ensp;$y=2x+3$</span>
+            <span>② &ensp;$y=2x-3$</span>
+            <span>③ &ensp;$y=2(x-3)$</span>
+            <span>④ &ensp;$y=-2x$</span>
+            <span>⑤ &ensp;$y=-2x+3$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /왼쪽 열 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열: 09, 10 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">09</span>
+            </div>
+          <span class="umuri-desc">일차함수의 그래프의 평행이동</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=ax+4$의 그래프를 $y$축의 방향으로 $b$만큼 평행이동하였더니 $y=\dfrac{1}{2}x+2$의 그래프가 되었다. 이때 $ab$의 값을 구하시오. (단, $a$는 상수)
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">10</span>
+            </div>
+          <span class="umuri-desc">평행이동한 그래프 위의 점</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=ax$의 그래프를 $y$축의 방향으로 $b$만큼 평행이동하여 두 점 $(3,\,-1)$, $(-1,\,-9)$를 지난다. 이때 $a+b$의 값을 구하시오. (단, $a$는 상수)
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /오른쪽 열 -->
+
+  </div><!-- /umuri-grid -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">010</span>
+  </div>
+
+</div><!-- /page 010 -->
+
+
+<!-- ═══════════════════════ <!-- ═══════════════════════ PAGE 011 (빠른정답) ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">01</span>
+    <span class="qa2-name">일차함수와 그 그래프</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">5</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$-\dfrac{8}{3}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">2개</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">2</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">11</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">$\dfrac{1}{2}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">②</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">9</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">144</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">2</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">5</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">$-1$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">$-5$</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /qa2-left -->
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div><!-- /qa2-body -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수와 그 그래프</span>
+    <span class="page-footer__num">011</span>
+  </div>
+
+</div><!-- /page 011 (빠른정답) -->
+
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>

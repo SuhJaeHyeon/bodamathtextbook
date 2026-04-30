@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅴ-1단원_02 일차함수의 그래프의 절편과 기울기</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-left: 26px;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-eg {
+  background: rgba(51,140,215,0.06); border-radius: 6px;
+  padding: 6px 10px; font-size: 11px; line-height: 17px;
+  color: #232f39; letter-spacing: -0.5px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.hl { background: #fff5d3; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill {
+  background: #539e84; color: white; font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px; border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84; font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px; height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; }
+
+/* ─── ans-row ─── */
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white; font-size: 6px; font-weight: 700;
+  border-radius: 2px; padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+
+/* ─── Right column ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white; font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── 유형 익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f; border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.umuri-ws { flex: 1; min-height: 12px; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 6px 7px; background: none; font-size: 10px; display: flex; flex-direction: column; gap: 2px; margin: 0; line-height: 16px; }
+
+/* ─── 한눈에 개념 정리 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px; padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 22px;
+  flex: 1; min-height: 0; overflow: hidden;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white; height: 19px; border-radius: 1000px;
+  padding: 0 8px; font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; white-space: nowrap;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px; word-break: keep-all;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num {
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white; font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start; margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; margin-top: auto; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOwAAAA0CAYAAACJvtRWAAAACXBIWXMAACxLAAAsSwGlPZapAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAACzdJREFUeAHtnV1sHUcVx/9rJyBQEkx5aUmqTpOAUj6TQoBKoG4qBVIJKQ4QeKmUddokygONIyQknnqD+gIS4LQPUeMi30j0qdA6CKkPRepWqhTKl20kNyG226EJSR74cBxeCNTbOd7d3q/9mN2d3Ttrz08a3/Xu2d17986Zc+bMmbkW2mAT3tC623C8QXwWFWF5WPQ8zKxfD/fSiMVhMBhiscKNrWe9E+KfhtgcQp/wLEwLBT69cNRqwmAw9LCisFvHvSeEojSgD1xY3D3G4hoMnVjsjMcGB/EW9GMRAxhdeMw6B4Oh/9iisGB7OiiVMyCU9QnoyRCW0dz2rHcIxRlC9a4+3Y+hXtiiTIhCDfhUsL0T1UH3+pkorwSFthn6C70neh70fiaCMhXsYyiGLcqLwbXCezhJJ1jbx70pEfSp8kvJyuIAsGfuqJW1RWOinID/AEJlpWs0RTmN8nBEoUbGbtvnijIiCkc2GNRVWPrsiwnH6VmNxRw7mXBMFUn3b4hyCtXD4CtnXGPPRdmF5OcaB9WRZswxeg4now5Y284KddUdC+7CEWtPhjMY/NaKxRynyrsL6iFvpZFw/IAok0hmKLiOA7VeAYf/3qK6GAxI7Rbdi+wNjixM4v70/buoFlKcEykyeRoz+l6pIWAJMtTAN7t3DqAgX7wLeO7rwPwRv/z6G8A3Px4v/4mPZJNfwYMtGhYH8lCFZwnHyaNoQC1M4poTEtegL3IU6l14Br9iRV13GOk4KI9RCRkVXaNuwm5LXJEZ3nww5RpRz9tGuucU+Z2sQwEev1+Uz3XuI4X8kfgImzcCT/2p89heBpzZGy1/n3h98gLisRJdiG52KpLJgi0hE1YQnnANhvKg+zvotQgs/VTcg/KQUQwGtVDfUaahSmMY6ddpoNOll2mMI59Jbgu7RSjkBy4+jy/t+w6+evBRzF6a6zhOykzWt11++IPT+NajJ1bOufDHqQ5551OifDrhhsLK7pjwGOSQeSAfgn6UYUW6YRH7+jb2HlB1DIWCWSqUVZYG5Br0VHIr7J1XXkLjx0/jyrXr+OSO7aJ8DFev3eiQabe+u9fN4/Dxx3HhD1Mro78PfH4Xlm79p1P+/uR7/v92pQ+5HzCUT54ASZnYkGswbkIdDqpHyWhMboX9y0ut7tjspXn85MwE9h48jKWllhKShd30Pn/7tfMt+ZtLtzD+i+eFZT7cYWlJlixxHIpTJm26pMKS1j+VgaF8XOiFrFfBoYZ+DPGF9y1MboW9+Y+WNZ396xx+KhSWLObs5fkOuU3v91+vvtVymUnOt843cOXvnVZ58wYYyoMixC70gUHeVaRo7b/hB+Wo/0mBqjyuNHkY06iePPdk6FL03EGnTZs2dFjTkLs/emfH/0v/9V+3bL4Lby/d6L3ORnkNtbzaJSKUAVW4tKGhKM7nPK9M0qL53VDl3RmUsHtEikDj6k3IQwGgF1Edi8g+jszQGuriwfnN3Ar7mYcO4rXJTi/waw99BVvaFPaq0Oel2/72Pbv34e2LnYGmu4US7xPnhJDs69djb0mTAzgMNJbrov6QwjkoDikvVURS/pVKLXEONVz3Bvcny53mrnL4jUJoJek8GVee5M8F9+PID0PQ5crtEt/xhYP49v6H3/v/gd278MPvf7dD5um2YZ3BHQ/je8dH3vuflPWXP+9MOPotRyLWO/gbDBz1h8GP1Kq+Zpg6KNNf5PCVO02WlI2SbGgozA2KA1/h0wJ4Q8F5HGo4lNvCvnx9A547/gOcEkpKfdItXa7wG/8CfnW59T9Zzr1fHsHFRw5GypM1furPKTcdWBWWZa3DkJyFVhQHfr+YMqN4iqyNdMhqRykmh291k6K/DL4HoKrPbBfKdDr+MvAC39CjfGQpH/lNr/yTvxNN2uVe+dev+fJXbyEJPn/EcmGoM+QGp6XkqYDBbxSGJOTSSFI2jnSUjjEXynSiPueKEs4C990BbBTDMr+/kax4ZEVfmGvJXxKW+I1/Ih311pW+iJNQhw1oO/Op35DikAvsoDoYfPf4AFYP04UUNoQUNMU6FpIHTWgfVD5bg9wcF+pgMHRji7If+SYycLQmKtD4O1kqhmyQRafhnzGsDk4rUdiyoWVjzOoTfad9woSL6MaOlJKUhBTMRjF3kCxjtztqQz5CG0JeTxP5M7yGUCw7rMi5IRzB0FUdFPb0/DFrtbSQdSYc/yRCJRhpO07DIw2oyeih60b1Hd2gTAfvQeZeJDOK6JlUMsq0E/Ge2INIJ6/CcviR6A4KT68rFQ/nFo5aozDoiIOWEtB23NS9LFDljpwH2gXdaw/klSFuTitHOtQPZjHXdJAOh0K0tbDCDT5ZsmWlltOGugeq4+yfsgktjIpZRhzRbnAcJEdxDZnxXGpIbPRaSlfiXAY/42hSlBn433NYd9LgWO0Ka1lwSVnnjmVeEiYr9CW+AkMRWNdrXlzkW0KHGnQKatkSssPoVdAwzXNY8nwZuXZUB0q1U1gaa90DQ10oGlAJc2yLeFJ0vi0hF9ffPAn5KX5Z4MiW3yyFVn1YT91cTQ5DFYRe0DlkI1RUCqoU7fa4kHdto+BQOx4fXrMUw6OVwlqib7DtWW8iw8oScZic4/LhaLl8svmyLnzlIEVtQF0DfV5CJlyeJ4om/P4zR3E45NIic6Ff0GkZzv+WMbz1Ge/Um/mDTtQvqWK5lbVEOI+UXin4MoaWwtFrOPuF+pShe8nhrxRB502ivNUuXBR3P+n90ftsIF/doc9GY6Xtz0U5Wi9z6llovHnEyttxp5zVndCPpOVCZb6LpPPz0kR6JXVRkpunIQytLC3ajqtHHP5zoS5B2JjJ4CB9hRKOiHFYrRMn6Pd+to57yKm0VLnCKKLqgIKhFxt+xdbtWYeegZvhHA6/EWu27WMRMnlx0Zl0EkWk8muf6URKK/q1MwuPWZMZT6UP7ATbshWJZGRWIqAWtYl8cKw+0hZQ1wEOuVX6GeSQlYvDbdtehKR1rkUusejXTrAJz+UjVt6+geyYLpOU41gdqz6owIH+ykow+O9zNOYYuag2+ss0WgkhPEpA79TEFvRD06Mw6Mh+1IeofjqDn0Bjo/+QJ+ggIf5SF4WlAFTab5wY+kOd4gND6H2/NvSbGhnOH+6hNgorGNo+7tkw6MYM6gNHb1/Rhp7YiGgM66Sw1JfVcZhmrZM1GNhPojKyZOMb/YB176iVwipe+b+uMOiFCz97iUNvqGFpROx3oS+se0c9osQhy/gwDBTNdJGfV6E+KX0sKHnHYSk+MSwhlydxg1xgjvhhE7KwNCaadVHzKuh5lvVSWDnoQzrIV3Fkz6GZHw3ko4nii0o7yI8D//2nDdznIa976UjKuSiHJnwLTA0OQ/nQfXIFUeumsDzlOEPyT9yrwkb+YEWYZBCVvUVWoIqoqwP9fmen39Czd1EduRS2Vn1Yy0tVWJm1aHWggWiFz5sYkgcZF9SgGfVSWCuxBazKnVFFVMS7yojlWlzSpvbUSWH53FGrygpdNlGewKuoDjNnuIbUSWHTZuxw6Pfr4knwiH1NVGdlmzDUjrooLF84ajVTZMIJxHWAI1ph6DPQjJK4dXlVQPeow7ipIQKKEnNo3vdbv156/K0B39U8BH2DTy7Sh1SaaCk063otQtqYpEFz1lmiJfc0Vlha8jTjz3SMBiUq0bvfcGSHd70a1jAWJdR7nrbr845IuMKG4sg2bhzlIJsh5WKNY9GfbWe9MUCr6WtcdK4PrLKosMFQGCvc2P6M1/Cs/v6+qRhnncYyzs8fsxowGAw9WO3/sDMeGxzEqFCcambFeFj0BrBovYMZEa+eNr+wbjAk8y5gOOjasJGfsQAAAABJRU5ErkJggg=="); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  body { font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .title__num  { letter-spacing: -4.8px !important; }
+  .title__text { letter-spacing: -0.8px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">일차함수의 그래프의 절편과 기울기</div>
+    </div>
+  </div>
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">$x$절편, $y$절편이란 무엇인가?</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            ① <strong>$x$절편</strong> : 함수의 그래프가 $x$축과 만나는 점의 $x$좌표<br>
+            &ensp; $\Rightarrow$ $y=0$일 때 $x$의 값<br>
+            ② <strong>$y$절편</strong> : 함수의 그래프가 $y$축과 만나는 점의 $y$좌표<br>
+            &ensp; $\Rightarrow$ $x=0$일 때 $y$의 값<br>
+            <span class="hl">예) $y=ax+b$의 그래프에서 $x$절편 : $-\dfrac{b}{a}$, &ensp; $y$절편 : $b$</span>
+          </div>
+          <div style="display:flex; justify-content:center; margin-top:6px;">
+            <svg width="160" height="110" viewBox="0 0 160 110" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+              <!-- x축 -->
+              <line x1="5" y1="76" x2="150" y2="76" stroke="#555" stroke-width="1"/>
+              <polygon points="150,76 144,73 144,79" fill="#555"/>
+              <text x="153" y="80" font-size="9" fill="#555" font-style="italic" font-family="serif">x</text>
+              <!-- y축 -->
+              <line x1="65" y1="107" x2="65" y2="5" stroke="#555" stroke-width="1"/>
+              <polygon points="65,5 62,11 68,11" fill="#555"/>
+              <text x="68" y="10" font-size="9" fill="#555" font-style="italic" font-family="serif">y</text>
+              <!-- O -->
+              <text x="61" y="86" font-size="8" fill="#555" text-anchor="end" font-family="sans-serif">O</text>
+              <!-- 직선 y=ax+b (a=1, b=2 예: x절편=-2, y절편=2) -->
+              <line x1="5" y1="92" x2="92" y2="5" stroke="#338cd7" stroke-width="1.5"/>
+              <text x="94" y="10" font-size="9" fill="#338cd7" font-style="italic" font-family="serif">y=ax+b</text>
+              <!-- x절편 점 (-2,0)→screen(21,76) -->
+              <circle cx="21" cy="76" r="2.5" fill="#338cd7"/>
+              <line x1="21" y1="74" x2="21" y2="78" stroke="#555" stroke-width="0.8"/>
+              <text x="21" y="89" font-size="8" fill="#444" text-anchor="middle" font-family="sans-serif">&#8722;b/a</text>
+              <!-- y절편 점 (0,2)→screen(65,32) -->
+              <circle cx="65" cy="32" r="2.5" fill="#338cd7"/>
+              <line x1="63" y1="32" x2="67" y2="32" stroke="#555" stroke-width="0.8"/>
+              <text x="71" y="36" font-size="8" fill="#444" font-family="sans-serif">b</text>
+              <!-- x절편 callout (분홍) -->
+              <rect x="5" y="54" width="32" height="14" rx="3" fill="#fde4ea" stroke="#eb749f" stroke-width="0.8"/>
+              <text x="21" y="64" font-size="8.5" fill="#c04070" text-anchor="middle" font-weight="700" font-family="sans-serif">x절편</text>
+              <line x1="21" y1="68" x2="21" y2="74" stroke="#eb749f" stroke-width="1"/>
+              <!-- y절편 callout (파랑) -->
+              <rect x="72" y="25" width="32" height="14" rx="3" fill="#e3f0fd" stroke="#338cd7" stroke-width="0.8"/>
+              <text x="88" y="35" font-size="8.5" fill="#1a6ab0" text-anchor="middle" font-weight="700" font-family="sans-serif">y절편</text>
+              <line x1="72" y1="32" x2="68" y2="32" stroke="#338cd7" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- 예제 01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 물음에 답하시오.</div>
+            <div class="ex-choices-stack">
+              <span>(1) 일차함수 $y=4x-3$의 그래프를 $y$축의 방향으로 $7$만큼 평행이동한 그래프의 $x$절편과 $y$절편을 구하시오.</span>
+              <span>(2) 일차함수 $y=ax+b$의 그래프의 $x$절편이 $2$, $y$절편이 $-10$일 때, 상수 $a$, $b$의 값을 구하시오.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          $y$축의 방향으로 $k$만큼 평행이동 :<br>
+          $y=f(x) \;\to\; y=f(x)+k$
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul><li>$x$절편 : $y=0$ 대입</li><li>$y$절편 : $x=0$ 대입</li></ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">(1) $x$절편 $-1$, $y$절편 $4$&ensp;(2) $a=5$, $b=-10$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>일차함수 $y=-4x+k$의 그래프의 $x$절편이 $\dfrac{1}{2}$일 때, $y$절편을 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>일차함수 $y=ax+4$의 그래프에서 $x$절편이 $1$일 때, 상수 $a$의 값을 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1 : 개념02 + 예제02 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:12px;">
+        <!-- 개념 02 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">02</span>
+            </div>
+            <span class="concept-title">$x$절편, $y$절편을 이용하여 일차함수의 그래프를 어떻게 그리는가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              ① $x$절편, $y$절편을 구한다.<br>
+              ② $x$축, $y$축과 만나는 두 점, 즉 $\boldsymbol{(x\text{절편},\;0)}$, $\boldsymbol{(0,\;y\text{절편})}$을 좌표평면에 나타낸 후 두 점을 직선으로 연결한다.
+            </div>
+          <div style="display:flex; justify-content:center; margin-top:6px;">
+            <svg width="140" height="110" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+              <!-- x축 -->
+              <line x1="5" y1="62" x2="135" y2="62" stroke="#555" stroke-width="1"/>
+              <polygon points="135,62 129,59 129,65" fill="#555"/>
+              <text x="137" y="66" font-size="9" fill="#555" font-style="italic" font-family="serif">x</text>
+              <!-- y축 -->
+              <line x1="60" y1="107" x2="60" y2="5" stroke="#555" stroke-width="1"/>
+              <polygon points="60,5 57,11 63,11" fill="#555"/>
+              <text x="63" y="10" font-size="9" fill="#555" font-style="italic" font-family="serif">y</text>
+              <!-- O -->
+              <text x="56" y="58" font-size="8" fill="#555" text-anchor="end" font-family="sans-serif">O</text>
+              <!-- 직선 y=2x-1: screen(48,108)→screen(100,5) -->
+              <line x1="48" y1="108" x2="100" y2="5" stroke="#338cd7" stroke-width="1.5"/>
+              <text x="102" y="12" font-size="9" fill="#338cd7" font-style="italic" font-family="serif">y=2x&#8722;1</text>
+              <!-- x절편 (½,0)→screen(71,62) -->
+              <circle cx="71" cy="62" r="2.5" fill="#338cd7"/>
+              <line x1="71" y1="60" x2="71" y2="64" stroke="#555" stroke-width="0.8"/>
+              <text x="71" y="74" font-size="8" fill="#444" text-anchor="middle" font-family="sans-serif">&#189;</text>
+              <!-- y절편 (0,-1)→screen(60,84) -->
+              <circle cx="60" cy="84" r="2.5" fill="#338cd7"/>
+              <line x1="58" y1="84" x2="62" y2="84" stroke="#555" stroke-width="0.8"/>
+              <text x="53" y="88" font-size="8" fill="#444" text-anchor="end" font-family="sans-serif">&#8722;1</text>
+            </svg>
+          </div>
+          </div>
+        </div>
+        <!-- 예제 02 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">일차함수 $y=-3x-6$의 그래프를 $x$절편, $y$절편을 이용하여 그리시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$x$절편 $-2$, $y$절편 $-6$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">03</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>$x$절편과 $y$절편을 이용하여 일차함수 $y=x-4$의 그래프를 그리려고 한다. 다음 중 □ 안에 알맞은 수와 이를 이용하여 그린 일차함수의 그래프를 아래 그림에서 찾아 순서대로 나열한 것은?</div>
+              <div class="prob__boogi" style="justify-content:center; text-align:center;">
+                $x$절편은 □, $y$절편은 □이므로 두 점의 좌표를 직선으로 연결한다.
+              </div>
+
+              <div style="display:flex;justify-content:center;margin:5px 0 3px;">
+                <svg width="122" height="122" viewBox="0 0 122 122" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;display:block;margin:0 auto;">
+                <line x1="12.20" y1="109.80" x2="12.20" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="109.80" x2="109.80" y2="109.80" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="24.40" y1="109.80" x2="24.40" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="97.60" x2="109.80" y2="97.60" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="36.60" y1="109.80" x2="36.60" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="85.40" x2="109.80" y2="85.40" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="48.80" y1="109.80" x2="48.80" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="73.20" x2="109.80" y2="73.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="73.20" y1="109.80" x2="73.20" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="48.80" x2="109.80" y2="48.80" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="85.40" y1="109.80" x2="85.40" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="36.60" x2="109.80" y2="36.60" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="97.60" y1="109.80" x2="97.60" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="24.40" x2="109.80" y2="24.40" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="109.80" y1="109.80" x2="109.80" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.20" y1="12.20" x2="109.80" y2="12.20" stroke="#ccc" stroke-width="0.5"/>
+                <rect x="12.20" y="12.20" width="97.60" height="97.60" fill="none" stroke="#aaa" stroke-width="0.6"/>
+                <line x1="0.00" y1="61.00" x2="122.00" y2="61.00" stroke="#333" stroke-width="1"/>
+                <line x1="61.00" y1="122.00" x2="61.00" y2="0.00" stroke="#333" stroke-width="1"/>
+                <polygon points="122.00,61.00 118.00,59.00 118.00,63.00" fill="#333"/>
+                <polygon points="61.00,0.00 59.00,4.00 63.00,4.00" fill="#333"/>
+                <text x="127.00" y="64.50" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">x</text>
+                <text x="64.00" y="-3.00" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">y</text>
+                <text x="58.00" y="69.00" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">O</text>
+                <line x1="12.20" y1="59.00" x2="12.20" y2="63.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="59.00" y1="109.80" x2="63.00" y2="109.80" stroke="#333" stroke-width="0.7"/>
+                <text x="12.20" y="69.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">-4</text>
+                <text x="58.00" y="112.30" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">-4</text>
+                <line x1="109.80" y1="59.00" x2="109.80" y2="63.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="59.00" y1="12.20" x2="63.00" y2="12.20" stroke="#333" stroke-width="0.7"/>
+                <text x="109.80" y="69.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">4</text>
+                <text x="58.00" y="14.70" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">4</text>
+                <line x1="48.80" y1="0.00" x2="122.00" y2="73.20" stroke="#232f39" stroke-width="1.3"/>
+                <text x="50.02" y="-1.22" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">p</text>
+                <line x1="0.00" y1="48.80" x2="73.20" y2="122.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="-1.22" y="50.02" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">q</text>
+                <line x1="0.00" y1="73.20" x2="73.20" y2="0.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="71.98" y="-1.22" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">r</text>
+                <line x1="48.80" y1="122.00" x2="122.00" y2="48.80" stroke="#232f39" stroke-width="1.3"/>
+                <text x="123.22" y="50.02" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">s</text>
+                </svg>
+              </div>
+              <div class="prob__choices-stack">
+                <span>① $-4$, $-4$, $q$ &ensp; ② $-4$, $4$, $r$</span>
+                <span>③ $4$, $-4$, $s$ &ensp; ④ $4$, $4$, $p$</span>
+                <span>⑤ $4$, $4$, $s$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">04</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>$x$절편과 $y$절편을 이용하여 일차함수 $y=x+2$의 그래프를 그리려고 한다. 다음 중 □ 안에 알맞은 수와 이를 이용하여 그린 일차함수의 그래프를 아래 그림에서 찾아 순서대로 나열한 것은?</div>
+              <div class="prob__boogi" style="justify-content:center; text-align:center;">
+                $x$절편은 □, $y$절편은 □이므로 두 점의 좌표를 직선으로 연결한다.
+              </div>
+
+              <div style="display:flex;justify-content:center;margin:5px 0 3px;">
+                <svg width="108" height="108" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;display:block;margin:0 auto;">
+                <line x1="16.11" y1="91.89" x2="16.11" y2="16.11" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="16.11" y1="91.89" x2="91.89" y2="91.89" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="35.05" y1="91.89" x2="35.05" y2="16.11" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="16.11" y1="72.95" x2="91.89" y2="72.95" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="72.95" y1="91.89" x2="72.95" y2="16.11" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="16.11" y1="35.05" x2="91.89" y2="35.05" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="91.89" y1="91.89" x2="91.89" y2="16.11" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="16.11" y1="16.11" x2="91.89" y2="16.11" stroke="#ccc" stroke-width="0.5"/>
+                <rect x="16.11" y="16.11" width="75.79" height="75.79" fill="none" stroke="#aaa" stroke-width="0.6"/>
+                <line x1="0.00" y1="54.00" x2="108.00" y2="54.00" stroke="#333" stroke-width="1"/>
+                <line x1="54.00" y1="108.00" x2="54.00" y2="0.00" stroke="#333" stroke-width="1"/>
+                <polygon points="108.00,54.00 104.00,52.00 104.00,56.00" fill="#333"/>
+                <polygon points="54.00,0.00 52.00,4.00 56.00,4.00" fill="#333"/>
+                <text x="113.00" y="57.50" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">x</text>
+                <text x="57.00" y="-3.00" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">y</text>
+                <text x="51.00" y="62.00" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">O</text>
+                <line x1="16.11" y1="52.00" x2="16.11" y2="56.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="52.00" y1="91.89" x2="56.00" y2="91.89" stroke="#333" stroke-width="0.7"/>
+                <text x="16.11" y="62.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">-2</text>
+                <text x="51.00" y="94.39" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">-2</text>
+                <line x1="91.89" y1="52.00" x2="91.89" y2="56.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="52.00" y1="16.11" x2="56.00" y2="16.11" stroke="#333" stroke-width="0.7"/>
+                <text x="91.89" y="62.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">2</text>
+                <text x="51.00" y="18.61" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">2</text>
+                <line x1="37.89" y1="0.00" x2="108.00" y2="70.11" stroke="#232f39" stroke-width="1.3"/>
+                <text x="44.53" y="0.00" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">p</text>
+                <line x1="0.00" y1="37.89" x2="70.11" y2="108.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="0.00" y="44.53" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">q</text>
+                <line x1="0.00" y1="70.11" x2="70.11" y2="0.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="63.47" y="0.00" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">r</text>
+                <line x1="37.89" y1="108.00" x2="108.00" y2="37.89" stroke="#232f39" stroke-width="1.3"/>
+                <text x="108.00" y="44.53" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">s</text>
+                </svg>
+              </div>
+              <div class="prob__choices-stack">
+                <span>① $-2$, $-2$, $q$ &ensp; ② $-2$, $2$, $r$</span>
+                <span>③ $2$, $-2$, $s$ &ensp; ④ $2$, $2$, $p$</span>
+                <span>⑤ $2$, $2$, $r$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">002</span>
+  </div>
+
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+<!-- ── Set 2 : 개념03 + 예제03 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:12px;">
+        <!-- 개념 03 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">03</span>
+            </div>
+            <span class="concept-title">일차함수의 그래프의 기울기란 무엇인가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              일차함수 $y=ax+b$에서 $x$의 값의 증가량에 대한 $y$의 값의 증가량의 비율은 항상 $a$로 일정하다.<br>
+              <span class="hl">$(\text{기울기}) = \dfrac{(y\text{의 값의 증가량})}{(x\text{의 값의 증가량})} = a$ &ensp; (항상 일정)</span>
+            </div>
+            <div>
+              두 점 $(x_1,\,y_1)$, $(x_2,\,y_2)$를 지나는 일차함수의 그래프의 기울기<br>
+              &ensp; $= \dfrac{y_2-y_1}{x_2-x_1}$ &ensp; $\left(\text{또는 } \dfrac{y_1-y_2}{x_1-x_2}\right)$ &ensp; (단, $x_1\neq x_2$)
+            </div>
+          </div>
+        </div>
+        <!-- 예제 03 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">일차함수 $y=ax+4$의 그래프에서 $x$의 값이 $2$에서 $6$까지 증가할 때, $y$의 값은 $8$만큼 감소한다. 다음 물음에 답하시오.</div>
+              <div class="ex-choices-stack">
+                <span>(1) 상수 $a$의 값을 구하시오.</span>
+                <span>(2) $x$의 값이 $-3$에서 $2$까지 증가할 때, $y$의 값의 증가량을 구하시오.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul><li>기울기 $= \dfrac{y\text{증가량}}{x\text{증가량}}$</li></ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">(1) $a=-2$&ensp;(2) $-10$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>일차함수 $y=-\dfrac{1}{4}x+5$의 그래프에서 $x$의 값의 증가량이 $8$일 때, $y$의 값의 증가량은?</div>
+              <div class="prob__choices-3col">
+                <span>① $-5$</span>
+                <span>② $-4$</span>
+                <span>③ $-3$</span>
+                <span>④ $-2$</span>
+                <span>⑤ $-1$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>일차함수 $y=2x-1$에서 $x$의 값이 $-2$에서 $2$까지 증가할 때, $\dfrac{(y\text{의 값의 증가량})}{(x\text{의 값의 증가량})}$은?</div>
+              <div class="prob__choices-3col">
+                <span>① $-2$</span>
+                <span>② $\dfrac{1}{2}$</span>
+                <span>③ $2$</span>
+                <span>④ $4$</span>
+                <span>⑤ $8$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1 : 예제04 (두 점 지나는 기울기) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">두 점 $(-2,\,k)$, $(3,\,4)$를 지나는 일차함수의 그래프의 기울기가 $2$일 때, $k$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(두 점을 지나는 일차함수의 그래프의 기울기)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul><li>기울기 $= \dfrac{y_2-y_1}{x_2-x_1}$ 으로 식 세우기</li></ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$k=-6$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>$x$절편이 $-4$이고 $y$절편이 $a$인 일차함수의 그래프의 기울기가 $-7$일 때, $a$의 값은?</div>
+              <div class="prob__choices-3col">
+                <span>① $-35$</span>
+                <span>② $-28$</span>
+                <span>③ $-21$</span>
+                <span>④ $-14$</span>
+                <span>⑤ $-7$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>두 점 $(-2,\,4)$, $(2,\,-2)$를 지나는 일차함수의 그래프의 기울기는?</div>
+              <div class="prob__choices-3col">
+                <span>① $-4$</span>
+                <span>② $-\dfrac{3}{2}$</span>
+                <span>③ $-1$</span>
+                <span>④ $\dfrac{3}{2}$</span>
+                <span>⑤ $4$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+<!-- ── Set 2 : 개념04 + 예제05 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:12px;">
+        <!-- 개념 04 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">04</span>
+            </div>
+            <span class="concept-title">기울기와 $y$절편을 이용하여 일차함수의 그래프는 어떻게 그리는가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              ① $y$절편을 구하여 $y$축과 만나는 점 $(0,\;y\text{절편})$을 좌표평면에 나타낸다.<br>
+              ② 기울기를 이용하여 그래프가 지나는 다른 한 점을 찾아 좌표평면 위에 나타낸 후 두 점을 직선으로 연결한다.
+            </div>
+          </div>
+        </div>
+        <!-- 예제 05 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">일차함수 $y=-3x+2$의 그래프를 기울기와 $y$절편을 이용하여 그리시오. <span style="font-size:8.5px;color:#539e84;">(기울기와 $y$절편을 이용하여 그래프 그리기)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$y$절편 $2$, 기울기 $-3$으로 그래프</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>$x$절편과 $y$절편을 이용하여 일차함수 $y=-x+3$의 그래프를 그리려고 한다. 다음 중 □ 안에 알맞은 수와 이를 이용하여 그린 일차함수의 그래프를 아래 그림에서 찾아 순서대로 나열한 것은?</div>
+              <div class="prob__boogi" style="justify-content:center; text-align:center;">
+                $x$절편은 □, $y$절편은 □이므로 두 점의 좌표를 직선으로 연결한다.
+              </div>
+
+              <div style="display:flex;justify-content:center;margin:5px 0 3px;">
+                <svg width="114" height="114" viewBox="0 0 114 114" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;display:block;margin:0 auto;">
+                <line x1="12.58" y1="101.42" x2="12.58" y2="12.58" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.58" y1="101.42" x2="101.42" y2="101.42" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="27.39" y1="101.42" x2="27.39" y2="12.58" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.58" y1="86.61" x2="101.42" y2="86.61" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="42.19" y1="101.42" x2="42.19" y2="12.58" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.58" y1="71.81" x2="101.42" y2="71.81" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="71.81" y1="101.42" x2="71.81" y2="12.58" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.58" y1="42.19" x2="101.42" y2="42.19" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="86.61" y1="101.42" x2="86.61" y2="12.58" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.58" y1="27.39" x2="101.42" y2="27.39" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="101.42" y1="101.42" x2="101.42" y2="12.58" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="12.58" y1="12.58" x2="101.42" y2="12.58" stroke="#ccc" stroke-width="0.5"/>
+                <rect x="12.58" y="12.58" width="88.83" height="88.83" fill="none" stroke="#aaa" stroke-width="0.6"/>
+                <line x1="0.00" y1="57.00" x2="114.00" y2="57.00" stroke="#333" stroke-width="1"/>
+                <line x1="57.00" y1="114.00" x2="57.00" y2="0.00" stroke="#333" stroke-width="1"/>
+                <polygon points="114.00,57.00 110.00,55.00 110.00,59.00" fill="#333"/>
+                <polygon points="57.00,0.00 55.00,4.00 59.00,4.00" fill="#333"/>
+                <text x="119.00" y="60.50" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">x</text>
+                <text x="60.00" y="-3.00" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">y</text>
+                <text x="54.00" y="65.00" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">O</text>
+                <line x1="12.58" y1="55.00" x2="12.58" y2="59.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="55.00" y1="101.42" x2="59.00" y2="101.42" stroke="#333" stroke-width="0.7"/>
+                <text x="12.58" y="65.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">-3</text>
+                <text x="54.00" y="103.92" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">-3</text>
+                <line x1="101.42" y1="55.00" x2="101.42" y2="59.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="55.00" y1="12.58" x2="59.00" y2="12.58" stroke="#333" stroke-width="0.7"/>
+                <text x="101.42" y="65.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">3</text>
+                <text x="54.00" y="15.08" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">3</text>
+                <line x1="44.42" y1="0.00" x2="114.00" y2="69.58" stroke="#232f39" stroke-width="1.3"/>
+                <text x="46.64" y="0.00" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">p</text>
+                <line x1="0.00" y1="44.42" x2="69.58" y2="114.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="0.00" y="46.64" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">q</text>
+                <line x1="0.00" y1="69.58" x2="69.58" y2="0.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="67.36" y="0.00" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">r</text>
+                <line x1="44.42" y1="114.00" x2="114.00" y2="44.42" stroke="#232f39" stroke-width="1.3"/>
+                <text x="114.00" y="46.64" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">s</text>
+                </svg>
+              </div>
+              <div class="prob__choices-stack">
+                <span>① $-3$, $-3$, $q$ &ensp; ② $-3$, $3$, $r$</span>
+                <span>③ $3$, $-3$, $s$ &ensp; ④ $3$, $3$, $p$</span>
+                <span>⑤ $3$, $3$, $s$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>다음 중 일차함수 $y=x+2$의 그래프는?</div>
+
+              <div style="display:flex;justify-content:center;margin:5px 0 3px;">
+                <svg width="130" height="130" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;display:block;margin:0 auto;">
+                <line x1="11.94" y1="118.06" x2="11.94" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="118.06" x2="118.06" y2="118.06" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="25.20" y1="118.06" x2="25.20" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="104.80" x2="118.06" y2="104.80" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="38.47" y1="118.06" x2="38.47" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="91.53" x2="118.06" y2="91.53" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="51.73" y1="118.06" x2="51.73" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="78.27" x2="118.06" y2="78.27" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="78.27" y1="118.06" x2="78.27" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="51.73" x2="118.06" y2="51.73" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="91.53" y1="118.06" x2="91.53" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="38.47" x2="118.06" y2="38.47" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="104.80" y1="118.06" x2="104.80" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="25.20" x2="118.06" y2="25.20" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="118.06" y1="118.06" x2="118.06" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <line x1="11.94" y1="11.94" x2="118.06" y2="11.94" stroke="#ccc" stroke-width="0.5"/>
+                <rect x="11.94" y="11.94" width="106.12" height="106.12" fill="none" stroke="#aaa" stroke-width="0.6"/>
+                <line x1="0.00" y1="65.00" x2="130.00" y2="65.00" stroke="#333" stroke-width="1"/>
+                <line x1="65.00" y1="130.00" x2="65.00" y2="0.00" stroke="#333" stroke-width="1"/>
+                <polygon points="130.00,65.00 126.00,63.00 126.00,67.00" fill="#333"/>
+                <polygon points="65.00,0.00 63.00,4.00 67.00,4.00" fill="#333"/>
+                <text x="135.00" y="68.50" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">x</text>
+                <text x="68.00" y="-3.00" font-size="8" fill="#333" font-style="italic" font-family="sans-serif">y</text>
+                <text x="62.00" y="73.00" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">O</text>
+                <line x1="11.94" y1="63.00" x2="11.94" y2="67.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="63.00" y1="118.06" x2="67.00" y2="118.06" stroke="#333" stroke-width="0.7"/>
+                <text x="11.94" y="73.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">-4</text>
+                <text x="62.00" y="120.56" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">-4</text>
+                <line x1="118.06" y1="63.00" x2="118.06" y2="67.00" stroke="#333" stroke-width="0.7"/>
+                <line x1="63.00" y1="11.94" x2="67.00" y2="11.94" stroke="#333" stroke-width="0.7"/>
+                <text x="118.06" y="73.00" text-anchor="middle" font-size="7" fill="#555" font-family="sans-serif">4</text>
+                <text x="62.00" y="14.44" text-anchor="end" font-size="7" fill="#555" font-family="sans-serif">4</text>
+                <line x1="0.00" y1="0.00" x2="130.00" y2="130.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="11.94" y="1.33" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">①</text>
+                <line x1="26.53" y1="0.00" x2="130.00" y2="103.47" stroke="#232f39" stroke-width="1.3"/>
+                <text x="34.49" y="1.33" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">②</text>
+                <line x1="0.00" y1="103.47" x2="103.47" y2="0.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="95.51" y="1.33" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">③</text>
+                <line x1="0.00" y1="130.00" x2="130.00" y2="0.00" stroke="#232f39" stroke-width="1.3"/>
+                <text x="118.06" y="1.33" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">④</text>
+                <line x1="26.53" y1="130.00" x2="130.00" y2="26.53" stroke="#232f39" stroke-width="1.3"/>
+                <text x="131.33" y="31.84" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-style="italic" font-family="sans-serif" fill="#232f39">⑤</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set : 예제06 (그래프와 좌표축으로 둘러싸인 넓이) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">일차함수 $y=\dfrac{5}{4}x-10$의 그래프와 $x$축, $y$축으로 둘러싸인 도형의 넓이를 구하시오. <span style="font-size:8.5px;color:#539e84;">(일차함수의 그래프와 좌표축으로 둘러싸인 도형의 넓이)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul><li>$x$절편, $y$절편을 각각 구하기</li><li>넓이 $= \dfrac{1}{2} \times |x\text{절편}| \times |y\text{절편}|$</li></ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$40$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>두 일차함수 $y=\dfrac{1}{2}x+4$, $y=-2x+4$의 그래프와 $x$축으로 둘러싸인 도형의 넓이를 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>두 일차함수 $y=\dfrac{1}{2}x+2$, $y=-2x+2$의 그래프와 $x$축으로 둘러싸인 도형의 넓이를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════════════════ PAGE 007 (유형익히기 01–05) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd" style="flex-shrink:0;">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 열: 01, 02, 03 (240px × 3) -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">01</span>
+          </div>
+          <span class="umuri-desc">일차함수의 그래프의 $x$절편, $y$절편</span>
+        </div>
+        <div class="umuri-q">
+          다음 일차함수의 그래프 중 $x$절편과 $y$절편이 같은 것은?
+          <div class="umuri-choices-stack" style="margin-top:4px;">
+            <span>① &ensp;$y=3x+3$</span>
+            <span>② &ensp;$y=x-3$</span>
+            <span>③ &ensp;$y=\dfrac{1}{2}x-\dfrac{1}{2}$</span>
+            <span>④ &ensp;$y=-\dfrac{1}{2}x+2$</span>
+            <span>⑤ &ensp;$y=-x+2$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">02</span>
+          </div>
+          <span class="umuri-desc">$x$절편과 $y$절편을 이용하여 미지수 값 구하기</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=ax+4$의 그래프가 점 $(4,\,m)$을 지나고 $x$절편이 $-4$일 때, $a+m$의 값을 구하시오. (단, $a$는 상수)
+        </div>
+      </div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">03</span>
+          </div>
+          <span class="umuri-desc">두 점을 지나는 일차함수의 그래프의 기울기</span>
+        </div>
+        <div class="umuri-q">
+          $x$절편이 $2$이고 $y$절편이 $a$인 일차함수의 그래프의 기울기가 $-3$일 때, $a$의 값은?
+          <div class="umuri-choices-3col" style="margin-top:4px;">
+            <span>① &ensp;$2$</span>
+            <span>② &ensp;$3$</span>
+            <span>③ &ensp;$4$</span>
+            <span>④ &ensp;$6$</span>
+            <span>⑤ &ensp;$7$</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /왼쪽 열 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열: 04, 05 (358px × 2) -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">04</span>
+          </div>
+          <span class="umuri-desc">$x$절편과 $y$절편을 이용하여 미지수의 값 구하기</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=-\dfrac{3}{2}x+b$의 그래프를 $y$축의 방향으로 $6$만큼 평행이동한 그래프의 $x$절편이 $a$, $y$절편이 $9$일 때, $a+b$의 값을 구하시오. (단, $b$는 상수)
+        </div>
+      </div>
+
+      <div class="umuri-prob" style="gap:4px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">05</span>
+          </div>
+          <span class="umuri-desc">일차함수의 그래프와 좌표축으로 둘러싸인 도형의 넓이</span>
+        </div>
+        <div class="umuri-q">
+          다음 그림과 같이 일차함수 $y=ax+5$ $(a>0)$의 그래프와 $x$축, $y$축으로 둘러싸인 삼각형의 넓이가 $15$이다. 이때 상수 $a$의 값을 구하시오.
+          <div style="margin:6px 0 2px; display:flex; align-items:center; justify-content:center;">
+            <svg width="110" height="88" viewBox="0 0 110 88" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+              <!-- 삼각형 음영 -->
+              <polygon points="18,68 72,68 72,23" fill="rgba(51,140,215,0.09)"/>
+              <!-- x축 -->
+              <line x1="5" y1="68" x2="107" y2="68" stroke="#555" stroke-width="1"/>
+              <polygon points="107,68 101,65.5 101,70.5" fill="#555"/>
+              <text x="109" y="72" font-size="8" fill="#555" font-style="italic" font-family="serif">x</text>
+              <!-- y축 -->
+              <line x1="72" y1="84" x2="72" y2="5" stroke="#555" stroke-width="1"/>
+              <polygon points="72,5 69.5,11 74.5,11" fill="#555"/>
+              <text x="75" y="10" font-size="8" fill="#555" font-style="italic" font-family="serif">y</text>
+              <!-- O -->
+              <text x="68" y="78" font-size="8" fill="#555" text-anchor="end" font-family="sans-serif">O</text>
+              <!-- 직선: x절편→y절편 -->
+              <line x1="18" y1="68" x2="72" y2="23" stroke="#338cd7" stroke-width="1.5"/>
+              <!-- 점 -->
+              <circle cx="18" cy="68" r="2.5" fill="#338cd7"/>
+              <circle cx="72" cy="23" r="2.5" fill="#338cd7"/>
+              <!-- y절편 "5" 레이블 -->
+              <line x1="70" y1="23" x2="74" y2="23" stroke="#555" stroke-width="0.8"/>
+              <text x="67" y="27" font-size="8.5" fill="#444" text-anchor="end" font-family="sans-serif">5</text>
+              <!-- 직선 레이블 -->
+              <text x="28" y="52" font-size="8.5" fill="#338cd7" font-style="italic" font-family="serif">y=ax+5</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /오른쪽 열 -->
+
+  </div><!-- /umuri-grid -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 007 -->
+
+
+<!-- ═══════════════════════ PAGE 008 (한눈에 개념 정리) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">$x$절편, $y$절편</span>
+      </div>
+      <div class="kaynun-body">
+        <div>
+          ① <strong>$x$절편</strong> : 그래프가 $x$축과 만나는 점의 $x$좌표 &ensp;($y=0$일 때 $x$의 값)<br>
+          ② <strong>$y$절편</strong> : 그래프가 $y$축과 만나는 점의 $y$좌표 &ensp;($x=0$일 때 $y$의 값)
+        </div>
+        <div>
+          <span class="hl">$y=ax+b$의 그래프에서 $x$절편 : $-\dfrac{b}{a}$, &ensp; $y$절편 : $b$</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">$x$절편, $y$절편을 이용하여 그래프 그리기</span>
+      </div>
+      <div class="kaynun-body">
+        <div>
+          ① $x$절편, $y$절편을 구한다.<br>
+          ② $x$축, $y$축과 만나는 두 점 $(x\text{절편},\;0)$, $(0,\;y\text{절편})$을 좌표평면에 나타낸 후 직선으로 연결한다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 개념 03 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">기울기</span>
+      </div>
+      <div class="kaynun-body">
+        <div>
+          <span class="hl">$(\text{기울기}) = \dfrac{(y\text{의 값의 증가량})}{(x\text{의 값의 증가량})} = a$ &ensp; (항상 일정)</span>
+        </div>
+        <div>
+          두 점 $(x_1,\,y_1)$, $(x_2,\,y_2)$를 지나는 기울기 : $\dfrac{y_2-y_1}{x_2-x_1}$ &ensp; (단, $x_1\neq x_2$)
+        </div>
+      </div>
+    </div>
+
+    <!-- 개념 04 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">04</span>
+        <span class="kaynun-title">기울기와 $y$절편을 이용하여 그래프 그리기</span>
+      </div>
+      <div class="kaynun-body">
+        <div>
+          ① $y$절편을 구하여 $y$축과 만나는 점 $(0,\;y\text{절편})$을 좌표평면에 나타낸다.<br>
+          ② 기울기를 이용하여 다른 한 점을 찾아 두 점을 직선으로 연결한다.
+        </div>
+        <div>
+          예) $y=-3x+2$ : 점 $(0,\,2)$ 표시 → 기울기 $-3$ → $x$ $1$ 증가, $y$ $3$ 감소 → 점 $(1,\,-1)$ → 연결
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">008</span>
+  </div>
+
+</div><!-- /page 008 -->
+
+
+<!-- ═══════════════════════ PAGE 009 (빠른정답) ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">일차함수의 그래프의 절편과 기울기</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$2$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$-4$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">$20$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">$5$</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$9$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$9$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$\dfrac{5}{6}$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /qa2-left -->
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div><!-- /qa2-body -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 절편과 기울기</span>
+    <span class="page-footer__num">009</span>
+  </div>
+
+</div><!-- /page 009 -->
+
+
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>

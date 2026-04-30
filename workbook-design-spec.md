@@ -117,9 +117,40 @@
 ### 개념 정의 (`.concept-def`)
 - `padding-right: 16px`
 - `.concept-def__hd` — flex, gap 6px, margin-bottom 10px
-- **개념 칩** (`.concept-chip`):
+- **개념 칩** (`.concept-chip`) — 두 가지 변형:
+
+  **① 일반 개념 칩** (파란 pill + 번호 원)
   - `.concept-chip__gae` — 회색 반타원(`rgba(207,207,207,0.2)`), height 19px, border-radius 0 1000px 1000px 0; 파란 "개념" 텍스트 9px bold; `margin-right: -6px`
   - `.concept-chip__n` — 파란 원, height 19px, min-width 22px, 12px bold white; `z-index: 1`
+
+  **② 보충 개념 칩** (오렌지 pill, 숫자 없음)
+  - `.concept-chip__boogi` — 오렌지(`#ff8945`) pill, height 19px, border-radius 0 1000px 1000px 0; "보충 개념" 텍스트 9px bold white; `padding: 3px 9px 3px 6px`
+  - ⚠️ **`concept-chip__gae`와 `concept-chip__n` 대신 `concept-chip__boogi` 하나만** 사용
+  - ⚠️ **`.page` style은 반드시 `gap:10px;`** — 일반 페이지 기본값(16px)과 다름
+  
+  ```html
+  <!-- 일반 개념 칩 -->
+  <div class="concept-chip">
+    <span class="concept-chip__gae">개념</span>
+    <span class="concept-chip__n">01</span>
+  </div>
+
+  <!-- 보충 개념 칩 -->
+  <div class="concept-chip">
+    <span class="concept-chip__boogi">보충 개념</span>
+  </div>
+  ```
+
+  ```css
+  .concept-chip__boogi {
+    background: #ff8945;
+    height: 19px; display: flex; align-items: center; justify-content: center;
+    border-radius: 0 1000px 1000px 0;
+    padding: 3px 9px 3px 6px;
+    font-size: 9px; font-weight: 700; color: white;
+  }
+  ```
+
 - `.concept-title` — Noto Sans KR, 13px, weight 500, letter-spacing: -0.7px
 - `.concept-body` — 11.5px, line-height 18px, flex column gap 10px; padding-left 26px
 - `.concept-table` — 8px, border 0.5px `#848484`, 헤더 bg `#ebebeb`
@@ -204,6 +235,12 @@
 
 > ⚠️ `tip-tri`는 HTML 마크업에는 `<span class="tip-tri"></span>`으로 남겨두되, CSS에서 `display: none`으로 숨깁니다. `tip-body li::before` 화살표 색은 `#338cd7`(파란색)이 아니라 **`#232f39`(검정)**입니다.
 
+> ✅ **풀이 TIP 작성 기준** — 다음 두 가지 중 하나만 작성합니다.
+> 1. **핵심 수학 개념** : 이 문제를 풀기 위해 학생이 제일 먼저 떠올려야 하는 개념 (예: "$f(a)$ : $x$ 자리에 $a$ 대입")
+> 2. **함정·오답 포인트** : 학생이 놓치거나 틀리기 쉬운 부분
+>
+> ⛔ **계산 과정·풀이 단계 삽입 금지** — 수식 전개, 수치 대입 결과, 계산 단계 나열은 '문제 풀이 방식'에 해당하므로 작성하지 않습니다. "문제 풀이 방식 : ..." 형태뿐 아니라 계산 과정을 나열한 `<li>` 항목도 삭제합니다.
+
 #### 정답 (`.ans-row`) — `.cbox__right` 안에 위치
 - `margin-left: 8px` (추가 들여쓰기)
 - `display: flex; flex-direction: row; align-items: center; gap: 4px`
@@ -211,6 +248,13 @@
 - `.ans-text` — 11px, weight 500, letter-spacing: -1.1px
 
 ### Set-block 페이지 구조 (`.set-block`) — `02 일차부등식의 풀이` 기준
+
+**`.set-block` CSS (필수)**
+```css
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+```
+- `.cbox`와 `.practice-sec` 사이 간격을 **16px**로 고정
+- 이 CSS가 없으면 개념박스와 연습문제가 붙어서 표시됨
 
 Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 
@@ -325,9 +369,11 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 | `prob__choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 선지 간격 균등 분산 |
 
 - `.prob__boogi` — 조건 박스: border 1px `#dadde0`, border-radius 3px, bg `#fafafa`
+  - 보기(선지)를 2열로 나열할 때: `prob__boogi` 안에 `display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;` 내부 div를 사용한다. 같은 줄 항목 사이 **좌우(column) 간격**을 충분히 확보하는 것이 목적이며, `&ensp;` 등 공백 문자로 간격을 흉내 내는 방식은 사용하지 않는다.
 
 ### 페이지 푸터 (`.page-footer`)
-- `margin-top: auto`, flex, justify-content: flex-end, gap 4px, font-size 10px
+- **`margin-top: auto`** — `.page`(flex column) 안에서 항상 최하단에 고정. CSS 클래스에 선언하며 인라인 스타일로 중복 추가하지 않는다.
+- flex, justify-content: flex-end, gap 4px, font-size 10px
 - `.page-footer__topic` — `#818181`, weight 400
 - `.page-footer__num` — `#232f39`, weight 700 (3자리 zero-padding: "001", "002"...)
 
@@ -434,6 +480,8 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 - `.umuri-q` — **11px**, line-height **18px**, letter-spacing: -0.5px
 - `.umuri-desc` — 7px, weight 600, `#9a9a9a`, 우측 정렬 (문제 유형 레이블)
 
+> ⛔ **`.umuri-diff` (난이도 표시) 사용 금지** — `umuri-prob__hd` 안에 난이도 점(●) 블록을 삽입하지 않습니다. CSS 클래스는 파일에 남아 있어도 HTML 마크업에는 절대 사용하지 않습니다.
+
 **유형 익히기 선지 정렬 규칙**:
 
 | 클래스 | CSS 구조 | 사용 조건 |
@@ -454,9 +502,9 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 <!-- KaTeX CSS (로컬) -->
 <link rel="stylesheet" href="./katex/katex.min.css">
 
-<!-- KaTeX JS + auto-render (CDN, onload 방식) -->
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+<!-- KaTeX JS + auto-render (로컬, onload 방식) -->
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body, {
     delimiters: [
       {left: '$$', right: '$$', display: true},
@@ -468,7 +516,8 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 
 - 인라인 수식: `$수식$`
 - 블록 수식: `$$수식$$`
-- ⚠️ CSS는 로컬(`./katex/katex.min.css`), JS는 CDN + `onload` 방식 사용. `DOMContentLoaded` 리스너 방식 사용 시 수식이 렌더링되지 않을 수 있음.
+- ⚠️ CSS, JS 모두 로컬(`./katex/`) 파일 사용. 네이버 웨일 등 로컬 파일 환경에서 CDN 방식은 수식이 렌더링되지 않을 수 있음.
+- ⚠️ `DOMContentLoaded` 리스너 방식 사용 금지 — `onload` 방식만 사용.
 
 ---
 

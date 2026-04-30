@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 2-1_Ⅴ-1단원_03 일차함수의 그래프의 성질</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px dashed #dadde0;
+  padding-left: 8px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+/* 보충 개념 칩 — 오렌지 pill, 숫자 없음 */
+.concept-chip__boogi {
+  background: #ff8945;
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title { font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 8px;
+  padding-left: 26px; padding-right: 0;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-note {
+  font-size: 10px; color: #555; background: rgba(207,207,207,0.15);
+  border-radius: 4px; padding: 3px 8px; display: inline-block;
+}
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th {
+  background: #ebebeb; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 6px;
+  text-align: center; font-weight: 400; line-height: 1.4;
+}
+.concept-table td {
+  background: white; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 6px;
+  text-align: center; line-height: 1.4;
+}
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+.hl-r { background: #ffe0e0; }
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px;
+  border-radius: 1000px; display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84;
+  font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px; height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; align-items: flex-start; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white; font-size: 7px; font-weight: 700; border-radius: 2px;
+  padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ans-text { font-size: 11px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white; font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px dashed #dadde0; }
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 10px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f; border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-ws { flex: 1; min-height: 24px; }
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-prob__left { display: flex; align-items: center; gap: 4px; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-prob__hd + .umuri-q { margin-top: -4px; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; margin-top: auto; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOwAAAA0CAYAAACJvtRWAAAACXBIWXMAACxLAAAsSwGlPZapAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAACzdJREFUeAHtnV1sHUcVx/9rJyBQEkx5aUmqTpOAUj6TQoBKoG4qBVIJKQ4QeKmUddokygONIyQknnqD+gIS4LQPUeMi30j0qdA6CKkPRepWqhTKl20kNyG226EJSR74cBxeCNTbOd7d3q/9mN2d3Ttrz08a3/Xu2d17986Zc+bMmbkW2mAT3tC623C8QXwWFWF5WPQ8zKxfD/fSiMVhMBhiscKNrWe9E+KfhtgcQp/wLEwLBT69cNRqwmAw9LCisFvHvSeEojSgD1xY3D3G4hoMnVjsjMcGB/EW9GMRAxhdeMw6B4Oh/9iisGB7OiiVMyCU9QnoyRCW0dz2rHcIxRlC9a4+3Y+hXtiiTIhCDfhUsL0T1UH3+pkorwSFthn6C70neh70fiaCMhXsYyiGLcqLwbXCezhJJ1jbx70pEfSp8kvJyuIAsGfuqJW1RWOinID/AEJlpWs0RTmN8nBEoUbGbtvnijIiCkc2GNRVWPrsiwnH6VmNxRw7mXBMFUn3b4hyCtXD4CtnXGPPRdmF5OcaB9WRZswxeg4now5Y284KddUdC+7CEWtPhjMY/NaKxRynyrsL6iFvpZFw/IAok0hmKLiOA7VeAYf/3qK6GAxI7Rbdi+wNjixM4v70/buoFlKcEykyeRoz+l6pIWAJMtTAN7t3DqAgX7wLeO7rwPwRv/z6G8A3Px4v/4mPZJNfwYMtGhYH8lCFZwnHyaNoQC1M4poTEtegL3IU6l14Br9iRV13GOk4KI9RCRkVXaNuwm5LXJEZ3nww5RpRz9tGuucU+Z2sQwEev1+Uz3XuI4X8kfgImzcCT/2p89heBpzZGy1/n3h98gLisRJdiG52KpLJgi0hE1YQnnANhvKg+zvotQgs/VTcg/KQUQwGtVDfUaahSmMY6ddpoNOll2mMI59Jbgu7RSjkBy4+jy/t+w6+evBRzF6a6zhOykzWt11++IPT+NajJ1bOufDHqQ5551OifDrhhsLK7pjwGOSQeSAfgn6UYUW6YRH7+jb2HlB1DIWCWSqUVZYG5Br0VHIr7J1XXkLjx0/jyrXr+OSO7aJ8DFev3eiQabe+u9fN4/Dxx3HhD1Mro78PfH4Xlm79p1P+/uR7/v92pQ+5HzCUT54ASZnYkGswbkIdDqpHyWhMboX9y0ut7tjspXn85MwE9h48jKWllhKShd30Pn/7tfMt+ZtLtzD+i+eFZT7cYWlJlixxHIpTJm26pMKS1j+VgaF8XOiFrFfBoYZ+DPGF9y1MboW9+Y+WNZ396xx+KhSWLObs5fkOuU3v91+vvtVymUnOt843cOXvnVZ58wYYyoMixC70gUHeVaRo7b/hB+Wo/0mBqjyuNHkY06iePPdk6FL03EGnTZs2dFjTkLs/emfH/0v/9V+3bL4Lby/d6L3ORnkNtbzaJSKUAVW4tKGhKM7nPK9M0qL53VDl3RmUsHtEikDj6k3IQwGgF1Edi8g+jszQGuriwfnN3Ar7mYcO4rXJTi/waw99BVvaFPaq0Oel2/72Pbv34e2LnYGmu4US7xPnhJDs69djb0mTAzgMNJbrov6QwjkoDikvVURS/pVKLXEONVz3Bvcny53mrnL4jUJoJek8GVee5M8F9+PID0PQ5crtEt/xhYP49v6H3/v/gd278MPvf7dD5um2YZ3BHQ/je8dH3vuflPWXP+9MOPotRyLWO/gbDBz1h8GP1Kq+Zpg6KNNf5PCVO02WlI2SbGgozA2KA1/h0wJ4Q8F5HGo4lNvCvnx9A547/gOcEkpKfdItXa7wG/8CfnW59T9Zzr1fHsHFRw5GypM1furPKTcdWBWWZa3DkJyFVhQHfr+YMqN4iqyNdMhqRykmh291k6K/DL4HoKrPbBfKdDr+MvAC39CjfGQpH/lNr/yTvxNN2uVe+dev+fJXbyEJPn/EcmGoM+QGp6XkqYDBbxSGJOTSSFI2jnSUjjEXynSiPueKEs4C990BbBTDMr+/kax4ZEVfmGvJXxKW+I1/Ih311pW+iJNQhw1oO/Op35DikAvsoDoYfPf4AFYP04UUNoQUNMU6FpIHTWgfVD5bg9wcF+pgMHRji7If+SYycLQmKtD4O1kqhmyQRafhnzGsDk4rUdiyoWVjzOoTfad9woSL6MaOlJKUhBTMRjF3kCxjtztqQz5CG0JeTxP5M7yGUCw7rMi5IRzB0FUdFPb0/DFrtbSQdSYc/yRCJRhpO07DIw2oyeih60b1Hd2gTAfvQeZeJDOK6JlUMsq0E/Ge2INIJ6/CcviR6A4KT68rFQ/nFo5aozDoiIOWEtB23NS9LFDljpwH2gXdaw/klSFuTitHOtQPZjHXdJAOh0K0tbDCDT5ZsmWlltOGugeq4+yfsgktjIpZRhzRbnAcJEdxDZnxXGpIbPRaSlfiXAY/42hSlBn433NYd9LgWO0Ka1lwSVnnjmVeEiYr9CW+AkMRWNdrXlzkW0KHGnQKatkSssPoVdAwzXNY8nwZuXZUB0q1U1gaa90DQ10oGlAJc2yLeFJ0vi0hF9ffPAn5KX5Z4MiW3yyFVn1YT91cTQ5DFYRe0DlkI1RUCqoU7fa4kHdto+BQOx4fXrMUw6OVwlqib7DtWW8iw8oScZic4/LhaLl8svmyLnzlIEVtQF0DfV5CJlyeJ4om/P4zR3E45NIic6Ff0GkZzv+WMbz1Ge/Um/mDTtQvqWK5lbVEOI+UXin4MoaWwtFrOPuF+pShe8nhrxRB502ivNUuXBR3P+n90ftsIF/doc9GY6Xtz0U5Wi9z6llovHnEyttxp5zVndCPpOVCZb6LpPPz0kR6JXVRkpunIQytLC3ajqtHHP5zoS5B2JjJ4CB9hRKOiHFYrRMn6Pd+to57yKm0VLnCKKLqgIKhFxt+xdbtWYeegZvhHA6/EWu27WMRMnlx0Zl0EkWk8muf6URKK/q1MwuPWZMZT6UP7ATbshWJZGRWIqAWtYl8cKw+0hZQ1wEOuVX6GeSQlYvDbdtehKR1rkUusejXTrAJz+UjVt6+geyYLpOU41gdqz6owIH+ykow+O9zNOYYuag2+ss0WgkhPEpA79TEFvRD06Mw6Mh+1IeofjqDn0Bjo/+QJ+ggIf5SF4WlAFTab5wY+kOd4gND6H2/NvSbGhnOH+6hNgorGNo+7tkw6MYM6gNHb1/Rhp7YiGgM66Sw1JfVcZhmrZM1GNhPojKyZOMb/YB176iVwipe+b+uMOiFCz97iUNvqGFpROx3oS+se0c9osQhy/gwDBTNdJGfV6E+KX0sKHnHYSk+MSwhlydxg1xgjvhhE7KwNCaadVHzKuh5lvVSWDnoQzrIV3Fkz6GZHw3ko4nii0o7yI8D//2nDdznIa976UjKuSiHJnwLTA0OQ/nQfXIFUeumsDzlOEPyT9yrwkb+YEWYZBCVvUVWoIqoqwP9fmen39Czd1EduRS2Vn1Yy0tVWJm1aHWggWiFz5sYkgcZF9SgGfVSWCuxBazKnVFFVMS7yojlWlzSpvbUSWH53FGrygpdNlGewKuoDjNnuIbUSWHTZuxw6Pfr4knwiH1NVGdlmzDUjrooLF84ajVTZMIJxHWAI1ph6DPQjJK4dXlVQPeow7ipIQKKEnNo3vdbv156/K0B39U8BH2DTy7Sh1SaaCk063otQtqYpEFz1lmiJfc0Vlha8jTjz3SMBiUq0bvfcGSHd70a1jAWJdR7nrbr845IuMKG4sg2bhzlIJsh5WKNY9GfbWe9MUCr6WtcdK4PrLKosMFQGCvc2P6M1/Cs/v6+qRhnncYyzs8fsxowGAw9WO3/sDMeGxzEqFCcambFeFj0BrBovYMZEa+eNr+wbjAk8y5gOOjasJGfsQAAAABJRU5ErkJggg=="); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start; margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; padding-top: 3px; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px; padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 28px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px; margin-bottom: 10px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white; height: 19px; border-radius: 1000px;
+  padding: 0 8px; font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; white-space: nowrap;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px; white-space: normal;
+  word-break: keep-all; overflow-wrap: break-word;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  body { font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .title__num  { letter-spacing: -4.8px !important; }
+  .title__text { letter-spacing: -0.8px !important; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">03</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">일차함수의 그래프의 성질</div>
+    </div>
+  </div>
+
+  <!-- cbox: 개념01 + 예제01 -->
+  <div class="cbox">
+    <div class="cbox__left" style="gap:12px;">
+
+      <!-- 개념 01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">일차함수 $y=ax+b$의 그래프에는 어떤 성질이 있는가?</span>
+        </div>
+        <div class="concept-body">
+          <div>일차함수 $y=ax+b$의 그래프는 기울기가 $a$이고 $y$절편이 $b$인 직선이다.</div>
+          <div>
+            <span class="concept-sub">(1) $a$의 부호</span> : <span class="hl">그래프의 모양</span> 결정<br>
+            &ensp;① $a>0$이면 $x$의 값이 증가할 때 $y$의 값도 증가 → <strong>오른쪽 위로</strong> 향하는 직선<br>
+            &ensp;② $a<0$이면 $x$의 값이 증가할 때 $y$의 값은 감소 → <strong>오른쪽 아래로</strong> 향하는 직선
+          </div>
+          <div>
+            <span class="concept-sub">(2) $b$의 부호</span> : <span class="hl">그래프가 $y$축과 만나는 부분</span> 결정<br>
+            &ensp;① $b>0$이면 $y$축과 <strong>양의 부분</strong>에서 만난다. → $y$절편이 양수<br>
+            &ensp;② $b<0$이면 $y$축과 <strong>음의 부분</strong>에서 만난다. → $y$절편이 음수
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제 01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body" style="gap:10px;">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 일차함수 $y=\dfrac{1}{2}x+3$의 그래프에 대한 설명으로 옳지 <u>않은</u> 것은?</div>
+            <div class="ex-choices-stack">
+              <span>① 오른쪽 위로 향하는 직선이다.</span>
+              <span>② $y$축과 양의 부분에서 만난다.</span>
+              <span>③ 점 $(2,\, 4)$를 지난다.</span>
+              <span>④ 제1, 2, 3사분면을 지난다.</span>
+              <span>⑤ $x$의 값이 4만큼 증가할 때, $y$의 값은 1만큼 증가한다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          <ul>
+            <li>$|a|$의 값이 클수록 그래프는 $y$축에 가까워진다.</li>
+            <li>$b=0$이면 원점을 지난다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>기울기 $\frac{1}{2}$ → $x$ 1 증가 시 $y$는 $\frac{1}{2}$만큼 증가</li>
+          <li>⑤ "$x$ 4 증가 → $y$ 1 증가"는 기울기 $\frac{1}{4}$일 때의 상황 → 오답 함정</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">⑤</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- practice sec -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 01 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 보기의 $y=-2x+3$의 그래프에 대한 설명 중 옳은 것을 있는 대로 고르면?</div>
+            <div class="prob__boogi" style="flex-direction:column; gap:2px;">
+              <span>ㄱ. $y$축 위의 점 $(0,\, 3)$을 지난다.</span>
+              <span>ㄴ. $x$의 값이 증가하면 $y$의 값도 증가한다.</span>
+              <span>ㄷ. 제1사분면을 지나지 않는다.</span>
+              <span>ㄹ. $y=-2x$의 그래프와 평행하다.</span>
+            </div>
+            <div class="prob__choices-wrap">
+              <span>① ㄱ</span>
+              <span>② ㄱ, ㄴ</span>
+              <span>③ ㄱ, ㄹ</span>
+              <span>④ ㄴ, ㄷ, ㄹ</span>
+              <span>⑤ ㄱ, ㄷ, ㄹ</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 02 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>다음 중 일차함수 $y=-3x+6$의 그래프에 대한 설명으로 옳지 않은 것은?</div>
+            <div class="prob__choices-stack">
+              <span>① $x$의 값이 증가하면 $y$의 값은 감소한다.</span>
+              <span>② 제1, 2, 4사분면을 지난다.</span>
+              <span>③ $x$절편은 $-3$이고, $y$절편은 $6$이다.</span>
+              <span>④ 점 $(3,\, -3)$을 지난다.</span>
+              <span>⑤ $y=-3x+4$의 그래프와 평행하다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 성질</span>
+    <span class="page-footer__num">001</span>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 (보충 개념) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="cbox">
+    <div class="cbox__left" style="gap:12px;">
+
+      <!-- 보충 개념 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__boogi">보충 개념</span>
+          </div>
+          <span class="concept-title">$a$, $b$의 부호에 따른 그래프의 모양과 지나는 사분면</span>
+        </div>
+        <div class="concept-body">
+          <table class="concept-table" style="font-size:8px;">
+            <thead>
+              <tr>
+                <th style="width:25%;">$a>0,\; b>0$</th>
+                <th style="width:25%;">$a>0,\; b<0$</th>
+                <th style="width:25%;">$a<0,\; b>0$</th>
+                <th style="width:25%;">$a<0,\; b<0$</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <!-- a>0, b>0: 양의 기울기(slope=1), y절편 양수(+2.6) → 직선이 (35,14) 통과 -->
+                <td>
+                  <svg width="70" height="54" viewBox="0 0 70 54" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:auto;">
+                    <line x1="3" y1="27" x2="67" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                    <line x1="35" y1="3" x2="35" y2="51" stroke="#aaa" stroke-width="0.7"/>
+                    <polygon points="65,25 65,29 69,27" fill="#aaa"/>
+                    <polygon points="33,3 37,3 35,1" fill="#aaa"/>
+                    <text x="37" y="32" font-size="5.5" fill="#888">O</text>
+                    <line x1="1" y1="48" x2="46" y2="3" stroke="#338cd7" stroke-width="1.3"/>
+                    <circle cx="35" cy="14" r="2" fill="#338cd7"/>
+                  </svg>
+                </td>
+                <!-- a>0, b<0: 양의 기울기(slope=1), y절편 음수(-2.4) → 직선이 (35,39) 통과 -->
+                <td>
+                  <svg width="70" height="54" viewBox="0 0 70 54" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:auto;">
+                    <line x1="3" y1="27" x2="67" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                    <line x1="35" y1="3" x2="35" y2="51" stroke="#aaa" stroke-width="0.7"/>
+                    <polygon points="65,25 65,29 69,27" fill="#aaa"/>
+                    <polygon points="33,3 37,3 35,1" fill="#aaa"/>
+                    <text x="37" y="32" font-size="5.5" fill="#888">O</text>
+                    <line x1="23" y1="51" x2="67" y2="7" stroke="#338cd7" stroke-width="1.3"/>
+                    <circle cx="35" cy="39" r="2" fill="#338cd7"/>
+                  </svg>
+                </td>
+                <!-- a<0, b>0: 음의 기울기(slope=-1), y절편 양수(+2.6) → 직선이 (35,14) 통과 -->
+                <td>
+                  <svg width="70" height="54" viewBox="0 0 70 54" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:auto;">
+                    <line x1="3" y1="27" x2="67" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                    <line x1="35" y1="3" x2="35" y2="51" stroke="#aaa" stroke-width="0.7"/>
+                    <polygon points="65,25 65,29 69,27" fill="#aaa"/>
+                    <polygon points="33,3 37,3 35,1" fill="#aaa"/>
+                    <text x="37" y="32" font-size="5.5" fill="#888">O</text>
+                    <line x1="24" y1="3" x2="67" y2="46" stroke="#338cd7" stroke-width="1.3"/>
+                    <circle cx="35" cy="14" r="2" fill="#338cd7"/>
+                  </svg>
+                </td>
+                <!-- a<0, b<0: 음의 기울기(slope=-1), y절편 음수(-2.4) → 직선이 (35,39) 통과 -->
+                <td>
+                  <svg width="70" height="54" viewBox="0 0 70 54" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:auto;">
+                    <line x1="3" y1="27" x2="67" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                    <line x1="35" y1="3" x2="35" y2="51" stroke="#aaa" stroke-width="0.7"/>
+                    <polygon points="65,25 65,29 69,27" fill="#aaa"/>
+                    <polygon points="33,3 37,3 35,1" fill="#aaa"/>
+                    <text x="37" y="32" font-size="5.5" fill="#888">O</text>
+                    <line x1="3" y1="7" x2="47" y2="51" stroke="#338cd7" stroke-width="1.3"/>
+                    <circle cx="35" cy="39" r="2" fill="#338cd7"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:8px;">기울기 양수<br>$y$절편 양수</td>
+                <td style="font-size:8px;">기울기 양수<br>$y$절편 음수</td>
+                <td style="font-size:8px;">기울기 음수<br>$y$절편 양수</td>
+                <td style="font-size:8px;">기울기 음수<br>$y$절편 음수</td>
+              </tr>
+              <tr>
+                <td>제<span class="hl">1</span>, <span class="hl">2</span>, <span class="hl">3</span>사분면</td>
+                <td>제<span class="hl">1</span>, <span class="hl">3</span>, <span class="hl">4</span>사분면</td>
+                <td>제<span class="hl">1</span>, <span class="hl">2</span>, <span class="hl">4</span>사분면</td>
+                <td>제<span class="hl">2</span>, <span class="hl">3</span>, <span class="hl">4</span>사분면</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 예제 04 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body" style="gap:8px;">
+          <div class="ex-content">
+            <div class="ex-q">$a<0$, $b>0$일 때, 다음 중 일차함수 $y=ax-b$의 그래프로 알맞은 것은?</div>
+            <div style="display:flex; gap:5px; margin-top:4px; align-items:flex-end;">
+              <!-- ① slope+, y-int+ (wrong) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <svg width="68" height="54" viewBox="0 0 68 54" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="27" x2="66" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                  <line x1="34" y1="2" x2="34" y2="52" stroke="#aaa" stroke-width="0.7"/>
+                  <text x="35" y="31" font-size="5" fill="#888">O</text>
+                  <text x="63" y="31" font-size="5" fill="#888" font-style="italic">x</text>
+                  <text x="30" y="6" font-size="5" fill="#888" font-style="italic">y</text>
+                  <line x1="4" y1="48" x2="56" y2="4" stroke="#555" stroke-width="1.1"/>
+                </svg>
+                <span style="font-size:9px;color:#333;">①</span>
+              </div>
+              <!-- ② slope+, y-int- (wrong) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <svg width="68" height="54" viewBox="0 0 68 54" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="27" x2="66" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                  <line x1="34" y1="2" x2="34" y2="52" stroke="#aaa" stroke-width="0.7"/>
+                  <text x="35" y="31" font-size="5" fill="#888">O</text>
+                  <text x="63" y="31" font-size="5" fill="#888" font-style="italic">x</text>
+                  <text x="30" y="6" font-size="5" fill="#888" font-style="italic">y</text>
+                  <line x1="12" y1="53" x2="62" y2="8" stroke="#555" stroke-width="1.1"/>
+                </svg>
+                <span style="font-size:9px;color:#333;">②</span>
+              </div>
+              <!-- ③ slope-, y-int+ (wrong) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <svg width="68" height="54" viewBox="0 0 68 54" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="27" x2="66" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                  <line x1="34" y1="2" x2="34" y2="52" stroke="#aaa" stroke-width="0.7"/>
+                  <text x="35" y="31" font-size="5" fill="#888">O</text>
+                  <text x="63" y="31" font-size="5" fill="#888" font-style="italic">x</text>
+                  <text x="30" y="6" font-size="5" fill="#888" font-style="italic">y</text>
+                  <line x1="6" y1="7" x2="62" y2="45" stroke="#555" stroke-width="1.1"/>
+                </svg>
+                <span style="font-size:9px;color:#333;">③</span>
+              </div>
+              <!-- ④ slope-, y-int-, x-int- (CORRECT: a<0 → slope negative; -b<0 → y-int negative) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <svg width="68" height="54" viewBox="0 0 68 54" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="27" x2="66" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                  <line x1="34" y1="2" x2="34" y2="52" stroke="#aaa" stroke-width="0.7"/>
+                  <text x="35" y="31" font-size="5" fill="#888">O</text>
+                  <text x="63" y="31" font-size="5" fill="#888" font-style="italic">x</text>
+                  <text x="30" y="6" font-size="5" fill="#888" font-style="italic">y</text>
+                  <line x1="6" y1="10" x2="52" y2="53" stroke="#555" stroke-width="1.1"/>
+                </svg>
+                <span style="font-size:9px;color:#333;">④</span>
+              </div>
+              <!-- ⑤ slope-, y-int+ steep (wrong) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <svg width="68" height="54" viewBox="0 0 68 54" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="27" x2="66" y2="27" stroke="#aaa" stroke-width="0.7"/>
+                  <line x1="34" y1="2" x2="34" y2="52" stroke="#aaa" stroke-width="0.7"/>
+                  <text x="35" y="31" font-size="5" fill="#888">O</text>
+                  <text x="63" y="31" font-size="5" fill="#888" font-style="italic">x</text>
+                  <text x="30" y="6" font-size="5" fill="#888" font-style="italic">y</text>
+                  <line x1="18" y1="3" x2="50" y2="53" stroke="#555" stroke-width="1.1"/>
+                </svg>
+                <span style="font-size:9px;color:#333;">⑤</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          <ul>
+            <li>$a>0$ → 오른쪽 위 직선</li>
+            <li>$a<0$ → 오른쪽 아래 직선</li>
+            <li>$b>0$ → $y$절편 양수</li>
+            <li>$b<0$ → $y$절편 음수</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>$y=ax-b$ : 기울기 $a$, $y$절편 $-b$</li>
+          <li>$a<0$ → 기울기 음수 → 오른쪽 아래</li>
+          <li>$b>0$ → $-b<0$ → $y$절편 음수</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">④</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- practice sec: 05, 06 (a,b 부호 → 사분면/그래프) -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 05 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>$a<0$, $b>0$일 때, 일차함수 $y=-ax+b$의 그래프가 지나지 않는 사분면은?</div>
+            <div class="prob__choices-3col">
+              <span>① 제1사분면</span>
+              <span>② 제2사분면</span>
+              <span>③ 제3사분면</span>
+              <span>④ 제4사분면</span>
+              <span>⑤ 없다</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 06 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>$a<0$, $b>0$일 때, 다음 중 일차함수 $y=-ax-b$의 그래프로 알맞은 것은?</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px 4px;margin-top:3px;">
+              <!-- ① 음의 기울기(-1.5), y절편 양수(+3): 좌상→우하, y축 x축 위에서 교차 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px;">
+                <svg width="56" height="44" viewBox="0 0 56 44" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="22" x2="54" y2="22" stroke="#aaa" stroke-width="0.6"/>
+                  <line x1="28" y1="2" x2="28" y2="42" stroke="#aaa" stroke-width="0.6"/>
+                  <text x="29" y="26" font-size="4.5" fill="#888">O</text>
+                  <line x1="23" y1="2" x2="53" y2="44" stroke="#555" stroke-width="1.1"/>
+                  <circle cx="28" cy="7" r="1.8" fill="white" stroke="#555" stroke-width="0.9"/>
+                </svg>
+                <span style="font-size:8px;color:#333;">①</span>
+              </div>
+              <!-- ② 음의 기울기(-0.75), y절편 음수(-2.5): 좌상→우하, y축 x축 아래에서 교차 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px;">
+                <svg width="56" height="44" viewBox="0 0 56 44" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="22" x2="54" y2="22" stroke="#aaa" stroke-width="0.6"/>
+                  <line x1="28" y1="2" x2="28" y2="42" stroke="#aaa" stroke-width="0.6"/>
+                  <text x="29" y="26" font-size="4.5" fill="#888">O</text>
+                  <line x1="2" y1="14" x2="41" y2="44" stroke="#555" stroke-width="1.1"/>
+                  <circle cx="28" cy="35" r="1.8" fill="white" stroke="#555" stroke-width="0.9"/>
+                </svg>
+                <span style="font-size:8px;color:#333;">②</span>
+              </div>
+              <!-- ③ 양의 기울기(+0.75), y절편 양수(+2.5): 좌하→우상, y축 x축 위에서 교차 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px;">
+                <svg width="56" height="44" viewBox="0 0 56 44" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="22" x2="54" y2="22" stroke="#aaa" stroke-width="0.6"/>
+                  <line x1="28" y1="2" x2="28" y2="42" stroke="#aaa" stroke-width="0.6"/>
+                  <text x="29" y="26" font-size="4.5" fill="#888">O</text>
+                  <line x1="2" y1="31" x2="41" y2="2" stroke="#555" stroke-width="1.1"/>
+                  <circle cx="28" cy="10" r="1.8" fill="white" stroke="#555" stroke-width="0.9"/>
+                </svg>
+                <span style="font-size:8px;color:#333;">③</span>
+              </div>
+              <!-- ④ 양의 기울기(+1.5), y절편 음수(-2): 좌하→우상, y축 x축 아래에서 교차 (정답: -a>0, -b<0) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px;">
+                <svg width="56" height="44" viewBox="0 0 56 44" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="22" x2="54" y2="22" stroke="#aaa" stroke-width="0.6"/>
+                  <line x1="28" y1="2" x2="28" y2="42" stroke="#aaa" stroke-width="0.6"/>
+                  <text x="29" y="26" font-size="4.5" fill="#888">O</text>
+                  <line x1="20" y1="44" x2="49" y2="2" stroke="#555" stroke-width="1.1"/>
+                  <circle cx="28" cy="32" r="1.8" fill="white" stroke="#555" stroke-width="0.9"/>
+                </svg>
+                <span style="font-size:8px;color:#333;">④</span>
+              </div>
+              <!-- ⑤ 양의 기울기(+1), 원점 통과: 좌하→우상, y절편=0 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px;">
+                <svg width="56" height="44" viewBox="0 0 56 44" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="2" y1="22" x2="54" y2="22" stroke="#aaa" stroke-width="0.6"/>
+                  <line x1="28" y1="2" x2="28" y2="42" stroke="#aaa" stroke-width="0.6"/>
+                  <text x="29" y="26" font-size="4.5" fill="#888">O</text>
+                  <line x1="6" y1="44" x2="50" y2="2" stroke="#555" stroke-width="1.1"/>
+                </svg>
+                <span style="font-size:8px;color:#333;">⑤</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 성질</span>
+    <span class="page-footer__num">002</span>
+  </div>
+
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page">
+
+  <!-- cbox: 개념02 + 예제02 -->
+  <div class="cbox">
+    <div class="cbox__left" style="gap:12px;">
+
+      <!-- 개념 02 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">두 일차함수의 그래프의 평행과 일치</span>
+        </div>
+        <div class="concept-body">
+          <div>기울기가 같은 두 일차함수의 그래프는 평행하거나 일치한다.<br>
+          두 일차함수 $y=ax+b$, $y=cx+d$에서</div>
+          <div>
+            &ensp;① 기울기가 같고 $y$절편이 다르면 두 그래프는 <span class="hl"><strong>평행</strong></span>하다.<br>
+            &ensp;&emsp;즉 $a=c$, $b\neq d$이면 → 평행<br>
+            &ensp;② 기울기가 같고 $y$절편도 같으면 두 그래프는 <span class="hl"><strong>일치</strong></span>한다.<br>
+            &ensp;&emsp;즉 $a=c$, $b=d$이면 → 일치
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제 02 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body" style="gap:10px;">
+          <div class="ex-content">
+            <div class="ex-q">다음 물음에 답하시오.</div>
+            <div class="ex-choices-stack" style="gap:6px;">
+              <span>(1) 일차함수 $y=ax+5$의 그래프는 일차함수 $y=-3x-3$의 그래프와 평행하고, 점 $(2,\, b)$를 지난다. 이때 $a$, $b$의 값을 구하시오. (단, $a$는 상수이다.)</span>
+              <span>(2) 두 일차함수 $y=ax-11$과 $y=7x-a+b$의 그래프가 일치할 때, 상수 $a$, $b$의 값을 구하시오.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>평행 : 기울기 같고 $y$절편 다름 → $a$값만 결정</li>
+          <li>일치 : 기울기·$y$절편 모두 같음 → $a$, $b$ 동시 결정</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">(1)&ensp;$a{=}{-3},\,b{=}{-1}$&ensp;(2)&ensp;$a{=}7,\,b{=}{-4}$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- practice sec -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 07 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">05</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>두 점 $(3,\, 2)$, $(5,\, k)$를 지나는 직선의 일차함수 $y=4x+3$의 그래프와 평행할 때, $k$의 값을 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 08 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">06</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>일차함수 $y=2x$의 그래프를 평행이동하였더니 일차함수 $y=ax+b$의 그래프와 겹쳤는데, 이 그래프의 $x$절편이 $3$일 때, $a+b$의 값은? (단, $a$, $b$는 상수이다.)</div>
+            <div class="prob__choices-wrap">
+              <span>① $-8$</span>
+              <span>② $-7$</span>
+              <span>③ $6$</span>
+              <span>④ $-5$</span>
+              <span>⑤ $-4$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 성질</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 (set-block) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제03 (기울기) + practice 03, 04 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left" style="gap:0;">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body" style="gap:8px;">
+            <div class="ex-content">
+              <div class="ex-q">다음 중 그래프가 $y$축에 가장 가까운 일차함수는? <span style="font-size:8.5px;color:#539e84;">(기울기의 절댓값 비교)</span></div>
+              <div class="ex-choices-wrap">
+                <span>① $y=2x+1$</span>
+                <span>② $y=-x+3$</span>
+                <span>③ $y=-4x$</span>
+                <span>④ $y=\dfrac{1}{2}x-2$</span>
+                <span>⑤ $y=3x$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>$|$기울기$|$가 클수록 $y$축에 가까워짐</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">③</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 03 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>다음 보기 중 그래프가 $y$축에 가장 가까운 일차함수를 고르시오.</div>
+              <div class="prob__boogi">
+                <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;">
+                  <span>ㄱ. $y=3x-7$</span>
+                  <span>ㄴ. $y=\dfrac{1}{4}x+5$</span>
+                  <span>ㄷ. $y=-2x+3$</span>
+                  <span>ㄹ. $y=-5x+2$</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 04 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>다음 그래프에서 일차함수 $y=\dfrac{1}{2}x$의 그래프에 알맞은 것을 찾아 쓰시오.</div>
+              <div style="margin-top:4px; display:flex; justify-content:center;">
+                <!-- Fan SVG: origin at (60,50), scale=15 — viewBox extended -10 top/bottom -->
+                <svg width="120" height="120" viewBox="0 -10 120 120" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <!-- Axes -->
+                  <line x1="2" y1="50" x2="118" y2="50" stroke="#888" stroke-width="0.8"/>
+                  <line x1="60" y1="-8" x2="60" y2="108" stroke="#888" stroke-width="0.8"/>
+                  <polygon points="116,48 116,52 120,50" fill="#888"/>
+                  <polygon points="58,-6 62,-6 60,-8" fill="#888"/>
+                  <text x="62" y="56" font-size="6" fill="#666">O</text>
+                  <text x="117" y="55" font-size="6" fill="#666" font-style="italic">x</text>
+                  <text x="54" y="-2" font-size="6" fill="#666" font-style="italic">y</text>
+                  <!-- y=x (unlabeled, light) -->
+                  <line x1="10" y1="100" x2="110" y2="0" stroke="#ccc" stroke-width="0.7"/>
+                  <!-- y=-x (unlabeled, light) -->
+                  <line x1="10" y1="0" x2="110" y2="100" stroke="#ccc" stroke-width="0.7"/>
+                  <!-- ㉮ y=½x: from(10,75)to(110,25) -->
+                  <line x1="10" y1="75" x2="110" y2="25" stroke="#333" stroke-width="1.2"/>
+                  <text x="112" y="24" font-size="8" fill="#333">㉮</text>
+                  <!-- ㉯ y=2x: from(35,100)to(85,0) -->
+                  <line x1="35" y1="100" x2="85" y2="-5" stroke="#333" stroke-width="1.2"/>
+                  <text x="87" y="2" font-size="8" fill="#333">㉯</text>
+                  <!-- ㉰ y=-½x: from(10,25)to(110,75) -->
+                  <line x1="10" y1="25" x2="110" y2="75" stroke="#333" stroke-width="1.2"/>
+                  <text x="112" y="78" font-size="8" fill="#333">㉰</text>
+                  <!-- ㉱ y=-2x: from(35,0)to(85,100) -->
+                  <line x1="35" y1="0" x2="85" y2="100" stroke="#333" stroke-width="1.2"/>
+                  <text x="87" y="98" font-size="8" fill="#333">㉱</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 성질</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════════════════ PAGE 005 (한눈에 개념 정리) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">일차함수 $y=ax+b$의 그래프의 성질</span>
+      </div>
+      <div class="kaynun-body">
+        <div>일차함수 $y=ax+b$의 그래프는 기울기가 $a$이고 $y$절편이 $b$인 직선이다.</div>
+        <div><strong>(1) $a$의 부호</strong> : 그래프의 모양 결정
+          <ul>
+            <li>$a>0$ → $x$ 증가 시 $y$도 증가, <strong>오른쪽 위로</strong> 향하는 직선</li>
+            <li>$a<0$ → $x$ 증가 시 $y$는 감소, <strong>오른쪽 아래로</strong> 향하는 직선</li>
+            <li>$|a|$의 값이 클수록 그래프는 $y$축에 가까워진다.</li>
+          </ul>
+        </div>
+        <div><strong>(2) $b$의 부호</strong> : 그래프가 $y$축과 만나는 부분 결정
+          <ul>
+            <li>$b>0$ → $y$축의 <strong>양의 부분</strong>에서 만난다. ($y$절편이 양수)</li>
+            <li>$b<0$ → $y$축의 <strong>음의 부분</strong>에서 만난다. ($y$절편이 음수)</li>
+            <li>$b=0$이면 원점을 지난다.</li>
+          </ul>
+        </div>
+        <div>
+          <table class="concept-table" style="font-size:8.5px; margin-top:4px;">
+            <tr>
+              <th>$a>0,\; b>0$</th><th>$a>0,\; b<0$</th><th>$a<0,\; b>0$</th><th>$a<0,\; b<0$</th>
+            </tr>
+            <tr>
+              <td>제1, 2, 3사분면</td><td>제1, 3, 4사분면</td><td>제1, 2, 4사분면</td><td>제2, 3, 4사분면</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">두 일차함수의 그래프의 평행과 일치</span>
+      </div>
+      <div class="kaynun-body">
+        <div>두 일차함수 $y=ax+b$, $y=cx+d$에서</div>
+        <ul>
+          <li>기울기가 같고 $y$절편이 다르면 → <strong>평행</strong> &ensp; ($a=c$, $b\neq d$)</li>
+          <li>기울기가 같고 $y$절편도 같으면 → <strong>일치</strong> &ensp; ($a=c$, $b=d$)</li>
+        </ul>
+        <div>예) $y=2x+1$과 $y=2x-3$ : 기울기 같고 $y$절편 다름 → 평행</div>
+        <div>예) $y=2x+1$과 $\dfrac{1}{2}y=x+\dfrac{1}{2}$ (정리하면 $y=2x+1$) : 일치</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 성질</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════════════════ PAGE 006 (유형 익히기) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd" style="flex-shrink:0;">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 열: 01, 02, 03 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">01</span>
+          </div>
+          <span class="umuri-desc">$y=ax+b$의 그래프의 성질</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 일차함수 $y=ax+b$의 그래프에 대한 설명으로 옳지 않은 것은?
+          <div class="umuri-choices-stack" style="margin-top:4px;">
+            <span>① $a>0$일 때, $x$의 값이 증가하면 $y$의 값은 감소한다.</span>
+            <span>② 기울기가 같고 $y$절편이 다른 두 직선은 서로 평행하다.</span>
+            <span>③ $x$절편은 $-\dfrac{b}{a}$이다.</span>
+            <span>④ $a>0$이고 $b>0$이면 제1, 2, 3사분면을 지난다.</span>
+            <span>⑤ $a<0$이면 오른쪽 아래로 향하는 직선이다.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">02</span>
+          </div>
+          <span class="umuri-desc">그래프에서 $a$, $b$의 부호 판별</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=ax+b$의 그래프가 오른쪽 그림과 같을 때, 일차함수 $y=bx-a$의 그래프가 지나지 않는 사분면을 구하시오.
+          <div style="margin-top:6px; display:flex; justify-content:center;">
+            <svg width="80" height="70" viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+              <line x1="4" y1="35" x2="76" y2="35" stroke="#888" stroke-width="0.8"/>
+              <line x1="40" y1="4" x2="40" y2="66" stroke="#888" stroke-width="0.8"/>
+              <polygon points="74,33 74,37 78,35" fill="#888"/>
+              <polygon points="38,4 42,4 40,2" fill="#888"/>
+              <text x="42" y="40" font-size="6" fill="#666">O</text>
+              <text x="75" y="40" font-size="6" fill="#666" font-style="italic">x</text>
+              <text x="35" y="8" font-size="6" fill="#666" font-style="italic">y</text>
+              <line x1="6" y1="58" x2="68" y2="8" stroke="#338cd7" stroke-width="1.3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:240px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">03</span>
+          </div>
+          <span class="umuri-desc">평행한 그래프와 점의 좌표</span>
+        </div>
+        <div class="umuri-q">
+          두 일차함수 $y=3x$와 $y=3x-6$의 그래프가 서로 평행할 때, $y=3x-6$의 그래프와 $x$축이 만나는 점 A의 좌표를 구하면?
+          <div class="umuri-choices-stack" style="margin-top:4px;">
+            <span>① $(1,\, 0)$</span>
+            <span>② $(2,\, 0)$</span>
+            <span>③ $(3,\, 0)$</span>
+            <span>④ $(0,\, 2)$</span>
+            <span>⑤ $(0,\, -6)$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /왼쪽 열 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열: 04, 05 -->
+    <div class="umuri-col">
+
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">04</span>
+          </div>
+          <span class="umuri-desc">절편과 조건을 이용한 최적화</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=ax+b$의 그래프가 $x$축과 점 P, $y$축과 점 Q에서 만날 때, $\overline{\text{PQ}}$의 길이가 $2$이면 $a+b$의 최댓값을 구하시오. (단, $a<0$, $b>0$)
+        </div>
+      </div>
+
+      <div class="umuri-ws" style="min-height:6px;"></div>
+
+      <div class="umuri-prob" style="gap:3px; height:358px; overflow:hidden;">
+        <div class="umuri-prob__hd">
+          <div class="umuri-prob__left">
+            <span class="umuri-num">05</span>
+          </div>
+          <span class="umuri-desc">평행·일치 조건 종합</span>
+        </div>
+        <div class="umuri-q">
+          일차함수 $y=\dfrac{1}{5}ax+1$의 그래프는 일차함수 $y=-x+6$의 그래프와 만나지 않고, 일차함수 $y=-\dfrac{1}{3}bx+(c-5)$의 그래프와 $x$축, $y$축 위에서 각각 만난다. 이때 상수 $a$, $b$, $c$에 대하여 $a+b+c$의 값을 구하시오.
+        </div>
+      </div>
+
+      <div class="umuri-ws"></div>
+
+    </div><!-- /오른쪽 열 -->
+
+  </div><!-- /umuri-grid -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 성질</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════════════════ PAGE 007 (빠른정답) ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">03</span>
+    <span class="qa2-name">일차함수의 그래프의 성질</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">ㄹ</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">㉮</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">10</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">⑤</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">제2사분면</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">풀이 참조</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">풀이 참조</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /qa2-left -->
+  </div><!-- /qa2-body -->
+
+  <div class="page-footer">
+    <span class="page-footer__topic">일차함수의 그래프의 성질</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 007 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>
