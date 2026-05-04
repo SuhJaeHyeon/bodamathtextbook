@@ -289,7 +289,7 @@
 - `margin-left: 8px` (추가 들여쓰기)
 - `display: flex; flex-direction: row; align-items: center; gap: 4px`
 - `.ans-badge` — `#797979` bg, white, 7px bold, border-radius 2px
-- `.ans-text` — 11px, weight 500, letter-spacing: -1.1px
+- `.ans-text` — **9px**, weight 500, letter-spacing: -0.8px, line-height: 16px
 
 ### Set-block 페이지 구조 (`.set-block`) — `02 일차부등식의 풀이` 기준
 
