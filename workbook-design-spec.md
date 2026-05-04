@@ -54,7 +54,7 @@
 | 예제 번호 | Pretendard Variable | 16px | 700 | color: `--green`, letter-spacing: -1.44px |
 | 문제 번호 | Pretendard Variable | 20px | 800 | letter-spacing: -1.8px, color: `--primary` |
 | 개념 본문 | Pretendard Variable | 11.5px | 400 | letter-spacing: -0.6px, line-height: 18px |
-| 문제 본문 | Pretendard Variable | 11px | 400 | letter-spacing: -0.5px, line-height: 18px |
+| 문제 본문 | Pretendard Variable | 10px | 400 | letter-spacing: -0.5px, line-height: 18px |
 | 연습문제 보기 | Pretendard Variable | 11px | 400 | line-height: 17px |
 | 풀이 TIP 내용 | Pretendard Variable | 8px | 400 | line-height: 1.4 |
 | 개념 표 | Pretendard Variable | 8px | — | letter-spacing: -0.48px |
@@ -213,6 +213,11 @@
 - **내용** : PDF에서 예제를 추출할 당시 유형명을 **그대로** 사용 (소괄호 안에 넣기)
 - **CSS 클래스 없음** — 반드시 인라인 스타일만 사용
 
+#### UP 배지 — 사용 금지
+
+- set-block 예제에 "UP" 표시 배지를 삽입하지 않는다.
+- 난이도 구분이 필요한 경우에도 UP 배지 등 추가 배지 컴포넌트를 임의 구현하지 않는다.
+
 ```html
 <!-- 형식 -->
 <div class="ex-q">
@@ -230,7 +235,7 @@
 > ⚠️ `.ex-type-label` CSS 클래스는 **사용 금지** — 별도 클래스 정의 없이 인라인 스타일만 사용합니다.
 
 ### 오른쪽 사이드 컬럼 (`.cbox__right`)
-- `border-left: 1px dashed #dadde0`, `padding-left: 8px`
+- `border-left: 1px solid #F5F5F5`, `padding-left: 0`
 - `display: flex; flex-direction: column; gap: 10px`
 - 순서 : `.side-note` (선택) → `.tip-box` (선택) → `.ans-row` (필수)
 
@@ -387,7 +392,7 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 ### 연습문제 그리드 (`.prac-grid`)
 - 2열: `grid-template-columns: 1fr auto 1fr`
 - 1열(예제 06): `.prac-grid--single { grid-template-columns: 1fr; }`
-- `.prac-sep` — 1px dashed `#dadde0` 세로 구분선
+- `.prac-sep` — 1px solid `#F5F5F5` 세로 구분선
 
 ### 연습문제 칸 (`.prob`)
 - `.prob__hd` — flex, align-items center, gap 2px, margin-bottom 4px
@@ -532,6 +537,149 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 
 > ⚠️ `prob__choices-*` 와 동일한 기준을 따르되 클래스 이름이 `umuri-choices-*` 로 다릅니다.
 > ⚠️ 선지는 각각 별도의 `<span>`으로 분리합니다 (`justify-content: space-between` / grid 작동을 위해).
+
+---
+
+## 8. SVG 그래프·도형 작성 지침
+
+교재 내 모든 인라인 SVG(그래프, 직사각형 도형 등)는 아래 5가지 원칙을 반드시 준수합니다.
+
+### 원칙 1 — 수학 좌표계와 SVG 방향 일치
+
+SVG의 y축은 아래로 증가하지만, 수학 좌표계의 y축은 위로 증가합니다. 그래프를 그릴 때는 반드시 수학 좌표 `(mx, my)`를 SVG 픽셀 좌표 `(sx, sy)`로 다음과 같이 변환합니다.
+
+```
+sx = ox + mx / xmax * xpx
+sy = oy - my / ymax * ypx
+```
+
+- `(ox, oy)`: SVG 내 수학 원점 위치 (픽셀)
+- `xpx`, `ypx`: 축별 픽셀 스케일
+- ⚠️ `sy`에서 `my`를 **빼야** 합니다 — 더하면 그래프가 상하 반전됩니다.
+
+### 원칙 2 — 축 라벨은 축에서 약간 떨어트려 배치
+
+- **y축 변수 라벨** (`y(cm)` 등): y축 화살표 끝 바로 안쪽-오른쪽에 배치합니다.  
+  ```html
+  <text x="{ox+4}" y="{ay_top+10}" text-anchor="start">y(cm)</text>
+  ```
+  ⚠️ `ay_top - 4`처럼 화살표 **위**에 배치하면 viewBox 밖으로 잘립니다.
+- **x축 변수 라벨** (`x(시간)` 등): SVG 오른쪽 끝에 `text-anchor="end"`로 배치하고, **y는 `oy+11`**로 설정합니다. `oy+4`처럼 너무 작으면 텍스트 상단(baseline - capHeight ≈ oy-1.5)이 축선(oy)과 겹쳐 보입니다.
+  ```html
+  <text x="{w-2}" y="{oy+11}" text-anchor="end">x(시간)</text>
+  ```
+  ⚠️ `text-anchor="start"`로 화살표 끝 오른쪽에 두면 텍스트 폭만큼 viewBox 밖으로 나가 잘립니다.
+- **눈금 값 라벨** (`48`, `8` 등): 눈금선 끝에서 축 바깥쪽으로 7–8px 이격합니다.
+  ```html
+  <!-- y눈금 라벨: 축선에서 왼쪽으로 8px -->
+  <text x="{ox-8}" y="{ey+2.5}" text-anchor="end">48</text>
+  <!-- x눈금 라벨: 축선에서 아래쪽으로 13px -->
+  <text x="{ex}" y="{oy+13}" text-anchor="middle">8</text>
+  ```
+
+### 원칙 3 — 그리드 없음, 점의 좌표는 점선으로 표시
+
+- 좌표평면 배경에 grid를 그리지 않습니다.
+- 비축 위(neither axis) 점을 플롯할 경우, 그 점에서 x축과 y축으로 점선을 그어 좌표를 시각화합니다.
+  ```html
+  <!-- 점 (mx, my)의 점선 투영 -->
+  <line x1="{ex}" y1="{oy}" x2="{ex}" y2="{ey}"
+        stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+  <line x1="{ox}" y1="{ey}" x2="{ex}" y2="{ey}"
+        stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+  ```
+- 절편처럼 이미 축 위에 있는 점은 점선이 필요 없습니다.
+
+### 원칙 4 — 텍스트는 도형에서 약간 떨어트려 배치
+
+- 직사각형 꼭짓점 라벨(A, B, C, D): 모서리에서 4–5px 외부로 이격합니다.
+- 치수 라벨("10 cm", "16 cm" 등): 변에서 3–4px 외부로 이격합니다.
+- P 점 라벨: 점 아래 9–10px 위치에 `text-anchor="middle"`로 배치합니다.
+
+#### 세로(높이) 치수 라벨 — 회전 텍스트 좌측 잘림 주의
+
+세로 치수 라벨은 `transform="rotate(-90, cx, cy)"`로 회전시키는데, **회전 중심 x 좌표(`cx`)가 너무 작으면 폰트 캡 높이(≈5px)만큼 viewBox 왼쪽 밖으로 잘립니다.**
+
+```
+잘리는 원인: 폰트 캡 높이(H) ≈ font-size × 0.72
+             회전 후 글리프 좌측 끝 x ≈ cx - H
+             → cx < H이면 x < 0 → 잘림 발생
+```
+
+**안전 규칙: `cx ≥ font-size + 2` (최소 8 이상 권장)**
+
+```html
+<!-- ❌ 잘림 발생 (cx=4, font-size=7 → 4-5 = -1) -->
+<text x="4" y="34" font-size="7" text-anchor="middle"
+      transform="rotate(-90,4,34)">10 cm</text>
+
+<!-- ✅ 안전 (cx=8, font-size=7 → 8-5 = 3) -->
+<text x="8" y="34" font-size="7" text-anchor="middle"
+      transform="rotate(-90,8,34)">10 cm</text>
+```
+
+`ax`(직사각형 좌측 x)가 14일 때, 세로 치수 라벨 중심 x = **8** 이 적절합니다.
+
+#### 상단 꼭짓점·치수 라벨 — 상단 잘림 주의
+
+직사각형 상단 꼭짓점 라벨(A, D)과 가로 치수 라벨은 `ay` 위쪽에 배치됩니다. 글리프 상단이 y < 0이 되지 않도록 **`ay ≥ 14`** 를 유지합니다.
+
+```
+잘리는 원인: 꼭짓점 라벨 baseline y = ay - 3
+             글리프 상단 y ≈ (ay - 3) - cap_height ≈ ay - 9
+             → ay < 9이면 y < 0 → 잘림 발생
+```
+
+**안전 규칙: `ay ≥ 14`** (font-size 8 기준 여유 5px 확보)
+
+### 원칙 5 — 그래프 선은 플롯된 원을 정확히 지나야 함
+
+선분의 끝점 좌표와 원의 중심 좌표를 동일한 변환 공식으로 계산하면 자동으로 일치합니다.  
+생성 후 **cross product 검증**을 수행합니다:
+
+```python
+# 원(cx, cy)이 선분 (x1,y1)→(x2,y2) 위에 있는지 확인
+cross = (x2-x1)*(cy-y1) - (y2-y1)*(cx-x1)
+assert abs(cross) < 0.5, f"원이 선분 위에 없음: cross={cross}"
+```
+
+### 원칙 6 — 숫자·텍스트 라벨은 선·도형과 겹치지 않게 배치
+
+눈금 라벨(절편 숫자, 점 좌표 등)이 그래프 선 또는 도형과 시각적으로 겹쳐서는 안 됩니다.
+
+**배치 기준:**
+
+| 라벨 종류 | 권장 위치 |
+|-----------|----------|
+| x축 눈금 (양수) | 눈금 아래 `oy + 9~12px` |
+| x축 눈금 (음수) | 눈금 아래 `oy + 9~12px` |
+| y축 눈금 (양수) | y축 왼쪽, `text-anchor="end"`, `ox - 4px` |
+| y축 눈금 (음수) | y축 왼쪽, `text-anchor="end"`, `ox - 4px` |
+| 절편 숫자 | 절편이 직선 위에 있으므로, 라벨은 반드시 축의 **바깥쪽**(선에서 먼 방향)에 배치 |
+
+**절편 라벨 구체 규칙:**
+- **x절편** (`(a, 0)`): 눈금은 x축 위에, 라벨 y좌표 = `oy + 10` 이상 (x축 아래로 충분히 내려야 함)
+- **y절편** (`(0, b)`): 눈금은 y축 위에, 라벨 x좌표 = `ox - 4` 이하, `text-anchor="end"` (y축 왼쪽)
+
+**교차 확인 (생성 후 필수):**
+```
+각 라벨의 (x, y) 위치에서 그래프 선까지의 수직 거리 ≥ 6px 이어야 함
+```
+
+> ⚠️ 직선의 시작점·끝점이 절편 눈금 위에 놓이면 라벨과 선이 정확히 겹칩니다.  
+> 직선은 절편을 **지나쳐** 뷰포트 끝까지 연장하고, 라벨은 축의 반대편에 배치하십시오.
+
+### SVG viewBox 잘림 방지 체크리스트
+
+SVG 저장 전 아래를 반드시 확인합니다:
+
+- [ ] 모든 `x` 좌표가 `0 ≤ x ≤ width` 범위 내
+- [ ] 모든 `y` 좌표가 `0 ≤ y ≤ height` 범위 내
+- [ ] y축 라벨이 `ay_top` 아래(SVG 내부)에 배치되어 있음
+- [ ] x눈금 라벨의 y가 `height - 2` 이하
+- [ ] 꼭짓점 라벨·치수 라벨의 상단 y ≥ 4 (→ `ay ≥ 14` 확보)
+- [ ] 세로 치수 라벨 회전 중심 `cx ≥ 8` (좌측 글리프 잘림 방지)
+- [ ] 모든 숫자·텍스트 라벨이 그래프 선·도형으로부터 6px 이상 이격되어 있음
 
 ---
 
