@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 3-1_Ⅲ-2단원_03 이차방정식의 활용</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title (page 1 only) ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Bordered content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-title { font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 10px; padding-left: 26px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.hl { background: #fff5d3; }
+.warning-label { color: #ff7373; font-size: 10px; font-weight: 700; }
+.concept-eg {
+  background: rgba(51,140,215,0.06); border-radius: 6px;
+  padding: 6px 10px; display: flex; flex-direction: column; gap: 3px;
+  margin-top: 2px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: normal; font-size: 10.5px; line-height: 17px; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 8px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -0.8px; line-height: 16px; font-weight: 500; }
+
+/* ─── Right column ─── */
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice section ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 8px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; flex: 1; min-height: 0; }
+
+/* ─── 쏙쏙 유형 익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; overflow: hidden; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── 개념 한눈에 보기 ─── */
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 16px 20px 16px 16px; display: flex; flex-direction: column; gap: 24px; flex: 1; min-height: 0; overflow: hidden; margin-top: -1px; margin-bottom: 10px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 6px; letter-spacing: -0.5px; word-break: keep-all; overflow-wrap: break-word; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; min-height: 28px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; margin-top: auto; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOwAAAA0CAYAAACJvtRWAAAACXBIWXMAACxLAAAsSwGlPZapAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAACzdJREFUeAHtnV1sHUcVx/9rJyBQEkx5aUmqTpOAUj6TQoBKoG4qBVIJKQ4QeKmUddokygONIyQknnqD+gIS4LQPUeMi30j0qdA6CKkPRepWqhTKl20kNyG226EJSR74cBxeCNTbOd7d3q/9mN2d3Ttrz08a3/Xu2d17986Zc+bMmbkW2mAT3tC623C8QXwWFWF5WPQ8zKxfD/fSiMVhMBhiscKNrWe9E+KfhtgcQp/wLEwLBT69cNRqwmAw9LCisFvHvSeEojSgD1xY3D3G4hoMnVjsjMcGB/EW9GMRAxhdeMw6B4Oh/9iisGB7OiiVMyCU9QnoyRCW0dz2rHcIxRlC9a4+3Y+hXtiiTIhCDfhUsL0T1UH3+pkorwSFthn6C70neh70fiaCMhXsYyiGLcqLwbXCezhJJ1jbx70pEfSp8kvJyuIAsGfuqJW1RWOinID/AEJlpWs0RTmN8nBEoUbGbtvnijIiCkc2GNRVWPrsiwnH6VmNxRw7mXBMFUn3b4hyCtXD4CtnXGPPRdmF5OcaB9WRZswxeg4now5Y284KddUdC+7CEWtPhjMY/NaKxRynyrsL6iFvpZFw/IAok0hmKLiOA7VeAYf/3qK6GAxI7Rbdi+wNjixM4v70/buoFlKcEykyeRoz+l6pIWAJMtTAN7t3DqAgX7wLeO7rwPwRv/z6G8A3Px4v/4mPZJNfwYMtGhYH8lCFZwnHyaNoQC1M4poTEtegL3IU6l14Br9iRV13GOk4KI9RCRkVXaNuwm5LXJEZ3nww5RpRz9tGuucU+Z2sQwEev1+Uz3XuI4X8kfgImzcCT/2p89heBpzZGy1/n3h98gLisRJdiG52KpLJgi0hE1YQnnANhvKg+zvotQgs/VTcg/KQUQwGtVDfUaahSmMY6ddpoNOll2mMI59Jbgu7RSjkBy4+jy/t+w6+evBRzF6a6zhOykzWt11++IPT+NajJ1bOufDHqQ5554LCfp9wQ2Fl94x4DHLIHJAPQb8KMOKdMEi9vU9C6Dq2SdFKDRRlj5xXWwLjy87i0eo/UmhKjXTqgMJfLsxwMB37E4YqWoYGMkVvlzWq5BnuDorQ7iX3lSqMOekiYRzp+TiXx3CUyXVBVUELGbvEYB7rqhT2pU6iFvpZFw/IAok0hmKLiOA7VeAYf/3qK6GAxI7Rbdi+wNjixM4v70/buoFlKcEykyeRoz+l6pIWAJMtTAN7t3DqAgX7wLeO7rwPwRv/z6G8A3Px4v/4mPZJNfwYMtGhYH8lCFZwnHyaNoQC1M4poTEtegL3IU6l14Br9iRV13GOk4KI9RCRkVXaNuwm5LXJEZ3nww5RpRz9tGuucU+Z2sQwEev1+Uz3XuI4X8kfgImzcCT/2p89heBpzZGy1/n3h98gLisRJdiG52KpLJgi0hE1YQnnANhvKg+zvotQgs/VTcg/KQUQwGtVDfUaahSmMY6ddpoNOll2mMI59Jbgu7RSjkBy4+jy/t+w6+evBRzF6a6zhOykzWt11++IPT+NajJ1bOufDHqQ5554"); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">03</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">이차방정식의 활용</div>
+    </div>
+  </div>
+
+  <!-- 개념01 + 예제01 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">이차방정식의 활용 문제는 어떻게 푸는가?</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            ❶ <strong><span class="hl">미지수 정하기</span></strong> &ensp;→&ensp; 구하려는 것을 미지수 $x$로 놓는다.<br>
+            ❷ <strong>방정식 세우기</strong> &ensp;→&ensp; 문제의 뜻에 맞게 $x$에 대한 이차방정식을 세운다.<br>
+            ❸ <strong>방정식 풀기</strong> &ensp;→&ensp; 이차방정식을 푼다.<br>
+            ❹ <strong>확인하기</strong> &ensp;→&ensp; 구한 해가 문제의 뜻에 맞는지 확인한다.
+          </div>
+          <div>
+            <span class="warning-label">주의</span>&ensp;이차방정식의 모든 해가 문제의 답이 되는 것은 아니므로 문제의 뜻에 맞는지 반드시 확인한다.
+          </div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">참고</span>
+            <span class="concept-eg__content">길이, 넓이, 부피, 시간, 속력, 거리 등은 양수가 되어야 하고, 개수, 나이 등은 자연수가 되어야 한다.</span>
+          </div>
+        </div>
+      </div>
+      <!-- 예제01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">현재 아버지의 나이는 아들의 나이보다 $24$살이 많다. 현재 아들의 나이의 제곱이 아버지의 나이의 $4$배와 같을 때, 아들의 현재 나이를 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>아들의 나이를 $x$살로 놓기</li>
+          <li>아버지의 나이 $=x+24$살</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$12$살</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>현재 어머니의 나이는 딸의 나이보다 $24$살이 많다. 딸의 나이의 제곱이 어머니의 나이의 $4$배와 같을 때, 딸의 현재 나이를 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>어떤 자연수의 제곱에 $1$을 더한 값이 그 수보다 $1$ 큰 수에 $20$을 더한 것과 같을 때, 그 자연수를 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">이차방정식의 활용</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 (set-block) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- set-block: 개념02 (1)(2) + 예제02 + 문제03, 04 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">02</span>
+            </div>
+            <span class="concept-title">이차방정식의 활용 문제는 어떤 것이 있는가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              <span class="concept-sub">(1) 식이 주어진 문제</span>&ensp;삼각수 $\dfrac{n(n+1)}{2}$,&ensp;다각형 대각선의 개수 $\dfrac{n(n-3)}{2}$
+            </div>
+            <div>
+              <span class="concept-sub">(2) 수에 대한 문제</span><br>
+              연속두정수: $x$, $x+1$ &ensp;/&ensp; 연속세정수: $x-1$, $x$, $x+1$<br>
+              연속두홀(짝)수: $x$, $x+2$ &ensp;/&ensp; 연속세홀(짝)수: $x-2$, $x$, $x+2$
+            </div>
+          </div>
+        </div>
+        <!-- 예제02 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">연속하는 세 자연수가 있을 때, 가장 큰 수의 제곱이 나머지 두 수의 제곱의 합과 같으면 세 자연수를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>세 수를 $x-1$, $x$, $x+1$로 놓기</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$3$, $4$, $5$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">03</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>연속하는 두 홀수의 곱이 $195$일 때, 두 홀수 중 큰 수는?</div>
+              <div class="prob__choices-wrap">
+                <span>① &ensp;$11$</span>
+                <span>② &ensp;$13$</span>
+                <span>③ &ensp;$15$</span>
+                <span>④ &ensp;$17$</span>
+                <span>⑤ &ensp;$19$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">04</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>어떤 자연수와 그 수에 $3$을 더한 수의 곱이 $54$일 때, 그 자연수를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- set-block 2: 예제01 + 문제01, 02 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">$n$각형의 대각선의 개수가 $27$개일 때, 이 다각형을 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>대각선 개수 공식: $\dfrac{n(n-3)}{2}$</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$9$각형</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>$n$각형의 대각선의 개수가 $35$개인 다각형은?</div>
+              <div class="prob__choices-wrap">
+                <span>① &ensp;$7$각형</span>
+                <span>② &ensp;$8$각형</span>
+                <span>③ &ensp;$9$각형</span>
+                <span>④ &ensp;$10$각형</span>
+                <span>⑤ &ensp;$11$각형</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>$1$부터 $n$까지의 자연수의 합이 $45$일 때, $n$의 값을 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차방정식의 활용</span>
+    <span class="page-footer__num">002</span>
+  </div>
+
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 (set-block) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- set-block: 개념02 (3) + 예제03 + 문제05, 06 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">02</span>
+            </div>
+            <span class="concept-title">이차방정식의 활용 문제는 어떤 것이 있는가?</span>
+          </div>
+          <div class="concept-body">
+            <div>
+              <span class="concept-sub">(3) 도형에 대한 문제</span>&ensp;삼각형·직사각형·사다리꼴 등의 넓이 공식 이용, 통로 문제
+            </div>
+          </div>
+        </div>
+        <!-- 예제05 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">정사각형 모양의 잔디밭이 있다. 가로를 $2$m 늘이고 세로를 $4$m 줄여서 직사각형을 만들었더니 넓이가 $72$m²가 되었다. 처음 정사각형의 한 변의 길이를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>한 변을 $x$m로 놓기</li>
+            <li>직사각형: $(x+2)\times(x-4)$</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$10$m</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>정사각형 모양의 꽃밭의 한 변의 길이를 가로로 $4$m 늘이고 세로로 $1$m 줄여서 직사각형을 만들었더니 넓이가 $84$m²가 되었다. 처음 꽃밭의 한 변의 길이는?</div>
+              <div class="prob__choices-wrap">
+                <span>① &ensp;$6$m</span>
+                <span>② &ensp;$7$m</span>
+                <span>③ &ensp;$8$m</span>
+                <span>④ &ensp;$9$m</span>
+                <span>⑤ &ensp;$10$m</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>직사각형 모양의 밭의 가로와 세로의 길이가 각각 $6$m, $4$m이다. 가로와 세로를 각각 $x$m씩 늘였더니 넓이가 $48$m²가 되었다. $x$의 값을 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차방정식의 활용</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 (set-block) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- set-block 1: 예제04 + 문제07, 08 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">
+                지면에서 초속 $30$m로 수직으로 쏘아 올린 공의 $t$초 후의 높이가 $(30t-5t^2)$m이다.<br>
+                <span style="display:inline-block;margin-top:3px;">(1) 높이가 $40$m가 되는 것은 쏘아 올린 후 몇 초 후인지 모두 구하시오.</span><br>
+                <span>(2) 공이 다시 지면에 떨어지는 것은 쏘아 올린 후 몇 초 후인지 구하시오.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>(1) 높이 $=40$ 대입하기</li>
+            <li>(2) 지면 높이 $=0$ 대입하기</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text" style="font-size:8px;">(1)$2$초,$4$초&ensp;(2)$6$초</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>지면에서 초속 $40$m로 수직으로 쏘아 올린 물체의 $t$초 후의 높이가 $(40t-5t^2)$m이다.<br>
+              (1) 높이가 $75$m인 것은 몇 초 후인지 모두 구하시오.<br>
+              (2) 지면으로 돌아오는 것은 몇 초 후인지 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>지면에서 초속 $20$m로 수직으로 쏘아 올린 물체의 $t$초 후의 높이가 $(20t-5t^2)$m이다. 높이가 $15$m가 되는 것은 쏘아 올린 후 몇 초 후인지 모두 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차방정식의 활용</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════════════════ PAGE 005 (set-block) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- set-block: 예제06 + 문제11, 12 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">가로가 $16$m, 세로가 $10$m인 직사각형 모양의 꽃밭에 폭이 $x$m로 일정한 통로를 만들었더니 꽃밭의 넓이가 $112$m²가 되었다. 통로의 폭을 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body"><ul>
+            <li>전체 넓이 $-$ 통로 넓이 $=$ 꽃밭 넓이</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$2$m</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              <div>가로가 $14$m, 세로가 $10$m인 직사각형 꽃밭에 폭이 $x$m인 통로를 만들었더니 꽃밭의 넓이가 $96$m²가 되었다. 통로의 폭을 구하시오.</div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              <div>가로가 $8$m, 세로가 $6$m인 직사각형 꽃밭에 폭이 $x$m인 통로를 만들었더니 꽃밭의 넓이가 $35$m²가 되었다. 통로의 폭을 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차방정식의 활용</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════════════════ PAGE 006 (개념 한눈에 보기) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">이차방정식의 활용 문제는 어떻게 푸는가?</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li><strong>❶ 미지수 정하기</strong> &ensp;→&ensp; 구하려는 것을 미지수 $x$로 놓는다.</li>
+          <li><strong>❷ 방정식 세우기</strong> &ensp;→&ensp; 문제의 뜻에 맞게 $x$에 대한 이차방정식을 세운다.</li>
+          <li><strong>❸ 방정식 풀기</strong> &ensp;→&ensp; 이차방정식을 푼다.</li>
+          <li><strong>❹ 확인하기</strong> &ensp;→&ensp; 구한 해가 문제의 뜻에 맞는지 확인한다.</li>
+        </ul>
+        <div><span style="color:#ff7373;font-weight:700;">주의</span>&ensp;이차방정식의 모든 해가 문제의 답이 되는 것은 아니므로 문제의 뜻에 맞는지 반드시 확인한다.</div>
+        <div><span style="color:#338cd7;font-weight:700;">참고</span>&ensp;길이, 넓이, 부피, 시간, 속력, 거리 등은 양수가 되어야 하고, 개수, 나이 등은 자연수가 되어야 한다.</div>
+      </div>
+    </div>
+
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">이차방정식의 활용 문제는 어떤 것이 있는가?</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li><strong>(1) 식이 주어진 문제</strong>: 삼각수 $\dfrac{n(n+1)}{2}$, 다각형 대각선의 개수 $\dfrac{n(n-3)}{2}$ 이용</li>
+          <li><strong>(2) 수에 대한 문제</strong>: 연속두정수 $x$, $x+1$ / 연속세정수 $x-1$, $x$, $x+1$ / 연속두홀(짝)수 $x$, $x+2$ / 연속세홀(짝)수 $x-2$, $x$, $x+2$</li>
+          <li><strong>(3) 도형에 대한 문제</strong>: 삼각형·직사각형·사다리꼴 등 넓이 공식 이용, 통로 문제&ensp;<span style="color:#ff7373;">(길이, 넓이 &gt; 0 확인 필수)</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차방정식의 활용</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════════════════ PAGE 007 (쏙쏙 유형 익히기) ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="umuri-hd" style="flex-shrink:0;">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 열: 01, 02, 03 -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:240px 240px 240px;align-items:start;">
+
+      <div class="umuri-prob" style="gap:4px;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">수에 관한 문제</span>
+        </div>
+        <div class="umuri-q">
+          연속하는 두 짝수의 곱이 $168$일 때, 두 짝수를 모두 고르면?
+          <div class="umuri-choices-stack" style="margin-top:6px;">
+            <span>① &ensp;$10$, $12$</span>
+            <span>② &ensp;$11$, $13$</span>
+            <span>③ &ensp;$12$, $14$</span>
+            <span>④ &ensp;$13$, $15$</span>
+            <span>⑤ &ensp;$14$, $16$</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-prob" style="gap:4px;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">도형에 관한 문제</span>
+        </div>
+        <div class="umuri-q">
+          넓이가 $80$ cm²인 직각삼각형에서 빗변이 아닌 두 변 중 한 변이 다른 변보다 $6$ cm 길 때, 짧은 변의 길이는?
+          <div class="umuri-choices-stack" style="margin-top:6px;">
+            <span>① &ensp;$8$ cm</span>
+            <span>② &ensp;$9$ cm</span>
+            <span>③ &ensp;$10$ cm</span>
+            <span>④ &ensp;$11$ cm</span>
+            <span>⑤ &ensp;$12$ cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-prob" style="gap:4px;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">수에 관한 문제</span>
+        </div>
+        <div class="umuri-q">
+          어떤 양수의 제곱에 그 수의 $2$배를 더하면 $80$이 된다. 이 양수는?
+          <div class="umuri-choices-wrap" style="margin-top:6px;">
+            <span>① &ensp;$6$</span>
+            <span>② &ensp;$7$</span>
+            <span>③ &ensp;$8$</span>
+            <span>④ &ensp;$9$</span>
+            <span>⑤ &ensp;$10$</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열: 04, 05 -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:358px 358px;align-items:start;">
+
+      <div class="umuri-prob" style="gap:4px;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">도형에 관한 문제</span>
+        </div>
+        <div class="umuri-q">
+          가로의 길이가 세로의 길이의 $2$배인 직사각형의 넓이가 $98$ cm²일 때, 이 직사각형의 둘레는?
+          <div class="umuri-choices-stack" style="margin-top:6px;">
+            <span>① &ensp;$36$ cm</span>
+            <span>② &ensp;$38$ cm</span>
+            <span>③ &ensp;$40$ cm</span>
+            <span>④ &ensp;$42$ cm</span>
+            <span>⑤ &ensp;$44$ cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="umuri-prob" style="gap:4px;">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">도형에 관한 문제</span>
+        </div>
+        <div class="umuri-q">
+          폭이 일정한 산책로가 안쪽 직사각형 구역을 둘러싸고 있다. 안쪽 직사각형의 가로가 $8$ m, 세로가 $6$ m이고, 전체 직사각형의 넓이가 안쪽 직사각형의 넓이보다 $72$ m²만큼 크다고 할 때, 산책로의 폭은?
+          <div class="umuri-choices-wrap" style="margin-top:6px;">
+            <span>① &ensp;$1$ m</span>
+            <span>② &ensp;$2$ m</span>
+            <span>③ &ensp;$3$ m</span>
+            <span>④ &ensp;$4$ m</span>
+            <span>⑤ &ensp;$5$ m</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차방정식의 활용</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 007 -->
+
+
+<!-- ═══════════════════════ PAGE 008 (빠른정답) ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">03</span>
+    <span class="qa2-name">이차방정식의 활용</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$12$살</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$5$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$6$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">$9$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">$2$</span></div>
+          </div>
+          <div class="qa2-row" style="min-height:34px;align-items:flex-start;padding-top:4px;">
+            <div class="qa2-rg" style="align-items:flex-start;">
+              <span class="qa2-rnum">09</span>
+              <span class="qa2-rans" style="font-size:8px;line-height:1.5;">(1) $3$초 또는 $5$초<br>(2) $8$초</span>
+            </div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans" style="font-size:8.5px;">$1$초 또는 $3$초</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">$2$m</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">$1$m</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차방정식의 활용</span>
+    <span class="page-footer__num">008</span>
+  </div>
+
+</div><!-- /page 008 -->
+
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$', right: '$', display: false},
+      {left: '$$', right: '$$', display: true}
+    ]
+  });">
+</script>
+</body>
+</html>
