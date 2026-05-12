@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 3-1_Ⅳ-1단원_03 이차함수 y=a(x-p)²+q의 그래프</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── cbox ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── concept-def ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-chip__boogi {
+  background: #ff8945;
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title { font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 10px; padding-left: 26px; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th { background: #ebebeb; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 400; line-height: 1.4; }
+.concept-table td { background: white; color: #0c0c0c; border: 0.2px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+.warning-label { color: #ff7373; font-size: 10px; font-weight: 700; }
+.concept-eg {
+  background: rgba(51,140,215,0.06); border-radius: 6px;
+  padding: 6px 10px; display: flex; flex-direction: column; gap: 3px;
+  margin-top: 2px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: normal; font-size: 10.5px; line-height: 17px; }
+
+/* ─── ex-wrap ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 8px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-q * { color: #232f39 !important; }
+.ex-choices-wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 10px; color: #232f39; line-height: 16px; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 8px; font-size: 10px; color: #232f39; line-height: 16px; }
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -0.8px; line-height: 16px; font-weight: 500; }
+
+/* ─── right column ─── */
+.side-note { display: flex; flex-direction: column; gap: 4px; margin-left: 8px; flex: 1; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── practice-sec ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: flex; flex-direction: column; gap: 8px; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 6px 7px; background: #fafafa; font-size: 10px; display: flex; flex-direction: column; gap: 2px; line-height: 16px; }
+
+/* ─── set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; flex: 1; min-height: 0; }
+
+/* ─── umuri ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; overflow: hidden; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 0; font-size: 11px; line-height: 17px; color: #232f39; }
+
+/* ─── kaynun ─── */
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 16px 20px 16px 16px; display: flex; flex-direction: column; gap: 24px; flex: 1; min-height: 0; overflow: hidden; margin-top: -1px; margin-bottom: 10px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 6px; letter-spacing: -0.5px; word-break: keep-all; overflow-wrap: break-word; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+
+/* ─── qa2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 20px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── footer ─── */
+.page-footer { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px; white-space: nowrap; margin-top: auto; }
+.page-footer::before { content: ""; display: block; width: 59px; height: 13px; margin-right: auto; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOwAAAA0CAYAAACJvtRWAAAACXBIWXMAACxLAAAsSwGlPZapAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAACzdJREFUeAHtnV1sHUcVx/9rJyBQEkx5aUmqTpOAUj6TQoBKoG4qBVIJKQ4QeKmUddokygONIyQknnqD+gIS4LQPUeMi30j0qdA6CKkPRepWqhTKl20kNyG226EJSR74cBxeCNTbOd7d3q/9mN2d3Ttrz08a3/Xu2d17986Zc+bMmbkW2mAT3tC623C8QXwWFWF5WPQ8zKxfD/fSiMVhMBhiscKNrWe9E+KfhtgcQp/wLEwLBT69cNRqwmAw9LCisFvHvSeEojSgD1xY3D3G4hoMnVjsjMcGB/EW9GMRAxhdeMw6B4Oh/9iisGB7OiiVMyCU9QnoyRCW0dz2rHcIxRlC9a4+3Y+hXtiiTIhCDfhUsL0T1UH3+pkorwSFthn6C70neh70fiaCMhXsYyiGLcqLwbXCezhJJ1jbx70pEfSp8kvJyuIAsGfuqJW1RWOinID/AEJlpWs0RTmN8nBEoUbGbtvnijIiCkc2GNRVWPrsiwnH6VmNxRw7mXBMFUn3b4hyCtXD4CtnXGPPRdmF5OcaB9WRZswxeg4now5Y284KddUdC+7CEWtPhjMY/NaKxRynyrsL6iFvpZFw/IAok0hmKLiOA7VeAYf/3qK6GAxI7Rbdi+wNjixM4v70/buoFlKcEykyeRoz+l6pIWAJMtTAN7t3DqAgX7wLeO7rwPwRv/z6G8A3Px4v/4mPZJNfwYMtGhYH8lCFZwnHyaNoQC1M4poTEtegL3IU6l14Br9iRV13GOk4KI9RCRkVXaNuwm5LXJEZ3nww5RpRz9tGuucU+Z2sQwEev1+Uz3XuI4X8kfgImzcCT/2p89heBpzZGy1/n3h98gLisRJdiG52KpLJgi0hE1YQnnANhvKg+zvotQgs/VTcg/KQUQwGtVDfUaahSmMY6ddpoNOll2mMI59Jbgu7RSjkBy4+jy/t+w6+evBRzF6a6zhOykzWt11++IPT+NajJ1bOufDHqQ5551OifDrhhsLK7pjwGOSQeSAfgn6UYUW6YRH7+jb2HlB1DIWCWSqUVZYG5Br0VHIr7J1XXkLjx0/jyrXr+OSO7aJ8DFev3eiQabe+u9fN4/Dxx3HhD1Mro78PfH4Xlm79p1P+/uR7/v92pQ+5HzCUT54ASZnYkGswbkIdDqpHyWhMboX9y0ut7tjspXn85MwE9h48jKWllhKShd30Pn/7tfMt+ZtLtzD+i+eFZT7cYWlJlixxHIpTJm26pMKS1j+VgaF8XOiFrFfBoYZ+DPGF9y1MboW9+Y+WNZ396xx+KhSWLObs5fkOuU3v91+vvtVymUnOt843cOXvnVZ58wYYyoMixC70gUHeVaRo7b/hB+Wo/0mBqjyuNHkY06iePPdk6FL03EGnTZs2dFjTkLs/emfH/0v/9V+3bL4Lby/d6L3ORnkNtbzaJSKUAVW4tKGhKM7nPK9M0qL53VDl3RmUsHtEikDj6k3IQwGgF1Edi8g+jszQGuriwfnN3Ar7mYcO4rXJTi/waw99BVvaFPaq0Oel2/72Pbv34e2LnYGmu4US7xPnhJDs69djb0mTAzgMNJbrov6QwjkoDikvVURS/pVKLXEONVz3Bvcny53mrnL4jUJoJek8GVee5M8F9+PID0PQ5crtEt/xhYP49v6H3/v/gd278MPvf7dD5um2YZ3BHQ/je8dH3vuflPWXP+9MOPotRyLWO/gbDBz1h8GP1Kq+Zpg6KNNf5PCVO02WlI2SbGgozA2KA1/h0wJ4Q8F5HGo4lNvCvnx9A547/gOcEkpKfdItXa7wG/8CfnW59T9Zzr1fHsHFRw5GypM1furPKTcdWBWWZa3DkJyFVhQHfr+YMqN4iqyNdMhqRykmh291k6K/DL4HoKrPbBfKdDr+MvAC39CjfGQpH/lNr/yTvxNN2uVe+dev+fJXbyEJPn/EcmGoM+QGp6XkqYDBbxSGJOTSSFI2jnSUjjEXynSiPueKEs4C990BbBTDMr+/kax4ZEVfmGvJXxKW+I1/Ih311pW+iJNQhw1oO/Op35DikAvsoDoYfPf4AFYP04UUNoQUNMU6FpIHTWgfVD5bg9wcF+pgMHRji7If+SYycLQmKtD4O1kqhmyQRafhnzGsDk4rUdiyoWVjzOoTfad9woSL6MaOlJKUhBTMRjF3kCxjtztqQz5CG0JeTxP5M7yGUCw7rMi5IRzB0FUdFPb0/DFrtbSQdSYc/yRCJRhpO07DIw2oyeih60b1Hd2gTAfvQeZeJDOK6JlUMsq0E/Ge2INIJ6/CcviR6A4KT68rFQ/nFo5aozDoiIOWEtB23NS9LFDljpwH2gXdaw/klSFuTitHOtQPZjHXdJAOh0K0tbDCDT5ZsmWlltOGugeq4+yfsgktjIpZRhzRbnAcJEdxDZnxXGpIbPRaSlfiXAY/42hSlBn433NYd9LgWO0Ka1lwSVnnjmVeEiYr9CW+AkMRWNdrXlzkW0KHGnQKatkSssPoVdAwzXNY8nwZuXZUB0q1U1gaa90DQ10oGlAJc2yLeFJ0vi0hF9ffPAn5KX5Z4MiW3yyFVn1YT91cTQ5DFYRe0DlkI1RUCqoU7fa4kHdto+BQOx4fXrMUw6OVwlqib7DtWW8iw8oScZic4/LhaLl8svmyLnzlIEVtQF0DfV5CJlyeJ4om/P4zR3E45NIic6Ff0GkZzv+WMbz1Ge/Um/mDTtQvqWK5lbVEOI+UXin4MoaWwtFrOPuF+pShe8nhrxRB502ivNUuXBR3P+n90ftsIF/doc9GY6Xtz0U5Wi9z6llovHnEyttxp5zVndCPpOVCZb6LpPPz0kR6JXVRkpunIQytLC3ajqtHHP5zoS5B2JjJ4CB9hRKOiHFYrRMn6Pd+to57yKm0VLnCKKLqgIKhFxt+xdbtWYeegZvhHA6/EWu27WMRMnlx0Zl0EkWk8muf6URKK/q1MwuPWZMZT6UP7ATbshWJZGRWIqAWtYl8cKw+0hZQ1wEOuVX6GeSQlYvDbdtehKR1rkUusejXTrAJz+UjVt6+geyYLpOU41gdqz6owIH+ykow+O9zNOYYuag2+ss0WgkhPEpA79TEFvRD06Mw6Mh+1IeofjqDn0Bjo/+QJ+ggIf5SF4WlAFTab5wY+kOd4gND6H2/NvSbGhnOH+6hNgorGNo+7tkw6MYM6gNHb1/Rhp7YiGgM66Sw1JfVcZhmrZM1GNhPojKyZOMb/YB176iVwipe+b+uMOiFCz97iUNvqGFpROx3oS+se0c9osQhy/gwDBTNdJGfV6E+KX0sKHnHYSk+MSwhlydxg1xgjvhhE7KwNCaadVHzKuh5lvVSWDnoQzrIV3Fkz6GZHw3ko4nii0o7yI8D//2nDdznIa976UjKuSiHJnwLTA0OQ/nQfXIFUeumsDzlOEPyT9yrwkb+YEWYZBCVvUVWoIqoqwP9fmen39Czd1EduRS2Vn1Yy0tVWJm1aHWggWiFz5sYkgcZF9SgGfVSWCuxBazKnVFFVMS7yojlWlzSpvbUSWH53FGrygpdNlGewKuoDjNnuIbUSWHTZuxw6Pfr4knwiH1NVGdlmzDUjrooLF84ajVTZMIJxHWAI1ph6DPQjJK4dXlVQPeow7ipIQKKEnNo3vdbv156/K0B39U8BH2DTy7Sh1SaaCk063otQtqYpEFz1lmiJfc0Vlha8jTjz3SMBiUq0bvfcGSHd70a1jAWJdR7nrbr845IuMKG4sg2bhzlIJsh5WKNY9GfbWe9MUCr6WtcdK4PrLKosMFQGCvc2P6M1/Cs/v6+qRhnncYyzs8fsxowGAw9WO3/sDMeGxzEqFCcambFeFj0BrBovYMZEa+eNr+wbjAk8y5gOOjasJGfsQAAAABJRU5ErkJggg=="); background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0; }
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+ 
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page" style="gap:16px;">
+
+  <div class="title">
+    <span class="title__num">03</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <span class="title__text">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    </div>
+  </div>
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+        </div>
+        <div class="concept-body">
+          <div>(1) $y=a(x-p)^2+q$의 그래프는 $y=ax^2$의 그래프를 $x$축의 방향으로 $p$만큼, $y$축의 방향으로 $q$만큼 평행이동한 것이다.</div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
+              <div>(2) 꼭짓점의 좌표: $\boldsymbol{(p,\,q)}$</div>
+              <div>(3) 축의 방정식: $\boldsymbol{x=p}$</div>
+              <div style="font-size:11px; color:#555; margin-top:2px;">$\Rightarrow$ $y=a(x-p)^2+q$의 꼴을 이차함수의 <strong>표준형</strong>이라 한다.</div>
+            </div>
+            <svg width="130" height="108" viewBox="0 0 130 108" style="flex-shrink:0; margin-top:2px;">
+              <!-- 조건 박스 → 1사분면 상단 -->
+              <rect x="63" y="2" width="62" height="12" fill="white" stroke="#666" stroke-width="0.7" rx="1.5"/>
+              <text x="94" y="10.5" font-size="6.5" fill="#333" text-anchor="middle">a&gt;0, p&gt;0, q&gt;0</text>
+              <!-- x축 -->
+              <line x1="8" y1="88" x2="121" y2="88" stroke="#555" stroke-width="0.8"/>
+              <polygon points="121,88 116,85.5 116,90.5" fill="#555"/>
+              <text x="119" y="95" font-size="7" fill="#555">x</text>
+              <!-- y축 -->
+              <line x1="28" y1="96" x2="28" y2="6" stroke="#555" stroke-width="0.8"/>
+              <polygon points="28,6 25.5,11 30.5,11" fill="#555"/>
+              <text x="31" y="11" font-size="7" fill="#555">y</text>
+              <!-- y=ax² 검정 포물선 (꼭짓점: 원점 O=(28,88)) -->
+              <path d="M 6,62 Q 28,114 50,62" fill="none" stroke="#333" stroke-width="1.4"/>
+              <text x="47" y="60" font-size="7" fill="#333">y=ax²</text>
+              <!-- y=a(x-p)²+q 분홍 포물선 (꼭짓점: (80,52)) -->
+              <path d="M 62,24 Q 80,80 98,24" fill="none" stroke="#d9538b" stroke-width="1.4"/>
+              <circle cx="80" cy="52" r="2" fill="#d9538b"/>
+              <text x="63" y="21" font-size="6.5" fill="#d9538b">y=a(x-p)²+q</text>
+              <!-- 점선: y축→꼭짓점 수평 -->
+              <line x1="28" y1="52" x2="78" y2="52" stroke="#bbb" stroke-width="0.7" stroke-dasharray="2.5,2"/>
+              <!-- 점선: 꼭짓점→x축 수직 -->
+              <line x1="80" y1="54" x2="80" y2="87" stroke="#bbb" stroke-width="0.7" stroke-dasharray="2.5,2"/>
+              <!-- 청록 q 화살표 (x축 → 꼭짓점 높이, 수직) -->
+              <line x1="88" y1="87" x2="88" y2="56" stroke="#00b5c8" stroke-width="1.2"/>
+              <polygon points="88,52 85.5,57 90.5,57" fill="#00b5c8"/>
+              <!-- 청록 p 화살표 (y축 → 꼭짓점 x위치, 수평 점선 바로 아래) -->
+              <line x1="29" y1="59" x2="78" y2="59" stroke="#00b5c8" stroke-width="1.2"/>
+              <polygon points="80,59 75,56.5 75,61.5" fill="#00b5c8"/>
+              <!-- 레이블 -->
+              <text x="22" y="97" font-size="7" fill="#555">O</text>
+              <text x="77" y="97" font-size="7" fill="#555">p</text>
+              <text x="14" y="55" font-size="7" fill="#555">q</text>
+              <text x="91" y="72" font-size="7" fill="#00b5c8">q</text>
+              <text x="54" y="69" font-size="7" fill="#00b5c8" text-anchor="middle">p</text>
+            </svg>
+          </div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예&ensp;</span>
+            <span class="concept-eg__content">$y=2(x-1)^2+3$의 그래프&ensp;
+              <span style="color:#555; font-size:10px;">① $y=2x^2$를 $x$축 방향 $1$, $y$축 방향 $3$ 이동<br>② 꼭짓점 $(1,\,3)$&ensp; ③ 축 $x=1$</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- 예제01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">이차함수 $y=a(x+4)^2-3$의 그래프는 $y=4x^2$의 그래프를 $x$축의 방향으로 $p$만큼, $y$축의 방향으로 $q$만큼 평행이동한 것이다. 이때 $apq$의 값을 구하여라.&ensp;<span style="font-size:8.5px;color:#539e84;">(단, $a$는 상수)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          <ul>
+            <li>꼭짓점: $(p,\,q)$</li>
+            <li>축: $x=p$</li>
+            <li>$y{=}a(x{+}k)^2$은 $p{=}{-}k$ 주의</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>$y=4(x-p)^2+q$ 꼴로 비교 → $p,q$ 결정</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$48$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 연습 01~02 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div>이차함수 $y=-4x^2$의 그래프를 $x$축의 방향으로 $2$만큼, $y$축의 방향으로 $-5$만큼 평행이동한 그래프는 꼭짓점의 좌표가 $(p,\,q)$이고 직선 $x=k$를 축으로 한다. 이때 $p-q+k$의 값을 구하시오.</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>이차함수 $y=(x-p)^2+1$의 꼭짓점의 좌표가 직선 $y=\dfrac{1}{2}x-2$ 위에 있을 때, 상수 $p$의 값은?</div>
+            <div class="prob__choices-wrap" style="margin-top:4px;">
+              <span>① $2$</span><span>② $3$</span><span>③ $4$</span><span>④ $5$</span><span>⑤ $6$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념02 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">$y=a(x-p)^2+q$에서 $a,\,p,\,q$의 부호</span>
+        </div>
+        <div class="concept-body">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="flex:1; display:flex; flex-direction:column; gap:5px;">
+              <div>(1) <strong>$a$의 부호</strong>: 그래프의 모양에 따라 결정된다.</div>
+              <div style="padding-left:10px; font-size:11px;">① <span class="hl">아래로 볼록 $\Rightarrow a>0$</span> &ensp; ② <span class="hl">위로 볼록 $\Rightarrow a<0$</span></div>
+              <div>(2) <strong>$p,\,q$의 부호</strong>: 꼭짓점의 위치에 따라 결정된다.</div>
+              <div style="padding-left:10px; font-size:11px; display:flex; flex-direction:column; gap:2px;">
+                <span>① 꼭짓점이 제1사분면 $\Rightarrow p>0,\;q>0$</span>
+                <span>② 꼭짓점이 제2사분면 $\Rightarrow p<0,\;q>0$</span>
+                <span>③ 꼭짓점이 제3사분면 $\Rightarrow p<0,\;q<0$</span>
+                <span>④ 꼭짓점이 제4사분면 $\Rightarrow p>0,\;q<0$</span>
+              </div>
+            </div>
+            <svg width="104" height="88" viewBox="0 0 104 88" style="flex-shrink:0;">
+              <!-- 사분면 배경 (분홍) -->
+              <rect x="4" y="4" width="47" height="39" fill="#fbbfd0" rx="1"/>
+              <rect x="53" y="4" width="47" height="39" fill="#fbbfd0" rx="1"/>
+              <rect x="4" y="45" width="47" height="39" fill="#fbbfd0" rx="1"/>
+              <rect x="53" y="45" width="47" height="39" fill="#fbbfd0" rx="1"/>
+              <!-- x축 -->
+              <line x1="2" y1="44" x2="101" y2="44" stroke="#777" stroke-width="0.8"/>
+              <polygon points="101,44 96,41.5 96,46.5" fill="#777"/>
+              <!-- y축 -->
+              <line x1="52" y1="86" x2="52" y2="2" stroke="#777" stroke-width="0.8"/>
+              <polygon points="52,2 49.5,7 54.5,7" fill="#777"/>
+              <!-- 축 레이블 -->
+              <text x="100" y="51" font-size="7.5" fill="#555">x</text>
+              <text x="55" y="9" font-size="7.5" fill="#555">y</text>
+              <text x="43" y="52" font-size="7.5" fill="#555">O</text>
+              <!-- 제2사분면 (좌상) -->
+              <text x="27" y="20" font-size="7" fill="#333" text-anchor="middle">제2사분면</text>
+              <text x="27" y="30" font-size="6.5" fill="#555" text-anchor="middle">(−, +)</text>
+              <!-- 제1사분면 (우상) -->
+              <text x="77" y="20" font-size="7" fill="#333" text-anchor="middle">제1사분면</text>
+              <text x="77" y="30" font-size="6.5" fill="#555" text-anchor="middle">(+, +)</text>
+              <!-- 제3사분면 (좌하) -->
+              <text x="27" y="59" font-size="7" fill="#333" text-anchor="middle">제3사분면</text>
+              <text x="27" y="69" font-size="6.5" fill="#555" text-anchor="middle">(−, −)</text>
+              <!-- 제4사분면 (우하) -->
+              <text x="77" y="59" font-size="7" fill="#333" text-anchor="middle">제4사분면</text>
+              <text x="77" y="69" font-size="6.5" fill="#555" text-anchor="middle">(+, −)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- 예제05 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q" style="display:flex; align-items:flex-start; gap:12px;">
+              <div style="flex:1; line-height:18px;">이차함수 $y=a(x-p)^2+q$의 그래프가 오른쪽 그림과 같을 때, 상수 $a,\,p,\,q$의 부호는?<br>
+              <div class="ex-choices-2col" style="margin-top:5px; font-size:10px;">
+                <span>① $a>0,\;p>0,\;q>0$</span>
+                <span>② $a<0,\;p>0,\;q>0$</span>
+                <span>③ $a<0,\;p<0,\;q>0$</span>
+                <span>④ $a<0,\;p<0,\;q<0$</span>
+                <span>⑤ $a>0,\;p<0,\;q<0$</span>
+              </div></div>
+              <!-- SVG: 위로볼록, 꼭짓점 2사분면 -->
+              <svg width="74" height="64" viewBox="0 0 74 64" style="flex-shrink:0; margin-top:2px;">
+                <line x1="6" y1="44" x2="70" y2="44" stroke="#aaa" stroke-width="0.8"/>
+                <polygon points="70,44 65,41.5 65,46.5" fill="#aaa"/>
+                <line x1="50" y1="62" x2="50" y2="4" stroke="#aaa" stroke-width="0.8"/>
+                <polygon points="50,4 47.5,9 52.5,9" fill="#aaa"/>
+                <path d="M 4,62 Q 26,2 48,62" fill="none" stroke="#338cd7" stroke-width="1.5"/>
+                <text x="52" y="48" font-size="7.5" fill="#555">O</text>
+                <text x="66" y="43" font-size="7.5" fill="#555">x</text>
+                <text x="52" y="10" font-size="7.5" fill="#555">y</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>볼록 방향 → $a$ 부호</li>
+          <li>꼭짓점 사분면 → $p,q$ 부호</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">③</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 연습 09~10 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            <div style="display:flex; align-items:flex-start; gap:8px;">
+              <div style="flex:1;">다음 그림은 이차함수 $y=a(x-p)^2+q$의 그래프이다. $a,\,p,\,q$의 부호로 옳은 것은?
+                <div style="margin-top:4px; font-size:10px; display:flex; flex-direction:column; gap:2px;">
+                  <span>① $a<0,\;p>0,\;q>0$</span>
+                  <span>② $a>0,\;p<0,\;q<0$</span>
+                  <span>③ $a>0,\;p<0,\;q>0$</span>
+                  <span>④ $a>0,\;p>0,\;q<0$</span>
+                  <span>⑤ $a>0,\;p>0,\;q>0$</span>
+                </div>
+              </div>
+              <svg width="64" height="56" viewBox="0 0 64 56" style="flex-shrink:0; margin-top:2px;">
+                <line x1="4" y1="28" x2="60" y2="28" stroke="#aaa" stroke-width="0.8"/>
+                <polygon points="60,28 55,25.5 55,30.5" fill="#aaa"/>
+                <line x1="18" y1="54" x2="18" y2="4" stroke="#aaa" stroke-width="0.8"/>
+                <polygon points="18,4 15.5,9 20.5,9" fill="#aaa"/>
+                <path d="M 18,8 Q 42,78 60,8" fill="none" stroke="#338cd7" stroke-width="1.5"/>
+                <text x="10" y="33" font-size="7" fill="#555">O</text>
+                <text x="57" y="27" font-size="7" fill="#555">x</text>
+                <text x="20" y="10" font-size="7" fill="#555">y</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            <div>이차함수 $y=a(x-p)^2+q$의 그래프가 제$1$, $2$, $4$사분면만을 지난다고 할 때, 상수 $a,\,p,\,q$의 부호는?</div>
+            <div class="prob__choices-2col" style="margin-top:4px; font-size:10px;">
+              <span>① $a>0,\;p>0,\;q>0$</span>
+              <span>② $a>0,\;p>0,\;q<0$</span>
+              <span>③ $a>0,\;p<0,\;q<0$</span>
+              <span>④ $a<0,\;p>0,\;q<0$</span>
+              <span>⑤ $a<0,\;p>0,\;q>0$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+
+</div><!-- /page 002 -->
+                   
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <!-- 보충개념 + 예제04 : 단일 cbox (참조 레이아웃) -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 보충개념 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__boogi">보충 개념</span>
+          </div>
+          <span class="concept-title">$y=a(x-p)^2+q$의 그래프의 평행이동</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            $y=a(x-p)^2+q$의 그래프를 $x$축의 방향으로 $m$만큼, $y$축의 방향으로 $n$만큼 평행이동한 그래프의 식 :<br>
+            &ensp;❶ $x$ 대신 $x-m$, $q$ 대신 $q+n$을 대입 →
+            <span class="hl">$y=a(x-m-p)^2+q+n$</span><br>
+            &ensp;❷ 꼭짓점 $(p,\,q)$ → $(p+m,\;q+n)$, &ensp;축 $x=p$ → $x=p+m$
+          </div>
+          <div style="margin-top:5px;">
+            예) $y=2(x-1)^2+3$의 꼭짓점 $(1,\,3)$을 $x$축 방향 $2$, $y$축 방향 $-1$ 이동 :<br>
+            &ensp;• 꼭짓점: $(1,\,3)$ → <span class="hl">$(3,\,2)$</span>&ensp;/ &ensp;축: $x=1$ → $x=3$<br>
+            &ensp;• 식: $y=2(x-1-2)^2+3+(-1)$ → <span class="hl">$y=2(x-3)^2+2$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 예제04 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">이차함수 $y=-(x+1)^2+3$의 그래프를 $x$축의 방향으로 $m$만큼, $y$축의 방향으로 $n$만큼 평행이동하였더니 이차함수 $y=-(x-4)^2+1$의 그래프와 일치하였다. 이때 $m+n$의 값을 구하여라.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          꼭짓점 $(p,\,q)$가<br>$(p+m,\,q+n)$으로 이동<br>
+          <span style="font-size:10px; color:#888; margin-top:2px; display:block;">$m$: $x$축 방향 이동<br>$n$: $y$축 방향 이동</span>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body"><ul>
+          <li>꼭짓점 $x$좌표 변화 → $m$</li>
+          <li>꼭짓점 $y$좌표 변화 → $n$</li>
+          <li>$a$는 이동 후에도 불변</li>
+        </ul></div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$3$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 연습 07~08 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <div class="prob">
+          <div class="prob__hd"><span class="prob__num">05</span><span class="prob__badge">쌍둥이</span></div>
+          <div class="prob__body">
+            <div>이차함수 $y=3(x-1)^2+4$의 그래프를 $y$축의 방향으로 $a$만큼 평행이동하면 점 $(3,\,10)$을 지나고, 이차함수 $y=3(x-1)^2+4$의 그래프를 $x$축의 방향으로 $b$만큼 평행이동하면 점 $(2,\,16)$을 지난다. 이때 $ab$의 값은? (단, $b>0$)</div>
+            <div class="prob__choices-wrap" style="margin-top:4px;">
+              <span>① $-24$</span><span>② $-18$</span><span>③ $-12$</span><span>④ $12$</span><span>⑤ $18$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <div class="prob">
+          <div class="prob__hd"><span class="prob__num">06</span><span class="prob__badge">유사</span></div>
+          <div class="prob__body">
+            <div>이차함수 $y=-2x^2$의 그래프를 $x$축의 방향으로 $a$만큼, $y$축의 방향으로 $1$만큼 평행이동하면 꼭짓점의 좌표는 $(-3,\,b)$이고 점 $(-6,\,c)$를 지날 때, $a+b+c$의 값을 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set : 예제02 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">다음 중 이차함수 $y=2(x-3)^2-1$의 그래프에 대한 설명으로 옳지 않은 것은?</div>
+              <div class="ex-choices-stack" style="margin-top:4px;">
+                <span>① 꼭짓점의 좌표는 $(3,\,-1)$이다.</span>
+                <span>② 축의 방정식은 $x=3$이다.</span>
+                <span>③ $y=2x^2$의 그래프를 $x$축의 방향으로 $3$만큼, $y$축의 방향으로 $1$만큼 평행이동한 것이다.</span>
+                <span>④ 아래로 볼록한 포물선이다.</span>
+                <span>⑤ $x>3$일 때, $x$의 값이 증가하면 $y$의 값도 증가한다.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body"><ul>
+            <li>$y$축 방향 이동량은 $-1$, $1$이 아님에 주의</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">③</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">07</span><span class="prob__badge">쌍둥이</span></div>
+            <div class="prob__body">
+              <div>이차함수 $y=2(x+1)^2-2$의 그래프에 대한 설명 중 옳지 않은 것은?</div>
+              <div class="prob__choices-stack" style="margin-top:3px; font-size:10.5px;">
+                <span>① $x=-1$을 축으로 하는 아래로 볼록한 포물선이다.</span>
+                <span>② 꼭짓점의 좌표는 $(-1,\,-2)$이다.</span>
+                <span>③ $y$절편은 $-2$이다.</span>
+                <span>④ $y=2x^2$의 그래프를 $x$축 방향 $-1$만큼, $y$축 방향 $-2$만큼 평행이동시킨 것이다.</span>
+                <span>⑤ $(1,\,6)$을 지난다.</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">08</span><span class="prob__badge">유사</span></div>
+            <div class="prob__body">
+              <div>다음 보기 중 이차함수 $y=a(x-p)^2-q$의 그래프에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?</div>
+              <div class="prob__boogi" style="margin-top:4px; font-size:10px;">
+                <span>ㄱ. 꼭짓점의 좌표는 $(p,\,-q)$이다.</span>
+                <span>ㄴ. $p=0$이면 $y$축에 대칭인 포물선이다.</span>
+                <span>ㄷ. $a<0$이면 모든 $y$의 값은 $-q$보다 작다.</span>
+                <span>ㄹ. $y=ax^2$의 그래프를 $x$축 방향 $p$만큼, $y$축 방향 $-q$만큼 평행이동한 것이다.</span>
+              </div>
+              <div class="prob__choices-wrap" style="margin-top:4px; font-size:10.5px;">
+                <span>① ㄱ</span><span>② ㄱ,ㄴ</span><span>③ ㄱ,ㄹ</span><span>④ ㄱ,ㄴ,ㄹ</span><span>⑤ ㄱ,ㄷ,ㄹ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set : 예제03 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q" style="display:flex; align-items:flex-start; gap:12px;">
+                <div style="flex:1; line-height:18px;">오른쪽 그림과 같이 꼭짓점의 좌표가 $(2,\,3)$이고 점 $(0,\,-5)$를 지나는 포물선을 그래프로 하는 이차함수의 식을 구하여라.<span style="font-size:8.5px;color:#539e84;">&ensp;($y=a(x-p)^2+q$ 꼴로 나타내기)</span></div>
+                <svg width="76" height="86" viewBox="0 0 76 86" style="flex-shrink:0; margin-top:2px;">
+                  <line x1="6" y1="62" x2="72" y2="62" stroke="#aaa" stroke-width="0.8"/>
+                  <polygon points="72,62 67,59.5 67,64.5" fill="#aaa"/>
+                  <line x1="22" y1="84" x2="22" y2="4" stroke="#aaa" stroke-width="0.8"/>
+                  <polygon points="22,4 19.5,9 24.5,9" fill="#aaa"/>
+                  <path d="M 22,84 Q 42,4 62,84" fill="none" stroke="#338cd7" stroke-width="1.5"/>
+                  <circle cx="42" cy="44" r="2" fill="#338cd7"/>
+                  <circle cx="22" cy="84" r="2" fill="#555"/>
+                  <line x1="42" y1="44" x2="42" y2="62" stroke="#bbb" stroke-width="0.7" stroke-dasharray="2,2"/>
+                  <line x1="42" y1="44" x2="22" y2="44" stroke="#bbb" stroke-width="0.7" stroke-dasharray="2,2"/>
+                  <text x="14" y="66" font-size="7" fill="#555">O</text>
+                  <text x="39" y="70" font-size="7" fill="#555">2</text>
+                  <text x="24" y="46" font-size="7" fill="#555">3</text>
+                  <text x="4" y="87" font-size="7" fill="#555">$-5$</text>
+                  <text x="68" y="61" font-size="7" fill="#555">x</text>
+                  <text x="24" y="10" font-size="7" fill="#555">y</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span></div>
+          <div class="tip-body"><ul>
+            <li>꼭짓점으로 $p,q$ 결정 → 점 대입으로 $a$ 결정</li>
+          </ul></div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$y=-2(x-2)^2+3$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">09</span><span class="prob__badge">쌍둥이</span></div>
+            <div class="prob__body">
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <div style="flex:1;">이차함수 $y=a(x-p)^2+q$의 그래프가 그림과 같을 때, 상수 $a,\,p,\,q$에 대하여 $a+p+q$의 값을 구하시오.</div>
+                <svg width="62" height="58" viewBox="0 0 62 58" style="flex-shrink:0;">
+                  <line x1="4" y1="48" x2="58" y2="48" stroke="#aaa" stroke-width="0.7"/>
+                  <polygon points="58,48 54,46 54,50" fill="#aaa"/>
+                  <line x1="14" y1="56" x2="14" y2="4" stroke="#aaa" stroke-width="0.7"/>
+                  <polygon points="14,4 11.5,9 16.5,9" fill="#aaa"/>
+                  <path d="M 14,56 Q 34,6 54,56" fill="none" stroke="#338cd7" stroke-width="1.3"/>
+                  <circle cx="34" cy="31" r="1.5" fill="#338cd7"/>
+                  <line x1="34" y1="31" x2="34" y2="48" stroke="#bbb" stroke-width="0.6" stroke-dasharray="2,2"/>
+                  <text x="6" y="52" font-size="7" fill="#555">O</text>
+                  <text x="31" y="55" font-size="7" fill="#555">2</text>
+                  <text x="2" y="33" font-size="7" fill="#555">5</text>
+                  <text x="3" y="59" font-size="7" fill="#555">$-3$</text>
+                  <text x="55" y="47" font-size="7" fill="#555">x</text>
+                  <text x="16" y="10" font-size="7" fill="#555">y</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <div class="prob">
+            <div class="prob__hd"><span class="prob__num">10</span><span class="prob__badge">유사</span></div>
+            <div class="prob__body">
+              <div>다음 조건을 모두 만족하는 이차함수의 그래프의 식은?</div>
+              <div class="prob__boogi" style="margin-top:4px; font-size:10px;">
+                <span>• 꼭짓점의 좌표가 $(2,\,0)$, 축의 방정식이 $x=2$이다.</span>
+                <span>• 모든 $x$의 값에 대하여 $y\geq 0$이다.</span>
+                <span>• 이차함수 $y=\dfrac{3}{2}x^2$의 그래프보다 폭이 넓다.</span>
+              </div>
+              <div class="prob__choices-stack" style="margin-top:4px; font-size:10.5px;">
+                <span>① $y=3(x-2)^2$&ensp; ② $y=\dfrac{1}{3}(x-2)^2$&ensp; ③ $y=3x^2+2$</span>
+                <span>④ $y=-3(x-2)^2$&ensp; ⑤ $y=-\dfrac{1}{3}(x-2)^2$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+
+
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+    <!-- 개념01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$y=ax^2$의 그래프를 $x$축의 방향으로 $p$만큼, $y$축의 방향으로 $q$만큼 평행이동한 것으로, 모양과 폭은 $y=ax^2$의 그래프와 같다.</div>
+        <ul>
+          <li>꼭짓점 : $(p,\,q)$ &ensp;/ &ensp;축 : $x=p$</li>
+          <li>$p>0$이면 오른쪽으로 $p$만큼, $p<0$이면 왼쪽으로 $|p|$만큼 이동</li>
+          <li>$q>0$이면 위로 $q$만큼, $q<0$이면 아래로 $|q|$만큼 이동</li>
+          <li>$a>0$ : 아래로 볼록 &ensp;/ &ensp;$a<0$ : 위로 볼록</li>
+          <li>꼭짓점 $(p,\,q)$를 정한 후 다른 점을 대입하여 $a$ 결정</li>
+        </ul>
+      </div>
+    </div>
+    <!-- 개념02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">$y=a(x-p)^2+q$에서 $a$, $p$, $q$의 부호와 그래프의 위치</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$a$, $p$, $q$의 부호를 이용하여 꼭짓점의 위치와 볼록 방향을 판단한다.</div>
+        <ul>
+          <li>$a$의 부호 : $a>0$이면 아래로 볼록, $a<0$이면 위로 볼록</li>
+          <li>$p$의 부호 : $p>0$이면 꼭짓점이 $y$축의 오른쪽, $p<0$이면 $y$축의 왼쪽</li>
+          <li>$q$의 부호 : $q>0$이면 꼭짓점이 $x$축의 위쪽, $q<0$이면 $x$축의 아래쪽</li>
+          <li>꼭짓점 $(p,\,q)$의 사분면은 $p$, $q$의 부호로 결정 → 그래프 모양 파악</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 (kaynun) -->
+
+
+<!-- ═══════════════════════ PAGE 007 (유형) ═══════════════════════ -->
+<div class="page">
+
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 왼쪽 컬럼 (문01~03) -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:1fr 1fr 1fr; align-items:start;">
+
+      <!-- 유형 문01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">$y=a(x-p)^2+q$ 그래프의 성질</span>
+        </div>
+        <div class="umuri-q">
+          다음 이차함수의 그래프 중 폭이 가장 넓은 것은?
+          <div class="umuri-choices-2col" style="margin-top:6px;">
+            <span>① &ensp;$y=\dfrac{2}{5}x^2$</span>
+            <span>② &ensp;$y=4x^2$</span>
+            <span>③ &ensp;$y=-(x-3)^2+2$</span>
+            <span>④ &ensp;$y=\dfrac{2}{3}(x-5)^2$</span>
+            <span>⑤ &ensp;$y=-3x^2+1$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형 문02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">$y=a(x-p)^2+q$의 식 구하기</span>
+        </div>
+        <div class="umuri-q">
+          포물선의 모양이 $y=\dfrac{2}{5}x^2$과 같고, 꼭짓점의 좌표가 $(-3,\,2)$인 이차함수의 식을 $y=a(x+p)^2+q$라고 할 때, 상수 $a$, $p$, $q$의 합 $a+p+q$의 값을 구하시오.
+        </div>
+      </div>
+
+      <!-- 유형 문03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">$y=a(x-p)^2+q$ 그래프가 지나는 점</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 이차함수 $y=-(x+1)^2+4$의 그래프 위의 점이 아닌 것은?
+          <div class="umuri-choices-wrap" style="margin-top:6px;">
+            <span>① &ensp;$(-3,\,0)$</span>
+            <span>② &ensp;$(-2,\,3)$</span>
+            <span>③ &ensp;$\left(-\dfrac{1}{2},\,\dfrac{15}{4}\right)$</span>
+            <span>④ &ensp;$\left(\dfrac{1}{2},\,\dfrac{7}{4}\right)$</span>
+            <span>⑤ &ensp;$(1,\,8)$</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 컬럼 (문04~06) -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:1fr 1fr 1fr; align-items:start;">
+
+      <!-- 유형 문04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">$y=a(x-p)^2+q$ 그래프에서 $a$, $p$, $q$의 부호</span>
+        </div>
+        <div class="umuri-q">
+          이차함수 $y=a(x-p)^2+q$의 그래프가 아래 그림과 같을 때, 다음 중 항상 양수인 것은? (단, $a$, $p$, $q$는 상수)
+          <div style="display:flex; justify-content:center; margin:4px 0;">
+            <svg viewBox="0 0 120 100" width="100" height="84" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+              <!-- axes -->
+              <line x1="10" y1="50" x2="110" y2="50" stroke="#222" stroke-width="1.2"/>
+              <line x1="45" y1="8" x2="45" y2="92" stroke="#222" stroke-width="1.2"/>
+              <!-- axis arrows -->
+              <polygon points="110,50 104,47 104,53" fill="#222"/>
+              <polygon points="45,8 42,14 48,14" fill="#222"/>
+              <!-- axis labels -->
+              <text x="114" y="54" font-size="9" font-family="serif" fill="#222">x</text>
+              <text x="47" y="7" font-size="9" font-family="serif" fill="#222">y</text>
+              <text x="40" y="59" font-size="8" font-family="serif" fill="#222">O</text>
+              <!-- parabola opening downward, vertex at (70,22) i.e. 1st quadrant -->
+              <!-- endpoints at approx (22,85) and (105,75) -->
+              <path d="M 20,88 Q 70,5 108,78" stroke="#222" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="umuri-choices-3col" style="margin-top:2px;">
+            <span>① &ensp;$aq$</span>
+            <span>② &ensp;$p-q$</span>
+            <span>③ &ensp;$q-a$</span>
+            <span>④ &ensp;$pa-q$</span>
+            <span>⑤ &ensp;$a^2-p$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형 문05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">$y=a(x-p)^2+q$ 그래프의 꼭짓점과 축의 방정식</span>
+        </div>
+        <div class="umuri-q">
+          이차함수 $y=2x^2+3$의 그래프를 $x$축의 방향으로 $k$만큼, $y$축의 방향으로 $1$만큼 평행이동한 그래프의 꼭짓점이 직선 $y=-x+5$ 위에 있을 때, $k$의 값을 구하시오.
+        </div>
+      </div>
+
+      <!-- 유형 문06 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">06</span>
+          <span class="umuri-desc">$y=a(x-p)^2+q$ 그래프에서 $a$, $p$, $q$의 부호</span>
+        </div>
+        <div class="umuri-q">
+          이차함수 $y=ax^2+q$의 그래프가 제3사분면과 제4사분면을 지나지 않을 때, 다음 중 항상 옳은 것은? (단, $a$, $q$는 상수)
+          <div class="umuri-choices-3col" style="margin-top:6px;">
+            <span>① &ensp;$a < 0$</span>
+            <span>② &ensp;$q \leq 0$</span>
+            <span>③ &ensp;$a+q < 0$</span>
+            <span>④ &ensp;$aq \geq 0$</span>
+            <span>⑤ &ensp;$\dfrac{q}{a} < 0$</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 007 (유형) -->
+
+
+<!-- ═══════════════════════ PAGE 008 ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">03</span>
+    <span class="qa2-name">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+      <!-- 쏙쏙 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$9$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">$-19$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">$5$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">②</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- 쏙쏙 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans" style="font-size:8px;">$\dfrac{27}{5}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$1$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">④</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">이차함수 $y=a(x-p)^2+q$의 그래프</span>
+    <span class="page-footer__num">008</span>
+  </div>
+
+</div><!-- /page 008 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>

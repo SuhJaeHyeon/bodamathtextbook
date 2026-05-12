@@ -280,6 +280,21 @@ body { word-break: keep-all; }   /* 한국어 어절 중간 줄바꿈 방지 —
 <!-- border: 0.5px solid #dadde0, border-radius:3px, padding:8px 7px, 10px -->
 ```
 
+**예제 보기 박스 (ex-boogi)**:
+```html
+<div class="ex-boogi">보기 텍스트</div>
+<!-- .prob__boogi와 동일한 디자인·규칙. .ex-body .ex-content 안에서만 사용.
+     border: 0.5px solid #dadde0, border-radius:3px, padding:8px 7px, font-size:10px, bg:none -->
+```
+
+**유형익히기 보기 박스 (umuri-boogi)**:
+```html
+<div class="umuri-boogi">보기 텍스트</div>
+<!-- .prob__boogi와 동일한 디자인·규칙. .umuri-q 안에서만 사용.
+     border: 0.5px solid #dadde0, border-radius:3px, padding:8px 7px, font-size:10px, bg:none
+     내부 선지 정렬은 umuri-choices-* 기준 동일 적용 -->
+```
+
 **문제 선지 정렬 규칙**:
 | 클래스 | 구조 | 사용 조건 |
 |--------|------|----------|
@@ -404,8 +419,6 @@ body { word-break: keep-all; }   /* 한국어 어절 중간 줄바꿈 방지 —
     <div class="practice-sec">...</div>
   </div>
 
-  <div class="set-divider"></div>  <!-- height:1px, background:#f0f0f0 -->
-
   <div class="set-block">        <!-- flex:1, min-height:0 — 세트 2 -->
     <div class="ex-wrap">...</div>
     <div class="practice-sec">...</div>
@@ -421,6 +434,20 @@ body { word-break: keep-all; }   /* 한국어 어절 중간 줄바꿈 방지 —
 ---
 
 ## 7. 수직선 SVG 규칙
+
+> ⚠️ **최초 HTML 제작 시 — 이미지 플레이스홀더 규칙**
+>
+> 로고를 제외한 콘텐츠 영역(개념 설명, 개념익히기 문제, 유형익히기 문제) 내의 **모든 이미지(그래프, 도형, 수직선 등 SVG)**는 최초 HTML 제작 시 실제 SVG를 생성하지 않습니다.
+> 이미지가 들어갈 자리에는 아래와 같이 텍스트 플레이스홀더만 삽입합니다:
+>
+> | 이미지 종류 | 플레이스홀더 |
+> |------------|------------|
+> | 그래프 | `(그래프)` |
+> | 도형 | `(도형)` |
+> | 수직선 | `(수직선)` |
+> | 기타 이미지 | `(이미지)` |
+>
+> 실제 SVG는 최초 제작 이후 별도 요청 시 작성합니다.
 
 ### 문제 본문 내 수직선 (조건 제시용)
 - 색상 **사용 가능** — 파랑(`#338cd7`)으로 해 표시

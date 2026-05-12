@@ -415,6 +415,11 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 - `.prob__boogi` — 조건 박스: border 1px `#dadde0`, border-radius 3px, bg `#fafafa`
   - 보기(선지)를 2열로 나열할 때: `prob__boogi` 안에 `display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;` 내부 div를 사용한다. 같은 줄 항목 사이 **좌우(column) 간격**을 충분히 확보하는 것이 목적이며, `&ensp;` 등 공백 문자로 간격을 흉내 내는 방식은 사용하지 않는다.
 
+- `.ex-boogi` — **예제 보기 박스**. `.prob__boogi`와 동일한 디자인 및 사용 규칙. `.ex-body .ex-content` 안에서 보기(조건)를 묶을 때 사용.
+  - CSS: `border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px;`
+  - 보기를 2열로 나열할 때: 내부에 `display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;` 래퍼 div를 사용한다.
+  - 한 줄 텍스트인 경우 → `style="justify-content:center; text-align:center;"` 추가.
+
 ### 페이지 푸터 (`.page-footer`)
 - **`margin-top: auto`** — `.page`(flex column) 안에서 항상 최하단에 고정. CSS 클래스에 선언하며 인라인 스타일로 중복 추가하지 않는다.
 - flex, justify-content: flex-end, gap 4px, font-size 10px
@@ -538,11 +543,43 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 > ⚠️ `prob__choices-*` 와 동일한 기준을 따르되 클래스 이름이 `umuri-choices-*` 로 다릅니다.
 > ⚠️ 선지는 각각 별도의 `<span>`으로 분리합니다 (`justify-content: space-between` / grid 작동을 위해).
 
+### 유형 익히기 조건 박스 (`.umuri-boogi`)
+
+- **유형 익히기 문제** 안에서 보기·조건을 묶을 때 사용. `.prob__boogi` / `.ex-boogi`와 동일한 디자인.
+- CSS: `border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px;`
+- 사용 위치: `.umuri-q` 안
+
+**umuri-boogi 내 선지 정렬 규칙** (umuri-choices-* 기준 동일 적용):
+
+| 클래스 | CSS 구조 | 사용 조건 |
+|--------|---------|----------|
+| `umuri-choices-stack` | `flex-column, gap:2px` | 가장 긴 선지 ≥ 9자 또는 KaTeX 포함 |
+| `umuri-choices-2col` | `grid 1fr 1fr, gap:2px 4px` | 가장 긴 선지 9자~13자, 2열 적합할 때 |
+| `umuri-choices-3col` | `grid 1fr 1fr 1fr, gap:4px 6px` | 가장 긴 선지 **4자 이상 8자 이하** |
+| `umuri-choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 선지 간격 균등 분산 |
+
+- 박스 안 텍스트가 **한 줄**인 경우 → `style="justify-content:center; text-align:center;"` 추가
+- 보기를 2열로 나열할 때: 내부에 `display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;` 래퍼 div 사용
+
 ---
 
 ## 8. SVG 그래프·도형 작성 지침
 
-교재 내 모든 인라인 SVG(그래프, 직사각형 도형 등)는 아래 5가지 원칙을 반드시 준수합니다.
+> ⚠️ **최초 HTML 제작 시 — 이미지 플레이스홀더 규칙**
+>
+> 로고를 제외한 콘텐츠 영역(개념 설명, 개념익히기 문제, 유형익히기 문제) 내의 **모든 이미지(그래프, 도형, 수직선 등 SVG)**는 최초 HTML 제작 시 실제 SVG를 생성하지 않습니다.
+> 이미지가 들어갈 자리에는 아래와 같이 텍스트 플레이스홀더만 삽입합니다:
+>
+> | 이미지 종류 | 플레이스홀더 |
+> |------------|------------|
+> | 그래프 | `(그래프)` |
+> | 도형 | `(도형)` |
+> | 수직선 | `(수직선)` |
+> | 기타 이미지 | `(이미지)` |
+>
+> 실제 SVG는 최초 제작 이후 별도 요청 시 작성합니다.
+
+교재 내 모든 인라인 SVG(그래프, 직사각형 도형 등)는 아래 원칙을 반드시 준수합니다.
 
 ### 원칙 1 — 수학 좌표계와 SVG 방향 일치
 
@@ -774,8 +811,10 @@ SVG 저장 전 아래를 반드시 확인합니다:
 
 ---
 
-### 개념익히기 문제 조건 박스 (`.prob__boogi`)
+### 개념익히기 문제 조건 박스 (`.prob__boogi`) / 예제 보기 박스 (`.ex-boogi`)
 
+- `.prob__boogi` : `.prob__body` 안에서, `.ex-boogi` : `.ex-body .ex-content` 안에서 사용
+- 두 클래스는 **동일한 디자인·규칙**을 공유한다.
 - 박스 안 텍스트가 **한 줄**인 경우 → 가운데 정렬 적용
 - 적용 방법: `style="justify-content:center; text-align:center;"`
 - **여러 줄 텍스트**인 경우 → 기본값 유지 (가운데 정렬 미적용)
