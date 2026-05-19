@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 1-1_II-1단원_02 수의 대소 관계</title>
+<link rel="stylesheet" href="../../katex/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<script defer src="../../katex/katex.min.js"></script>
+<script defer src="../../katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ],
+    throwOnError: false
+  });"></script>
+<style>
+/* ── 기본 리셋 ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  word-break: keep-all;
+}
+.katex { font-size: 1em; }
+.katex .mbin, .katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+
+/* ── 페이지 ── */
+.page {
+  width: 595px; height: 842px;
+  background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  position: relative;
+}
+
+/* ── 타이틀 ── */
+.title { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.title__num {
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 60px; font-weight: 700;
+  color: #338cd7; letter-spacing: -7.2px;
+  line-height: 1;
+}
+.title__right { display: flex; flex-direction: column; gap: 2px; }
+.title__tag { display: flex; gap: 2px; }
+.title__tag-blue { font-size: 8px; font-weight: 700; color: #338cd7; }
+.title__tag-black { font-size: 8px; font-weight: 700; color: #000; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ── 통합 개념 박스 ── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2);
+  border-radius: 10px;
+  padding: 16px 16px 16px 0;
+  display: flex; gap: 10px;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ── 개념 정의 ── */
+.concept-def { padding-right: 8px; }
+.concept-def__hd { display: flex; gap: 6px; margin-bottom: 10px; align-items: center; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; border-radius: 0 1000px 1000px 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: #338cd7;
+  margin-right: -6px;
+  position: relative;
+}
+.concept-chip__n {
+  background: #338cd7;
+  height: 19px; width: 22px; border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-chip__boogi {
+  background: #ff8945;
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title {
+  font-size: 13px; font-weight: 500; letter-spacing: -0.7px; color: #232f39;
+}
+.concept-body {
+  font-size: 11.5px; line-height: 18px; letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 6px;
+  padding-left: 26px; color: #232f39;
+}
+.concept-body p { display: block; }
+.hl { background: #fff5d3; }
+.concept-table {
+  font-size: 8px; letter-spacing: -0.48px;
+  border-collapse: collapse; width: 100%;
+}
+.concept-table th, .concept-table td {
+  border: 0.5px solid #848484; padding: 3px 5px; text-align: center;
+}
+.concept-table th { background: #ebebeb; font-weight: 400; }
+.concept-table td:first-child, .concept-table th:first-child { border-left: none; }
+.concept-table td:last-child, .concept-table th:last-child { border-right: none; }
+
+/* 개념 내 예시 박스 */
+.concept-eg {
+  background: rgba(51,140,215,0.06);
+  border-radius: 6px; padding: 5px 10px;
+  display: flex; flex-direction: column; gap: 3px;
+  margin-top: 2px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: nowrap; font-size: 11px; }
+
+/* ── 예제 ── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge {
+  position: absolute; top: 0; left: 16px; z-index: 2;
+  display: flex; align-items: center; gap: 4px;
+}
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600;
+  height: 18px; padding: 0 8px;
+  border-radius: 1000px;
+  display: flex; align-items: center;
+}
+.ex-badge__num {
+  color: #539e84;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 16px; font-weight: 700; letter-spacing: -1.44px;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4);
+  border-radius: 10px;
+  padding: 22px 10px 10px 31px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 4px; }
+.ex-q { font-size: 11px; line-height: 18px; letter-spacing: -0.5px; color: #232f39; display: block; }
+.ex-boogi {
+  border: 0.5px solid #dadde0; border-radius: 3px;
+  padding: 6px 7px; background: none;
+  font-size: 10px; display: flex; flex-wrap: wrap;
+  gap: 2px 10px; margin: 2px 0; line-height: 16px;
+}
+
+/* ── 오른쪽 사이드 ── */
+.side-note { flex: 1; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; margin-bottom: 4px; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; line-height: 1.4; color: #232f39; }
+
+.tip-box {}
+.tip-box__hd { display: flex; align-items: center; margin-bottom: 4px; }
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+.ans-row {
+  display: flex; flex-direction: row; align-items: center;
+  gap: 4px; margin-left: 8px;
+}
+.ans-badge {
+  background: #797979; color: white;
+  font-size: 7px; font-weight: 700;
+  border-radius: 2px; padding: 1px 4px;
+  flex-shrink: 0;
+}
+.ans-text { font-size: 9px; font-weight: 500; letter-spacing: -0.8px; line-height: 16px; color: #232f39; }
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+
+/* ── 쏙쏙 개념 익히기 ── */
+.practice-sec { display: flex; flex-direction: column; gap: 0; flex: 1; min-height: 0; }
+.practice-inner { display: flex; flex-direction: column; gap: 14px; flex: 1; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 2px 9px 4px 5px;
+  display: flex; gap: 2px; align-items: baseline;
+}
+.prac-hd__ss, .prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; }
+
+.prac-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px; flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; background: #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; }
+.prob__hd { display: flex; align-items: center; gap: 2px; margin-bottom: 4px; }
+.prob__num {
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 20px; font-weight: 800;
+  color: #338cd7; letter-spacing: -1.8px; line-height: 1;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7;
+  border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 1px 6px 1px 3px;
+  font-size: 6px; font-weight: 700; color: #338cd7;
+}
+.prob__body {
+  font-size: 11px; line-height: 18px; letter-spacing: -0.5px;
+  color: #232f39; display: block;
+}
+.prob__boogi {
+  border: 0.5px solid #dadde0; border-radius: 3px;
+  padding: 5px 7px; background: #fafafa;
+  font-size: 10px; margin-top: 4px; line-height: 16px;
+}
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; margin-top: 5px; font-size: 11px; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 8px; margin-top: 5px; font-size: 11px; }
+.prob__choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; margin-top: 5px; font-size: 11px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 5px; font-size: 11px; }
+
+/* ── 페이지 푸터 ── */
+.page-footer {
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 4px; font-size: 8px;
+  margin-top: auto; flex-shrink: 0;
+}
+.page-footer::before {
+  content: "";
+  display: block;
+  width: 59px; height: 13px;
+  margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+/* ── set-block ── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── 개념 한눈에 보기 ── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px;
+  padding: 6px 14px; display: flex; align-items: center; gap: 6px;
+  flex-shrink: 0;
+}
+.kaynun-hd__small { color: white; font-size: 10px; }
+.kaynun-hd__big { color: white; font-size: 13px; font-weight: 700; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2);
+  border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 28px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px;
+  margin-bottom: 10px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white;
+  border-radius: 1000px;
+  font-size: 9px; font-weight: 700;
+  padding: 2px 8px;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table {
+  font-size: 8.5px; border-collapse: collapse; width: 100%;
+}
+.kaynun-table th, .kaynun-table td {
+  border: 0.5px solid #b9b9b9; padding: 3px 6px; text-align: center;
+}
+.kaynun-table th { background: #f2f2f2; font-weight: 500; }
+.kaynun-table td:first-child, .kaynun-table th:first-child { border-left: none; }
+.kaynun-table td:last-child, .kaynun-table th:last-child { border-right: none; }
+
+/* ── 유형 익히기 ── */
+.umuri-hd { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f;
+  border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 2px 9px 4px 5px;
+  display: flex; gap: 2px; align-items: baseline;
+}
+.umuri-hd__ss, .umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; }
+.umuri-hd__gn { font-size: 13px; font-weight: 700; color: #eb749f; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; }
+.umuri-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px; flex: 1; min-height: 0;
+}
+.umuri-col { display: grid; grid-template-rows: 240px 240px 240px; align-items: start; }
+.umuri-sep { width: 1px; background: #f0f0f0; }
+.umuri-prob { display: flex; flex-direction: column; padding: 8px 0; }
+.umuri-prob__hd { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+.umuri-num {
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 20px; font-weight: 800;
+  color: #eb749f; letter-spacing: -1.8px; line-height: 1;
+}
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; margin-left: auto; }
+.umuri-q { font-size: 11px; line-height: 18px; letter-spacing: -0.5px; color: #232f39; display: block; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 4px; margin-top: 4px; }
+.umuri-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; margin-top: 4px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 4px; }
+.umuri-boogi {
+  border: 0.5px solid #dadde0; border-radius: 3px;
+  padding: 6px 7px; background: none;
+  font-size: 10px; display: flex; flex-wrap: wrap;
+  gap: 2px 10px; margin: 4px 0; line-height: 16px;
+}
+
+/* ── 빠른정답 ── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+}
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white;
+  font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 2px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start;
+  margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink {
+  border-top-color: #eb749f;
+  border-right-color: #eb749f;
+  border-bottom-color: #eb749f;
+}
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row {
+  display: flex; align-items: center; height: 30px;
+  border-bottom: none;
+}
+.qa2-row:last-child { border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+.qa2-rnum {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 11px; font-weight: 600; color: #4a4a4a;
+  width: 22px; flex-shrink: 0; text-align: left;
+}
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+
+/* ── 인쇄 ── */
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page {
+    width: 595px !important; height: 842px !important;
+    box-shadow: none !important;
+    page-break-after: always; break-after: page;
+    page-break-inside: avoid; overflow: hidden; margin: 0 !important;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span>
+        <span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">수의 대소 관계</div>
+    </div>
+  </div>
+
+  <!-- 개념01: 절댓값 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">절댓값</span>
+        </div>
+        <div class="concept-body">
+          <p><span class="hl">(1) 절댓값</span> : 수직선 위에서 <span class="hl">0을 나타내는 점과 어떤 수를 나타내는 점 사이의 거리</span>를 그 수의 절댓값이라 하고, 기호 $|\;|$를 사용하여 나타낸다.</p>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$-3$의 절댓값 : $|-3|=3$, $\quad$ $+3$의 절댓값 : $|+3|=3$ &ensp;(수직선)</div>
+          </div>
+          <p><span class="hl">(2) 절댓값의 성질</span></p>
+          <p>① 양수와 음수의 절댓값은 그 수에서 부호 $+$, $-$를 떼어 낸 수와 같다.</p>
+          <p>② $0$의 절댓값은 $0$이다. 즉 $|0|=0$이다.</p>
+          <p>③ 절댓값은 항상 $0$ 또는 양수이다.</p>
+          <p>④ 수를 수직선 위에 나타낼 때, $0$에서 멀리 떨어질수록 절댓값이 커진다.</p>
+        </div>
+      </div>
+      <!-- 예제01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 물음에 답하시오.<br>(1) $-\dfrac{4}{5}$의 절댓값을 $a$, $+1.2$의 절댓값을 $b$라 할 때, $a+b$의 값을 구하시오.<br>(2) 수직선 위에서 절댓값이 $8$인 두 수를 나타내는 두 점 사이의 거리를 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">절댓값이 $a\,(a>0)$인 수는 $+a$, $-a$의 2개이다.</div>
+      </div>
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>절댓값 : 수직선에서 $0$과의 거리 → 항상 $0$ 이상</li>
+            <li>절댓값이 $a$인 수 : $+a$ 또는 $-a$ (2개)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) $2$</span>
+          <span>(2) $16$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 (문제 01~02) -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 01 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">$-2$의 절댓값을 $a$, 절댓값이 $5$인 양수를 $b$라 할 때, $a+b$의 값을 구하시오.</div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 02 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">$-3$의 절댓값을 $a$, 절댓값이 $4$인 양수를 $b$라 할 때, $a+b$의 값을 구하시오.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">001</span>
+  </div>
+</div><!-- /page 001 -->
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page">
+  <!-- 개념02: 수의 대소 관계 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">수의 대소 관계</span>
+        </div>
+        <div class="concept-body">
+          <p>수직선에서 수는 <span class="hl">오른쪽으로 갈수록 커지고, 왼쪽으로 갈수록 작아진다.</span></p>
+          <p>① 양수는 $0$보다 크고 음수는 $0$보다 작다.</p>
+          <p>② 양수는 음수보다 크다.</p>
+          <p>③ <span class="hl">양수끼리는 절댓값이 큰 수가 크다.</span></p>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$|+7|>|+5|$이므로 &ensp;$+7>+5$</div>
+          </div>
+          <p>④ <span class="hl">음수끼리는 절댓값이 큰 수가 작다.</span></p>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$|-7|>|-5|$이므로 &ensp;$-7<-5$</div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제02 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 옳지 않은 것은?<br>① 절댓값이 가장 작은 정수는 $0$이다.<br>② $\dfrac{1}{2}$과 $-\dfrac{1}{2}$의 절댓값은 같다.<br>③ 음수의 절댓값은 양수이다.<br>④ 절댓값은 항상 양수이다.<br>⑤ 수를 수직선 위에 나타낼 때, $0$을 나타내는 점에 가까울수록 절댓값이 작아진다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$|0|=0$ → 절댓값이 $0$인 수가 존재하므로 절댓값이 항상 양수라는 설명은 틀림</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">④</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 (문제 03~04) -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 03 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">다음 보기 중 옳은 것만을 있는 대로 고른 것은?
+            <div class="prob__boogi">
+              ㄱ. 절댓값이 가장 작은 정수는 $0$이다.<br>
+              ㄴ. 절댓값이 같은 수는 항상 $2$개다.<br>
+              ㄷ. 수직선에서 $0$을 나타내는 점과 가까워질수록 그 점이 나타내는 수의 절댓값은 작아진다.
+            </div>
+            <div class="prob__choices-wrap">
+              <span>① ㄱ</span><span>② ㄴ</span><span>③ ㄷ</span><span>④ ㄱ, ㄷ</span><span>⑤ ㄴ, ㄷ</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 04 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">다음 중 옳지 않은 것을 모두 고르면? (정답 2개)
+            <div class="prob__choices-stack">
+              <span>① $-5$의 절댓값은 $-5$이다.</span>
+              <span>② $6$의 절댓값과 $-6$의 절댓값은 같다.</span>
+              <span>③ $a>0$일 때, $a$의 절댓값은 $a$이다.</span>
+              <span>④ $0$의 절댓값은 $0$이다.</span>
+              <span>⑤ $10$의 절댓값은 $-10$이다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">002</span>
+  </div>
+</div><!-- /page 002 -->
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page">
+  <!-- 개념03: 부등호의 사용 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">부등호의 사용</span>
+        </div>
+        <div class="concept-body">
+          <table class="concept-table">
+            <tr>
+              <th>$a>b$</th><th>$a&lt;b$</th><th>$a\geq b$</th><th>$a\leq b$</th>
+            </tr>
+            <tr>
+              <td>$a$는 $b$보다 크다.<br>$a$는 $b$ 초과이다.</td>
+              <td>$a$는 $b$보다 작다.<br>$a$는 $b$ 미만이다.</td>
+              <td>$a$는 $b$보다 크거나 같다.<br>$a$는 $b$보다 작지 않다.<br>$a$는 $b$ 이상이다.</td>
+              <td>$a$는 $b$보다 작거나 같다.<br>$a$는 $b$보다 크지 않다.<br>$a$는 $b$ 이하이다.</td>
+            </tr>
+          </table>
+          <p>▶ 부등호 $\geq$는 '$>$ 또는 $=$'를 의미하고, $\leq$는 '$&lt;$ 또는 $=$'를 의미한다.</p>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">
+              <div>① $a$는 $4$보다 크다. &ensp;⇒&ensp; $a>4$</div>
+              <div>② $a$는 $5$보다 크지 않다. &ensp;⇒&ensp; $a\leq 5$</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제03 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 물음에 답하시오.<br>(1) 절댓값이 $5$보다 작은 정수의 개수를 구하시오.<br>(2) $|a|\leq 1.5$를 만족시키는 정수 $a$의 개수를 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$|a|&lt;n$이면 $-n&lt;a&lt;n$, 이 범위에서 정수를 셈</li>
+            <li>$|a|\leq n$이면 $-n\leq a\leq n$</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) $9$개</span>
+          <span>(2) $3$개</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 (문제 05~06) -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 05 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">05</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">$|z|&lt;\dfrac{5}{2}$인 정수 $x$의 개수를 구하시오.</div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 06 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">06</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">절댓값이 $\dfrac{5}{2}$ 이상 $8$ 미만인 정수의 개수를 구하시오.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:0; display:flex; flex-direction:column;">
+  <!-- Set 1: 예제04 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">절댓값이 같고 부호가 반대인 두 수가 있다. 수직선 위에서 두 수를 나타내는 두 점 사이의 거리가 $10$일 때, 두 수를 구하시오. <span style="font-size:8.5px;color:#539e84;">(절댓값이 같고 부호가 반대인 두 수)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>절댓값이 같고 부호가 반대인 두 수 : $+a$와 $-a$ → 두 점 사이 거리 $= 2a$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$+5$, $-5$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 07 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">절댓값이 같고 부호가 반대인 두 수가 있다. 수직선 위에서 두 수를 나타내는 두 점 사이의 거리가 $30$일 때, 두 수 중 음수를 구하시오.</div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 08 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">절댓값이 같고 부호가 반대인 두 수가 있다. 수직선 위에서 두 수를 나타내는 두 점 사이의 거리가 $\dfrac{22}{3}$일 때, 두 수 중 음수를 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Set 2: 예제05 -->
+  <div class="set-block" style="margin-top:100px;">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">다음 중 대소 관계가 옳은 것을 모두 고르면? (정답 2개)
+                <div class="ex-boogi" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px 6px;">
+                  <span>① $\left|-\dfrac{1}{2}\right|&lt;0$</span>
+                  <span>② $3>-5$</span>
+                  <span>③ $-1>-\dfrac{1}{3}$</span>
+                  <span>④ $-5.1&lt;-2$</span>
+                  <span>⑤ $\left|-\dfrac{2}{3}\right|>\left|-\dfrac{5}{7}\right|$</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>음수끼리는 절댓값이 클수록 더 작은 수</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">②, ⑤</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 09 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">다음 □에 들어갈 부등호의 방향이 나머지 넷과 다른 하나는?
+              <div class="prob__choices-2col">
+                <span>① $-10\,\square\,-8$</span>
+                <span>② $-0.5\,\square\,0$</span>
+                <span>③ $-1.5\,\square\,-\dfrac{1}{2}$</span>
+                <span>④ $\dfrac{12}{5}\,\square\,-\dfrac{4}{3}$</span>
+              </div>
+              <div class="prob__choices-wrap" style="margin-top:3px;">
+                <span>⑤ $\left|\dfrac{3}{5}\right|\,\square\,-\dfrac{9}{4}$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 10 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">다음 □에 알맞은 부등호가 나머지 넷과 다른 하나는?
+              <div class="prob__choices-2col">
+                <span>① $3\,\square\,5$</span>
+                <span>② $|3|\,\square\,|-6|$</span>
+                <span>③ $-6\,\square\,0$</span>
+                <span>④ $|-6|\,\square\,|-9|$</span>
+              </div>
+              <div class="prob__choices-wrap" style="margin-top:3px;">
+                <span>⑤ $-2\,\square\,-5$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+  <!-- Set 1: 예제06 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">다음 중 부등호를 사용하여 나타낸 것으로 옳지 않은 것은? <span style="font-size:8.5px;color:#539e84;">(부등호를 사용하여 나타내기)</span>
+                <div class="ex-boogi">
+                  <span>① $x$는 $6$보다 작거나 같다.  ⇒  $x\leq 6$</span><br>
+                  <span>② $x$는 $-5$보다 크고 $3$보다 작다.  ⇒  $-5&lt;x&lt;3$</span><br>
+                  <span>③ $x$는 $-2$ 이상 $4$ 미만이다.  ⇒  $-2\leq x&lt;4$</span><br>
+                  <span>④ $x$는 $-\dfrac{1}{2}$ 초과 $\dfrac{1}{3}$ 이하이다.  ⇒  $-\dfrac{1}{2}&lt;x\leq\dfrac{1}{3}$</span><br>
+                  <span>⑤ $x$는 $-1$보다 크거나 같고 $\dfrac{3}{4}$보다 크지 않다.  ⇒  $-1\leq x&lt;\dfrac{3}{4}$</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>이상·이하 : $\geq$ / $\leq$ (등호 포함)</li>
+              <li>초과·미만 : $>$ / $&lt;$ (등호 미포함)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">⑤</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 11 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">'$a$는 $-8$ 이상이고 $3$ 미만이다.'를 부등호를 사용하여 나타낸 것은?
+              <div class="prob__choices-2col">
+                <span>① $-8&lt;a&lt;3$</span>
+                <span>② $-8\leq a&lt;3$</span>
+                <span>③ $-8&lt;a\leq 3$</span>
+                <span>④ $-8\leq a\leq 3$</span>
+              </div>
+              <div class="prob__choices-wrap" style="margin-top:3px;">
+                <span>⑤ $a\leq -8$ 또는 $a>3$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 12 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">다음을 부등호를 사용하여 나타낸 것은?
+              <div class="prob__boogi">$x$는 $\dfrac{3}{11}$보다 크지 않고 음수가 아니다.</div>
+              <div class="prob__choices-2col">
+                <span>① $x\leq\dfrac{3}{11}$</span>
+                <span>② $x&lt;\dfrac{3}{11}$</span>
+                <span>③ $0&lt;x\leq\dfrac{3}{11}$</span>
+                <span>④ $0\leq x&lt;\dfrac{3}{11}$</span>
+              </div>
+              <div class="prob__choices-wrap" style="margin-top:3px;">
+                <span>⑤ $0\leq x\leq\dfrac{3}{11}$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+
+<!-- ═══════════════════════ PAGE 006: 개념 한눈에 보기 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+  <div class="kaynun-box">
+    <!-- 개념01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">절댓값</span>
+      </div>
+      <div class="kaynun-body">
+        <p>수직선 위에서 <strong>$0$을 나타내는 점과 어떤 수를 나타내는 점 사이의 거리</strong>를 그 수의 절댓값이라 하고, 기호 $|\;|$로 나타낸다.</p>
+        <p><strong>절댓값의 성질</strong></p>
+        <ul>
+          <li>양수와 음수의 절댓값은 부호를 떼어 낸 수와 같다.</li>
+          <li>$|0|=0$이다. 절댓값은 항상 $0$ 또는 양수이다.</li>
+          <li>$0$에서 멀리 떨어질수록 절댓값이 커진다.</li>
+          <li>절댓값이 $a\,(a>0)$인 수는 $+a$, $-a$의 2개이다.</li>
+        </ul>
+      </div>
+    </div>
+    <!-- 개념02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">수의 대소 관계</span>
+      </div>
+      <div class="kaynun-body">
+        <p>수직선에서 오른쪽으로 갈수록 크고, 왼쪽으로 갈수록 작다.</p>
+        <ul>
+          <li>양수 $>$ $0$ $>$ 음수</li>
+          <li>양수끼리 : 절댓값이 클수록 크다.</li>
+          <li>음수끼리 : 절댓값이 클수록 작다.</li>
+        </ul>
+      </div>
+    </div>
+    <!-- 개념03 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">부등호의 사용</span>
+      </div>
+      <div class="kaynun-body">
+        <table class="kaynun-table">
+          <tr>
+            <th>$a>b$</th><th>$a&lt;b$</th><th>$a\geq b$</th><th>$a\leq b$</th>
+          </tr>
+          <tr>
+            <td>$a$는 $b$보다 크다<br>$b$ 초과</td>
+            <td>$a$는 $b$보다 작다<br>$b$ 미만</td>
+            <td>$a$는 $b$ 이상<br>(크거나 같다)</td>
+            <td>$a$는 $b$ 이하<br>(작거나 같다)</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 -->
+
+<!-- ═══════════════════════ PAGE 007: 쏙쏙 유형 익히기 ═══════════════════════ -->
+<div class="page">
+  <!-- 유형익히기 헤더 -->
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__gn">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <!-- 유형 그리드: 좌3 + 우2 (총 5문제) -->
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 좌측 컬럼: 3문제 -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:240px 240px 240px;align-items:start;">
+      <!-- 유형 01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">절댓값의 대소 관계</span>
+        </div>
+        <div class="umuri-q">다음 수 중에서 절댓값이 가장 큰 수는?
+          <div class="umuri-choices-wrap">
+            <span>① $\dfrac{1}{2}$</span>
+            <span>② $-\dfrac{1}{4}$</span>
+            <span>③ $0.3$</span>
+            <span>④ $-0.4$</span>
+            <span>⑤ $0$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형 02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">문자로 나타낸 수의 대소 관계</span>
+        </div>
+        <div class="umuri-q">다음 조건을 모두 만족시키는 세 정수 $a$, $b$, $c$의 대소 관계는?
+          <div class="umuri-boogi" style="flex-direction:column; gap:2px;">
+            <span>(가) $a$는 $-5$보다 크다.</span>
+            <span>(나) $|a|=|-10|$</span>
+            <span>(다) $c$는 $10$보다 크다.</span>
+            <span>(라) 수직선에서 $a$를 나타내는 점보다 $b$를 나타내는 점이 $0$을 나타내는 점에 더 가깝다.</span>
+          </div>
+          <div class="umuri-choices-wrap">
+            <span>① $a&lt;b&lt;c$</span>
+            <span>② $a&lt;c&lt;b$</span>
+            <span>③ $b&lt;a&lt;c$</span>
+            <span>④ $b&lt;c&lt;a$</span>
+            <span>⑤ $c&lt;a&lt;b$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형 03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">절댓값이 같고 부호가 반대인 두 수(2)</span>
+        </div>
+        <div class="umuri-q">두 수 $a$, $b$는 절댓값이 같고 $a>b$이다. 수직선에서 $a$, $b$에 대응하는 두 점 사이의 거리가 $\dfrac{22}{5}$일 때, $a$의 값은?
+          <div class="umuri-choices-wrap">
+            <span>① $-\dfrac{44}{5}$</span>
+            <span>② $-\dfrac{11}{5}$</span>
+            <span>③ $-\dfrac{11}{10}$</span>
+            <span>④ $\dfrac{11}{5}$</span>
+            <span>⑤ $\dfrac{44}{5}$</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 우측 컬럼: 2문제 (358px 높이) -->
+    <div class="umuri-col" style="display:grid;grid-template-rows:358px 358px;align-items:start;">
+      <!-- 유형 04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">수의 대소 관계</span>
+        </div>
+        <div class="umuri-q">서로 다른 두 수 $a$, $b$에 대하여<br>$a\triangle b=\begin{cases}|a| & (a>b)\\ |b| & (a&lt;b)\end{cases}$라 할 때, $\left(-\dfrac{5}{9}\right)\triangle\left(-\dfrac{1}{3}\right)$의 값을 구하시오.</div>
+      </div>
+      <!-- 유형 05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">주어진 범위에 속하는 수</span>
+        </div>
+        <div class="umuri-q">$-7.1$과 $3.5$ 사이에 있는 정수는 모두 몇 개인가?
+          <div class="umuri-choices-wrap">
+            <span>① $8$개</span>
+            <span>② $9$개</span>
+            <span>③ $10$개</span>
+            <span>④ $11$개</span>
+            <span>⑤ $12$개</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 -->
+
+<!-- ═══════════════════════ PAGE 008: 빠른정답 ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">수의 대소 관계</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+  <div class="qa2-body" style="flex:1; min-height:0;">
+    <div class="qa2-left">
+      <!-- 개념익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$7$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$7$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">①, ⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$5$개</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">$10$개</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">$-15$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">$-\dfrac{11}{3}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">⑤</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- 유형익히기 박스 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$\dfrac{1}{3}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /qa2-left -->
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div><!-- /qa2-body -->
+  <div class="page-footer">
+    <span class="page-footer__topic">수의 대소 관계</span>
+    <span class="page-footer__num">008</span>
+  </div>
+</div><!-- /page 008 -->
+
+</body>
+</html>

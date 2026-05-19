@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 1-1_II-1단원_01 정수와 유리수</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title (page 1 only) ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 700;
+}
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Bordered content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 36px;
+}
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7;
+  position: relative;
+}
+.concept-chip__n {
+  background: #338cd7;
+  height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px;
+  padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-left: 26px;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 11px; letter-spacing: -0.48px; }
+.concept-table th {
+  background: #ebebeb; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; font-weight: 400; line-height: 1.4;
+}
+.concept-table td {
+  background: white; color: #0c0c0c;
+  border: 0.2px solid #b9b9b9; padding: 3px 8px;
+  text-align: center; line-height: 1.4;
+}
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+
+/* 개념 예시 박스 */
+.concept-eg {
+  background: rgba(51,140,215,0.06); border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: normal; font-size: 11px; line-height: 17px; }
+
+/* 정수 분류 박스 */
+.int-box {
+  background: rgba(51,140,215,0.05);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 10.5px;
+  line-height: 18px;
+  color: #232f39;
+  letter-spacing: -0.5px;
+}
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge {
+  position: absolute; top: 0; left: 16px;
+  display: flex; align-items: center; z-index: 2;
+}
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px;
+  border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px;
+  height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 11px; color: #232f39; line-height: 17px; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #232f39; line-height: 17px; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 11px; color: #232f39; line-height: 17px; }
+.ex-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; color: #232f39; line-height: 17px; }
+
+/* ─── Answer row ─── */
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white;
+  font-size: 6px; font-weight: 700; border-radius: 2px;
+  padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+
+/* ─── Right column ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice section ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7;
+  border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: block; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── 유형익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f;
+  border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: grid; grid-template-rows: 240px 240px; align-items: start; }
+.umuri-col--2row { display: grid; grid-template-rows: 358px 358px; align-items: start; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── 한눈에 보기 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 22px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white;
+  height: 19px; border-radius: 1000px;
+  padding: 0 8px;
+  font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 5px;
+  letter-spacing: -0.5px;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table { border-collapse: collapse; width: 100%; font-size: 8.5px; }
+.kaynun-table th { background: #f2f2f2; border: 0.5px solid #b9b9b9; padding: 4px 8px; text-align: center; font-weight: 500; line-height: 1.4; }
+.kaynun-table td { background: white; border: 0.5px solid #b9b9b9; padding: 4px 8px; text-align: center; line-height: 1.4; }
+.kaynun-table tr > *:first-child { border-left: none; }
+.kaynun-table tr > *:last-child { border-right: none; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 4px 10px 4px 6px; margin: 8px 0 6px -2px;
+  display: inline-flex; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 700; color: #338cd7;
+  align-self: flex-start;
+}
+.qa2-box__tab--pink { border-color: #eb749f; color: #eb749f; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 28px; border-bottom: 1px solid #f5f5f5; }
+.qa2-row:last-child { border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; gap: 4px; flex: 1; }
+.qa2-rsep { width: 1px; height: 16px; background: #f0f0f0; margin: 0 6px; flex-shrink: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 700; color: #338cd7; font-family: 'Pretendard Variable', Pretendard, sans-serif; min-width: 18px; }
+.qa2-rnum--pink { color: #eb749f; }
+.qa2-rans { font-size: 11px; color: #232f39; letter-spacing: -0.5px; }
+
+/* ─── Footer ─── */
+.page-footer {
+  display: flex; gap: 4px; align-items: center; justify-content: flex-end;
+  flex-shrink: 0; font-size: 8px; line-height: 13px;
+  letter-spacing: -0.4px; white-space: nowrap;
+  margin-top: auto;
+}
+.page-footer::before {
+  content: ""; display: block; width: 59px; height: 13px; margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important;
+          page-break-after: always; break-after: page; page-break-inside: avoid;
+          overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+  <!-- 타이틀 -->
+  <div class="title">
+    <span class="title__num">01</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span>
+        <span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">정수와 유리수</div>
+    </div>
+  </div>
+
+  <!-- 개념01 + 예제01 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">양수와 음수</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            <span class="concept-sub">(1) 양의 부호와 음의 부호</span><br>
+            서로 반대되는 두 방향의 양을 나타낼 때, <span class="hl">기준을 $0$</span>으로 정하고 한쪽 방향에는 <span class="hl">양의 부호 $+$</span>, 반대 방향에는 <span class="hl">음의 부호 $-$</span>를 붙인다.
+          </div>
+          <div>
+            <span class="concept-sub">(2) 양수와 음수</span>
+            <table class="concept-table" style="margin-top:6px;">
+              <thead>
+                <tr>
+                  <th style="width:36px;"></th>
+                  <th>정의</th>
+                  <th>예</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="hl">양수</span></td>
+                  <td>$+$를 붙인 수 ($0$보다 큰 수)</td>
+                  <td>$+3,\ +\dfrac{1}{2},\ +0.7$</td>
+                </tr>
+                <tr>
+                  <td>$0$</td>
+                  <td>양수도 음수도 아닌 기준값</td>
+                  <td>$0$</td>
+                </tr>
+                <tr>
+                  <td><span class="hl">음수</span></td>
+                  <td>$-$를 붙인 수 ($0$보다 작은 수)</td>
+                  <td>$-5,\ -\dfrac{3}{4},\ -1.2$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- 예제01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 부호 $+$ 또는 $-$를 사용하여 나타낸 것으로 옳은 것은?</div>
+            <div class="ex-choices-2col" style="margin-top:4px;">
+              <span>① 영하 $7\,℃$  ⇒  $+7\,℃$</span>
+              <span>② 지하 $2$층  ⇒  $-2$층</span>
+              <span>③ 체중 $3\,\text{kg}$ 감소  ⇒  $+3\,\text{kg}$</span>
+              <span>④ 해발 $500\,\text{m}$  ⇒  $-500\,\text{m}$</span>
+              <span>⑤ 예금 $5$만 원 출금  ⇒  $+5$만원</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          $+$, $-$는 덧셈·뺄셈 기호와 형태는 같아도, 부호로 쓰일 때는 방향을 나타내므로 의미가 다르다.<br><br>
+          $0$은 기준값 자체이므로 양수도 음수도 아니다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>기준보다 크거나 이익이 되는 방향  ⇒  $+$, 기준보다 작거나 손해 방향  ⇒  $-$</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">②</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 (PAGE 001) -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 01 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 중 부호 $+$ 또는 $-$를 사용하여 나타낸 것으로 옳은 것은?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① 해저 $10\,\text{km}$  ⇒  $+10\,\text{km}$</span>
+              <span>② 용돈 $1000$원 인상  ⇒  $+1000$원</span>
+              <span>③ $10$만 원 손해  ⇒  $+10$만원</span>
+              <span>④ 영상 $3\,℃$  ⇒  $-3\,℃$</span>
+              <span>⑤ 지상 $2$층  ⇒  $-2$층</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 02 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            다음 중 밑줄 친 부분을 부호 $+$, $-$를 사용하여 나타낸 것으로 옳지 <u>않은</u> 것은?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① 약속 시간 $10$분 전이다.  ⇒  $-10$분</span>
+              <span>② 학교 앞 산의 높이는 해발 $660\,\text{m}$이다.  ⇒  $-660\,\text{m}$</span>
+              <span>③ 오늘 아침의 최저 기온은 영하 $2\,℃$이다.  ⇒  $-2\,℃$</span>
+              <span>④ 동생이의 몸무게가 작년보다 $1.5\,\text{kg}$ 증가하였다.  ⇒  $+1.5\,\text{kg}$</span>
+              <span>⑤ 이번 달 매출이 지난달 매출보다 $20$만 원 증가하였다.  ⇒  $+20$만원</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">정수와 유리수</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+</div><!-- /page 001 -->
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page">
+  <!-- 개념02 + 예제02 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념02 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">정수와 유리수</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            <span class="concept-sub">(1) 정수</span><br>
+            ① <span class="hl">양의 정수 :</span> 자연수 앞에 $+$를 붙인 수 (자연수와 같음) &ensp;$+1,\ +2,\ +3,\ \cdots$<br>
+            ② <span class="hl">음의 정수 :</span> 자연수 앞에 $-$를 붙인 수 &ensp;$-1,\ -2,\ -3,\ \cdots$<br>
+            ③ 양의 정수, $0$, 음의 정수를 모두 합쳐 <span class="hl">정수</span>라 한다.
+          </div>
+          <div>
+            <span class="concept-sub">(2) 유리수</span><br>
+            ① <span class="hl">양의 유리수 :</span> 분모·분자가 자연수인 분수에 $+$를 붙인 수<br>
+            ② <span class="hl">음의 유리수 :</span> 분모·분자가 자연수인 분수에 $-$를 붙인 수<br>
+            ③ 양의 유리수, $0$, 음의 유리수를 모두 합쳐 <span class="hl">유리수</span>라 한다.<br>
+          </div>
+          <div class="int-box" style="font-size:10px; line-height:17px;">
+            유리수 $\begin{cases} \text{정수} \begin{cases} \text{양의 정수 (자연수) :}\ +1,\ +2,\ +3,\ \cdots \\ 0 \\ \text{음의 정수 :}\ -1,\ -2,\ -3,\ \cdots \end{cases} \\ \text{정수가 아닌 유리수 :}\ +\dfrac{1}{3},\ -\dfrac{3}{2},\ +1.8,\ -0.7,\ \cdots \end{cases}$
+          </div>
+        </div>
+      </div>
+      <!-- 예제02 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 수에 대한 설명으로 옳은 것은?</div>
+            <div class="prob__boogi" style="justify-content:center; text-align:center; margin-top:4px;">
+              $0.5,\quad -\dfrac{1}{3},\quad 7,\quad \dfrac{6}{2},\quad -3.14,\quad 0,\quad -2$
+            </div>
+            <div class="ex-choices-2col" style="margin-top:4px;">
+              <span>① 정수는 $3$개이다.</span>
+              <span>② 유리수는 $4$개이다.</span>
+              <span>③ 자연수는 $2$개이다.</span>
+              <span>④ 음의 유리수는 $4$개이다.</span>
+              <span>⑤ 정수가 아닌 유리수는 $4$개이다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          유리수는 $\dfrac{b}{a}$ ($a$, $b$는 정수, $a \neq 0$) 꼴로 나타낼 수 있는 수이다.<br><br>
+          정수도 $3=\dfrac{3}{1}$처럼 $\dfrac{b}{a}$ 꼴로 쓸 수 있으므로, 모든 정수는 유리수에 속한다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$\dfrac{6}{2}=3$이므로 자연수(양의 정수)임에 주의한다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">③</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 03 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 수 중에서 정수가 아닌 유리수를 모두 고르면? (정답 $2$개)
+            <div class="prob__choices-wrap" style="margin-top:5px;">
+              <span>① $-3.2$</span>
+              <span>② $-2$</span>
+              <span>③ $0$</span>
+              <span>④ $\dfrac{5}{2}$</span>
+              <span>⑤ $\dfrac{15}{3}$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 04 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            다음 수에 대한 설명으로 옳지 않은 것은?
+            <div class="prob__boogi" style="justify-content:center; text-align:center; margin-top:4px;">
+              $-2.5,\quad \dfrac{8}{4},\quad +\dfrac{1}{3},\quad -\dfrac{3}{2},\quad 0,\quad -1$
+            </div>
+            <div class="prob__choices-stack" style="margin-top:4px;">
+              <span>① 정수는 $3$개이다.</span>
+              <span>② 양의 유리수는 $1$개이다.</span>
+              <span>③ 음의 유리수는 $3$개이다.</span>
+              <span>④ 유리수는 $6$개이다.</span>
+              <span>⑤ 자연수는 $1$개이다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">정수와 유리수</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+</div><!-- /page 002 -->
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <!-- 개념03 + 예제03 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념03 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">수직선</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            직선 위의 한 점을 기준으로 $0$을 대응시키고, 오른쪽으로 일정 간격마다 양의 정수, 왼쪽으로 음의 정수를 차례로 배열한 직선을 <span class="hl">수직선</span>이라 한다. 유리수 역시 수직선 위의 점으로 표현할 수 있다.
+          </div>
+          <div class="concept-eg" style="margin-top:2px;">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$+\dfrac{1}{2}$은 $0$과 $+1$ 사이의 정중앙에 해당하는 점에 대응한다.</div>
+          </div>
+          <!-- 수직선 SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 36" style="width:100%;margin-top:6px;display:block;">
+            <!-- 화살표 정의 -->
+            <defs>
+              <marker id="arr-r" markerWidth="6" markerHeight="6" refX="5" refY="2" orient="auto">
+                <path d="M0,0 L6,2 L0,4" fill="none" stroke="#232f39" stroke-width="0.8"/>
+              </marker>
+              <marker id="arr-l" markerWidth="6" markerHeight="6" refX="1" refY="2" orient="auto">
+                <path d="M6,0 L0,2 L6,4" fill="none" stroke="#232f39" stroke-width="0.8"/>
+              </marker>
+            </defs>
+            <!-- 수직선 본체 (양쪽 화살표) -->
+            <line x1="8" y1="22" x2="312" y2="22" stroke="#232f39" stroke-width="0.9" marker-end="url(#arr-r)" marker-start="url(#arr-l)"/>
+            <!-- 눈금 및 숫자 (간격 40px, 중앙 0 = x:160) -->
+            <!-- -3 -->
+            <line x1="40" y1="18" x2="40" y2="26" stroke="#232f39" stroke-width="0.8"/>
+            <text x="40" y="13" text-anchor="middle" font-family="Pretendard Variable,Pretendard,sans-serif" font-size="9" fill="#232f39">−3</text>
+            <!-- -2 -->
+            <line x1="80" y1="18" x2="80" y2="26" stroke="#232f39" stroke-width="0.8"/>
+            <text x="80" y="13" text-anchor="middle" font-family="Pretendard Variable,Pretendard,sans-serif" font-size="9" fill="#232f39">−2</text>
+            <!-- -1 -->
+            <line x1="120" y1="18" x2="120" y2="26" stroke="#232f39" stroke-width="0.8"/>
+            <text x="120" y="13" text-anchor="middle" font-family="Pretendard Variable,Pretendard,sans-serif" font-size="9" fill="#232f39">−1</text>
+            <!-- 0 -->
+            <line x1="160" y1="18" x2="160" y2="26" stroke="#232f39" stroke-width="0.8"/>
+            <text x="160" y="13" text-anchor="middle" font-family="Pretendard Variable,Pretendard,sans-serif" font-size="9" fill="#232f39">0</text>
+            <!-- +1 -->
+            <line x1="200" y1="18" x2="200" y2="26" stroke="#232f39" stroke-width="0.8"/>
+            <text x="200" y="13" text-anchor="middle" font-family="Pretendard Variable,Pretendard,sans-serif" font-size="9" fill="#232f39">+1</text>
+            <!-- +2 -->
+            <line x1="240" y1="18" x2="240" y2="26" stroke="#232f39" stroke-width="0.8"/>
+            <text x="240" y="13" text-anchor="middle" font-family="Pretendard Variable,Pretendard,sans-serif" font-size="9" fill="#232f39">+2</text>
+            <!-- +3 -->
+            <line x1="280" y1="18" x2="280" y2="26" stroke="#232f39" stroke-width="0.8"/>
+            <text x="280" y="13" text-anchor="middle" font-family="Pretendard Variable,Pretendard,sans-serif" font-size="9" fill="#232f39">+3</text>
+          </svg>
+        </div>
+      </div>
+      <!-- 예제03 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 중 수직선 위의 점 A, B, C, D, E가 나타내는 수로 옳지 <u>않은</u> 것은? (두 점 A, C는 눈금의 한 가운데에 있는 점이다.)</div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" style="width:100%;margin-top:4px;display:block;" font-family="serif">
+              <rect x="0" y="0" width="720" height="160" fill="white"/>
+              <!-- 수직선 -->
+              <line x1="20" y1="90" x2="700" y2="90" stroke="black" stroke-width="1.8"/>
+              <polygon points="20,90 32,85 32,95" fill="black"/>
+              <polygon points="700,90 688,85 688,95" fill="black"/>
+              <!-- 정수 눈금 -->
+              <g stroke="black" stroke-width="1.5">
+                <line x1="30"  y1="83" x2="30"  y2="97"/>
+                <line x1="102" y1="83" x2="102" y2="97"/>
+                <line x1="174" y1="83" x2="174" y2="97"/>
+                <line x1="246" y1="83" x2="246" y2="97"/>
+                <line x1="318" y1="83" x2="318" y2="97"/>
+                <line x1="390" y1="83" x2="390" y2="97"/>
+                <line x1="462" y1="83" x2="462" y2="97"/>
+                <line x1="534" y1="83" x2="534" y2="97"/>
+                <line x1="606" y1="83" x2="606" y2="97"/>
+                <line x1="678" y1="83" x2="678" y2="97"/>
+              </g>
+              <!-- 0.5단위 작은 눈금 -->
+              <g stroke="black" stroke-width="1">
+                <line x1="66"  y1="86" x2="66"  y2="94"/>
+                <line x1="138" y1="86" x2="138" y2="94"/>
+                <line x1="210" y1="86" x2="210" y2="94"/>
+                <line x1="282" y1="86" x2="282" y2="94"/>
+                <line x1="354" y1="86" x2="354" y2="94"/>
+                <line x1="426" y1="86" x2="426" y2="94"/>
+                <line x1="498" y1="86" x2="498" y2="94"/>
+                <line x1="570" y1="86" x2="570" y2="94"/>
+                <line x1="642" y1="86" x2="642" y2="94"/>
+              </g>
+              <!-- 정수 라벨 -->
+              <text x="30"  y="118" font-size="18" text-anchor="middle">−4</text>
+              <text x="102" y="118" font-size="18" text-anchor="middle">−3</text>
+              <text x="174" y="118" font-size="18" text-anchor="middle">−2</text>
+              <text x="246" y="118" font-size="18" text-anchor="middle">−1</text>
+              <text x="318" y="118" font-size="18" text-anchor="middle">0</text>
+              <text x="390" y="118" font-size="18" text-anchor="middle">1</text>
+              <text x="462" y="118" font-size="18" text-anchor="middle">2</text>
+              <text x="534" y="118" font-size="18" text-anchor="middle">3</text>
+              <text x="606" y="118" font-size="18" text-anchor="middle">4</text>
+              <text x="678" y="118" font-size="18" text-anchor="middle">5</text>
+              <!-- A 포물선 -->
+              <path d="M 30,90 Q 48,118 66,90" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <path d="M 66,90 Q 84,118 102,90" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <!-- A 틱 마크 -->
+              <line x1="48" y1="95.5" x2="48" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="51" y1="95.5" x2="51" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="81" y1="95.5" x2="81" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="84" y1="95.5" x2="84" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <!-- C 포물선 -->
+              <path d="M 390,90 Q 408,118 426,90" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <path d="M 426,90 Q 444,118 462,90" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <!-- C 틱 마크 -->
+              <line x1="405" y1="95.5" x2="405" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="408" y1="95.5" x2="408" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="441" y1="95.5" x2="441" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="444" y1="95.5" x2="444" y2="103.5" stroke="#555" stroke-width="1.5"/>
+              <!-- 점 A, B, C, D, E -->
+              <circle cx="66"  cy="90" r="3" fill="black"/>
+              <circle cx="174" cy="90" r="3" fill="black"/>
+              <circle cx="426" cy="90" r="3" fill="black"/>
+              <circle cx="462" cy="90" r="3" fill="black"/>
+              <circle cx="606" cy="90" r="3" fill="black"/>
+              <!-- 점 라벨 -->
+              <text x="66"  y="50" font-size="20" text-anchor="middle" font-weight="bold">A</text>
+              <text x="174" y="50" font-size="20" text-anchor="middle" font-weight="bold">B</text>
+              <text x="426" y="50" font-size="20" text-anchor="middle" font-weight="bold">C</text>
+              <text x="462" y="50" font-size="20" text-anchor="middle" font-weight="bold">D</text>
+              <text x="606" y="50" font-size="20" text-anchor="middle" font-weight="bold">E</text>
+              <!-- 점선 -->
+              <g stroke="#777" stroke-width="0.9" stroke-dasharray="2,2" fill="none">
+                <line x1="66"  y1="57" x2="66"  y2="87"/>
+                <line x1="174" y1="57" x2="174" y2="87"/>
+                <line x1="426" y1="57" x2="426" y2="87"/>
+                <line x1="462" y1="57" x2="462" y2="87"/>
+                <line x1="606" y1="57" x2="606" y2="87"/>
+              </g>
+            </svg>
+            <div class="ex-choices-3col" style="margin-top:6px;">
+              <span>① $\text{A}:\ -\dfrac{7}{2}$</span>
+              <span>② $\text{B}:\ -2$</span>
+              <span>③ $\text{C}:\ \dfrac{5}{2}$</span>
+              <span>④ $\text{D}:\ 2$</span>
+              <span>⑤ $\text{E}:\ 4$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          모든 유리수는 수직선 위에 점으로 나타낼 수 있다.<br><br>
+          수직선에서 양의 부호 $+$는 생략하여 나타낼 수 있다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>두 정수 사이의 눈금 수를 세어 분모를 결정한 후 각 점의 좌표를 읽는다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">③</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 (Q05·Q06) -->
+  <div class="practice-sec" style="flex:none;">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 05 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">05</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 수직선에서 점 A, B, C, D, E가 나타내는 수로 옳지 <u>않은</u> 것은?
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 170" style="width:100%;margin-top:4px;display:block;" font-family="serif">
+              <rect x="0" y="0" width="720" height="170" fill="white"/>
+              <!-- 수직선 -->
+              <line x1="50" y1="95" x2="670" y2="95" stroke="black" stroke-width="1.8"/>
+              <polygon points="50,95 62,90 62,100" fill="black"/>
+              <polygon points="670,95 658,90 658,100" fill="black"/>
+              <!-- 정수 눈금 -->
+              <g stroke="black" stroke-width="1.5">
+                <line x1="90"  y1="88" x2="90"  y2="102"/>
+                <line x1="180" y1="88" x2="180" y2="102"/>
+                <line x1="270" y1="88" x2="270" y2="102"/>
+                <line x1="360" y1="88" x2="360" y2="102"/>
+                <line x1="450" y1="88" x2="450" y2="102"/>
+                <line x1="540" y1="88" x2="540" y2="102"/>
+                <line x1="630" y1="88" x2="630" y2="102"/>
+              </g>
+              <!-- 0.5단위 작은 눈금 -->
+              <g stroke="black" stroke-width="1">
+                <line x1="135" y1="91" x2="135" y2="99"/>
+                <line x1="225" y1="91" x2="225" y2="99"/>
+                <line x1="315" y1="91" x2="315" y2="99"/>
+                <line x1="405" y1="91" x2="405" y2="99"/>
+                <line x1="495" y1="91" x2="495" y2="99"/>
+                <line x1="585" y1="91" x2="585" y2="99"/>
+              </g>
+              <!-- 1/3단위 작은 눈금 (C 위치: −2/3=300, −1/3=330) -->
+              <g stroke="black" stroke-width="1">
+                <line x1="300" y1="91" x2="300" y2="99"/>
+                <line x1="330" y1="91" x2="330" y2="99"/>
+              </g>
+              <!-- 정수 라벨 -->
+              <text x="90"  y="128" font-size="24" text-anchor="middle">−3</text>
+              <text x="180" y="128" font-size="24" text-anchor="middle">−2</text>
+              <text x="270" y="128" font-size="24" text-anchor="middle">−1</text>
+              <text x="360" y="128" font-size="24" text-anchor="middle">0</text>
+              <text x="450" y="128" font-size="24" text-anchor="middle">1</text>
+              <text x="540" y="128" font-size="24" text-anchor="middle">2</text>
+              <text x="630" y="128" font-size="24" text-anchor="middle">3</text>
+              <!-- B 포물선: −3(90)↔B(135)↔−2(180) -->
+              <path d="M 90,95 Q 112.5,123 135,95" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <path d="M 135,95 Q 157.5,123 180,95" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <!-- B 틱 -->
+              <line x1="109.5" y1="100.5" x2="109.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="112.5" y1="100.5" x2="112.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="154.5" y1="100.5" x2="154.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="157.5" y1="100.5" x2="157.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <!-- C 포물선: −1(270)~0(360) 3등분 -->
+              <path d="M 270,95 Q 285,123 300,95" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <path d="M 300,95 Q 315,123 330,95" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <path d="M 330,95 Q 345,123 360,95" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <!-- C 틱 (단일) -->
+              <line x1="285" y1="100.5" x2="285" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="315" y1="100.5" x2="315" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="345" y1="100.5" x2="345" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <!-- E 포물선: 1(450)↔E(495)↔2(540) -->
+              <path d="M 450,95 Q 472.5,123 495,95" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <path d="M 495,95 Q 517.5,123 540,95" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="3,2"/>
+              <!-- E 틱 -->
+              <line x1="469.5" y1="100.5" x2="469.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="472.5" y1="100.5" x2="472.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="514.5" y1="100.5" x2="514.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <line x1="517.5" y1="100.5" x2="517.5" y2="108.5" stroke="#555" stroke-width="1.5"/>
+              <!-- 점 A, B, C, D, E -->
+              <circle cx="90"  cy="95" r="3.2" fill="black"/>
+              <circle cx="135" cy="95" r="3.2" fill="black"/>
+              <circle cx="300" cy="95" r="3.2" fill="black"/>
+              <circle cx="450" cy="95" r="3.2" fill="black"/>
+              <circle cx="495" cy="95" r="3.2" fill="black"/>
+              <!-- 점 라벨 -->
+              <text x="90"  y="52" font-size="26" text-anchor="middle" font-weight="bold">A</text>
+              <text x="135" y="52" font-size="26" text-anchor="middle" font-weight="bold">B</text>
+              <text x="300" y="52" font-size="26" text-anchor="middle" font-weight="bold">C</text>
+              <text x="450" y="52" font-size="26" text-anchor="middle" font-weight="bold">D</text>
+              <text x="495" y="52" font-size="26" text-anchor="middle" font-weight="bold">E</text>
+              <!-- 점선 -->
+              <g stroke="#777" stroke-width="0.9" stroke-dasharray="2,2">
+                <line x1="90"  y1="60" x2="90"  y2="92"/>
+                <line x1="135" y1="60" x2="135" y2="92"/>
+                <line x1="300" y1="60" x2="300" y2="92"/>
+                <line x1="450" y1="60" x2="450" y2="92"/>
+                <line x1="495" y1="60" x2="495" y2="92"/>
+              </g>
+            </svg>
+            <div class="prob__choices-3col" style="margin-top:4px;">
+              <span>① $\text{A}:\ -3$</span>
+              <span>② $\text{B}:\ -\dfrac{5}{2}$</span>
+              <span>③ $\text{C}:\ -\dfrac{1}{3}$</span>
+              <span>④ $\text{D}:\ 1$</span>
+              <span>⑤ $\text{E}:\ \dfrac{3}{2}$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 06 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">06</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            다음 수들을 수직선 위에 나타낼 때, 가장 왼쪽에 있는 수는?
+            <div class="prob__choices-3col" style="margin-top:5px;">
+              <span>① $-1.5$</span>
+              <span>② $-\dfrac{7}{3}$</span>
+              <span>③ $0$</span>
+              <span>④ $-\dfrac{5}{8}$</span>
+              <span>⑤ $\dfrac{8}{3}$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">정수와 유리수</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:10px;">
+
+  <!-- 예제04 + Q07·Q08 -->
+  <div class="cbox" style="flex-shrink:0;">
+    <div class="cbox__left">
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">04</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">수직선에서 $-6$과 $2$를 나타내는 두 점으로부터 같은 거리에 있는 점이 나타내는 수를 구하시오. <span style="font-size:8.5px;color:#539e84;">(수직선에서 같은 거리에 있는 점)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>두 수의 한가운데 값 $= \dfrac{(\text{두 수의 합})}{2}$</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$-2$</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="practice-sec" style="flex:none;">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 쌍둥이 07 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">07</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            수직선에서 $-2$를 나타내는 점으로부터의 거리가 $3$인 점이 나타내는 두 수는?
+            <div class="prob__choices-3col" style="margin-top:5px;">
+              <span>① $-7,\ 3$</span>
+              <span>② $-5,\ 1$</span>
+              <span>③ $-3,\ 1$</span>
+              <span>④ $1,\ 5$</span>
+              <span>⑤ $5,\ 10$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 유사 08 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">08</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $-3$에 대응하는 점을 A, $+1$에 대응하는 점을 B라고 할 때, A와 B 사이의 한가운데에 있는 점 M에 대응하는 수를 구하시오.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">정수와 유리수</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+
+<!-- ═══════════════════════ PAGE 005 (한눈에보기) ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+  <div class="kaynun-box">
+    <!-- 개념01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">양수와 음수</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li>반대 방향의 두 양을 구별할 때, 기준을 $0$으로 잡고 한쪽에 $+$, 반대쪽에 $-$를 붙여 표현한다.</li>
+          <li><span class="hl">양수 :</span> $+$를 붙인 수 ($0$보다 큰 값) &ensp;│&ensp; <span class="hl">음수 :</span> $-$를 붙인 수 ($0$보다 작은 값)</li>
+          <li>$0$은 양수도 음수도 아닌 기준값이다.</li>
+        </ul>
+      </div>
+    </div>
+    <!-- 개념02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">정수와 유리수</span>
+      </div>
+      <div class="kaynun-body">
+        <table class="kaynun-table" style="max-width:340px;">
+          <thead>
+            <tr>
+              <th colspan="3">구분</th>
+              <th>예</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="4">유리수</td>
+              <td rowspan="3">정수</td>
+              <td>양의 정수 (자연수)</td>
+              <td>$+1,\ +2,\ +3,\ \cdots$</td>
+            </tr>
+            <tr>
+              <td>$0$</td>
+              <td>$0$</td>
+            </tr>
+            <tr>
+              <td>음의 정수</td>
+              <td>$-1,\ -2,\ -3,\ \cdots$</td>
+            </tr>
+            <tr>
+              <td colspan="2">정수가 아닌 유리수</td>
+              <td>$+\dfrac{1}{3},\ -\dfrac{3}{2},\ +1.8,\ \cdots$</td>
+            </tr>
+          </tbody>
+        </table>
+        <div>정수는 유리수의 일부이며, $\dfrac{3}{4},\ 2.5,\ -\dfrac{1}{2}$처럼 정수가 아닌 분수·소수도 유리수에 해당한다.</div>
+      </div>
+    </div>
+    <!-- 개념03 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">수직선</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li>직선 위에 $0$을 기준으로 오른쪽에 양의 정수, 왼쪽에 음의 정수를 일정 간격으로 배열한 직선을 <span class="hl">수직선</span>이라 한다. 유리수도 수직선 위의 점에 대응시킬 수 있다.</li>
+          <li>두 수 $a$, $b$의 한가운데 점에 대응하는 수  ⇒  $\dfrac{a+b}{2}$</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span class="page-footer__topic">정수와 유리수</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+
+<!-- ═══════════════════════ PAGE 006 (유형익히기) ═══════════════════════ -->
+<div class="page">
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 왼쪽 컬럼: 3문제 × 240px -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+      <!-- 유형01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">양의 부호와 음의 부호</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 부호 $+$ 또는 $-$를 사용하여 나타낸 것으로 옳은 것은?
+          <div class="umuri-choices-stack" style="margin-top:5px;">
+            <span>① 해저 $10\,\text{km}$  ⇒  $+10\,\text{km}$</span>
+            <span>② 용돈 $1000$원 인상  ⇒  $+1000$원</span>
+            <span>③ $10$만 원 손해  ⇒  $+10$만원</span>
+            <span>④ 영상 $3\,℃$  ⇒  $-3\,℃$</span>
+            <span>⑤ 지상 $2$층  ⇒  $-2$층</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">유리수의 분류</span>
+        </div>
+        <div class="umuri-q">
+          다음 수 중에서 양의 유리수의 개수를 $a$개, 음의 유리수의 개수를 $b$개, 정수가 아닌 유리수의 개수를 $c$개라 할 때, $a+b-c$의 값을 구하시오.
+          <div class="umuri-boogi" style="justify-content:center; text-align:center; margin-top:5px;">
+            $-2.1,\quad -\dfrac{2}{3},\quad 1.7,\quad 0,\quad -\dfrac{12}{4},\quad 4,\quad \dfrac{3}{5},\quad -1,\quad 8$
+          </div>
+        </div>
+      </div>
+      <!-- 유형03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">정수와 유리수의 성질</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 옳은 것을 모두 고르면? (정답 $2$개)
+          <div class="umuri-choices-stack" style="margin-top:5px;">
+            <span>① 모든 자연수는 정수이다.</span>
+            <span>② $0$과 $1$ 사이에는 유리수가 없다.</span>
+            <span>③ $0$은 유리수가 아니다.</span>
+            <span>④ 가장 작은 자연수는 $0$이다.</span>
+            <span>⑤ 모든 정수는 유리수이다.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 컬럼: 2문제 × 358px -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:358px 358px; align-items:start;">
+      <!-- 유형04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">수직선을 이용하여 정수 찾기</span>
+        </div>
+        <div class="umuri-q">
+          수직선을 이용하여 $-\dfrac{5}{3}$과 $2$ 사이에 있는 정수의 개수를 구하시오.
+        </div>
+      </div>
+      <!-- 유형05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">수직선에서 같은 거리에 있는 점</span>
+        </div>
+        <div class="umuri-q">
+          다음 수직선 위의 네 개의 점 A, B, C, D 사이의 간격이 모두 같을 때, 두 점 B, C가 나타내는 수의 합은?
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 180" style="width:100%;margin-top:5px;display:block;" font-family="serif">
+            <rect x="0" y="0" width="560" height="180" fill="white"/>
+            <line x1="60" y1="90" x2="510" y2="90" stroke="black" stroke-width="1.8"/>
+            <polygon points="60,90 72,84 72,96" fill="black"/>
+            <polygon points="510,90 498,84 498,96" fill="black"/>
+            <circle cx="130" cy="90" r="4" fill="black"/>
+            <circle cx="230" cy="90" r="4" fill="black"/>
+            <circle cx="330" cy="90" r="4" fill="black"/>
+            <circle cx="430" cy="90" r="4" fill="black"/>
+            <text x="130" y="65" font-size="18" text-anchor="middle">A</text>
+            <text x="230" y="65" font-size="18" text-anchor="middle">B</text>
+            <text x="330" y="65" font-size="18" text-anchor="middle">C</text>
+            <text x="430" y="65" font-size="18" text-anchor="middle">D</text>
+            <text x="130" y="120" font-size="15" text-anchor="middle">−5</text>
+            <text x="430" y="120" font-size="15" text-anchor="middle">10</text>
+          </svg>
+          <div class="umuri-choices-3col" style="margin-top:5px;">
+            <span>① $1$</span>
+            <span>② $3$</span>
+            <span>③ $5$</span>
+            <span>④ $7$</span>
+            <span>⑤ $9$</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">정수와 유리수</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 (유형익히기) -->
+
+<!-- ═══════════════════════ PAGE 007 (빠른정답) ═══════════════════════ -->
+<div class="page qa2-page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+  <div class="qa2-title-row">
+    <span class="qa2-num">01</span>
+    <span class="qa2-name">정수와 유리수</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+  <div class="qa2-body">
+    <div class="qa2-left">
+      <!-- 개념익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">쏙쏙 개념 익히기</div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">①, ④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">$-1$</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- 유형익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">쏙쏙 유형 익히기</div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum qa2-rnum--pink">01</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum qa2-rnum--pink">02</span><span class="qa2-rans">$4$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum qa2-rnum--pink">03</span><span class="qa2-rans">①, ⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum qa2-rnum--pink">04</span><span class="qa2-rans">$3$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum qa2-rnum--pink">05</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+  <div class="page-footer">
+    <span class="page-footer__topic">정수와 유리수</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 (빠른정답) -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>

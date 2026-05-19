@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 1-1_IV-2단원_02 반비례</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex-display { display: inline !important; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 8px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+
+/* ─── cbox ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-chip__boogi {
+  background: #ff8945; height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title { font-family: '윤고딕','Yoon Gothic',sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 8px; padding-left: 26px; }
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th { background: #ebebeb; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 400; line-height: 1.4; }
+.concept-table td { background: white; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+.concept-eg { background: rgba(51,140,215,0.06); border-radius: 6px; padding: 6px 10px; display: flex; flex-direction: column; gap: 3px; }
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: nowrap; font-size: 11px; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 20px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 11px; color: #232f39; line-height: 17px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #232f39; line-height: 17px; align-items: flex-start; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 11px; color: #232f39; line-height: 17px; }
+.ex-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Right side ─── */
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; margin-top: 4px;
+  padding: 2px 9px 4px 5px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: block; letter-spacing: -0.5px; margin-left: 3px; min-width: 0; overflow-wrap: break-word; }
+.prob__body > .prob__choices-wrap,
+.prob__body > .prob__choices-stack,
+.prob__body > .prob__choices-2col,
+.prob__body > .prob__choices-3col,
+.prob__body > .prob__boogi { margin-top: 5px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── 한눈에 보기 ─── */
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 16px 20px 16px 16px; display: flex; flex-direction: column; gap: 24px; flex: 1; min-height: 0; overflow: hidden; margin-top: -1px; margin-bottom: 10px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 6px; letter-spacing: -0.5px; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table { border-collapse: collapse; width: 100%; font-size: 8.5px; letter-spacing: -0.4px; }
+.kaynun-table th { background: #f2f2f2; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 4px 6px; text-align: center; font-weight: 500; line-height: 1.5; }
+.kaynun-table td { background: white; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 4px 6px; text-align: center; line-height: 1.5; }
+.kaynun-table tr > *:first-child { border-left: none; }
+.kaynun-table tr > *:last-child { border-right: none; }
+
+/* ─── 유형익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 130px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; display: block; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; line-height: 17px; color: #232f39; margin-top: 4px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; margin-top: 4px; }
+.umuri-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px 4px; font-size: 11px; line-height: 17px; color: #232f39; margin-top: 4px; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 4px; font-size: 11px; line-height: 17px; color: #232f39; margin-top: 4px; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 4px 0 0 0; line-height: 16px; }
+
+/* ─── 빠른정답 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { color: #338cd7; font-size: 26px; font-weight: 700; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 20px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 2px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; gap: 0; }
+.qa2-row { display: flex; align-items: center; height: 26px; border-bottom: 0.5px solid #f5f5f5; }
+.qa2-rg { display: flex; align-items: center; gap: 6px; flex: 1; }
+.qa2-rnum { font-size: 10px; font-weight: 700; color: #338cd7; letter-spacing: -0.5px; font-family: 'Pretendard Variable', Pretendard, sans-serif; min-width: 20px; }
+.qa2-rans { font-size: 10px; font-weight: 500; color: #232f39; letter-spacing: -0.5px; }
+.qa2-rsep { width: 1px; height: 16px; background: #f0f0f0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer {
+  display: flex; gap: 4px; align-items: center; justify-content: flex-end;
+  font-size: 8px; flex-shrink: 0; margin-top: auto;
+}
+.page-footer::before {
+  content: "";
+  display: block;
+  width: 59px; height: 13px;
+  margin-right: auto;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOwAAAA0CAYAAACJvtRWAAAACXBIWXMAACxLAAAsSwGlPZapAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAACzdJREFUeAHtnV1sHUcVx/9rJyBQEkx5aUmqTpOAUj6TQoBKoG4qBVIJKQ4QeKmUddokygONIyQknnqD+gIS4LQPUeMi30j0qdA6CKkPRepWqhTKl20kNyG226EJSR74cBxeCNTbOd7d3q/9mN2d3Ttrz08a3/Xu2d17986Zc+bMmbkW2mAT3tC623C8QXwWFWF5WPQ8zKxfD/fSiMVhMBhiscKNrWe9E+KfhtgcQp/wLEwLBT69cNRqwmAw9LCisFvHvSeEojSgD1xY3D3G4hoMnVjsjMcGB/EW9GMRAxhdeMw6B4Oh/9iisGB7OiiVMyCU9QnoyRCW0dz2rHcIxRlC9a4+3Y+hXtiiTIhCDfhUsL0T1UH3+pkorwSFthn6C70neh70fiaCMhXsYyiGLcqLwbXCezhJJ1jbx70pEfSp8kvJyuIAsGfuqJW1RWOinID/AEJlpWs0RTmN8nBEoUbGbtvnijIiCkc2GNRVWPrsiwnH6VmNxRw7mXBMFUn3b4hyCtXD4CtnXGPPRdmF5OcaB9WRZswxeg4now5Y284KddUdC+7CEWtPhjMY/NaKxRynyrsL6iFvpZFw/IAok0hmKLiOA7VeAYf/3qK6GAxI7Rbdi+wNjixM4v70/buoFlKcEykyeRoz+l6pIWAJMtTAN7t3DqAgX7wLeO7rwPwRv/z6G8A3Px4v/4mPZJNfwYMtGhYH8lCFZwnHyaNoQC1M4poTEtegL3IU6l14Br9iRV13GOk4KI9RCRkVXaNuwm5LXJEZ3nww5RpRz9tGuucU+Z2sQwEev1+Uz3XuI4X8kfgImzcCT/2p89heBpzZGy1/n3h98gLisRJdiG52KpLJgi0hE1YQnnANhvKg+zvotQgs/VTcg/KQUQwGtVDfUaahSmMY6ddpoNOll2mMI59Jbgu7RSjkBy4+jy/t+w6+evBRzF6a6zhOykzWt11++IPT+NajJ1bOufDHqQ5551OifDrhhsLK7pjwGOSQeSAfgn6UYUW6YRH7+jb2HlB1DIWCWSqUVZYG5Br0VHIr7J1XXkLjx0/jyrXr+OSO7aJ8DFev3eiQabe+u9fN4/Dxx3HhD1Mro78PfH4Xlm79p1P+/uR7/v92pQ+5HzCUT54ASZnYkGswbkIdDqpHyWhMboX9y0ut7tjspXn85MwE9h48jKWllhKShd30Pn/7tfMt+ZtLtzD+i+eFZT7cYWlJlixxHIpTJm26pMKS1j+VgaF8XOiFrFfBoYZ+DPGF9y1MboW9+Y+WNZ396xx+KhSWLObs5fkOuU3v91+vvtVymUnOt843cOXvnVZ58wYYyoMixC70gUHeVaRo7b/hB+Wo/0mBqjyuNHkY06iePPdk6FL03EGnTZs2dFjTkLs/emfH/0v/9V+3bL4Lby/d6L3ORnkNtbzaJSKUAVW4tKGhKM7nPK9M0qL53VDl3RmUsHtEikDj6k3IQwGgF1Edi8g+jszQGuriwfnN3Ar7mYcO4rXJTi/waw99BVvaFPaq0Oel2/72Pbv34e2LnYGmu4US7xPnhJDs69djb0mTAzgMNJbrov6QwjkoDikvVURS/pVKLXEONVz3Bvcny53mrnL4jUJoJek8GVee5M8F9+PID0PQ5crtEt/xhYP49v6H3/v/gd278MPvf7dD5um2YZ3BHQ/je8dH3vuflPWXP+9MOPotRyLWO/gbDBz1h8GP1Kq+Zpg6KNNf5PCVO02WlI2SbGgozA2KA1/h0wJ4Q8F5HGo4lNvCvnx9A547/gOcEkpKfdItXa7wG/8CfnW59T9Zzr1fHsHFRw5GypM1furPKTcdWBWWZa3DkJyFVhQHfr+YMqN4iqyNdMhqRykmh291k6K/DL4HoKrPbBfKdDr+MvAC39CjfGQpH/lNr/yTvxNN2uVe+dev+fJXbyEJPn/EcmGoM+QGp6XkqYDBbxSGJOTSSFI2jnSUjjEXynSiPueKEs4C990BbBTDMr+/kax4ZEVfmGvJXxKW+I1/Ih311pW+iJNQhw1oO/Op35DikAvsoDoYfPf4AFYP04UUNoQUNMU6FpIHTWgfVD5bg9wcF+pgMHRji7If+SYycLQmKtD4O1kqhmyQRafhnzGsDk4rUdiyoWVjzOoTfad9woSL6MaOlJKUhBTMRjF3kCxjtztqQz5CG0JeTxP5M7yGUCw7rMi5IRzB0FUdFPb0/DFrtbSQdSYc/yRCJRhpO07DIw2oyeih60b1Hd2gTAfvQeZeJDOK6JlUMsq0E/Ge2INIJ6/CcviR6A4KT68rFQ/nFo5aozDoiIOWEtB23NS9LFDljpwH2gXdaw/klSFuTitHOtQPZjHXdJAOh0K0tbDCDT5ZsmWlltOGugeq4+yfsgktjIpZRhzRbnAcJEdxDZnxXGpIbPRaSlfiXAY/42hSlBn433NYd9LgWO0Ka1lwSVnnjmVeEiYr9CW+AkMRWNdrXlzkW0KHGnQKatkSssPoVdAwzXNY8nwZuXZUB0q1U1gaa90DQ10oGlAJc2yLeFJ0vi0hF9ffPAn5KX5Z4MiW3yyFVn1YT91cTQ5DFYRe0DlkI1RUCqoU7fa4kHdto+BQOx4fXrMUw6OVwlqib7DtWW8iw8oScZic4/LhaLl8svmyLnzlIEVtQF0DfV5CJlyeJ4om/P4zR3E45NIic6Ff0GkZzv+WMbz1Ge/Um/mDTtQvqWK5lbVEOI+UXin4MoaWwtFrOPuF+pShe8nhrxRB502ivNUuXBR3P+n90ftsIF/doc9GY6Xtz0U5Wi9z6llovHnEyttxp5zVndCPpOVCZb6LpPPz0kR6JXVRkpunIQytLC3ajqtHHP5zoS5B2JjJ4CB9hRKOiHFYrRMn6Pd+to57yKm0VLnCKKLqgIKhFxt+xdbtWYeegZvhHA6/EWu27WMRMnlx0Zl0EkWk8muf6URKK/q1MwuPWZMZT6UP7ATbshWJZGRWIqAWtYl8cKw+0hZQ1wEOuVX6GeSQlYvDbdtehKR1rkUusejXTrAJz+UjVt6+geyYLpOU41gdqz6owIH+ykow+O9zNOYYuag2+ss0WgkhPEpA79TEFvRD06Mw6Mh+1IeofjqDn0Bjo/+QJ+ggIf5SF4WlAFTab5wY+kOd4gND6H2/NvSbGhnOH+6hNgorGNo+7tkw6MYM6gNHb1/Rhp7YiGgM66Sw1JfVcZhmrZM1GNhPojKyZOMb/YB176iVwipe+b+uMOiFCz97iUNvqGFpROx3oS+se0c9osQhy/gwDBTNdJGfV6E+KX0sKHnHYSk+MSwhlydxg1xgjvhhE7KwNCaadVHzKuh5lvVSWDnoQzrIV3Fkz6GZHw3ko4nii0o7yI8D//2nDdznIa976UjKuSiHJnwLTA0OQ/nQfXIFUeumsDzlOEPyT9yrwkb+YEWYZBCVvUVWoIqoqwP9fmen39Czd1EduRS2Vn1Yy0tVWJm1aHWggWiFz5sYkgcZF9SgGfVSWCuxBazKnVFFVMS7yojlWlzSpvbUSWH53FGrygpdNlGewKuoDjNnuIbUSWHTZuxw6Pfr4knwiH1NVGdlmzDUjrooLF84ajVTZMIJxHWAI1ph6DPQjJK4dXlVQPeow7ipIQKKEnNo3vdbv156/K0B39U8BH2DTy7Sh1SaaCk063otQtqYpEFz1lmiJfc0Vlha8jTjz3SMBiUq0bvfcGSHd70a1jAWJdR7nrbr845IuMKG4sg2bhzlIJsh5WKNY9GfbWe9MUCr6WtcdK4PrLKosMFQGCvc2P6M1/Cs/v6+qRhnncYyzs8fsxowGAw9WO3/sDMeGxzEqFCcambFeFj0BrBovYMZEa+eNr+wbjAk8y5gOOjasJGfsQAAAABJRU5ErkJggg==");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+
+/* ─── Print ─── */
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important;
+          page-break-after: always; break-after: page; page-break-inside: avoid;
+          overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+  <!-- 타이틀 -->
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span>
+        <span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">반비례</div>
+    </div>
+  </div>
+
+  <!-- cbox: 개념01 + 예제01 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">반비례 관계란 무엇인가?</span>
+        </div>
+        <div class="concept-body">
+          <div><span class="hl">(1) <strong>반비례</strong> : 두 변수 $x$, $y$에 대하여 $x$의 값이 2배, 3배, 4배, …로 변함에 따라 $y$의 값은 $\frac{1}{2}$배, $\frac{1}{3}$배, $\frac{1}{4}$배, …로 변할 때, $y$는 $x$에 반비례한다고 한다.</span></div>
+          <div>(2) $y$가 $x$에 반비례하면 <span class="hl">$y=\dfrac{a}{x}\,(a\neq 0)$</span>가 성립한다.</div>
+          <div>▶ 반비례 관계 $y=\dfrac{a}{x}\,(a\neq 0)$에서 $a$는 0이 아닌 일정한 수이고, $x$는 분모이므로 0이 될 수 없다.</div>
+        </div>
+      </div>
+      <!-- 예제01 -->
+      <div class="ex-wrap" style="margin-top:14px;">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">이서가 집에서 18 km 떨어진 공원까지 자전거를 타고 시속 $x$ km로 달렸을 때, 걸린 시간을 $y$시간이라 하자. $y$가 $x$에 반비례하는지 확인하고, $y$를 $x$의 식으로 나타내시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">$y$가 $x$에 반비례할 때, $xy$의 값은 항상 일정하다.<br>즉 $y=\dfrac{a}{x}\,(a\neq 0)$에서 $xy=a$</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$xy=(\text{일정})$이면 $y$는 $x$에 반비례한다</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$y=\dfrac{18}{x}$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 01 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 두 변수 $x$와 $y$ 사이의 관계식을 보고 $y$가 $x$에 정비례하면 '정'을, $y$가 $x$에 반비례하면 '반'을 적으시오.
+            <div class="prob__boogi" style="margin-top:5px; justify-content:center; text-align:center; font-size:13px;">$xy=6$</div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 02 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            다음 □ 안에 알맞은 말을 써넣으시오.
+            <div class="prob__boogi" style="margin-top:5px; display:block; line-height:20px;">두 변수 <span style="display:inline;">$x$</span>, <span style="display:inline;">$y$</span>에 대해 <span style="display:inline;">$y$</span>가 <span style="display:inline;">$x$</span>에 반비례할 때, <span style="display:inline;">$x$</span>의 값이 2배가 되면 <span style="display:inline;">$y$</span>의 값은 □배가 된다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">반비례</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+</div><!-- /page 001 -->
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page">
+  <!-- cbox: 개념02 + 예제02 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념02 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">반비례 관계를 활용한 문제는 어떻게 푸는가?</span>
+        </div>
+        <div class="concept-body">
+          <div>반비례 관계를 활용한 문제를 풀 때에는 다음과 같은 순서로 해결한다.</div>
+          <div>❶ 변수 $x$, $y$ 정하기  ⇒  변하는 두 양을 $x$, $y$로 놓는다.</div>
+          <div>❷ 식 구하기  ⇒  $y$가 $x$에 반비례하면 $y=\dfrac{a}{x}\,(a\neq 0)$로 놓고 $x$와 $y$ 사이의 관계를 식으로 나타낸다.</div>
+          <div>❸ 답 구하기  ⇒  ❷에서 구한 식에 주어진 조건을 대입하여 필요한 값을 구한다.</div>
+        </div>
+      </div>
+      <!-- 예제03 (위치 교체) -->
+      <div class="ex-wrap" style="margin-top:14px;">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">반비례 관계 $y=\dfrac{-6}{x}$에 대하여 $x$의 값이 $-3$, $-2$, $-1$, $1$, $2$, $3$일 때, $x$, $y$의 순서쌍 $(x, y)$를 구하고, 좌표평면 위에 그래프를 그리시오. <span style="font-size:8.5px;color:#539e84;">(반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프 그리기)</span></div>
+            <div style="height:14px; color:#848484; font-size:9px; padding-left:2px;">(그래프)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$x=0$은 대입 불가 — $x\neq 0$인 값들만 순서쌍으로 나열</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$(−3,2)$, $(−2,3)$, $(−1,6)$, $(1,−6)$, $(2,−3)$, $(3,−2)$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 03 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $y$가 $x$에 반비례하고 $x$, $y$ 사이의 관계가 다음 표와 같을 때, $A+B$의 값을 구하시오.
+            <table class="concept-table" style="margin-top:5px;">
+              <tr><th>$x$</th><td>$-4$</td><td>$A$</td><td>$2$</td><td>$4$</td></tr>
+              <tr><th>$y$</th><td>$4$</td><td>$8$</td><td>$-8$</td><td>$B$</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 04 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $x$의 값이 2배, 3배, 4배, …가 될 때, $y$의 값은 $\frac{1}{2}$배, $\frac{1}{3}$배, $\frac{1}{4}$배, …가 되고 $x$, $y$ 사이의 관계가 다음 표와 같을 때, $B-A$의 값은?
+            <table class="concept-table" style="margin-top:5px;">
+              <tr><th>$x$</th><td>$-5$</td><td>$-4$</td><td>$B$</td></tr>
+              <tr><th>$y$</th><td>$\dfrac{2}{5}$</td><td>$A$</td><td>$-\dfrac{1}{4}$</td></tr>
+            </table>
+            <div class="prob__choices-wrap" style="margin-top:5px;">
+              <span>① $-\dfrac{15}{2}$</span>
+              <span>② $-\dfrac{7}{2}$</span>
+              <span>③ $\dfrac{7}{2}$</span>
+              <span>④ $\dfrac{15}{2}$</span>
+              <span>⑤ $\dfrac{23}{2}$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">반비례</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+</div><!-- /page 002 -->
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:16px;">
+
+  <!-- Set 1: 예제02 (위치 교체됨) — 반비례 관계 활용 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">온도가 일정할 때, 기체의 부피는 압력에 반비례한다. 일정한 온도에서 압력이 4기압일 때 부피가 45 cm³인 기체가 있다. $x$기압일 때 기체의 부피를 $y$ cm³라 할 때, $x$와 $y$ 사이의 관계를 식으로 나타내고, 같은 온도에서 압력이 12기압일 때, 이 기체의 부피를 구하시오.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>주어진 조건에서 $a$ 구하기 : $a = xy = 4 \times 45$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text ans-text--1col">
+            <span>$y=\dfrac{180}{x}$</span>
+            <span>$15\,\text{cm}^3$</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 05 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              다음 중 $y$가 $x$에 반비례하는 것을 모두 고르면? (정답 2개)
+              <div class="prob__choices-stack" style="margin-top:4px; font-size:10px;">
+                <span>① 61 L 물통에 분당 $x$ L씩 채울 때 걸리는 시간 $y$분</span>
+                <span>② $p$ km를 시속 $x$ km로 달릴 때 걸린 시간 $y$시간</span>
+                <span>③ 밑넓이 $x$ cm², 높이 6 cm인 기둥의 부피 $y$ cm³</span>
+                <span>④ 가로 10 cm, 세로 $x$ cm인 직사각형의 둘레 $y$ cm</span>
+                <span>⑤ 밑변 $x$ cm, 넓이 25 cm²인 삼각형의 높이 $y$ cm</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 06 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              61 L짜리 물통에 분당 $x$ L씩 물을 채울 때, 가득 채우는 데 걸리는 시간을 $y$분이라 하자. 분당 $x$ L씩 채우면 $y$분이 걸릴 때, $x$와 $y$ 사이의 관계식은?
+              <div class="prob__choices-3col" style="margin-top:4px;">
+                <span>① $y=\dfrac{90}{x}$</span>
+                <span>② $y=\dfrac{6}{x}$</span>
+                <span>③ $y=\dfrac{540}{x}$</span>
+                <span>④ $y=90x$</span>
+                <span>⑤ $y=540x$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Set 2: 예제04 — 반비례 관계 y=a/x(a≠0)의 그래프의 성질 -->
+  <div class="set-block" style="flex:1; display:flex; flex-direction:column;">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">다음 보기 중 반비례 관계 $y=-\dfrac{9}{x}$의 그래프를 고르시오. <span style="font-size:8.5px;color:#539e84;">(반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프)</span></div>
+              <div class="ex-boogi" style="justify-content:space-around; align-items:flex-end;">
+                <!-- ㄱ: y=-x, (3,-3) 통과 -->
+                <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+                  <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="font-family:'Pretendard Variable',Pretendard,sans-serif; overflow:visible;">
+                    <!-- 축 -->
+                    <line x1="5" y1="30" x2="56" y2="30" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="56,30 52,28 52,32" fill="#222"/>
+                    <line x1="30" y1="55" x2="30" y2="4" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="30,4 28,8 32,8" fill="#222"/>
+                    <!-- 원점 O -->
+                    <text x="27" y="34" font-size="6" fill="#222" text-anchor="end">O</text>
+                    <!-- y축 라벨 -->
+                    <text x="33" y="9" font-size="7" fill="#222" text-anchor="start">y</text>
+                    <!-- x축 라벨 -->
+                    <text x="57" y="33" font-size="7" fill="#222" text-anchor="start">x</text>
+                    <!-- 점선: x=3 수직 (sx=48, oy=30 → sy=48) -->
+                    <line x1="48" y1="30" x2="48" y2="48" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 점선: y=-3 수평 (sy=48, ox=30 → sx=48) -->
+                    <line x1="30" y1="48" x2="48" y2="48" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 직선 y=-x (mx=-4→(6,6), mx=4→(54,54)) -->
+                    <line x1="6" y1="6" x2="54" y2="54" stroke="#222" stroke-width="1"/>
+                    <!-- 라벨 "3": x축 아래, 이격 확인: 직선y@x=48→y=48, 라벨y=40, 거리=8px ✓ -->
+                    <text x="48" y="40" font-size="7" fill="#222" text-anchor="middle">3</text>
+                    <!-- 라벨 "-3": y축 왼쪽, 이격 확인: 직선x@y=48→x=48, 라벨x=26, 거리=22px ✓ -->
+                    <text x="26" y="51" font-size="7" fill="#222" text-anchor="end">-3</text>
+                  </svg>
+                  <span style="font-size:9px;">ㄱ</span>
+                </div>
+                <!-- ㄴ: y=-9/x, 2사분면만, (-3,3) 통과 -->
+                <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+                  <svg width="62" height="62" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg" style="font-family:'Pretendard Variable',Pretendard,sans-serif; overflow:visible;">
+                    <!-- x축 -->
+                    <line x1="4" y1="36" x2="57" y2="36" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="57,36 53,34 53,38" fill="#222"/>
+                    <!-- y축 -->
+                    <line x1="32" y1="58" x2="32" y2="3" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="32,3 30,7 34,7" fill="#222"/>
+                    <!-- 원점 O -->
+                    <text x="29" y="43" font-size="6" fill="#222" text-anchor="end">O</text>
+                    <!-- 축 라벨 -->
+                    <text x="35" y="8" font-size="7" fill="#222" text-anchor="start">y</text>
+                    <text x="58" y="39" font-size="7" fill="#222" text-anchor="start">x</text>
+                    <!-- 점선: x=-3 수직 (sx=14, y=36→18) -->
+                    <line x1="14" y1="36" x2="14" y2="18" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 점선: y=3 수평 (sy=18, x=14→32) -->
+                    <line x1="14" y1="18" x2="32" y2="18" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 곡선 y=-9/x (2사분면, x: -1.5→-4.8) -->
+                    <path d="M 23,0 C 22,4 20,8 20,9 C 18,13 16,15 14,18 C 12,20 10,21.5 8,22.5 C 6,23.5 4,24.3 3.2,24.75" fill="none" stroke="#222" stroke-width="1"/>
+                    <!-- 라벨 "-3": x축 아래 -->
+                    <text x="14" y="44" font-size="7" fill="#222" text-anchor="middle">-3</text>
+                    <!-- 라벨 "3": y축 왼쪽 -->
+                    <text x="28" y="21" font-size="7" fill="#222" text-anchor="end">3</text>
+                  </svg>
+                  <span style="font-size:9px;">ㄴ</span>
+                </div>
+                <!-- ㄷ: y=-9/x, 2·4사분면, (-3,3)·(3,-3) 통과 -->
+                <!-- 설계: 62×62, ox=32, oy=32, scale=5 -->
+                <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+                  <svg width="62" height="62" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg" style="font-family:'Pretendard Variable',Pretendard,sans-serif; overflow:visible;">
+                    <!-- x축 -->
+                    <line x1="3" y1="32" x2="59" y2="32" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="59,32 55,30 55,34" fill="#222"/>
+                    <!-- y축 -->
+                    <line x1="32" y1="59" x2="32" y2="3" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="32,3 30,7 34,7" fill="#222"/>
+                    <!-- 원점 O -->
+                    <text x="29.5" y="39" font-size="6" fill="#222" text-anchor="end">O</text>
+                    <!-- 축 라벨 -->
+                    <text x="35" y="8" font-size="7" fill="#222" text-anchor="start">y</text>
+                    <text x="60" y="35" font-size="7" fill="#222" text-anchor="start">x</text>
+                    <!-- 점선: x=-3 수직 (sx=17, oy=32→sy=17) -->
+                    <line x1="17" y1="32" x2="17" y2="17" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 점선: y=3 수평 (sy=17, ox=32→sx=17) -->
+                    <line x1="17" y1="17" x2="32" y2="17" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 2사분면 곡선 -->
+                    <path d="M 23,7 C 22,8.5 21,9 22,9.5 C 20,12 19,14 17,17 C 14,19.5 12,20.75 7,23 C 6,23.5 5,23.8 4,24" fill="none" stroke="#222" stroke-width="1"/>
+                    <!-- 4사분면 곡선 -->
+                    <path d="M 41,57 C 42,55.5 42,54.5 44.5,50 C 46,48 47,47 52,43.25 C 55,41.5 57,41 60,40" fill="none" stroke="#222" stroke-width="1"/>
+                    <!-- 라벨 "-3": x축 아래 -->
+                    <text x="17" y="41" font-size="7" fill="#222" text-anchor="middle">-3</text>
+                    <!-- 라벨 "3": y축 왼쪽 -->
+                    <text x="28" y="20" font-size="7" fill="#222" text-anchor="end">3</text>
+                  </svg>
+                  <span style="font-size:9px;">ㄷ</span>
+                </div>
+                <!-- ㄹ: y=9/x, 1·3사분면, (3,3)·(-3,-3) 통과 -->
+                <!-- 설계: 62×62, ox=32, oy=32, scale=5
+                     1사분면: (1.8,5)→(41,7) / (2,4.5)→(42,9.5) / (2.5,3.6)→(44.5,14) / (3,3)→(47,17)
+                             / (4,2.25)→(52,20.75) / (5,1.8)→(57,23) / (5.6,1.6)→(60,24)
+                     3사분면: (-1.8,-5)→(23,57) / (-2,-4.5)→(22,54.5) / (-2.5,-3.6)→(19.5,50)
+                             / (-3,-3)→(17,47) / (-4,-2.25)→(12,43.25) / (-5,-1.8)→(7,41) / (-5.6,-1.6)→(4,40)
+                     점선: x=3 수직 (47,32)→(47,17) / y=3 수평 (32,17)→(47,17)
+                     "3"(x축): x=47,y=41 / "3"(y축): x=36,y=20 -->
+                <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+                  <svg width="62" height="62" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg" style="font-family:'Pretendard Variable',Pretendard,sans-serif; overflow:visible;">
+                    <!-- x축 -->
+                    <line x1="3" y1="32" x2="59" y2="32" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="59,32 55,30 55,34" fill="#222"/>
+                    <!-- y축 -->
+                    <line x1="32" y1="59" x2="32" y2="3" stroke="#222" stroke-width="0.8"/>
+                    <polygon points="32,3 30,7 34,7" fill="#222"/>
+                    <!-- 원점 O -->
+                    <text x="29.5" y="39" font-size="6" fill="#222" text-anchor="end">O</text>
+                    <!-- 축 라벨 -->
+                    <text x="35" y="8" font-size="7" fill="#222" text-anchor="start">y</text>
+                    <text x="60" y="35" font-size="7" fill="#222" text-anchor="start">x</text>
+                    <!-- 점선: x=3 수직 (sx=47, oy=32→sy=17) -->
+                    <line x1="47" y1="32" x2="47" y2="17" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 점선: y=3 수평 (sy=17, ox=32→sx=47) -->
+                    <line x1="32" y1="17" x2="47" y2="17" stroke="#aaa" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <!-- 1사분면 곡선 y=9/x -->
+                    <path d="M 41,7 C 42,9 42,9.5 44.5,14 C 46,16 47,17 52,20.75 C 55,22.5 57,23 60,24" fill="none" stroke="#222" stroke-width="1"/>
+                    <!-- 3사분면 곡선 y=9/x -->
+                    <path d="M 23,57 C 22,55.5 22,54.5 19.5,50 C 18,48 17,47 12,43.25 C 9,41.5 7,41 4,40" fill="none" stroke="#222" stroke-width="1"/>
+                    <!-- 라벨 "3"(x축 아래): 이격 확인: 곡선y@x=47→sy=17, 라벨y=41, 거리=24px ✓ -->
+                    <text x="47" y="41" font-size="7" fill="#222" text-anchor="middle">3</text>
+                    <!-- 라벨 "3"(y축 오른쪽): sy=17, 이격 확인: 곡선sx@sy=17→sx=47, 라벨x=36, 거리=11px ✓ -->
+                    <text x="36" y="20" font-size="7" fill="#222" text-anchor="start">3</text>
+                  </svg>
+                  <span style="font-size:9px;">ㄹ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>$a&lt;0$ 이면 그래프가 제2·4사분면에 위치한다</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">ㄹ</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 07 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              다음 반비례 관계의 그래프 중 원점에서 가장 가까운 것은?
+              <div class="prob__choices-3col" style="margin-top:4px;">
+                <span>① $y=-\dfrac{2}{x}$</span>
+                <span>② $y=-\dfrac{1}{13x}$</span>
+                <span>③ $y=\dfrac{1}{9x}$</span>
+                <span>④ $y=\dfrac{1}{x}$</span>
+                <span>⑤ $y=\dfrac{5}{x}$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 08 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              다음 반비례 관계의 그래프 중 $x$좌표축에 가장 가까운 것은?
+              <div class="prob__choices-3col" style="margin-top:4px;">
+                <span>① $y=-\dfrac{4}{x}$</span>
+                <span>② $y=-\dfrac{1}{4x}$</span>
+                <span>③ $y=\dfrac{1}{5x}$</span>
+                <span>④ $y=\dfrac{6}{x}$</span>
+                <span>⑤ $y=\dfrac{2}{x}$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span class="page-footer__topic">반비례</span>
+        <span class="page-footer__num">003</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page 003 -->
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:24px; justify-content:space-between;">
+
+  <!-- Set 1: 예제05 — 반비례 관계 y=a/x(a≠0)의 그래프가 지나는 점 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">반비례 관계 $y=\dfrac{a}{x}$의 그래프가 두 점 $(2, -3)$, $(-1, b)$를 지날 때, $a+b$의 값을 구하시오. (단, $a$는 상수이다.) <span style="font-size:8.5px;color:#539e84;">(반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프가 지나는 점)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>그래프가 점 $(p, q)$를 지나면  ⇒  $q=\dfrac{a}{p}$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$-12$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 09 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              반비례 관계 $y=\dfrac{a}{x}$의 그래프가 두 점 $(2,\,-12)$, $(b,\,4)$를 지날 때, $b-a$의 값은? (단, $a$는 상수)
+              <div class="prob__choices-wrap" style="margin-top:4px;">
+                <span>① $-30$</span><span>② $-18$</span><span>③ $18$</span><span>④ $24$</span><span>⑤ $30$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 10 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              반비례 관계 $y=-\dfrac{a}{x}$의 그래프가 두 점 $(2,\,2)$, $(k-2,\,-1)$를 지날 때, $a$의 값은? (단, $a$는 상수)
+              <div class="prob__choices-wrap" style="margin-top:4px;">
+                <span>① $-3$</span><span>② $-2$</span><span>③ $1$</span><span>④ $2$</span><span>⑤ $3$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Set 2: 예제06 — 반비례 관계 y=a/x(a≠0)의 그래프의 성질 심화 -->
+  <div class="set-block" style="flex:1; display:flex; flex-direction:column;">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">다음 중 반비례 관계 $y=-\dfrac{8}{x}$의 그래프에 대한 설명으로 옳지 않은 것을 모두 고르면? <span style="font-size:8px; color:#848484;">(정답 2개)</span> <span style="font-size:8.5px;color:#539e84;">(반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프의 성질)</span>
+                <div class="prob__choices-stack" style="margin-top:4px; font-size:10px;">
+                  <span>① 원점을 지나는 한 쌍의 곡선이다.</span>
+                  <span>② 제2사분면과 제4사분면을 지난다.</span>
+                  <span>③ 점 $(-4,\,2)$를 지난다.</span>
+                  <span>④ $y=-\dfrac{4}{x}$의 그래프보다 원점에 더 가깝다.</span>
+                  <span>⑤ $x&gt;0$일 때, $x$의 값이 증가하면 $y$의 값은 증가한다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>각 선지를 $y=-\frac{8}{x}$에 대입하거나 성질과 비교해 옳고 그름 판단</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">①, ④</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner" style="flex:none;">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 11 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              $y=-\dfrac{3}{x}$에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?
+              <div class="prob__boogi" style="margin-top:4px; flex-direction:column; gap:2px; font-size:10px;">
+                <span>ㄱ. $y$는 $x$에 반비례한다.</span>
+                <span>ㄴ. $x$가 2배가 되면 $y$는 $\frac{1}{2}$배가 된다.</span>
+                <span>ㄷ. $x=6$일 때 $y=-\frac{1}{2}$이다.</span>
+              </div>
+              <div class="prob__choices-3col" style="margin-top:4px;">
+                <span>① ㄱ</span><span>② ㄱ, ㄴ</span><span>③ ㄱ, ㄷ</span><span>④ ㄴ, ㄷ</span><span>⑤ ㄱ, ㄴ, ㄷ</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 12 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              반비례 관계 $y=-\dfrac{21}{x}$의 그래프에 대한 설명 중 옳은 것은?
+              <div class="prob__choices-stack" style="font-size:10px; margin-top:4px;">
+                <span>① 제1·3사분면을 지난다.</span>
+                <span>② $x$가 2배, 3배, …이면 $y$도 2배, 3배, …이다.</span>
+                <span>③ 점 $\left(6,\,-\dfrac{2}{7}\right)$를 지난다.</span>
+                <span>④ 원점을 지나는 직선이다.</span>
+                <span>⑤ $y=-\dfrac{2}{x}$의 그래프보다 원점에서 멀다.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">반비례</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 -->
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<div class="page" style="gap:8px; justify-content:space-between;">
+
+  <!-- Set 1: 예제07 — 반비례 관계의 그래프가 주어진 경우 식 구하기 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">07</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">오른쪽 그림과 같은 그래프가 두 점 $(4, -3)$, $(-8, k)$를 지날 때, $k$의 값은? <span style="font-size:8.5px;color:#539e84;">(반비례 관계의 그래프가 주어진 경우 식 구하기)</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" width="200" height="141" font-family="serif" style="display:block; margin:4px 0;">
+                  <rect x="0" y="0" width="680" height="480" fill="white"/>
+                  <g stroke="#888" stroke-width="0.9" stroke-dasharray="3,3" fill="none">
+                    <line x1="148" y1="200" x2="340" y2="200"/>
+                    <line x1="148" y1="200" x2="148" y2="260"/>
+                    <line x1="340" y1="380" x2="436" y2="380"/>
+                    <line x1="436" y1="260" x2="436" y2="380"/>
+                  </g>
+                  <line x1="60" y1="260" x2="640" y2="260" stroke="black" stroke-width="1.3"/>
+                  <polygon points="640,260 630,255 630,265" fill="black"/>
+                  <line x1="340" y1="450" x2="340" y2="40" stroke="black" stroke-width="1.3"/>
+                  <polygon points="340,40 335,50 345,50" fill="black"/>
+                  <text x="650" y="266" font-size="34" font-style="italic">x</text>
+                  <text x="348" y="50" font-size="34" font-style="italic">y</text>
+                  <text x="356" y="288" font-size="34" font-style="italic">O</text>
+                  <polyline points="52,220 76,216 100,212 124,206 148,200 172,192 196,180 220,164 244,140 268,100 280,68 286,48 290,40" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="394,440 400,425 412,400 424,388 436,380 448,370 460,360 472,352 484,344 508,332 532,322 556,316 580,310 604,305 628,302" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="148" cy="200" r="5" fill="black"/>
+                  <circle cx="436" cy="380" r="5" fill="black"/>
+                  <text x="148" y="300" font-size="34" text-anchor="middle">−8</text>
+                  <text x="436" y="248" font-size="34" text-anchor="middle">4</text>
+                  <text x="356" y="208" font-size="34" font-style="italic">k</text>
+                  <text x="322" y="390" font-size="34" text-anchor="end">−3</text>
+                </svg>
+                <div class="prob__choices-wrap" style="margin-top:4px;">
+                  <span>① $1$</span><span>② $\dfrac{3}{2}$</span><span>③ $2$</span><span>④ $\dfrac{5}{2}$</span><span>⑤ $3$</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>그래프가 지나는 한 점 → $a$ 계산 → 두 번째 점 대입</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">②</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 13 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">13</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              반비례 관계 $y=\dfrac{a}{x}$ $(a\neq 0)$의 그래프가 다음 그림과 같을 때, 점 P의 $x$좌표를 구하시오. (단, $a$는 상수)
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 520" width="200" height="217" font-family="serif" style="display:block; margin:4px 0;">
+                <rect x="0" y="0" width="480" height="520" fill="white"/>
+                <g stroke="#888" stroke-width="0.9" stroke-dasharray="3,3" fill="none">
+                  <line x1="150" y1="140" x2="240" y2="140"/>
+                  <line x1="150" y1="140" x2="150" y2="260"/>
+                  <line x1="240" y1="440" x2="300" y2="440"/>
+                  <line x1="300" y1="260" x2="300" y2="440"/>
+                </g>
+                <line x1="40" y1="260" x2="450" y2="260" stroke="black" stroke-width="1.3"/>
+                <polygon points="450,260 440,255 440,265" fill="black"/>
+                <line x1="240" y1="495" x2="240" y2="30" stroke="black" stroke-width="1.3"/>
+                <polygon points="240,30 235,40 245,40" fill="black"/>
+                <text x="458" y="268" font-size="24" font-style="italic">x</text>
+                <text x="248" y="50" font-size="24" font-style="italic">y</text>
+                <text x="252" y="284" font-size="24" font-style="italic">O</text>
+                <polyline points="30,224 45,217 60,210 75,202 90,193 105,183 120,170 135,156 150,140 165,116 180,80 192,46 198,30" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="285,495 290,470 295,455 300,440 308,420 315,404 322,390 330,380 345,363 360,350 375,340 390,332 405,326 420,320 435,315 450,311" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="150" cy="140" r="5" fill="black"/>
+                <circle cx="300" cy="440" r="5" fill="black"/>
+                <text x="144" y="284" font-size="24" text-anchor="end">−3</text>
+                <text x="258" y="148" font-size="24">4</text>
+                <text x="310" y="454" font-size="24" font-weight="bold">P</text>
+                <text x="230" y="448" font-size="24" text-anchor="end">−6</text>
+              </svg>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 14 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">14</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              반비례 관계 $y=-\dfrac{a}{x}$의 그래프가 두 점 $(-2,\,1)$, $(b,\,4)$를 지날 때, $ab$의 값은? (단, $a$는 상수)
+              <div class="prob__choices-wrap" style="margin-top:4px;">
+                <span>① $-2$</span><span>② $-1$</span><span>③ $0$</span><span>④ $1$</span><span>⑤ $2$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">반비례</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<div class="page" style="gap:8px; justify-content:space-between;">
+
+  <!-- Set 1: 예제08 — 정비례 관계와 반비례 관계의 그래프가 만나는 점 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">08</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content" style="display:flex; flex-direction:row; align-items:flex-start; gap:10px;">
+              <div style="flex:1; min-width:0;">
+                <div class="ex-q">오른쪽 그림은 정비례 관계 $y=\dfrac{3}{2}x$의 그래프와 반비례 관계 $y=\dfrac{a}{x}$의 그래프이다. 두 그래프가 만나는 점 A의 $y$좌표가 6일 때, 상수 $a$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(정비례 관계와 반비례 관계의 그래프가 만나는 점)</span></div>
+              </div>
+              <div style="flex:0 0 130px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 480" width="130" height="112" style="display:block;">
+                  <rect x="0" y="0" width="560" height="480" fill="white"/>
+                  <g stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" fill="none">
+                    <line x1="240" y1="96" x2="336" y2="96"/>
+                  </g>
+                  <line x1="40" y1="240" x2="450" y2="240" stroke="black" stroke-width="1.8"/>
+                  <polygon points="450,240 438,233 438,247" fill="black"/>
+                  <line x1="240" y1="455" x2="240" y2="25" stroke="black" stroke-width="1.8"/>
+                  <polygon points="240,25 233,37 247,37" fill="black"/>
+                  <text x="460" y="258" font-size="43" font-style="italic" font-family="serif">x</text>
+                  <text x="250" y="22" font-size="43" font-style="italic" font-family="serif">y</text>
+                  <text x="252" y="280" font-size="40" font-style="italic" font-family="serif">O</text>
+                  <line x1="100" y1="450" x2="378" y2="33" stroke="black" stroke-width="2.2"/>
+                  <polyline points="297.6,0 300,9.6 304.8,26.6 312,48 319.2,65.5 324,75.4 328.8,84.3 336,96 348,112 360,124.8 372,135.3 384,144 396,151.6 408,157.7 420,162.9 432,168 444,172.4 456,176" fill="none" stroke="black" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="24,304 36,308 48,312 60,318 72,322.3 84,328.6 96,336 108,344.5 120,355.2 132,368 144,384 156,404.6 168,432 174,449" fill="none" stroke="black" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="336" cy="96" r="6" fill="black"/>
+                  <text x="348" y="88" font-size="44" font-weight="bold" font-family="serif">A</text>
+                  <text x="230" y="116" font-size="40" text-anchor="end" font-family="serif">6</text>
+                  <g font-family="serif">
+                    <text x="385" y="55" font-size="42" font-style="italic">y =</text>
+                    <text x="468" y="40" font-size="38" font-style="italic" text-anchor="middle">3</text>
+                    <line x1="454" y1="48" x2="482" y2="48" stroke="black" stroke-width="2"/>
+                    <text x="468" y="78" font-size="38" font-style="italic" text-anchor="middle">2</text>
+                    <text x="490" y="62" font-size="42" font-style="italic">x</text>
+                  </g>
+                  <g font-family="serif">
+                    <text x="465" y="180" font-size="42" font-style="italic">y =</text>
+                    <text x="540" y="165" font-size="38" font-style="italic" text-anchor="middle">a</text>
+                    <line x1="526" y1="173" x2="554" y2="173" stroke="black" stroke-width="2"/>
+                    <text x="540" y="203" font-size="38" font-style="italic" text-anchor="middle">x</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>$y=\frac{3}{2}x$에 $y=6$ 대입 → 교점의 $x$ 좌표 계산</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$24$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 15 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">15</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              다음 그림은 $y=\dfrac{a}{x}$, $y=3x$의 그래프이다. 이때 $a+b$의 값은? (단, $a$는 상수)
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="200" height="200" font-family="serif" style="display:block; margin:4px 0;">
+                <rect x="0" y="0" width="480" height="480" fill="white"/>
+                <g stroke="#888" stroke-width="0.9" stroke-dasharray="3,3" fill="none">
+                  <line x1="300" y1="96" x2="240" y2="96"/>
+                  <line x1="300" y1="96" x2="300" y2="240"/>
+                </g>
+                <line x1="40" y1="240" x2="450" y2="240" stroke="black" stroke-width="1.3"/>
+                <polygon points="450,240 440,235 440,245" fill="black"/>
+                <line x1="240" y1="455" x2="240" y2="25" stroke="black" stroke-width="1.3"/>
+                <polygon points="240,25 235,35 245,35" fill="black"/>
+                <text x="458" y="246" font-size="24" font-style="italic">x</text>
+                <text x="248" y="40" font-size="24" font-style="italic">y</text>
+                <text x="222" y="262" font-size="24" font-style="italic">O</text>
+                <line x1="165" y1="420" x2="315" y2="60" stroke="black" stroke-width="2"/>
+                <polyline points="276,0 279,18.5 282,34.3 285,48 288,60 291,70.6 294,80 297,88.4 300,96 306,109.1 312,120 318,129.2 324,137.1 330,144 339,152.7 348,160 360,168 375,176 390,182.4 405,187.6 420,192 435,195.7 450,198.9" fill="none" stroke="black" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="30,281.1 60,288 75,292.4 90,297.6 105,304 120,312 132,320 141,327.3 150,336 156,342.9 162,350.8 168,360 174,370.9 180,384 183,391.6 186,400 189,409.4 192,420 195,432 198,445.7 201,461.5 204,480" fill="none" stroke="black" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="300" cy="96" r="4" fill="black"/>
+                <text x="330" y="55" font-size="24" font-style="italic">y = 3x</text>
+                <text x="232" y="102" font-size="24" font-style="italic" text-anchor="end">b</text>
+                <text x="300" y="262" font-size="24" text-anchor="middle">2</text>
+              </svg>
+              <div class="prob__choices-wrap" style="margin-top:3px;">
+                <span>① $12$</span><span>② $14$</span><span>③ $16$</span><span>④ $18$</span><span>⑤ $20$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 16 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">16</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              다음 그림과 같이 정비례 관계 $y=ax$와 반비례 관계 $y=-\dfrac{10}{x}$의 그래프가 점 $(b,\,-2)$에서 만날 때, $a$의 값을 구하시오. (단, $a$는 상수)
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" width="200" height="186" font-family="serif" style="display:block; margin:4px 0;">
+                <rect x="0" y="0" width="560" height="520" fill="white"/>
+                <g stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" fill="none">
+                  <line x1="390" y1="240" x2="390" y2="288"/>
+                  <line x1="240" y1="288" x2="390" y2="288"/>
+                </g>
+                <line x1="20" y1="240" x2="500" y2="240" stroke="black" stroke-width="1.5"/>
+                <polygon points="500,240 488,234 488,246" fill="black"/>
+                <line x1="240" y1="500" x2="240" y2="20" stroke="black" stroke-width="1.5"/>
+                <polygon points="240,20 234,32 246,32" fill="black"/>
+                <text x="508" y="248" font-size="28" font-style="italic">x</text>
+                <text x="250" y="38" font-size="28" font-style="italic">y</text>
+                <text x="220" y="265" font-size="28" font-style="italic">O</text>
+                <line x1="0" y1="163.2" x2="480" y2="316.8" stroke="black" stroke-width="2"/>
+                <polyline points="267,506.6 270,480 273,458.2 276,440 279,424.6 282,411.4 285,400 288,390 291,381.2 294,373.4 297,366.3 300,360 309,344.3 318,332.3 330,320 345,308.6 360,300 375,293.3 390,288 405,283.6 420,280 450,274.3 480,270 510,266.7 540,264" fill="none" stroke="black" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="213,-26.6 210,0 207,21.8 204,40 201,55.4 198,68.6 195,80 192,90 189,98.8 186,106.6 183,113.7 180,120 171,135.7 162,147.7 150,160 135,171.4 120,180 105,186.7 90,192 75,196.4 60,200 30,205.7 0,210" fill="none" stroke="black" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="390" cy="288" r="4" fill="black"/>
+                <text x="50" y="100" font-size="28" font-style="italic">y = ax</text>
+                <text x="390" y="232" font-size="28" font-style="italic" text-anchor="middle">b</text>
+                <text x="232" y="295" font-size="26" text-anchor="end">−2</text>
+                <g>
+                  <text x="380" y="445" font-size="28" font-style="italic">y = −</text>
+                  <text x="448" y="436" font-size="26" font-style="italic" text-anchor="middle">10</text>
+                  <line x1="438" y1="442" x2="460" y2="442" stroke="black" stroke-width="1.5"/>
+                  <text x="448" y="464" font-size="26" font-style="italic" text-anchor="middle">x</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">반비례</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 -->
+
+<!-- ═══════════════════════ PAGE 008 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">반비례 관계란 무엇인가?</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>(1) 반비례 :</strong> $x$의 값이 2배, 3배, 4배, …로 변함에 따라 $y$의 값이 $\frac{1}{2}$배, $\frac{1}{3}$배, $\frac{1}{4}$배, …로 변할 때, $y$는 $x$에 반비례한다.</div>
+        <div><strong>(2)</strong> $y$가 $x$에 반비례하면 $y=\dfrac{a}{x}\,(a\neq 0)$ &nbsp;⇔&nbsp; $xy=a$ (일정)</div>
+        <div>▶ $a$는 0이 아닌 일정한 수이고, $x$는 0이 될 수 없다.</div>
+      </div>
+    </div>
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">반비례 관계를 활용한 문제 풀이</span>
+      </div>
+      <div class="kaynun-body">
+        <div>❶ 변수 $x$, $y$ 정하기 &nbsp;⇒&nbsp; 변하는 두 양을 $x$, $y$로 놓는다.</div>
+        <div>❷ 식 구하기 &nbsp;⇒&nbsp; $y=\dfrac{a}{x}\,(a\neq 0)$로 놓고 관계식으로 나타낸다.</div>
+        <div>❸ 답 구하기 &nbsp;⇒&nbsp; 구한 식에 조건을 대입하여 필요한 값을 구한다.</div>
+      </div>
+    </div>
+    <!-- 개념 03 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">반비례 관계 $y=\dfrac{a}{x}\,(a\neq 0)$의 그래프</span>
+      </div>
+      <div class="kaynun-body">
+        <table class="kaynun-table">
+          <tr>
+            <th></th>
+            <th>$a&gt;0$일 때</th>
+            <th>$a&lt;0$일 때</th>
+          </tr>
+          <tr>
+            <td>지나는 사분면</td>
+            <td>제1·제3사분면</td>
+            <td>제2·제4사분면</td>
+          </tr>
+          <tr>
+            <td>증감 상태</td>
+            <td>각 사분면에서 $x$ 증가 → $y$ 감소</td>
+            <td>각 사분면에서 $x$ 증가 → $y$ 증가</td>
+          </tr>
+          <tr>
+            <td>$|a|$ 크기</td>
+            <td colspan="2">$|a|$이 클수록 원점에서 멀다</td>
+          </tr>
+        </table>
+        <div>▶ $x=0$, $y=0$인 점은 그래프 위에 없다. &nbsp;▶ 그래프는 항상 점 $(1, a)$를 지난다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">반비례</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 -->
+
+<!-- ═══════════════════════ PAGE 008 (한눈에보기) ═══════════════════════ -->
+<div class="page">
+  <!-- 유형익히기 헤더 -->
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <!-- 유형 문제 그리드 -->
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 좌측 컬럼 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+
+      <!-- 유형 01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">반비례 관계의 활용(1) 반비례 관계 찾기</span>
+        </div>
+        <div class="umuri-q">
+          다음 보기 중 $y$가 $x$에 반비례하는 것의 개수는?
+          <div class="umuri-boogi">
+            <span>ㄱ. 한 개에 700원인 지우개 $x$개의 가격 $y$원</span>
+            <span>ㄴ. 밑변의 길이가 5 cm, 넓이가 $x$ cm²인 삼각형의 높이 $y$ cm</span>
+            <span>ㄷ. 가로의 길이가 3 cm, 세로의 길이가 $x$ cm인 직사각형의 둘레 $y$ cm</span>
+            <span>ㄹ. 길이가 17 cm인 연필을 $x$ cm 쓰고 남은 연필의 길이 $y$ cm</span>
+          </div>
+          <div class="umuri-choices-wrap">
+            <span>① 0</span><span>② 1</span><span>③ 2</span><span>④ 3</span><span>⑤ 4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형 02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">반비례 관계식 구하기</span>
+        </div>
+        <div class="umuri-q">
+          $x$의 값이 2배, 3배, 4배, …가 될 때, $y$의 값은 $\frac{1}{2}$배, $\frac{1}{3}$배, $\frac{1}{4}$배, …가 되고 $x=5$일 때 $y=-2$이다. $x=4$일 때, $y$의 값을 구하시오.
+        </div>
+      </div>
+
+      <!-- 유형 03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">반비례 관계의 활용(2) $x$와 $y$ 사이의 관계식 나타내기</span>
+        </div>
+        <div class="umuri-q">
+          넓이가 24 cm²인 삼각형의 밑변의 길이를 $x$ cm, 높이를 $y$ cm라 할 때, $x$와 $y$의 관계식은?
+          <div class="umuri-choices-3col">
+            <span>① $y=\dfrac{1}{18}x$</span>
+            <span>② $y=\dfrac{1}{24}x$</span>
+            <span>③ $y=\dfrac{1}{12}x$</span>
+            <span>④ $y=\dfrac{24}{x}$</span>
+            <span>⑤ $y=\dfrac{48}{x}$</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /좌측 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 우측 컬럼 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+
+      <!-- 유형 04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프</span>
+        </div>
+        <div class="umuri-q">
+          <div style="display:flex; align-items:flex-start; gap:8px;">
+            <span style="flex:1;">다음 보기 중 아래 그래프가 나타내는 $x$와 $y$ 사이의 관계식이 될 수 있는 것을 고르시오.</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="112" height="112" font-family="serif" style="flex-shrink:0;">
+            <rect x="0" y="0" width="480" height="480" fill="white"/>
+            <line x1="20" y1="240" x2="460" y2="240" stroke="black" stroke-width="1.5"/>
+            <polygon points="460,240 448,234 448,246" fill="black"/>
+            <line x1="240" y1="460" x2="240" y2="20" stroke="black" stroke-width="1.5"/>
+            <polygon points="240,20 234,32 246,32" fill="black"/>
+            <text x="466" y="248" font-size="30" font-style="italic">x</text>
+            <text x="250" y="38" font-size="30" font-style="italic">y</text>
+            <text x="218" y="268" font-size="30" font-style="italic">O</text>
+            <polyline points="211.2,0 206.4,34.3 204,48 199.2,70.6 196,82 192,96 187,108 182.4,120 175,132 168,144 162,151 156,157.7 150,163 144,168 132,176 120,182.4 108,188 96,192 84,196 72,198.9 60,201 48,204 36,206 24,208 12,210 0,211.2" fill="none" stroke="black" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="268.8,480 273.6,445.7 276,432 280.8,409.4 284,398 288,384 293,372 297.6,360 305,348 312,336 318,329 324,322.3 330,317 336,312 348,304 360,297.6 372,292 384,288 396,284 408,281.1 420,278 432,276 444,274 456,272 468,270 480,268.8" fill="none" stroke="black" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          </div>
+          <div class="umuri-boogi">
+            <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;">
+              <span>ㄱ. $y=\dfrac{5}{1}x$</span>
+              <span>ㄴ. $y=-x$</span>
+              <span>ㄷ. $y=-\dfrac{3}{x}$</span>
+              <span>ㄹ. $y=\dfrac{6}{x}$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형 05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프에서 $a$의 값 구하기</span>
+        </div>
+        <div class="umuri-q">
+          반비례 관계 $y=\dfrac{a}{2x}\,(x\neq 0)$의 그래프가 두 점 $\left(1, -\dfrac{3}{2}\right)$과 $(3, m)$을 지날 때, $m$의 값은? (단, $a$는 상수)
+          <div class="umuri-choices-3col">
+            <span>① $-\dfrac{5}{2}$</span>
+            <span>② $-2$</span>
+            <span>③ $-\dfrac{3}{2}$</span>
+            <span>④ $-1$</span>
+            <span>⑤ $-\dfrac{1}{2}$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형 06 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">06</span>
+          <span class="umuri-desc">정비례 관계와 반비례 관계의 그래프가 만나는 점</span>
+        </div>
+        <div class="umuri-q">
+          다음 그림과 같이 $y=ax\,(a\neq 0)$의 그래프와 $y=\dfrac{b}{x}\,(b\neq 0)$의 그래프가 점 P$(8, 3)$에서 만날 때, $ab$의 값을 구하시오. (단, $a$, $b$는 상수)
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 440" width="180" height="132" font-family="serif" style="display:block; margin:4px 0;">
+  <rect x="0" y="0" width="600" height="440" fill="white"/>
+  <g stroke="#888" stroke-width="1.4" stroke-dasharray="5,4" fill="none">
+    <line x1="60" y1="272" x2="348" y2="272"/>
+    <line x1="348" y1="272" x2="348" y2="380"/>
+  </g>
+  <line x1="20" y1="380" x2="560" y2="380" stroke="black" stroke-width="1.8"/>
+  <polygon points="560,380 546,373 546,387" fill="black"/>
+  <line x1="60" y1="425" x2="60" y2="20" stroke="black" stroke-width="1.8"/>
+  <polygon points="60,20 53,34 67,34" fill="black"/>
+  <text x="568" y="392" font-size="34" font-style="italic">x</text>
+  <text x="68" y="26" font-size="34" font-style="italic">y</text>
+  <text x="36" y="408" font-size="32" font-style="italic">O</text>
+  <line x1="60" y1="380" x2="528" y2="204.5" stroke="black" stroke-width="2.4"/>
+  <polyline
+    points="142.8,4.4 146.4,20 150,34.4 153.6,47.7 157.2,60 160.8,71.4 168,92 175.2,110 178.8,118.3 186,133.2 189.6,140 196.8,152.5 204,164 214.8,179 222,188 232.8,200 240,207.2 250.8,216.9 258,223 268.8,230.9 276,236 286.8,242.9 294,247 304.8,252.9 312,256.5 322.8,261.6 330,264.8 337.2,267.8 348,272 358.8,275.8 366,278.5 376.8,281.7 384,284 402,289 420,293.6 438,297.6 456,301.4 474,304.8 492,308 510,310.8 528,313.4 546,316 564,318.3 582,320.4 600,322.4"
+    fill="none" stroke="black" stroke-width="2.6"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="348" cy="272" r="5" fill="black"/>
+  <g>
+    <text x="196" y="82" font-size="34" font-style="italic">y =</text>
+    <text x="268" y="64" font-size="32" font-style="italic" text-anchor="middle">b</text>
+    <line x1="252" y1="72" x2="284" y2="72" stroke="black" stroke-width="1.8"/>
+    <text x="268" y="100" font-size="32" font-style="italic" text-anchor="middle">x</text>
+  </g>
+  <text x="426" y="238" font-size="34" font-style="italic">y = ax</text>
+  <text x="358" y="260" font-size="34" font-weight="bold">P</text>
+  <text x="46" y="280" font-size="32" text-anchor="end">3</text>
+  <text x="348" y="408" font-size="32" text-anchor="middle">8</text>
+</svg>
+        </div>
+      </div>
+
+    </div><!-- /우측 -->
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">반비례</span>
+    <span class="page-footer__num">008</span>
+  </div>
+</div><!-- /page 008 -->
+
+<!-- ═══════════════════════ PAGE 009 ═══════════════════════ -->
+<div class="page">
+  <!-- 유형익히기 헤더 (cont.) -->
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <!-- 유형 문제 그리드 (07~08) -->
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 좌측 컬럼 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+
+      <!-- 유형 07 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">07</span>
+          <span class="umuri-desc">반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프 위의 점(2) 좌표가 자연수인 경우</span>
+        </div>
+        <div class="umuri-q">
+          반비례 관계 $y=\dfrac{24}{x}$의 그래프 위에 있는 점 중에서 $x$좌표와 $y$좌표가 모두 자연수인 점의 개수를 구하시오.
+        </div>
+      </div>
+
+    </div><!-- /좌측 -->
+
+    <div class="umuri-sep"></div>
+
+    <!-- 우측 컬럼 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+
+      <!-- 유형 08 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">08</span>
+          <span class="umuri-desc">반비례 관계 $y=\frac{a}{x}(a\neq 0)$의 그래프와 도형의 넓이</span>
+        </div>
+        <div class="umuri-q">
+          다음 그림과 같이 반비례 관계 $y=\dfrac{4}{x}$ $(x>0)$의 그래프 위의 점 A와 원점 O, 점 B$(5,\,0)$으로 이루어지는 삼각형 OAB의 넓이를 구하시오.
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" width="180" height="141" font-family="serif" style="display:block; margin:4px 0;">
+  <rect x="0" y="0" width="560" height="440" fill="white"/>
+  <polygon points="60,380 210,313.3 360,380"
+    fill="#7fc8b8" fill-opacity="0.65" stroke="black" stroke-width="1.6"/>
+  <polyline points="200,370 200,360 210,360"
+    fill="none" stroke="black" stroke-width="1.4"/>
+  <line x1="210" y1="313.3" x2="210" y2="380"
+    stroke="#444" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <line x1="20" y1="380" x2="520" y2="380" stroke="black" stroke-width="1.8"/>
+  <polygon points="520,380 506,373 506,387" fill="black"/>
+  <line x1="60" y1="425" x2="60" y2="20" stroke="black" stroke-width="1.8"/>
+  <polygon points="60,20 53,34 67,34" fill="black"/>
+  <text x="528" y="392" font-size="34" font-style="italic">x</text>
+  <text x="68" y="26" font-size="34" font-style="italic">y</text>
+  <text x="36" y="408" font-size="32" font-style="italic">O</text>
+  <polyline
+    points="90,46.7 95,94.3 100,130 105,158 110,180 115,198 120,213.3 125,226 130,237 135,246.5 140,255 145,262.5 150,269 155,275 160,280 175,293 190,303 200,308.5 210,313.3 225,319.5 240,324.5 250,327.5 260,330 272,332.9 285,335.7 297,337.8 310,340 322,341.9 335,343.6 348,345.2 360,346.7 372,348 385,349.2 398,350.4 410,351.4 423,352.4 435,353.3 448,354.2 460,355 485,356.5 510,357.8"
+    fill="none" stroke="black" stroke-width="2.6"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="210" cy="313.3" r="4.5" fill="black"/>
+  <g>
+    <text x="136" y="82" font-size="36" font-style="italic">y =</text>
+    <text x="220" y="64" font-size="34" font-style="italic" text-anchor="middle">4</text>
+    <line x1="204" y1="73" x2="236" y2="73" stroke="black" stroke-width="1.8"/>
+    <text x="220" y="102" font-size="34" font-style="italic" text-anchor="middle">x</text>
+  </g>
+  <text x="222" y="305" font-size="36" font-weight="bold">A</text>
+  <text x="360" y="418" font-size="36" font-weight="bold" text-anchor="middle">B</text>
+  <text x="210" y="416" font-size="32" text-anchor="middle">3</text>
+</svg>
+        </div>
+      </div>
+
+    </div><!-- /우측 -->
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">반비례</span>
+    <span class="page-footer__num">009</span>
+  </div>
+</div><!-- /page 009 -->
+
+<!-- ═══════════════════════ PAGE 010 ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">반비례</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">반</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$\frac{1}{2}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">$-6$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">①, ⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">$2$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">15</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">16</span><span class="qa2-rans">$-2$</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">01</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">02</span><span class="qa2-rans">$-\frac{5}{2}$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">03</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">04</span><span class="qa2-rans">ㄷ</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">05</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">06</span><span class="qa2-rans">$9$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">07</span><span class="qa2-rans">$8$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum" style="color:#eb749f;">08</span><span class="qa2-rans">$\frac{10}{3}$</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">반비례</span>
+    <span class="page-footer__num">010</span>
+  </div>
+</div><!-- /page 010 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>

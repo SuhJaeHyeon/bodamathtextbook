@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 1-1_IV-1단원_01 순서쌍과 좌표</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex-display { display: inline !important; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 8px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+
+/* ─── cbox ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-chip__boogi {
+  background: #ff8945; height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title { font-family: '윤고딕','Yoon Gothic',sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 8px; padding-left: 26px; }
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th { background: #ebebeb; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 400; line-height: 1.4; }
+.concept-table td { background: white; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+.concept-eg { background: rgba(51,140,215,0.06); border-radius: 6px; padding: 6px 10px; display: flex; flex-direction: column; gap: 3px; }
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: nowrap; font-size: 11px; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 20px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; align-items: flex-start; }
+.ex-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Right side ─── */
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; margin-top: 4px;
+  padding: 2px 9px 4px 5px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: block; letter-spacing: -0.5px; margin-left: 3px; min-width: 0; overflow-wrap: break-word; }
+.prob__body > .prob__choices-wrap,
+.prob__body > .prob__choices-stack,
+.prob__body > .prob__choices-2col,
+.prob__body > .prob__choices-3col,
+.prob__body > .prob__boogi { margin-top: 5px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── 한눈에 보기 ─── */
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 16px 20px 16px 16px; display: flex; flex-direction: column; gap: 24px; flex: 1; min-height: 0; overflow: hidden; margin-top: -1px; margin-bottom: 10px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 6px; letter-spacing: -0.5px; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table { border-collapse: collapse; width: 100%; font-size: 8.5px; letter-spacing: -0.4px; }
+.kaynun-table th { background: #f2f2f2; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 4px 6px; text-align: center; font-weight: 500; line-height: 1.5; }
+.kaynun-table td { background: white; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 4px 6px; text-align: center; line-height: 1.5; }
+.kaynun-table tr > *:first-child { border-left: none; }
+.kaynun-table tr > *:last-child { border-right: none; }
+
+/* ─── 유형익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; margin-top: 6px; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 20px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 2px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer {
+  display: flex; gap: 4px; align-items: center; justify-content: flex-end;
+  flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px;
+  white-space: nowrap; margin-top: auto;
+}
+.page-footer::before {
+  content: "";
+  display: block;
+  width: 59px; height: 13px; margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<!-- 개념01(수직선+순서쌍) & 예제01 / 문제01~02 -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">01</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">순서쌍과 좌표</div>
+    </div>
+  </div>
+
+  <!-- 개념01: 수직선 위의 점의 좌표 + 순서쌍 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">수직선 위의 점의 좌표와 순서쌍</span>
+        </div>
+        <div class="concept-body">
+          <div>❶ <span class="hl"><strong>좌표</strong></span> : 수직선 위의 한 점에 대응하는 수를 그 점의 <span class="hl">좌표</span>라 한다.</div>
+          <div>❷ 수직선에서 점 P의 좌표가 $a$일 때, 기호로 <span class="hl">$\text{P}(a)$</span>와 같이 나타낸다.</div>
+          <div>❸ <span class="hl"><strong>원점</strong></span> : 좌표가 $0$인 점. 기호로 $\text{O}(0)$과 같이 나타낸다.</div>
+          <div class="concept-eg" style="margin-top:2px;">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$\text{A}(-3)$,&ensp;$\text{B}\!\left(-\dfrac{1}{2}\right)$,&ensp;$\text{O}(0)$,&ensp;$\text{C}(3)$,&ensp;$\text{D}\!\left(\dfrac{9}{2}\right)$</div>
+          </div>
+          <div>❹ <span class="hl"><strong>순서쌍</strong></span> : 두 수 $a$, $b$의 순서를 정하여 $(a,\,b)$로 나타낸 것을 순서쌍이라 한다.</div>
+          <div>❺ 두 순서쌍 $(a,\,b)$와 $(c,\,d)$가 서로 같을 조건 : <span class="hl">$a=c$이고 $b=d$</span></div>
+          <div class="concept-eg" style="margin-top:2px;">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$(1,\,2)\neq(2,\,1)$,&ensp;$(a,\,b)=(3,\,5)$이면 $a=3$, $b=5$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제01: 순서쌍 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">두 순서쌍 $(2a-1,\ b+3)$,&ensp;$(a+2,\ 2b-1)$이 서로 같을 때, $a+b$의 값을 구하시오.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          순서쌍 $(a,\,b)$에서 앞뒤 순서가 정해져 있으므로, $a\neq b$일 때 $(a,\,b)\neq(b,\,a)$이다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>두 순서쌍이 같으면 대응하는 위치의 성분끼리 각각 같다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$6$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+
+      <div class="prac-grid">
+        <!-- 01 쌍둥이: 순서쌍 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            두 순서쌍 $(3a+1,\ b-4)$,&ensp;$(a+5,\ 8)$이 서로 같을 때, $a+b$의 값을 구하시오.
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 02 쌍둥이: 순서쌍 개수 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $x$가 $1$, $2$, $3$이고 $y$가 $a$, $b$, $c$, $d$일 때, $x$, $y$의 순서쌍 $(x,\,y)$의 개수를 구하시오.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="page-footer__topic">순서쌍과 좌표</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<!-- 개념02(좌표평면) & 예제03(x·y축 위의 점) / 문제03~04 -->
+<div class="page">
+
+  <!-- 개념02: 좌표평면 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">좌표평면이란 무엇인가?</span>
+        </div>
+        <div class="concept-body">
+          <div>두 수직선이 점 O에서 서로 수직으로 만날 때,</div>
+          <div>❶ <span class="hl"><strong>$x$축</strong></span> : 가로의 수직선 &ensp;❷ <span class="hl"><strong>$y$축</strong></span> : 세로의 수직선</div>
+          <div>❸ <span class="hl"><strong>좌표축</strong></span> : $x$축과 $y$축을 통틀어 좌표축이라 한다.</div>
+          <div>❹ <span class="hl"><strong>원점</strong></span> : 두 좌표축이 만나는 점 O</div>
+          <div>❺ <span class="hl"><strong>좌표평면</strong></span> : 좌표축이 정해져 있는 평면</div>
+        </div>
+        <!-- 좌표평면 다이어그램 -->
+        <div style="padding-left:26px; padding-top:6px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="210" height="150" viewBox="0 0 210 150" style="display:block;">
+            <!-- 좌표평면 배경 없음 -->
+            <!-- x축 -->
+            <line x1="16" y1="75" x2="190" y2="75" stroke="#444" stroke-width="1.5"/>
+            <!-- x축 화살표 -->
+            <polygon points="192,75 186,72 186,78" fill="#444"/>
+            <!-- y축 -->
+            <line x1="103" y1="134" x2="103" y2="12" stroke="#444" stroke-width="1.5"/>
+            <!-- y축 화살표 -->
+            <polygon points="103,10 100,16 106,16" fill="#444"/>
+            <!-- 원점 O -->
+            <circle cx="103" cy="75" r="2.2" fill="#444"/>
+            <text x="108" y="87" font-size="10" fill="#444" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+
+            <!-- 라벨: y축 (위쪽 왼편) -->
+            <rect x="2" y="6" width="28" height="16" rx="8" fill="#ff8c6b"/>
+            <text x="16" y="17.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="'윤고딕','Yoon Gothic',sans-serif">y축</text>
+            <!-- 연결선: y축 라벨 → y축 상단 -->
+            <line x1="28" y1="14" x2="96" y2="20" stroke="#ff8c6b" stroke-width="0.8"/>
+
+            <!-- 라벨: x축 (오른쪽) -->
+            <rect x="178" y="58" width="28" height="16" rx="8" fill="#ff8c6b"/>
+            <text x="192" y="69.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="'윤고딕','Yoon Gothic',sans-serif">x축</text>
+            <!-- 연결선: x축 라벨 → x축 오른쪽 -->
+            <line x1="178" y1="66" x2="167" y2="74" stroke="#ff8c6b" stroke-width="0.8"/>
+
+            <!-- 라벨: 원점 (원점 오른쪽) -->
+            <rect x="118" y="67" width="28" height="16" rx="8" fill="#ff8c6b"/>
+            <text x="132" y="78.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="'윤고딕','Yoon Gothic',sans-serif">원점</text>
+            <!-- 연결선: 원점 라벨 → O -->
+            <line x1="118" y1="75" x2="107" y2="75" stroke="#ff8c6b" stroke-width="0.8"/>
+
+            <!-- 라벨: 좌표축 (왼쪽 아래, 축 전체 가리킴) -->
+            <rect x="2" y="95" width="36" height="16" rx="8" fill="#ff8c6b"/>
+            <text x="20" y="106.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="'윤고딕','Yoon Gothic',sans-serif">좌표축</text>
+            <!-- 연결선: 좌표축 → x축 위 한 점 -->
+            <line x1="36" y1="103" x2="60" y2="75" stroke="#ff8c6b" stroke-width="0.8"/>
+
+            <!-- 라벨: 좌표평면 (아래쪽) -->
+            <rect x="50" y="125" width="48" height="16" rx="8" fill="#ff8c6b"/>
+            <text x="74" y="136.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" font-family="'윤고딕','Yoon Gothic',sans-serif">좌표평면</text>
+            <!-- 연결선: 좌표평면 → 평면 내부 -->
+            <line x1="74" y1="125" x2="74" y2="105" stroke="#ff8c6b" stroke-width="0.8"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 예제03: x축 또는 y축 위의 점의 좌표 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 점의 좌표를 구하시오.
+              <span style="display:flex;flex-direction:column;gap:3px;padding-top:3px;">
+                <span>(1) $x$축 위에 있고, $x$좌표가 $-4$인 점</span>
+                <span>(2) $y$축 위에 있고, $y$좌표가 $5$인 점</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          $x$축 위의 점 : $y$좌표$=0$<br>
+          $y$축 위의 점 : $x$좌표$=0$
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$x$축 위의 점은 $y$좌표가 반드시 $0$이다.</li>
+            <li>$y$축 위의 점은 $x$좌표가 반드시 $0$이다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) $(-4,\,0)$</span>
+          <span>(2) $(0,\,5)$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 03~04 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 03 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $x$축 위에 있고 $x$좌표가 $7$인 점의 좌표는?
+            <div class="prob__choices-3col">
+              <span>① $(0,\,-7)$</span>
+              <span>② $(-7,\,0)$</span>
+              <span>③ $(0,\,0)$</span>
+              <span>④ $(0,\,7)$</span>
+              <span>⑤ $(7,\,0)$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 04 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $y$축 위에 있고 $y$좌표가 $6$인 점의 좌표는?
+            <div class="prob__choices-3col">
+              <span>① $(6,\,6)$</span>
+              <span>② $(6,\,0)$</span>
+              <span>③ $(0,\,6)$</span>
+              <span>④ $(-6,\,0)$</span>
+              <span>⑤ $(0,\,-6)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">순서쌍과 좌표</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<!-- 예제04 set-block / 문제07~08 -->
+<div class="page" style="gap:8px;">
+
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">점 $\text{A}(a,\,2a+4)$는 $x$축 위에 있고, 점 $\text{B}(b-3,\,b+1)$은 $y$축 위에 있을 때, $a+b$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(x축 또는 y축 위의 점)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>$x$축 위 : $y$좌표$=0$, $y$축 위 : $x$좌표$=0$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$1$</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 07 쌍둥이 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              두 점 $\text{A}(a-2,\,4a-1)$, $\text{B}(3-2b,\,b-1)$이 각각 $x$축, $y$축 위에 있을 때, $\dfrac{b}{a}$의 값은?
+              <div class="prob__choices-wrap">
+                <span>① $\dfrac{1}{2}$</span>
+                <span>② $\dfrac{3}{4}$</span>
+                <span>③ $\dfrac{8}{3}$</span>
+                <span>④ $4$</span>
+                <span>⑤ $6$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 08 쌍둥이 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              점 $\text{A}(-a-2,\,-b+3)$이 $x$축 위에 있고 점 $\text{B}(3a,\,-2b+4)$가 $y$축 위에 있을 때, 점 $(a,\,b)$의 좌표는?
+              <div class="prob__choices-stack">
+                <span>① $(-2,\,2)$</span>
+                <span>② $(-2,\,3)$</span>
+                <span>③ $(0,\,-2)$</span>
+                <span>④ $(0,\,2)$</span>
+                <span>⑤ $(0,\,3)$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 페이지 하단 여백 채우기용 spacer -->
+  <div style="flex:1;"></div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">순서쌍과 좌표</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<!-- 개념03(좌표평면 위의 점) & 예제02 / 문제05~06 -->
+<div class="page">
+
+  <!-- 개념03: 좌표평면 위의 점의 좌표 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">좌표평면 위의 점의 위치는 어떻게 나타내는가?</span>
+        </div>
+        <div class="concept-body">
+          <div>좌표평면 위의 점 P에서 $x$축, $y$축에 각각 수선을 내려 만나는 수를 각각 $a$, $b$라 할 때,</div>
+          <div>❶ 순서쌍 $(a,\,b)$를 점 P의 <span class="hl"><strong>좌표</strong></span>라 하고, 기호로 <span class="hl">$\text{P}(a,\,b)$</span>로 나타낸다.</div>
+          <div>❷ $a$ : 점 P의 <strong>$x$좌표</strong>,&ensp; $b$ : 점 P의 <strong>$y$좌표</strong></div>
+          <!-- P(a,b) 다이어그램 -->
+          <div style="padding-top:6px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="160" height="130" viewBox="0 0 160 130" style="display:block;">
+              <!-- 1사분면 연한 배경 -->
+              <rect x="52" y="10" width="86" height="68" fill="#f0f7ff" rx="2"/>
+
+              <!-- 점선: x좌표 수선 (P → x축) -->
+              <line x1="112" y1="38" x2="112" y2="78" stroke="#aaa" stroke-width="0.9" stroke-dasharray="3,2"/>
+              <!-- 점선: y좌표 수선 (P → y축) -->
+              <line x1="52" y1="38" x2="112" y2="38" stroke="#aaa" stroke-width="0.9" stroke-dasharray="3,2"/>
+
+              <!-- 직각 표시 (P 수선 교점, x축) -->
+              <rect x="108" y="74" width="4" height="4" fill="none" stroke="#aaa" stroke-width="0.8"/>
+
+              <!-- x축 -->
+              <line x1="14" y1="78" x2="144" y2="78" stroke="#333" stroke-width="1.4"/>
+              <polygon points="146,78 141,75.5 141,80.5" fill="#333"/>
+              <!-- y축 -->
+              <line x1="52" y1="118" x2="52" y2="6" stroke="#333" stroke-width="1.4"/>
+              <polygon points="52,4 49.5,9 54.5,9" fill="#333"/>
+
+              <!-- 축 레이블 -->
+              <text x="148" y="81" font-size="10" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+              <text x="48" y="4" font-size="10" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+
+              <!-- 원점 O -->
+              <text x="42" y="88" font-size="9" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+
+              <!-- a 눈금 표시 -->
+              <line x1="112" y1="76" x2="112" y2="80" stroke="#333" stroke-width="1.2"/>
+              <text x="112" y="90" text-anchor="middle" font-size="10" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">a</text>
+
+              <!-- b 눈금 표시 -->
+              <line x1="50" y1="38" x2="54" y2="38" stroke="#333" stroke-width="1.2"/>
+              <text x="42" y="42" text-anchor="middle" font-size="10" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">b</text>
+
+              <!-- 점 P -->
+              <circle cx="112" cy="38" r="2.5" fill="#338cd7"/>
+              <text x="116" y="34" font-size="10" fill="#338cd7" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">P(<tspan font-style="italic">a</tspan>, <tspan font-style="italic">b</tspan>)</text>
+
+              <!-- 라벨: x좌표 -->
+              <rect x="62" y="98" width="34" height="15" rx="7.5" fill="#ff8c6b"/>
+              <text x="79" y="109" text-anchor="middle" font-size="8.5" font-weight="700" fill="white" font-family="'윤고딕','Yoon Gothic',sans-serif">x좌표</text>
+              <!-- 연결선: x좌표 → a -->
+              <line x1="79" y1="98" x2="105" y2="88" stroke="#ff8c6b" stroke-width="0.8"/>
+
+              <!-- 라벨: y좌표 -->
+              <rect x="0" y="26" width="34" height="15" rx="7.5" fill="#7ab3e0"/>
+              <text x="17" y="37" text-anchor="middle" font-size="8.5" font-weight="700" fill="white" font-family="'윤고딕','Yoon Gothic',sans-serif">y좌표</text>
+              <!-- 연결선: y좌표 → b -->
+              <line x1="34" y1="33" x2="46" y2="38" stroke="#7ab3e0" stroke-width="0.8"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제02: 좌표평면 위의 점의 좌표 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q" style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="flex:1;">네 점 $\text{A}(3,\,a)$, $\text{B}(b,\,4)$, $\text{C}(c,\,d)$, $\text{D}(-1,\,e)$를 좌표평면 위에 나타내면 오른쪽 그림과 같을 때, $a+b+c+d+e$의 값을 구하시오.</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="138" height="138" viewBox="0 0 138 138" style="flex-shrink:0;">
+                <!-- 격자: 원점(69,69), 1칸=13px, 총 -5~5 범위 -->
+                <defs>
+                  <pattern id="grid02" width="13" height="13" patternUnits="userSpaceOnUse" x="4" y="4">
+                    <path d="M 13 0 L 0 0 0 13" fill="none" stroke="#bbb" stroke-width="0.7"/>
+                  </pattern>
+                </defs>
+                <rect x="4" y="4" width="130" height="130" fill="url(#grid02)"/>
+                <rect x="4" y="4" width="130" height="130" fill="none" stroke="#bbb" stroke-width="0.7"/>
+                <!-- x축 -->
+                <line x1="4" y1="69" x2="132" y2="69" stroke="#444" stroke-width="1.3"/>
+                <polygon points="134,69 129,66.5 129,71.5" fill="#444"/>
+                <!-- y축 -->
+                <line x1="69" y1="134" x2="69" y2="6" stroke="#444" stroke-width="1.3"/>
+                <polygon points="69,4 66.5,9 71.5,9" fill="#444"/>
+                <!-- 축 레이블 -->
+                <text x="130" y="65" font-size="8.5" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+                <text x="62" y="9" font-size="8.5" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+                <!-- 원점 O -->
+                <text x="71" y="79" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+                <!-- 점 A(3,2): x=69+3×13=108, y=69-2×13=43 -->
+                <circle cx="108" cy="43" r="2.2" fill="#222"/>
+                <text x="111" y="42" font-size="8.5" fill="#222" font-family="'윤고딕','Yoon Gothic',sans-serif" font-weight="700">A</text>
+                <!-- 점 B(0,4): x=69, y=69-4×13=17 → y축 위 -->
+                <circle cx="69" cy="17" r="2.2" fill="#222"/>
+                <text x="72" y="16" font-size="8.5" fill="#222" font-family="'윤고딕','Yoon Gothic',sans-serif" font-weight="700">B</text>
+                <!-- 점 C(-2,3): x=69-2×13=43, y=69-3×13=30 -->
+                <circle cx="43" cy="30" r="2.2" fill="#222"/>
+                <text x="31" y="29" font-size="8.5" fill="#222" font-family="'윤고딕','Yoon Gothic',sans-serif" font-weight="700">C</text>
+                <!-- 점 D(-1,-3): x=69-1×13=56, y=69+3×13=108 -->
+                <circle cx="56" cy="108" r="2.2" fill="#222"/>
+                <text x="44" y="113" font-size="8.5" fill="#222" font-family="'윤고딕','Yoon Gothic',sans-serif" font-weight="700">D</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          $x$축 위의 점은 $y$좌표가 $0$이고, $y$축 위의 점은 $x$좌표가 $0$이다.<br><br>
+          원점과 좌표축 위의 점은 어느 사분면에도 속하지 않는다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>그래프에서 각 점의 $x$좌표, $y$좌표를 직접 읽어낸다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">$3$</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 05~06 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 05 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">05</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 중 좌표평면 위에 있는 각 점의 좌표가 옳은 것은?
+            <div style="display:flex; gap:6px; align-items:flex-start; margin-top:4px;">
+              <div class="prob__choices-stack" style="margin-top:0;">
+                <span>① $\text{A}(3,\,4)$</span>
+                <span>② $\text{B}(4,\,0)$</span>
+                <span>③ $\text{C}(4,\,2)$</span>
+                <span>④ $\text{D}(-2,\,1)$</span>
+                <span>⑤ $\text{E}(-3,\,1)$</span>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="144" height="144" viewBox="0 0 144 144" style="flex-shrink:0;">
+                <!-- 격자: 원점(72,72), 1칸=11px, -6~6 범위 -->
+                <defs>
+                  <pattern id="grid05" width="11" height="11" patternUnits="userSpaceOnUse" x="6" y="6">
+                    <path d="M 11 0 L 0 0 0 11" fill="none" stroke="#bbb" stroke-width="0.6"/>
+                  </pattern>
+                </defs>
+                <rect x="6" y="6" width="132" height="132" fill="url(#grid05)"/>
+                <rect x="6" y="6" width="132" height="132" fill="none" stroke="#bbb" stroke-width="0.6"/>
+                <!-- x축 -->
+                <line x1="6" y1="72" x2="136" y2="72" stroke="#444" stroke-width="1.2"/>
+                <polygon points="138,72 133,69.5 133,74.5" fill="#444"/>
+                <!-- y축 -->
+                <line x1="72" y1="138" x2="72" y2="8" stroke="#444" stroke-width="1.2"/>
+                <polygon points="72,6 69.5,11 74.5,11" fill="#444"/>
+                <!-- 축 레이블 -->
+                <text x="134" y="68" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+                <text x="65" y="10" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+                <!-- 눈금 숫자: x축 5,-5 / y축 5,-5 -->
+                <text x="127" y="82" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">5</text>
+                <text x="17" y="82" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">-5</text>
+                <text x="63" y="21" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">5</text>
+                <text x="61" y="129" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">-5</text>
+                <!-- 원점 O -->
+                <text x="74" y="82" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+                <!-- A(4,3): x=72+44=116, y=72-33=39 -->
+                <circle cx="116" cy="39" r="2" fill="#222"/>
+                <text x="119" y="38" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">A</text>
+                <!-- B(0,4): x=72, y=72-44=28 -->
+                <circle cx="72" cy="28" r="2" fill="#222"/>
+                <text x="75" y="27" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">B</text>
+                <!-- C(-4,2): x=72-44=28, y=72-22=50 -->
+                <circle cx="28" cy="50" r="2" fill="#222"/>
+                <text x="17" y="49" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">C</text>
+                <!-- D(-2,1): x=72-22=50, y=72-11=61 -->
+                <circle cx="50" cy="61" r="2" fill="#222"/>
+                <text x="39" y="66" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">D</text>
+                <!-- E(1,-3): x=72+11=83, y=72+33=105 -->
+                <circle cx="83" cy="105" r="2" fill="#222"/>
+                <text x="86" y="104" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">E</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 06 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">06</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            아래의 좌표평면 위의 점 A, B, C, D, E 중에서 $x$축과의 거리가 가장 먼 것은?
+            <svg xmlns="http://www.w3.org/2000/svg" width="144" height="144" viewBox="0 0 144 144" style="display:block; margin-top:4px;">
+              <!-- 격자: 원점(72,72), 1칸=11px, -6~6 범위 -->
+              <defs>
+                <pattern id="grid06" width="11" height="11" patternUnits="userSpaceOnUse" x="6" y="6">
+                  <path d="M 11 0 L 0 0 0 11" fill="none" stroke="#bbb" stroke-width="0.6"/>
+                </pattern>
+              </defs>
+              <rect x="6" y="6" width="132" height="132" fill="url(#grid06)"/>
+              <rect x="6" y="6" width="132" height="132" fill="none" stroke="#bbb" stroke-width="0.6"/>
+              <!-- x축 -->
+              <line x1="6" y1="72" x2="136" y2="72" stroke="#444" stroke-width="1.2"/>
+              <polygon points="138,72 133,69.5 133,74.5" fill="#444"/>
+              <!-- y축 -->
+              <line x1="72" y1="138" x2="72" y2="8" stroke="#444" stroke-width="1.2"/>
+              <polygon points="72,6 69.5,11 74.5,11" fill="#444"/>
+              <!-- 축 레이블 -->
+              <text x="134" y="68" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+              <text x="65" y="10" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+              <!-- 원점 O -->
+              <text x="74" y="82" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+              <!-- A(-3,-2): x=72-33=39, y=72+22=94 -->
+              <circle cx="39" cy="94" r="2" fill="#222"/>
+              <text x="28" y="93" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">A</text>
+              <!-- B(-2,2): x=72-22=50, y=72-22=50 -->
+              <circle cx="50" cy="50" r="2" fill="#222"/>
+              <text x="39" y="49" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">B</text>
+              <!-- C(3,2): x=72+33=105, y=72-22=50 -->
+              <circle cx="105" cy="50" r="2" fill="#222"/>
+              <text x="108" y="49" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">C</text>
+              <!-- E(5,3): x=72+55=127, y=72-33=39 -->
+              <circle cx="127" cy="39" r="2" fill="#222"/>
+              <text x="118" y="35" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">E</text>
+              <!-- D(3,-5): x=72+33=105, y=72+55=127 -->
+              <circle cx="105" cy="127" r="2" fill="#222"/>
+              <text x="108" y="126" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">D</text>
+            </svg>
+            <div class="prob__choices-wrap" style="margin-top:4px;">
+              <span>① A</span>
+              <span>② B</span>
+              <span>③ C</span>
+              <span>④ D</span>
+              <span>⑤ E</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">순서쌍과 좌표</span>
+      <span class="page-footer__num">004</span>
+    </div>
+  </div>
+
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<!-- 예제05 set-block / 문제09~10 -->
+<div class="page" style="gap:8px;">
+
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">세 점 $\text{A}(2,\,2)$, $\text{B}(-2,\,-2)$, $\text{C}(3,\,-2)$를 꼭짓점으로 하는 삼각형 $\text{ABC}$의 넓이를 구하시오. <span style="font-size:8.5px;color:#539e84;">(좌표평면 위의 도형의 넓이)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>좌표를 이용하여 밑변의 길이와 높이를 구한 뒤 넓이를 계산한다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$10$</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 09 쌍둥이 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              좌표평면 위의 네 점 $\text{A}(-1,\,4)$, $\text{B}(-2,\,-2)$, $\text{C}(4,\,-2)$, $\text{D}(3,\,4)$를 꼭짓점으로 하는 사각형 $\text{ABCD}$의 넓이는?
+              <div class="prob__choices-wrap">
+                <span>① $18$</span>
+                <span>② $22$</span>
+                <span>③ $26$</span>
+                <span>④ $30$</span>
+                <span>⑤ $34$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 10 쌍둥이 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              네 점 $\text{O}(0,\,0)$, $\text{A}(5,\,0)$, $\text{B}(2,\,4)$, $\text{C}(0,\,4)$를 꼭짓점으로 하는 사각형 $\text{OABC}$의 넓이는?
+              <svg xmlns="http://www.w3.org/2000/svg" width="136" height="120" viewBox="0 0 136 120" style="display:block; margin:5px 0 4px 0;">
+                <!-- 원점(24,96), 1칸=16px -->
+                <!-- x축 -->
+                <line x1="16" y1="96" x2="128" y2="96" stroke="#444" stroke-width="1.3"/>
+                <polygon points="130,96 125,93.5 125,98.5" fill="#444"/>
+                <!-- y축 -->
+                <line x1="24" y1="112" x2="24" y2="8" stroke="#444" stroke-width="1.3"/>
+                <polygon points="24,6 21.5,11 26.5,11" fill="#444"/>
+                <!-- 축 레이블 -->
+                <text x="126" y="92" font-size="8.5" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+                <text x="17" y="10" font-size="8.5" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+                <!-- 원점 O -->
+                <text x="26" y="108" font-size="8.5" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+                <!-- 사각형 O(24,96) A(104,96) B(56,32) C(24,32) 내부 색칠 -->
+                <polygon points="24,96 104,96 56,32 24,32" fill="rgba(255,150,150,0.35)" stroke="none"/>
+                <!-- 사각형 테두리 -->
+                <polyline points="24,96 104,96 56,32 24,32 24,96" fill="none" stroke="#333" stroke-width="1.3" stroke-linejoin="round"/>
+                <!-- 꼭짓점 점 -->
+                <circle cx="24" cy="96" r="1.8" fill="#333"/>
+                <circle cx="104" cy="96" r="1.8" fill="#333"/>
+                <circle cx="56" cy="32" r="1.8" fill="#333"/>
+                <circle cx="24" cy="32" r="1.8" fill="#333"/>
+                <!-- 라벨 -->
+                <text x="108" y="108" font-size="8.5" fill="#222" font-family="'윤고딕','Yoon Gothic',sans-serif">A(5, 0)</text>
+                <text x="59" y="28" font-size="8.5" fill="#222" font-family="'윤고딕','Yoon Gothic',sans-serif">B(2, 4)</text>
+                <text x="2" y="28" font-size="8.5" fill="#222" font-family="'윤고딕','Yoon Gothic',sans-serif" text-anchor="start">C(0, 4)</text>
+              </svg>
+              <div class="prob__choices-wrap">
+                <span>① $10$</span>
+                <span>② $11$</span>
+                <span>③ $12$</span>
+                <span>④ $13$</span>
+                <span>⑤ $14$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 페이지 하단 여백 채우기용 spacer -->
+  <div style="flex:1;"></div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">순서쌍과 좌표</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<!-- 개념04(사분면) & 예제07(사분면의 결정) / 문제11~12 -->
+<div class="page">
+
+  <!-- 개념04: 사분면 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">04</span>
+          </div>
+          <span class="concept-title">사분면이란 무엇인가?</span>
+        </div>
+        <div class="concept-body">
+          <div>❶ 좌표평면은 좌표축에 의해 네 부분으로 나뉘며, 각각을 <span class="hl"><strong>제1사분면</strong></span>, <span class="hl"><strong>제2사분면</strong></span>, <span class="hl"><strong>제3사분면</strong></span>, <span class="hl"><strong>제4사분면</strong></span>이라 한다.</div>
+          <div style="padding-top:4px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="188" height="152" viewBox="0 0 188 152" style="display:block;">
+              <!-- 사분면 배경색 (축 중심: 94,76) -->
+              <!-- 제2사분면: 좌상 -->
+              <rect x="6" y="6" width="88" height="70" fill="#deecd8"/>
+              <!-- 제1사분면: 우상 -->
+              <rect x="94" y="6" width="88" height="70" fill="#fde8d0"/>
+              <!-- 제3사분면: 좌하 -->
+              <rect x="6" y="76" width="88" height="70" fill="#d6e8f5"/>
+              <!-- 제4사분면: 우하 -->
+              <rect x="94" y="76" width="88" height="70" fill="#fdf5d0"/>
+
+              <!-- x축 -->
+              <line x1="6" y1="76" x2="180" y2="76" stroke="#555" stroke-width="1.3"/>
+              <polygon points="182,76 177,73.5 177,78.5" fill="#555"/>
+              <!-- y축 -->
+              <line x1="94" y1="146" x2="94" y2="8" stroke="#555" stroke-width="1.3"/>
+              <polygon points="94,6 91.5,11 96.5,11" fill="#555"/>
+              <!-- 축 레이블 -->
+              <text x="178" y="72" font-size="9" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+              <text x="87" y="10" font-size="9" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+              <!-- 원점 O -->
+              <text x="97" y="88" font-size="9" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+
+              <!-- 제2사분면 텍스트 -->
+              <text x="50" y="34" font-size="9" fill="#4a6a3a" font-weight="700" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">제2사분면</text>
+              <text x="50" y="48" font-size="9" fill="#4a6a3a" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">(−, +)</text>
+              <!-- 제1사분면 텍스트 -->
+              <text x="138" y="34" font-size="9" fill="#8a4a1a" font-weight="700" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">제1사분면</text>
+              <text x="138" y="48" font-size="9" fill="#8a4a1a" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">(+, +)</text>
+              <!-- 제3사분면 텍스트 -->
+              <text x="50" y="106" font-size="9" fill="#2a5070" font-weight="700" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">제3사분면</text>
+              <text x="50" y="120" font-size="9" fill="#2a5070" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">(−, −)</text>
+              <!-- 제4사분면 텍스트 -->
+              <text x="138" y="106" font-size="9" fill="#7a6a10" font-weight="700" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">제4사분면</text>
+              <text x="138" y="120" font-size="9" fill="#7a6a10" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">(+, −)</text>
+            </svg>
+          </div>
+          <div>❷ 각 사분면 위의 점의 $x$좌표, $y$좌표의 부호 :</div>
+          <table class="concept-table" style="margin-top:2px;">
+            <thead>
+              <tr><th>사분면</th><th>제1사분면</th><th>제2사분면</th><th>제3사분면</th><th>제4사분면</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>$x$좌표</td><td class="hl">$+$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+              <tr><td>$y$좌표</td><td class="hl">$+$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+            </tbody>
+          </table>
+          <div>❸ 원점과 좌표축 위의 점은 어느 사분면에도 속하지 않는다.</div>
+          <div class="concept-eg" style="margin-top:2px;">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$(3,\,5)$ : 제1사분면,&ensp;$(-1,\,2)$ : 제2사분면,&ensp;$(-3,\,-4)$ : 제3사분면,&ensp;$(5,\,-2)$ : 제4사분면</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제07: 사분면의 결정 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">07</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">점 $(x+y,\,xy)$가 제2사분면 위의 점일 때, 점 $(-x,\,y)$는 제몇 사분면 위의 점인지 구하시오. <span style="font-size:8.5px;color:#539e84;">(사분면의 결정 — 점이 속한 사분면이 주어진 경우)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          사분면 조건에서 $x$, $y$의 부호를 파악하면 새로운 점의 사분면을 결정할 수 있다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>제2사분면 : $x+y&lt;0$, $xy&gt;0$</li>
+            <li>$xy&gt;0$이면 $x$, $y$는 같은 부호</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text">제1사분면</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 13~14 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 13 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">13</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            점 $\text{P}(a,\,b)$가 제3사분면 위의 점일 때, 점 $\text{Q}(ab,\,a-b)$는 제몇 사분면 위의 점인가?
+            <div class="prob__choices-wrap">
+              <span>① 제1사분면</span>
+              <span>② 제2사분면</span>
+              <span>③ 제3사분면</span>
+              <span>④ 제4사분면</span>
+              <span>⑤ 알 수 없다.</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 14 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">14</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            좌표평면 위의 점 $(a,\,-b)$가 제1사분면 위의 점일 때, 다음 중 제2사분면 위의 점은?
+            <div class="prob__choices-stack">
+              <span>① $(-a,\,-b)$</span>
+              <span>② $(a,\,b)$</span>
+              <span>③ $(a,\,-ab)$</span>
+              <span>④ $(a+b,\,-b)$</span>
+              <span>⑤ $(-b,\,a+b)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">순서쌍과 좌표</span>
+      <span class="page-footer__num">006</span>
+    </div>
+  </div>
+
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════════════════ PAGE 007 ═══════════════════════ -->
+<!-- 예제06 set-block / 문제13~14 -->
+<div class="page" style="gap:8px;">
+
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q" style="display:flex; gap:8px; align-items:flex-start;">
+                <div style="flex:1;">오른쪽 좌표평면 위의 점 A, B, C, D, E에 대한 설명으로 옳은 것을 모두 고르면? (정답 2개) <span style="font-size:8.5px;color:#539e84;">(사분면)</span>
+                  <div class="ex-choices-stack" style="margin-top:4px;">
+                    <span>① 점 A의 좌표는 $(3,\,4)$이다.</span>
+                    <span>② 점 B는 $y$축 위의 점이다.</span>
+                    <span>③ 점 C는 제1사분면 위의 점이다.</span>
+                    <span>④ 점 D는 제2사분면 위의 점이다.</span>
+                    <span>⑤ 점 E의 $y$좌표는 $3$이다.</span>
+                  </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="144" height="144" viewBox="0 0 144 144" style="flex-shrink:0;">
+                  <!-- 격자: 원점(72,72), 1칸=11px, -6~6 범위 -->
+                  <rect x="6" y="6" width="132" height="132" fill="url(#grid05)"/>
+                  <rect x="6" y="6" width="132" height="132" fill="none" stroke="#bbb" stroke-width="0.6"/>
+                  <!-- x축 -->
+                  <line x1="6" y1="72" x2="136" y2="72" stroke="#444" stroke-width="1.2"/>
+                  <polygon points="138,72 133,69.5 133,74.5" fill="#444"/>
+                  <!-- y축 -->
+                  <line x1="72" y1="138" x2="72" y2="8" stroke="#444" stroke-width="1.2"/>
+                  <polygon points="72,6 69.5,11 74.5,11" fill="#444"/>
+                  <!-- 축 레이블 -->
+                  <text x="134" y="68" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+                  <text x="65" y="10" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+                  <!-- 눈금 숫자: x축 5,-5 / y축 5,-5 -->
+                  <text x="127" y="82" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">5</text>
+                  <text x="17" y="82" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">-5</text>
+                  <text x="63" y="21" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">5</text>
+                  <text x="61" y="129" font-size="7.5" fill="#333" text-anchor="middle" font-family="'윤고딕','Yoon Gothic',sans-serif">-5</text>
+                  <!-- 원점 O -->
+                  <text x="74" y="82" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+                  <!-- A(4,3): x=72+44=116, y=72-33=39 -->
+                  <circle cx="116" cy="39" r="2" fill="#222"/>
+                  <text x="119" y="38" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">A</text>
+                  <!-- B(0,4): x=72, y=72-44=28 -->
+                  <circle cx="72" cy="28" r="2" fill="#222"/>
+                  <text x="75" y="27" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">B</text>
+                  <!-- C(-4,2): x=72-44=28, y=72-22=50 -->
+                  <circle cx="28" cy="50" r="2" fill="#222"/>
+                  <text x="17" y="49" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">C</text>
+                  <!-- D(-2,1): x=72-22=50, y=72-11=61 -->
+                  <circle cx="50" cy="61" r="2" fill="#222"/>
+                  <text x="39" y="66" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">D</text>
+                  <!-- E(1,-3): x=72+11=83, y=72+33=105 -->
+                  <circle cx="83" cy="105" r="2" fill="#222"/>
+                  <text x="86" y="104" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">E</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>좌표축 위의 점은 어느 사분면에도 속하지 않는다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">②, ④</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 11 쌍둥이 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              다음 설명 중 옳은 것은?
+              <div class="prob__choices-stack">
+                <span>① 점 $(1,\,3)$은 제2사분면 위의 점이다.</span>
+                <span>② $x$좌표가 음수이면 제2 또는 제3사분면에 속한다.</span>
+                <span>③ 점 $(-2,\,1)$은 제3사분면 위의 점이다.</span>
+                <span>④ $x$좌표가 음수이어도 항상 제3 또는 제1사분면은 아니다.</span>
+                <span>⑤ $y$축 위의 점은 $y$좌표가 $0$이다.</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 12 쌍둥이 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              아래 좌표평면 위의 점 A, B, C, D, E에 대한 다음 설명 중 옳지 않은 것은?
+              <svg xmlns="http://www.w3.org/2000/svg" width="142" height="142" viewBox="0 0 142 142" style="display:block; margin:4px 0;">
+                <defs>
+                  <pattern id="grid12" width="13" height="13" patternUnits="userSpaceOnUse" x="6" y="6">
+                    <path d="M 13 0 L 0 0 0 13" fill="none" stroke="#bbb" stroke-width="0.7"/>
+                  </pattern>
+                </defs>
+                <rect x="6" y="6" width="130" height="130" fill="url(#grid12)"/>
+                <rect x="6" y="6" width="130" height="130" fill="none" stroke="#bbb" stroke-width="0.7"/>
+                <!-- x축 -->
+                <line x1="6" y1="71" x2="134" y2="71" stroke="#444" stroke-width="1.2"/>
+                <polygon points="136,71 131,68.5 131,73.5" fill="#444"/>
+                <!-- y축 -->
+                <line x1="71" y1="136" x2="71" y2="8" stroke="#444" stroke-width="1.2"/>
+                <polygon points="71,6 68.5,11 73.5,11" fill="#444"/>
+                <!-- 축 레이블 -->
+                <text x="132" y="67" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+                <text x="64" y="10" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+                <!-- 원점 O -->
+                <text x="73" y="81" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+                <!-- A(2,2): x=71+26=97, y=71-26=45 -->
+                <circle cx="97" cy="45" r="2.2" fill="#222"/>
+                <text x="100" y="44" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">A</text>
+                <!-- B(-2,1): x=71-26=45, y=71-13=58 -->
+                <circle cx="45" cy="58" r="2.2" fill="#222"/>
+                <text x="34" y="57" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">B</text>
+                <!-- C(3,0): x=71+39=110, y=71 -->
+                <circle cx="110" cy="71" r="2.2" fill="#222"/>
+                <text x="113" y="70" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">C</text>
+                <!-- D(-1,-2): x=71-13=58, y=71+26=97 -->
+                <circle cx="58" cy="97" r="2.2" fill="#222"/>
+                <text x="61" y="96" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">D</text>
+                <!-- E(-4,-3): x=71-52=19, y=71+39=110 -->
+                <circle cx="19" cy="110" r="2.2" fill="#222"/>
+                <text x="22" y="109" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">E</text>
+              </svg>
+              <div class="prob__choices-stack" style="margin-top:0;">
+                <span>① 점 B의 좌표는 $(-2,\,1)$이다.</span>
+                <span>② 점 C는 $x$축 위에 있다.</span>
+                <span>③ 점 D의 $x$좌표는 $-1$이다.</span>
+                <span>④ 제1사분면에 속하는 점은 2개이다.</span>
+                <span>⑤ 점 E의 $x$, $y$좌표는 모두 음수이다.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 페이지 하단 여백 채우기용 spacer -->
+  <div style="flex:1;"></div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">순서쌍과 좌표</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 007 -->
+
+
+<!-- ═══════════════════════ PAGE 008 ═══════════════════════ -->
+<!-- 보충개념(대칭인 점) & 문제15~16 -->
+<div class="page" style="gap:10px;">
+
+  <!-- 보충 개념: 대칭인 점의 좌표 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__boogi">보충 개념</span>
+          </div>
+          <span class="concept-title">대칭인 점의 좌표</span>
+        </div>
+        <div class="concept-body">
+          <div>점 $(a,\,b)$와 대칭인 점의 좌표 :</div>
+          <div>❶ <span class="hl">$x$축 대칭</span> : $(a,\,b) \Rightarrow (a,\,-b)$</div>
+          <div>❷ <span class="hl">$y$축 대칭</span> : $(a,\,b) \Rightarrow (-a,\,b)$</div>
+          <div>❸ <span class="hl">원점 대칭</span> : $(a,\,b) \Rightarrow (-a,\,-b)$</div>
+          <div class="concept-eg" style="margin-top:2px;">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">점 $(3,\,-2)$의 $x$축 대칭 : $(3,\,2)$,&ensp;$y$축 대칭 : $(-3,\,-2)$,&ensp;원점 대칭 : $(-3,\,2)$</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          $x$축 대칭 : $y$좌표 부호 반전<br>
+          $y$축 대칭 : $x$좌표 부호 반전<br>
+          원점 대칭 : 두 좌표 모두 부호 반전
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 15~16 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 15 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">15</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            좌표평면 위의 점 $\text{P}(2,\,3)$과 원점에 대하여 대칭인 점의 좌표는?
+            <div class="prob__choices-stack">
+              <span>① $(2,\,3)$</span>
+              <span>② $(-2,\,3)$</span>
+              <span>③ $(-2,\,-3)$</span>
+              <span>④ $(-3,\,2)$</span>
+              <span>⑤ $(3,\,2)$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 16 쌍둥이 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">16</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 중 점 $(9,\,4)$와 $y$축에 대하여 대칭인 점의 좌표는?
+            <div class="prob__choices-stack">
+              <span>① $(4,\,9)$</span>
+              <span>② $(-4,\,-9)$</span>
+              <span>③ $(-9,\,-4)$</span>
+              <span>④ $(-9,\,4)$</span>
+              <span>⑤ $(9,\,-4)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span class="page-footer__topic">순서쌍과 좌표</span>
+      <span class="page-footer__num">008</span>
+    </div>
+  </div>
+
+</div><!-- /page 008 -->
+
+
+<!-- ═══════════════════════ PAGE 009 — 개념 한눈에 보기 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">수직선 위의 점의 좌표와 순서쌍</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li><strong>좌표</strong> : 수직선 위의 한 점에 대응하는 수. 점 P의 좌표가 $a$이면 $\text{P}(a)$로 나타낸다.</li>
+          <li><strong>원점</strong> : 좌표가 $0$인 점. 기호 $\text{O}(0)$으로 나타낸다.</li>
+          <li><strong>순서쌍</strong> : 두 수 $a$, $b$의 순서를 정하여 $(a,\,b)$로 나타낸 것. $(a,\,b)=(c,\,d) \Leftrightarrow a=c$이고 $b=d$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">좌표평면이란 무엇인가?</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li><strong>$x$축</strong> : 가로 수직선 / <strong>$y$축</strong> : 세로 수직선 / <strong>좌표축</strong> : $x$축과 $y$축 / <strong>원점 O</strong> : 두 좌표축이 만나는 점</li>
+          <li><strong>좌표평면</strong> : 좌표축이 정해진 평면</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">좌표평면 위의 점의 좌표</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li>점 $\text{P}(a,\,b)$ : $a$ = $x$좌표, $b$ = $y$좌표</li>
+          <li>$x$축 위의 점 : $(x,\,0)$ &ensp;/&ensp; $y$축 위의 점 : $(0,\,y)$ &ensp;/&ensp; 원점 : $(0,\,0)$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">04</span>
+        <span class="kaynun-title">사분면이란 무엇인가?</span>
+      </div>
+      <div class="kaynun-body">
+        <table class="kaynun-table">
+          <thead>
+            <tr><th>사분면</th><th>제1사분면</th><th>제2사분면</th><th>제3사분면</th><th>제4사분면</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$x$좌표</td><td>$+$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+            <tr><td>$y$좌표</td><td>$+$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+          </tbody>
+        </table>
+        <div>※ 원점과 좌표축 위의 점은 어느 사분면에도 속하지 않는다.</div>
+        <div>※ 대칭 : $x$축 대칭 $(a,\,b)  ⇒  (a,\,-b)$,&ensp;$y$축 대칭 $(a,\,b)  ⇒  (-a,\,b)$,&ensp;원점 대칭 $(a,\,b)  ⇒  (-a,\,-b)$</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">순서쌍과 좌표</span>
+    <span class="page-footer__num">009</span>
+  </div>
+
+</div><!-- /page 009 -->
+
+
+<!-- ═══════════════════════ PAGE 010 — 쏙쏙 유형 익히기 ═══════════════════════ -->
+<div class="page">
+
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+
+    <!-- 왼쪽 컬럼 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+
+      <!-- 01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">대칭인 점의 좌표</span>
+        </div>
+        <div class="umuri-q">
+          두 점 $\left(-\dfrac{1}{2}a+4,\,-1\right)$, $(5,\,-b+3)$이 $x$축에 대하여 대칭일 때, $b-a$의 값은?
+          <div class="umuri-choices-wrap">
+            <span>① $2$</span>
+            <span>② $3$</span>
+            <span>③ $4$</span>
+            <span>④ $5$</span>
+            <span>⑤ $6$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">좌표평면 위의 도형의 넓이</span>
+        </div>
+        <div class="umuri-q">
+          두 점 $\text{A}(a,\,b-1)$, $\text{B}(3b,\,a+2)$가 모두 $x$축 위의 점이고 점 C의 좌표가 $\text{C}(2a+b,\,2a+2b)$일 때, 삼각형 $\text{ABC}$의 넓이를 구하시오.
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">사분면</span>
+        </div>
+        <div class="umuri-q">
+          다음의 각 좌표에 대한 설명으로 옳지 않은 것은?
+          <div class="umuri-boogi" style="justify-content:center; text-align:center;">
+            $\text{A}(3,\,-1)$,&ensp;$\text{B}(4,\,2)$,&ensp;$\text{C}(2,\,0)$,&ensp;$\text{D}(-2,\,-2)$
+          </div>
+          <div class="umuri-choices-stack">
+            <span>① 점 A는 제4사분면에 있다.</span>
+            <span>② 점 B는 제1사분면 위의 점이다.</span>
+            <span>③ D의 좌표는 $(-2,\,-2)$이다.</span>
+            <span>④ 점 C는 $x$좌표$=2$, $y$좌표$=0$으로 $x$축 위에 있다.</span>
+            <span>⑤ 점 C는 제1사분면 위의 점이다.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 컬럼 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 160px 320px; align-items:start;">
+
+      <!-- 04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">사분면의 결정(2) — 두 수의 부호를 이용하는 경우</span>
+        </div>
+        <div class="umuri-q">
+          $a&lt;0$, $b&gt;0$일 때, 다음 중 점의 좌표와 그 점이 속하는 사분면이 바르게 짝 지어진 것은?
+          <div class="umuri-choices-stack">
+            <span>① $(a,\,b)$  ⇒  제4사분면</span>
+            <span>② $(ab,\,a-b)$  ⇒  제1사분면</span>
+            <span>③ $(ab,\,a+b)$  ⇒  제2사분면</span>
+            <span>④ $(a-b,\,a+b)$  ⇒  제3사분면</span>
+            <span>⑤ $\left(\dfrac{b}{a},\,b\right)$  ⇒  제2사분면</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">사분면의 결정(1) — 점이 속한 사분면이 주어진 경우</span>
+        </div>
+        <div class="umuri-q">
+          점 $(-a+b,\,-ab)$가 제2사분면 위의 점일 때, 점 $(-a,\,b)$는 제몇 사분면 위의 점인지 구하시오.
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">06</span>
+          <span class="umuri-desc">좌표평면 위의 점의 좌표</span>
+        </div>
+        <div class="umuri-q">
+          다음 좌표평면 위의 두 점 P, Q의 좌표를 각각 구하면?
+          <svg xmlns="http://www.w3.org/2000/svg" width="142" height="142" viewBox="0 0 142 142" style="display:block; margin:4px 0;">
+            <defs>
+              <pattern id="grid06umuri" width="13" height="13" patternUnits="userSpaceOnUse" x="6" y="6">
+                <path d="M 13 0 L 0 0 0 13" fill="none" stroke="#bbb" stroke-width="0.7"/>
+              </pattern>
+            </defs>
+            <rect x="6" y="6" width="130" height="130" fill="url(#grid06umuri)"/>
+            <rect x="6" y="6" width="130" height="130" fill="none" stroke="#bbb" stroke-width="0.7"/>
+            <!-- x축 -->
+            <line x1="6" y1="72" x2="134" y2="72" stroke="#444" stroke-width="1.2"/>
+            <polygon points="136,72 131,69.5 131,74.5" fill="#444"/>
+            <!-- y축 -->
+            <line x1="72" y1="136" x2="72" y2="8" stroke="#444" stroke-width="1.2"/>
+            <polygon points="72,6 69.5,11 74.5,11" fill="#444"/>
+            <!-- 축 레이블 -->
+            <text x="132" y="68" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic">x</text>
+            <text x="65" y="10" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif" font-style="italic" text-anchor="middle">y</text>
+            <!-- 원점 O -->
+            <text x="74" y="82" font-size="8" fill="#333" font-family="'윤고딕','Yoon Gothic',sans-serif">O</text>
+            <!-- Q(2,3): x=72+26=98, y=72-39=33 -->
+            <circle cx="98" cy="33" r="2.2" fill="#222"/>
+            <text x="101" y="32" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">Q</text>
+            <!-- P(0,-3): x=72, y=72+39=111 → y축 위 -->
+            <circle cx="72" cy="111" r="2.2" fill="#222"/>
+            <text x="75" y="110" font-size="8" fill="#222" font-weight="700" font-family="'윤고딕','Yoon Gothic',sans-serif">P</text>
+          </svg>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:3px 6px; font-size:11px; line-height:17px; color:#232f39; margin-top:6px;">
+            <span>① $\text{P}(0,\,-3)$, $\text{Q}(-2,\,3)$</span>
+            <span>② $\text{P}(0,\,-3)$, $\text{Q}(2,\,3)$</span>
+            <span>③ $\text{P}(-3,\,0)$, $\text{Q}(-2,\,-3)$</span>
+            <span>④ $\text{P}(-3,\,0)$, $\text{Q}(2,\,3)$</span>
+            <span>⑤ $\text{P}(-3,\,0)$, $\text{Q}(2,\,-3)$</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">순서쌍과 좌표</span>
+    <span class="page-footer__num">010</span>
+  </div>
+
+</div><!-- /page 010 -->
+
+
+<!-- ═══════════════════════ PAGE 011 — 빠른정답 ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">01</span>
+    <span class="qa2-name">순서쌍과 좌표</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">$14$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$12$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">①</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">15</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">16</span><span class="qa2-rans">④</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">$5$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">제3사분면</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">②</span></div><!-- P(0,-3) Q(2,3) → ② -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">순서쌍과 좌표</span>
+    <span class="page-footer__num">011</span>
+  </div>
+
+</div><!-- /page 011 -->
+
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>

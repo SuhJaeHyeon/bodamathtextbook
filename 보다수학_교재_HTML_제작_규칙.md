@@ -204,8 +204,9 @@ body { word-break: keep-all; }   /* 한국어 어절 중간 줄바꿈 방지 —
 **예제 선지 정렬 규칙**:
 | 클래스 | 구조 | 사용 조건 |
 |--------|------|----------|
-| `ex-choices-wrap` | `grid, repeat(3, max-content), gap:4px 18px` | 기본 (소선지 3열) |
+| `ex-choices-wrap` | `grid, repeat(3, max-content), gap:4px 18px` | 선지가 모두 한 줄에 들어오는 경우 — 간격 균등 분산 |
 | `ex-choices-stack` | `flex-column, gap:2px` | 선지가 긴 경우 (세로 나열) |
+| `ex-choices-3col` | `grid, 1fr 1fr 1fr, gap:4px 6px` | 선지가 짧고 3열 고정 배치가 필요할 때 |
 | `ex-choices-2col` | `grid, 1fr 1fr, gap:4px 0` | 2열 배치 필요 시 |
 
 ### 5-5. 오른쪽 사이드 (참고 + 풀이 TIP)
@@ -552,6 +553,7 @@ body { word-break: keep-all; }   /* 한국어 어절 중간 줄바꿈 방지 —
 
 | 표현 | HTML 코드 |
 |------|----------|
+| `⇒` (예제·개념익히기·유형익히기 내용) | 양 옆에 스페이스 2칸 → `  ⇒  ` |
 | `<` (부등호 미만) | `&lt;` |
 | `>` (부등호 초과) | 텍스트 내 직접 사용 가능, 수식 내는 `$>$` |
 | 반각 공백 | `&ensp;` |
@@ -564,16 +566,28 @@ body { word-break: keep-all; }   /* 한국어 어절 중간 줄바꿈 방지 —
 
 ```
 리브랜딩/
-├── 중학 2-1_Ⅲ-1단원_01 부등식과 그 성질.html
-├── 중학 2-1_Ⅲ-1단원_02 일차부등식의 풀이.html
 ├── textbook_guide_design.html       ← 마스터 템플릿 (최신 CSS 기준)
-├── bodamath_logo.png                ← 반드시 동일 폴더
-└── katex/
-    ├── katex.min.css
-    ├── katex.min.js
-    └── contrib/
-        └── auto-render.min.js
+├── bodamath_logo.png
+├── katex/                           ← 공용 KaTeX (루트)
+│   ├── katex.min.css
+│   ├── katex.min.js
+│   └── contrib/
+│       └── auto-render.min.js
+└── 교재_html/                       ← 교재 HTML 저장 폴더 (폴더명: 교재_html)
+    ├── 중1-1/
+    │   ├── katex/                   ← 각 학년별 로컬 KaTeX 사본
+    │   ├── 중학 1-1_Ⅲ-1단원_01 문자의 사용.html
+    │   ├── 중학 1-1_Ⅲ-1단원_02 일차식의 계산(1).html
+    │   └── …
+    ├── 중2-1/
+    │   ├── katex/
+    │   └── …
+    └── 중3-1/
+        ├── katex/
+        └── …
 ```
+
+> **경로 규칙**: 각 HTML 파일은 `교재_html/<학년>/` 폴더 안에 저장한다. KaTeX는 `./katex/` 상대 경로로 참조하며, 해당 학년 폴더 안의 `katex/` 사본을 사용한다.
 
 ---
 

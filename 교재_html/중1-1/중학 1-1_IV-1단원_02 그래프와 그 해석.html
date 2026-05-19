@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 1-1_IV-1단원_02 그래프와 그 해석</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex-display { display: inline !important; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag { display: flex; align-items: center; gap: 2px; font-size: 8px; font-weight: 700; }
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+
+/* ─── cbox ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px; margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7; position: relative;
+}
+.concept-chip__n {
+  background: #338cd7; height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px; padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-chip__boogi {
+  background: #ff8945; height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title { font-family: '윤고딕','Yoon Gothic',sans-serif; font-weight: 500; font-size: 13px; color: #000; letter-spacing: -0.7px; }
+.concept-body { font-size: 11.5px; color: #232f39; line-height: 18px; letter-spacing: -0.6px; display: flex; flex-direction: column; gap: 8px; padding-left: 26px; }
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-sub { font-size: 11.5px; font-weight: 700; color: #232f39; }
+.concept-table { border-collapse: collapse; width: 100%; font-size: 8px; letter-spacing: -0.48px; }
+.concept-table th { background: #ebebeb; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 8px; text-align: center; font-weight: 400; line-height: 1.4; }
+.concept-table td { background: white; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 3px 8px; text-align: center; line-height: 1.4; }
+.concept-table tr > *:first-child { border-left: none; }
+.concept-table tr > *:last-child { border-right: none; }
+.hl { background: #fff5d3; }
+.concept-eg { background: rgba(51,140,215,0.06); border-radius: 6px; padding: 6px 10px; display: flex; flex-direction: column; gap: 3px; }
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: nowrap; font-size: 11px; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge { position: absolute; top: 0; left: 16px; display: flex; align-items: center; z-index: 2; }
+.ex-badge__pill { background: #539e84; color: white; font-size: 9px; font-weight: 600; height: 18px; padding: 3px 6px; border-radius: 1000px; display: flex; align-items: center; justify-content: center; }
+.ex-badge__num { background: white; color: #539e84; font-size: 16px; font-weight: 700; letter-spacing: -1.44px; line-height: 1.25; padding: 0 3px; border-radius: 1000px; height: 19px; display: flex; align-items: flex-end; justify-content: center; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.ex-body { background: rgba(245,245,245,0.4); border-radius: 10px; padding: 22px 10px 12px 31px; display: flex; flex-direction: column; gap: 20px; }
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 10px; color: #232f39; line-height: 16px; letter-spacing: -0.6px; display: block; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 10px; color: #232f39; line-height: 16px; align-items: center; justify-content: start; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: #232f39; line-height: 16px; align-items: flex-start; }
+.ex-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Right side ─── */
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge { background: #797979; color: white; font-size: 6px; font-weight: 700; border-radius: 2px; padding: 2px 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ans-text { font-size: 9px; color: #000; letter-spacing: -1.1px; line-height: 16px; font-weight: 500; }
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; flex: 1; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill { background: #ff7373; color: white; font-size: 7px; font-weight: 700; height: 14px; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%); }
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0; margin-top: 4px;
+  padding: 2px 9px 4px 5px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+.prac-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+.prob { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num { font-size: 20px; font-weight: 800; color: #338cd7; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.prob__badge { border-top: 0.8px solid #338cd7; border-right: 0.8px solid #338cd7; border-bottom: 0.8px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 4px 2px 2px; font-size: 8px; font-weight: 700; color: #338cd7; display: inline-flex; align-items: center; }
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: block; letter-spacing: -0.5px; margin-left: 3px; min-width: 0; overflow-wrap: break-word; }
+.prob__body > .prob__choices-wrap,
+.prob__body > .prob__choices-stack,
+.prob__body > .prob__choices-2col,
+.prob__body > .prob__choices-3col,
+.prob__body > .prob__boogi { margin-top: 5px; }
+.prob__choices-wrap { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Set-block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── 한눈에 보기 ─── */
+.kaynun-hd { background: #338cd7; border-radius: 6px; padding: 6px 10px; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; width: 100%; }
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box { border: 2px solid rgba(51,140,215,0.2); border-radius: 10px; padding: 16px 20px 16px 16px; display: flex; flex-direction: column; gap: 24px; flex: 1; min-height: 0; overflow: hidden; margin-top: -1px; margin-bottom: 10px; }
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip { background: #338cd7; color: white; height: 19px; border-radius: 1000px; padding: 0 8px; font-size: 9px; font-weight: 700; font-family: 'Pretendard Variable', Pretendard, sans-serif; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap; }
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body { padding-left: 33px; padding-right: 8px; font-size: 11px; line-height: 18px; color: #232f39; display: flex; flex-direction: column; gap: 6px; letter-spacing: -0.5px; }
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+.kaynun-table { border-collapse: collapse; width: 100%; font-size: 8.5px; letter-spacing: -0.4px; }
+.kaynun-table th { background: #f2f2f2; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 4px 6px; text-align: center; font-weight: 500; line-height: 1.5; }
+.kaynun-table td { background: white; color: #0c0c0c; border: 0.5px solid #b9b9b9; padding: 4px 6px; text-align: center; line-height: 1.5; }
+.kaynun-table tr > *:first-child { border-left: none; }
+.kaynun-table tr > *:last-child { border-right: none; }
+
+/* ─── 유형익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab { border-top: 2px solid #eb749f; border-right: 2px solid #eb749f; border-bottom: 2px solid #eb749f; border-left: none; border-radius: 0 1000px 1000px 0; padding: 5px 8px 4px 4px; display: inline-flex; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; max-width: 160px; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; margin-left: 1px; display: block; }
+.umuri-choices-wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; margin-top: 6px; }
+.umuri-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num { font-size: 26px; font-weight: 700; color: #338cd7; letter-spacing: -3.12px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-name { font-size: 20px; font-weight: 700; color: #000; letter-spacing: -1.2px; flex: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-badge { background: #338cd7; color: white; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 4px 6px; flex-shrink: 0; }
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 2px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab { border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none; border-radius: 0 1000px 1000px 0; padding: 3px 10px 3px 6px; display: inline-flex; align-items: flex-end; gap: 2px; align-self: flex-start; margin: 8px 0 6px -10px; }
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; text-align: left; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; padding-left: 0; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer {
+  display: flex; gap: 4px; align-items: center; justify-content: flex-end;
+  flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px;
+  white-space: nowrap; margin-top: auto;
+}
+.page-footer::before {
+  content: "";
+  display: block;
+  width: 59px; height: 13px; margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<!-- 개념01(변수·그래프) + 예제01 + 쏙쏙개념익히기 01~02 -->
+<div class="page">
+
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span><span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">그래프와 그 해석</div>
+    </div>
+  </div>
+
+  <!-- 개념01 : 변수와 그래프 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">변수와 그래프</span>
+        </div>
+        <div class="concept-body">
+          <div>❶ <span class="hl"><strong>변수</strong></span> : $x$, $y$처럼 상황에 따라 여러 가지 값으로 변할 수 있는 양을 나타내는 문자</div>
+          <div>❷ <span class="hl"><strong>그래프</strong></span> : 두 변수 $x$, $y$의 순서쌍 $(x,\,y)$를 좌표로 하는 점 전체를 좌표평면 위에 나타낸 것</div>
+        </div>
+      </div>
+
+      <!-- 개념02 : 그래프의 해석 -->
+      <div class="concept-def" style="margin-top:10px;">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">그래프의 해석</span>
+        </div>
+        <div class="concept-body">
+          <div>그래프를 보면 $x$가 변함에 따라 $y$가 어떻게 달라지는지 한눈에 파악할 수 있다. 그래프의 모양(선의 방향)에 따라 $y$의 변화를 다음과 같이 읽는다.</div>
+          <table class="concept-table" style="margin-top:4px;">
+            <tr>
+              <th>그래프 모양</th>
+              <th><svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="20" x2="32" y2="4" stroke="#e0387a" stroke-width="2" stroke-linecap="round"/></svg></th>
+              <th><svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="12" x2="32" y2="12" stroke="#e0387a" stroke-width="2" stroke-linecap="round"/></svg></th>
+              <th><svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="4" x2="32" y2="20" stroke="#e0387a" stroke-width="2" stroke-linecap="round"/></svg></th>
+            </tr>
+            <tr>
+              <td>$y$의 변화</td>
+              <td class="hl">증가한다.</td>
+              <td class="hl">변화가 없다.</td>
+              <td class="hl">감소한다.</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 예제01 -->
+      <div class="ex-wrap" style="margin-top:12px;">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음은 이동 시간 $x$와 집으로부터의 거리 $y$ 사이의 관계를 나타낸 그래프이다. 각 그래프에 알맞은 상황을 <span class="hl">보기</span>에서 고르시오. (단, 서점, 도서관은 집과 학교 사이에 있다.)</div>
+            <div style="display:flex; gap:10px; margin-top:4px; align-items:flex-end;">
+
+              <!-- (1) 삼각형 : 올라갔다 내려옴 -->
+              <div style="text-align:center;">
+                <div style="font-size:9px; color:#232f39; margin-bottom:2px;">(1)</div>
+                <svg width="80" height="68" viewBox="0 0 80 68" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <!-- 축 -->
+                  <line x1="10" y1="58" x2="74" y2="58" stroke="#232f39" stroke-width="1.2"/>
+                  <line x1="10" y1="58" x2="10" y2="6"  stroke="#232f39" stroke-width="1.2"/>
+                  <!-- 화살표 -->
+                  <polygon points="74,55 74,61 79,58" fill="#232f39"/>
+                  <polygon points="7,6 13,6 10,1"    fill="#232f39"/>
+                  <!-- 축 레이블 -->
+                  <text x="6"  y="63" font-size="8" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                  <text x="75" y="63" font-size="8" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                  <text x="12" y="8"  font-size="8" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                  <!-- 그래프 : 삼각형 (올라갔다가 내려옴) -->
+                  <polyline points="10,58 35,18 62,58" fill="none" stroke="#232f39" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+              <!-- (2) 계단식 하강 : 내려가다 수평 후 다시 내려감 -->
+              <div style="text-align:center;">
+                <div style="font-size:9px; color:#232f39; margin-bottom:2px;">(2)</div>
+                <svg width="80" height="68" viewBox="0 0 80 68" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="10" y1="58" x2="74" y2="58" stroke="#232f39" stroke-width="1.2"/>
+                  <line x1="10" y1="58" x2="10" y2="6"  stroke="#232f39" stroke-width="1.2"/>
+                  <polygon points="74,55 74,61 79,58" fill="#232f39"/>
+                  <polygon points="7,6 13,6 10,1"    fill="#232f39"/>
+                  <text x="6"  y="63" font-size="8" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                  <text x="75" y="63" font-size="8" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                  <text x="12" y="8"  font-size="8" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                  <!-- 그래프 : 하강 → 수평 → 하강 -->
+                  <polyline points="10,14 30,36 46,36 62,58" fill="none" stroke="#232f39" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+              <!-- (3) 사다리꼴 : 올라가다 수평 후 내려옴 -->
+              <div style="text-align:center;">
+                <div style="font-size:9px; color:#232f39; margin-bottom:2px;">(3)</div>
+                <svg width="80" height="68" viewBox="0 0 80 68" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                  <line x1="10" y1="58" x2="74" y2="58" stroke="#232f39" stroke-width="1.2"/>
+                  <line x1="10" y1="58" x2="10" y2="6"  stroke="#232f39" stroke-width="1.2"/>
+                  <polygon points="74,55 74,61 79,58" fill="#232f39"/>
+                  <polygon points="7,6 13,6 10,1"    fill="#232f39"/>
+                  <text x="6"  y="63" font-size="8" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                  <text x="75" y="63" font-size="8" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                  <text x="12" y="8"  font-size="8" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                  <!-- 그래프 : 상승 → 수평 → 하강 -->
+                  <polyline points="10,58 24,22 46,22 62,58" fill="none" stroke="#232f39" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+            </div>
+            <div class="ex-boogi" style="margin-top:4px; flex-direction:column; gap:1px;">
+              <div style="font-size:9px; font-weight:700; color:#338cd7; margin-bottom:2px;">보기</div>
+              <div style="font-size:10px; line-height:15px;">ㄱ. 현우는 집에서 출발하여 일정한 속력으로 걸어서 서점에 갔다가 바로 돌아왔다.</div>
+              <div style="font-size:10px; line-height:15px;">ㄴ. 준희는 집에서 출발하여 일정한 속력으로 자전거를 타고 학교에 갔다.</div>
+              <div style="font-size:10px; line-height:15px;">ㄷ. 수영이는 학교에서 출발하여 일정한 속력으로 걸어서 서점에 들른 후 집에 왔다.</div>
+              <div style="font-size:10px; line-height:15px;">ㄹ. 소윤이는 자전거를 타고 집에서 출발하여 일정한 속력으로 도서관에 가서 책을 본 후 집에 왔다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">그래프에서 기울기(선의 방향)는 이동 방향과 속력의 변화를 나타낸다.<br><br>• 오른쪽 위로 : 집에서 멀어짐<br>• 오른쪽 아래로 : 집으로 가까워짐<br>• 수평선 : 거리 변화 없음(정지)</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$y$값이 증가하면 집에서 멀어지고, 감소하면 집으로 돌아오는 상황</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1)&ensp;ㄱ</span>
+          <span>(2)&ensp;ㄷ</span>
+          <span>(3)&ensp;ㄹ</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">그래프와 그 해석</span>
+    <span class="page-footer__num">001</span>
+  </div>
+
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<!-- 쏙쏙 개념 익히기 01~02 -->
+<div class="page">
+
+  <div class="practice-sec" style="flex:1;">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+
+      <div class="prac-grid">
+        <!-- 문제01 : 그래프의 모양과 그래프 (쌍둥이) -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음은 모양과 크기가 각각 다른 A, B, C 3개의 물통에 일정한 속력으로 물을 채울 때, 물의 양 $x$L와 물의 높이 $y$cm 사이의 관계를 그래프로 나타낸 것이다. 물통 A, B, C에 알맞은 그래프를 바르게 나타낸 것은?
+            <!-- 원통 도형 A, B, C -->
+            <div style="display:flex; gap:10px; margin-top:5px; align-items:flex-end;">
+
+              <!-- A : 큰 원통 (분홍) -->
+              <div style="text-align:center;">
+                <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+                  <!-- 옆면 -->
+                  <rect x="4" y="12" width="44" height="32" rx="0" fill="#f7ccd8" stroke="#c0607a" stroke-width="1"/>
+                  <!-- 윗면 타원 -->
+                  <ellipse cx="26" cy="12" rx="22" ry="6" fill="#f9dde6" stroke="#c0607a" stroke-width="1"/>
+                  <!-- 아랫면 타원(앞) -->
+                  <ellipse cx="26" cy="44" rx="22" ry="6" fill="#f0b8c8" stroke="#c0607a" stroke-width="1"/>
+                  <!-- 점선(중간) -->
+                  <ellipse cx="26" cy="28" rx="22" ry="6" fill="none" stroke="#c0607a" stroke-width="0.8" stroke-dasharray="3,2"/>
+                  <!-- 레이블 -->
+                  <text x="26" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#232f39" font-family="sans-serif">A</text>
+                </svg>
+              </div>
+
+              <!-- B : 중간 원통 (초록) -->
+              <div style="text-align:center;">
+                <svg width="38" height="44" viewBox="0 0 38 44" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="10" width="32" height="26" rx="0" fill="#c8e6c9" stroke="#5a9e6f" stroke-width="1"/>
+                  <ellipse cx="19" cy="10" rx="16" ry="5" fill="#d8f0d8" stroke="#5a9e6f" stroke-width="1"/>
+                  <ellipse cx="19" cy="36" rx="16" ry="5" fill="#b2d8b2" stroke="#5a9e6f" stroke-width="1"/>
+                  <ellipse cx="19" cy="23" rx="16" ry="5" fill="none" stroke="#5a9e6f" stroke-width="0.8" stroke-dasharray="3,2"/>
+                  <text x="19" y="27" text-anchor="middle" font-size="10" font-weight="700" fill="#232f39" font-family="sans-serif">B</text>
+                </svg>
+              </div>
+
+              <!-- C : 작은 원통 (흰색/회색) -->
+              <div style="text-align:center;">
+                <svg width="26" height="38" viewBox="0 0 26 38" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="8" width="22" height="22" rx="0" fill="#f5f5f5" stroke="#888" stroke-width="1"/>
+                  <ellipse cx="13" cy="8" rx="11" ry="4" fill="#ffffff" stroke="#888" stroke-width="1"/>
+                  <ellipse cx="13" cy="30" rx="11" ry="4" fill="#e0e0e0" stroke="#888" stroke-width="1"/>
+                  <ellipse cx="13" cy="19" rx="11" ry="4" fill="none" stroke="#888" stroke-width="0.8" stroke-dasharray="3,2"/>
+                  <text x="13" y="23" text-anchor="middle" font-size="9" font-weight="700" fill="#232f39" font-family="sans-serif">C</text>
+                </svg>
+              </div>
+
+            </div>
+            <!-- 보기 그래프 ㄱ ㄴ ㄷ -->
+            <div class="ex-boogi" style="margin-top:5px; padding:6px 8px;">
+              <div style="font-size:9px; font-weight:700; color:#232f39; margin-bottom:4px; text-align:center;">〈보기〉</div>
+              <div style="display:flex; gap:8px; justify-content:center; align-items:flex-end;">
+
+                <!-- ㄱ : 완만한 정비례 -->
+                <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                  <span style="font-size:9px; font-weight:700; color:#232f39; margin-bottom:1px; padding-left:2px;">ㄱ.</span>
+                  <svg width="68" height="58" viewBox="0 0 68 58" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="12" y1="50" x2="63" y2="50" stroke="#232f39" stroke-width="1.2"/>
+                    <line x1="12" y1="50" x2="12" y2="4"  stroke="#232f39" stroke-width="1.2"/>
+                    <polygon points="63,47 63,53 68,50" fill="#232f39"/>
+                    <polygon points="9,4 15,4 12,0"     fill="#232f39"/>
+                    <text x="5"  y="56" font-size="7" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                    <text x="64" y="56" font-size="7" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                    <text x="14" y="8"  font-size="7" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                    <line x1="12" y1="50" x2="60" y2="32" stroke="#232f39" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </div>
+
+                <!-- ㄴ : 가파른 정비례 -->
+                <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                  <span style="font-size:9px; font-weight:700; color:#232f39; margin-bottom:1px; padding-left:2px;">ㄴ.</span>
+                  <svg width="68" height="58" viewBox="0 0 68 58" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="12" y1="50" x2="63" y2="50" stroke="#232f39" stroke-width="1.2"/>
+                    <line x1="12" y1="50" x2="12" y2="4"  stroke="#232f39" stroke-width="1.2"/>
+                    <polygon points="63,47 63,53 68,50" fill="#232f39"/>
+                    <polygon points="9,4 15,4 12,0"     fill="#232f39"/>
+                    <text x="5"  y="56" font-size="7" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                    <text x="64" y="56" font-size="7" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                    <text x="14" y="8"  font-size="7" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                    <line x1="12" y1="50" x2="32" y2="6"  stroke="#232f39" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </div>
+
+                <!-- ㄷ : y=x 수준 정비례 -->
+                <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                  <span style="font-size:9px; font-weight:700; color:#232f39; margin-bottom:1px; padding-left:2px;">ㄷ.</span>
+                  <svg width="68" height="58" viewBox="0 0 68 58" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="12" y1="50" x2="63" y2="50" stroke="#232f39" stroke-width="1.2"/>
+                    <line x1="12" y1="50" x2="12" y2="4"  stroke="#232f39" stroke-width="1.2"/>
+                    <polygon points="63,47 63,53 68,50" fill="#232f39"/>
+                    <polygon points="9,4 15,4 12,0"     fill="#232f39"/>
+                    <text x="5"  y="56" font-size="7" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                    <text x="64" y="56" font-size="7" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                    <text x="14" y="8"  font-size="7" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                    <line x1="12" y1="50" x2="56" y2="6"  stroke="#232f39" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </div>
+
+              </div>
+            </div>
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <div style="display:grid; grid-template-columns:1.2rem 1fr 1fr 1fr; gap:1px 4px; font-size:10px;">
+                <span></span><span style="text-align:center;">A</span><span style="text-align:center;">B</span><span style="text-align:center;">C</span>
+                <span>①</span><span style="text-align:center;">ㄱ</span><span style="text-align:center;">ㄴ</span><span style="text-align:center;">ㄷ</span>
+                <span>②</span><span style="text-align:center;">ㄱ</span><span style="text-align:center;">ㄷ</span><span style="text-align:center;">ㄴ</span>
+                <span>③</span><span style="text-align:center;">ㄴ</span><span style="text-align:center;">ㄷ</span><span style="text-align:center;">ㄱ</span>
+                <span>④</span><span style="text-align:center;">ㄴ</span><span style="text-align:center;">ㄱ</span><span style="text-align:center;">ㄷ</span>
+                <span>⑤</span><span style="text-align:center;">ㄷ</span><span style="text-align:center;">ㄱ</span><span style="text-align:center;">ㄴ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prac-sep"></div>
+
+        <!-- 문제02 : 그래프의 모양과 그래프 (유사) -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            다음 그림과 같은 모양의 도자기에 시간당 일정한 양의 물을 채울 때, 경과 시간 $x$에 따른 물의 높이 $y$ 사이의 관계를 나타낸 그래프로 알맞은 것을 보기에서 고르시오.
+            <!-- 물병 도형 SVG -->
+            <div style="margin-top:6px; display:flex; justify-content:center;">
+              <svg width="56" height="96" viewBox="0 0 56 96" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="bottleGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%"   stop-color="#f0b8a8"/>
+                    <stop offset="35%"  stop-color="#fde8e2"/>
+                    <stop offset="100%" stop-color="#f0b8a8"/>
+                  </linearGradient>
+                </defs>
+
+                <!--
+                  형태: 병목(좁고 길) → 어깨(곡선으로 넓어짐) → 몸통(넓은 원통) → 바닥
+                  병목 x: 22~34 / 몸통 x: 8~48
+                  y 구성:
+                    입구 타원:  y=6,  rx=6
+                    병목 상단:  y=6  ~ y=18  (좁고 거의 직선)
+                    어깨 곡선:  y=18 ~ y=36  (베지어로 넓어짐)
+                    몸통:       y=36 ~ y=84  (넓은 원통)
+                    바닥 타원:  y=84, rx=20
+                -->
+
+                <!-- 병 몸통 전체 실루엣 -->
+                <path d="
+                  M22,6
+                  L22,18
+                  C22,30 8,32 8,40
+                  L8,84
+                  C8,88 17,91 28,91
+                  C39,91 48,88 48,84
+                  L48,40
+                  C48,32 34,30 34,18
+                  L34,6
+                  Z"
+                  fill="url(#bottleGrad2)" stroke="#c07868" stroke-width="1.2"/>
+
+                <!-- 입구 타원 (맨 위) -->
+                <ellipse cx="28" cy="6"  rx="6"  ry="2.2" fill="#f5d0c8" stroke="#c07868" stroke-width="1.2"/>
+
+                <!-- 병목↔어깨 경계 타원 -->
+                <ellipse cx="28" cy="18" rx="6"  ry="2"   fill="#f0c4b4" stroke="#c07868" stroke-width="0.8"/>
+
+                <!-- 어깨↔몸통 경계 타원 -->
+                <ellipse cx="28" cy="40" rx="20" ry="5"   fill="#edb8a8" stroke="#c07868" stroke-width="0.8"/>
+
+                <!-- 몸통 중간 점선 타원 -->
+                <ellipse cx="28" cy="62" rx="20" ry="5"   fill="none"    stroke="#c07868" stroke-width="0.7" stroke-dasharray="3,2"/>
+
+                <!-- 바닥 타원 -->
+                <ellipse cx="28" cy="84" rx="20" ry="7"   fill="#e8b0a0" stroke="#c07868" stroke-width="1.2"/>
+              </svg>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 6px; margin-top:5px;">
+
+              <!-- ㄱ : 지수함수형 부드러운 곡선 -->
+              <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                <span style="font-size:9px; font-weight:700; color:#232f39; padding-left:2px;">ㄱ.</span>
+                <svg width="72" height="60" viewBox="0 0 72 60" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="10" y1="52" x2="66" y2="52" stroke="#232f39" stroke-width="1.2"/>
+                  <line x1="10" y1="52" x2="10" y2="4"  stroke="#232f39" stroke-width="1.2"/>
+                  <polygon points="66,49 66,55 71,52" fill="#232f39"/>
+                  <polygon points="7,4 13,4 10,0"    fill="#232f39"/>
+                  <text x="4"  y="58" font-size="7" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                  <text x="67" y="58" font-size="7" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                  <text x="12" y="8"  font-size="7" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                  <!-- 단일 cubic bezier: 원점 근처에서 거의 수평, 오른쪽 끝에서 급격히 상승 -->
+                  <path d="M10,52 C30,52 42,48 62,6"
+                        fill="none" stroke="#232f39" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- ㄴ : y=x 정비례 직선 -->
+              <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                <span style="font-size:9px; font-weight:700; color:#232f39; padding-left:2px;">ㄴ.</span>
+                <svg width="72" height="60" viewBox="0 0 72 60" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="10" y1="52" x2="66" y2="52" stroke="#232f39" stroke-width="1.2"/>
+                  <line x1="10" y1="52" x2="10" y2="4"  stroke="#232f39" stroke-width="1.2"/>
+                  <polygon points="66,49 66,55 71,52" fill="#232f39"/>
+                  <polygon points="7,4 13,4 10,0"    fill="#232f39"/>
+                  <text x="4"  y="58" font-size="7" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                  <text x="67" y="58" font-size="7" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                  <text x="12" y="8"  font-size="7" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                  <line x1="10" y1="52" x2="54" y2="8" stroke="#232f39" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- ㄷ : 완만하다가 가파르게 꺾임 -->
+              <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                <span style="font-size:9px; font-weight:700; color:#232f39; padding-left:2px;">ㄷ.</span>
+                <svg width="72" height="60" viewBox="0 0 72 60" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="10" y1="52" x2="66" y2="52" stroke="#232f39" stroke-width="1.2"/>
+                  <line x1="10" y1="52" x2="10" y2="4"  stroke="#232f39" stroke-width="1.2"/>
+                  <polygon points="66,49 66,55 71,52" fill="#232f39"/>
+                  <polygon points="7,4 13,4 10,0"    fill="#232f39"/>
+                  <text x="4"  y="58" font-size="7" fill="#232f39" font-family="serif" font-style="italic">O</text>
+                  <text x="67" y="58" font-size="7" fill="#232f39" font-family="serif" font-style="italic">x</text>
+                  <text x="12" y="8"  font-size="7" fill="#232f39" font-family="serif" font-style="italic">y</text>
+                  <path d="M10,52 L48,34 C52,28 54,18 56,6"
+                        fill="none" stroke="#232f39" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">그래프와 그 해석</span>
+    <span class="page-footer__num">002</span>
+  </div>
+
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<!-- 예제02 set-block + 쏙쏙 개념 익히기 03~04 -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1 : 예제02 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+
+        <!-- 예제02 -->
+        <div class="ex-wrap" style="margin-top:10px;">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">02</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">오른쪽 그래프는 기영이네 가족이 자동차를 타고 집에서 출발하여 미술관에 도착할 때까지 자동차의 속력을 시간에 따라 나타낸 것이다. 자동차가 출발한 지 $x$분 후 자동차의 속력을 시속 $y\,\text{km}$라 할 때, 다음 물음에 답하시오.</div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" width="210" height="120" font-family="serif" style="display:block; margin-top:4px;">
+                <rect x="0" y="0" width="560" height="320" fill="white"/>
+                <g stroke="#cfcfcf" stroke-width="0.8">
+                  <line x1="60" y1="230" x2="492" y2="230"/>
+                  <line x1="60" y1="200" x2="492" y2="200"/>
+                  <line x1="60" y1="170" x2="492" y2="170"/>
+                  <line x1="60" y1="140" x2="492" y2="140"/>
+                  <line x1="60" y1="110" x2="492" y2="110"/>
+                  <line x1="60" y1="80"  x2="492" y2="80"/>
+                  <line x1="60" y1="50"  x2="492" y2="50"/>
+                  <line x1="60" y1="20"  x2="492" y2="20"/>
+                </g>
+                <g stroke="#cfcfcf" stroke-width="0.8">
+                  <line x1="96"  y1="20" x2="96"  y2="260"/>
+                  <line x1="132" y1="20" x2="132" y2="260"/>
+                  <line x1="168" y1="20" x2="168" y2="260"/>
+                  <line x1="204" y1="20" x2="204" y2="260"/>
+                  <line x1="240" y1="20" x2="240" y2="260"/>
+                  <line x1="276" y1="20" x2="276" y2="260"/>
+                  <line x1="312" y1="20" x2="312" y2="260"/>
+                  <line x1="348" y1="20" x2="348" y2="260"/>
+                  <line x1="384" y1="20" x2="384" y2="260"/>
+                  <line x1="420" y1="20" x2="420" y2="260"/>
+                  <line x1="456" y1="20" x2="456" y2="260"/>
+                </g>
+                <line x1="60" y1="260" x2="510" y2="260" stroke="black" stroke-width="1.5"/>
+                <polygon points="510,260 502,256 502,264" fill="black"/>
+                <line x1="60" y1="260" x2="60" y2="10" stroke="black" stroke-width="1.5"/>
+                <polygon points="60,10 56,18 64,18" fill="black"/>
+                <text x="48" y="276" font-size="14" font-style="italic">O</text>
+                <text x="132" y="278" font-size="13" text-anchor="middle">4</text>
+                <text x="204" y="278" font-size="13" text-anchor="middle">8</text>
+                <text x="276" y="278" font-size="13" text-anchor="middle">12</text>
+                <text x="348" y="278" font-size="13" text-anchor="middle">16</text>
+                <text x="420" y="278" font-size="13" text-anchor="middle">20</text>
+                <text x="492" y="278" font-size="13" text-anchor="middle">24</text>
+                <text x="520" y="265" font-size="13" font-style="italic">x</text>
+                <text x="530" y="265" font-size="12">(분)</text>
+                <text x="52" y="205" font-size="13" text-anchor="end">20</text>
+                <text x="52" y="145" font-size="13" text-anchor="end">40</text>
+                <text x="52" y="85"  font-size="13" text-anchor="end">60</text>
+                <text x="48" y="14" font-size="13" font-style="italic">y</text>
+                <text x="58" y="14" font-size="12">(km/h)</text>
+                <polyline points="60,260 96,50 240,50 312,260 348,260 384,170 420,170 492,260"
+                  fill="none" stroke="black" stroke-width="2"/>
+              </svg>
+              <div style="font-size:10px; color:#232f39; line-height:16px; margin-top:2px;">
+                (1) 자동차가 가장 빨리 달렸을 때, 자동차의 속력을 구하시오.<br>
+                (2) 자동차의 속력이 두 번째로 감소하기 시작한 때는 집에서 출발한 지 몇 분 후인지 구하시오.<br>
+                (3) 집에서 출발하여 미술관에 도착할 때까지 자동차는 몇 분 동안 정지해 있었는지 구하시오.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>그래프에서 수평 구간은 속력이 $0$ (정지), 최고점이 최대 속력</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text ans-text--1col">
+            <span>(1)&ensp;시속 $70\,\text{km}$</span>
+            <span>(2)&ensp;$20$분 후</span>
+            <span>(3)&ensp;$2$분</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 쏙쏙 개념 익히기 03~04 -->
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+
+        <div class="prac-grid">
+          <!-- 문제03 : 수가 주어진 그래프 (쌍둥이) -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">03</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              다음 그림은 호영이가 집에서 거리가 $600\,\text{m}$ 떨어진 병원에 다녀올 때 집으로부터의 거리를 시간에 따라 나타낸 것이다. 호영이가 병원에서 집으로 돌아오는 데 걸린 시간을 구하시오.
+              <!-- 문제03 그래프 -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 140" width="172" height="112" font-family="serif" style="display:block; margin-top:5px;">
+                <!-- 점선: y=600 수평 -->
+                <line x1="30" y1="24" x2="148" y2="24" stroke="#232f39" stroke-width="0.7" stroke-dasharray="3,2"/>
+                <!-- 점선: x=10 수직 -->
+                <line x1="78"  y1="24" x2="78"  y2="110" stroke="#232f39" stroke-width="0.7" stroke-dasharray="3,2"/>
+                <!-- 점선: x=20 수직 -->
+                <line x1="148" y1="24" x2="148" y2="110" stroke="#232f39" stroke-width="0.7" stroke-dasharray="3,2"/>
+                <!-- 점선: x=24 수직 -->
+                <line x1="183" y1="24" x2="183" y2="110" stroke="#232f39" stroke-width="0.7" stroke-dasharray="3,2"/>
+                <!-- x축 -->
+                <line x1="30" y1="110" x2="195" y2="110" stroke="#232f39" stroke-width="1.2"/>
+                <polygon points="195,107 195,113 199,110" fill="#232f39"/>
+                <!-- y축 -->
+                <line x1="30" y1="110" x2="30" y2="8" stroke="#232f39" stroke-width="1.2"/>
+                <polygon points="27,8 33,8 30,5" fill="#232f39"/>
+                <!-- 원점 -->
+                <text x="22" y="118" font-size="9" font-style="italic" fill="#232f39">O</text>
+                <!-- x축 라벨 -->
+                <text x="78"  y="120" font-size="8" text-anchor="middle" fill="#232f39">10</text>
+                <text x="148" y="120" font-size="8" text-anchor="middle" fill="#232f39">20</text>
+                <text x="183" y="120" font-size="8" text-anchor="middle" fill="#232f39">24</text>
+                <text x="197" y="118" font-size="8" font-style="italic" fill="#232f39">x</text>
+                <!-- y축 라벨 -->
+                <text x="26" y="27" font-size="8" text-anchor="end" fill="#232f39">600</text>
+                <text x="32" y="10" font-size="8" font-style="italic" fill="#232f39">y</text>
+                <!-- 그래프: (0,0)→(10,600)→(20,600)→(24,0) -->
+                <!-- x: 30 + col×(183-30)/24 = 30 + col×6.375 -->
+                <!-- y=600: 24 / y=0: 110 -->
+                <polyline points="30,110 78,24 148,24 183,110"
+                  fill="none" stroke="#232f39" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="prac-sep"></div>
+
+          <!-- 문제04 : 수가 주어진 그래프 (유사) -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">04</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              높이가 $20\,\text{cm}$인 간장통에 간장을 채우려고 한다. 경과 시간 $x$분에 따른 간장의 높이를 $y\,\text{cm}$라 할 때, $x$와 $y$ 사이의 관계를 그래프로 나타내면 다음 그림과 같다. $\square$ 안에 알맞은 수를 써넣으시오.
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" width="158" height="128" font-family="serif" style="display:block; margin-top:5px;">
+                <rect x="0" y="0" width="420" height="340" fill="white"/>
+                <g stroke="#cfcfcf" stroke-width="0.8">
+                  <line x1="60" y1="276" x2="360" y2="276"/>
+                  <line x1="60" y1="252" x2="360" y2="252"/>
+                  <line x1="60" y1="228" x2="360" y2="228"/>
+                  <line x1="60" y1="204" x2="360" y2="204"/>
+                  <line x1="60" y1="180" x2="360" y2="180"/>
+                  <line x1="60" y1="156" x2="360" y2="156"/>
+                  <line x1="60" y1="132" x2="360" y2="132"/>
+                  <line x1="60" y1="108" x2="360" y2="108"/>
+                  <line x1="60" y1="84"  x2="360" y2="84"/>
+                  <line x1="60" y1="60"  x2="360" y2="60"/>
+                </g>
+                <g stroke="#cfcfcf" stroke-width="0.8">
+                  <line x1="80"  y1="40" x2="80"  y2="300"/>
+                  <line x1="100" y1="40" x2="100" y2="300"/>
+                  <line x1="120" y1="40" x2="120" y2="300"/>
+                  <line x1="140" y1="40" x2="140" y2="300"/>
+                  <line x1="160" y1="40" x2="160" y2="300"/>
+                  <line x1="180" y1="40" x2="180" y2="300"/>
+                  <line x1="200" y1="40" x2="200" y2="300"/>
+                  <line x1="220" y1="40" x2="220" y2="300"/>
+                  <line x1="240" y1="40" x2="240" y2="300"/>
+                  <line x1="260" y1="40" x2="260" y2="300"/>
+                  <line x1="280" y1="40" x2="280" y2="300"/>
+                  <line x1="300" y1="40" x2="300" y2="300"/>
+                  <line x1="320" y1="40" x2="320" y2="300"/>
+                  <line x1="340" y1="40" x2="340" y2="300"/>
+                </g>
+                <line x1="60" y1="300" x2="380" y2="300" stroke="black" stroke-width="1.5"/>
+                <polygon points="380,300 372,296 372,304" fill="black"/>
+                <line x1="60" y1="300" x2="60" y2="30" stroke="black" stroke-width="1.5"/>
+                <polygon points="60,30 56,38 64,38" fill="black"/>
+                <text x="50" y="316" font-size="14" font-style="italic">O</text>
+                <text x="120" y="318" font-size="13" text-anchor="middle">3</text>
+                <text x="180" y="318" font-size="13" text-anchor="middle">6</text>
+                <text x="240" y="318" font-size="13" text-anchor="middle">9</text>
+                <text x="300" y="318" font-size="13" text-anchor="middle">12</text>
+                <text x="360" y="318" font-size="13" text-anchor="middle">15</text>
+                <text x="390" y="305" font-size="13" font-style="italic">x</text>
+                <text x="52" y="256" font-size="13" text-anchor="end">4</text>
+                <text x="52" y="208" font-size="13" text-anchor="end">8</text>
+                <text x="52" y="160" font-size="13" text-anchor="end">12</text>
+                <text x="52" y="112" font-size="13" text-anchor="end">16</text>
+                <text x="52" y="64"  font-size="13" text-anchor="end">20</text>
+                <text x="55" y="28" font-size="13" font-style="italic">y</text>
+                <polyline points="60,300 120,204 240,204 320,84 360,60"
+                  fill="none" stroke="black" stroke-width="2"/>
+                <circle cx="120" cy="204" r="3" fill="black"/>
+                <circle cx="240" cy="204" r="3" fill="black"/>
+                <circle cx="320" cy="84"  r="3" fill="black"/>
+                <circle cx="360" cy="60"  r="3" fill="black"/>
+              </svg>
+              <div style="margin-top:4px; font-size:10px; color:#232f39;">경과 시간 $3$분부터 $9$분까지는 간장의 높이가 $\square\,\text{cm}$로 일정하다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 003 푸터 — set-block 1만 있는 단독 페이지 -->
+  <div class="page-footer">
+    <span class="page-footer__topic">그래프와 그 해석</span>
+    <span class="page-footer__num">003</span>
+  </div>
+
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<!-- 예제03 set-block + 쏙쏙 개념 익히기 05~06 -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1 : 예제03 ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <!-- 예제03 -->
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">아래 그래프는 시계 방향으로 회전하는 관람차가 운행을 시작한 지 $x$분 후의 지면으로부터 관람차 A 칸의 높이를 $y\,\text{m}$라 할 때, $x$와 $y$ 사이의 관계를 나타낸 것이다. 은우가 관람차 A 칸에 탑승한 후 $3$바퀴를 돌면 하차한다고 할 때, 다음 중 옳지 않은 것은? (단, 관람차는 일정한 속력으로 움직인다.) <span style="font-size:8.5px;color:#539e84;">(주기적 변화를 나타내는 그래프의 해석)</span></div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" width="200" height="108" font-family="serif" style="display:block; margin-top:4px;">
+                <g stroke="#aaa" stroke-width="0.8">
+                  <line x1="120" y1="240" x2="120" y2="60"/>
+                  <line x1="190" y1="240" x2="190" y2="60"/>
+                  <line x1="260" y1="240" x2="260" y2="60"/>
+                  <line x1="330" y1="240" x2="330" y2="60"/>
+                  <line x1="400" y1="240" x2="400" y2="60"/>
+                  <line x1="470" y1="240" x2="470" y2="60"/>
+                </g>
+                <line x1="50" y1="60" x2="470" y2="60" stroke="#aaa" stroke-width="0.8" stroke-dasharray="4,3"/>
+                <line x1="50" y1="240" x2="490" y2="240" stroke="black" stroke-width="1.5"/>
+                <polygon points="490,240 482,236 482,244" fill="black"/>
+                <line x1="50" y1="240" x2="50" y2="20" stroke="black" stroke-width="1.5"/>
+                <polygon points="50,20 46,28 54,28" fill="black"/>
+                <text x="38" y="256" font-size="14" font-style="italic">O</text>
+                <text x="120" y="258" font-size="13" text-anchor="middle">5</text>
+                <text x="190" y="258" font-size="13" text-anchor="middle">10</text>
+                <text x="260" y="258" font-size="13" text-anchor="middle">15</text>
+                <text x="330" y="258" font-size="13" text-anchor="middle">20</text>
+                <text x="400" y="258" font-size="13" text-anchor="middle">25</text>
+                <text x="470" y="258" font-size="13" text-anchor="middle">30</text>
+                <text x="495" y="245" font-size="13" font-style="italic">x</text>
+                <text x="503" y="245" font-size="11">(분)</text>
+                <text x="42" y="64" font-size="13" text-anchor="end">30</text>
+                <text x="42" y="18" font-size="13" font-style="italic">y</text>
+                <text x="50" y="18" font-size="11">(m)</text>
+                <path d="
+                  M 50,240
+                  Q 67.5,240 85,150
+                  Q 102.5,60 120,60
+                  Q 137.5,60 155,150
+                  Q 172.5,240 190,240
+                  Q 207.5,240 225,150
+                  Q 242.5,60 260,60
+                  Q 277.5,60 295,150
+                  Q 312.5,240 330,240
+                  Q 347.5,240 365,150
+                  Q 382.5,60 400,60
+                  Q 417.5,60 435,150
+                  Q 452.5,240 470,240
+                " fill="none" stroke="black" stroke-width="2.2"/>
+              </svg>
+              <div class="prob__choices-stack" style="margin-top:4px; font-size:10px; line-height:16px;">
+                <span>① 관람차는 쉬지 않고 계속 운행되고 있다.</span>
+                <span>② 관람차가 한 바퀴 도는 데 걸리는 시간은 $10$분이다.</span>
+                <span>③ 은우가 탑승해서 하차할 때까지 꼭대기에 올라간 횟수는 $3$회이다.</span>
+                <span>④ 관람차 A 칸이 가장 높이 올라갔을 때 지면으로부터의 높이는 $60\,\text{m}$이다.</span>
+                <span>⑤ 관람차를 한 시간 동안 운행했을 때, 관람차 A 칸이 꼭대기에 올라간 횟수는 $6$회이다.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>주기 그래프에서 한 주기(반복 단위)의 길이를 먼저 파악</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">④</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 쏙쏙 개념 익히기 05~06 -->
+    <div class="practice-sec">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+
+        <div class="prac-grid">
+          <!-- 문제05 : 수가 주어진 그래프 (쌍둥이) -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              다음 그림은 대관람차의 어느 칸이 출발한 지 $x$분 후의 지면으로부터의 높이를 $y\,\text{m}$라 할 때, $x$와 $y$ 사이의 관계를 그래프로 나타낸 것이다. 대관람차에 탑승한 지 몇 분 후에 $2$바퀴를 돌아 처음 위치에 돌아오는지 구하시오.
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 240" width="250" height="97" font-family="serif" style="display:block; margin-top:5px;">
+                <rect x="0" y="0" width="620" height="240" fill="white"/>
+                <g stroke="#cfcfcf" stroke-width="0.7">
+                  <line x1="124" y1="40" x2="124" y2="200"/>
+                  <line x1="188" y1="40" x2="188" y2="200"/>
+                  <line x1="252" y1="40" x2="252" y2="200"/>
+                  <line x1="316" y1="40" x2="316" y2="200"/>
+                  <line x1="380" y1="40" x2="380" y2="200"/>
+                  <line x1="444" y1="40" x2="444" y2="200"/>
+                  <line x1="508" y1="40" x2="508" y2="200"/>
+                  <line x1="572" y1="40" x2="572" y2="200"/>
+                </g>
+                <g stroke="#cfcfcf" stroke-width="0.7">
+                  <line x1="60" y1="160" x2="604" y2="160"/>
+                  <line x1="60" y1="120" x2="604" y2="120"/>
+                  <line x1="60" y1="80"  x2="604" y2="80"/>
+                  <line x1="60" y1="40"  x2="604" y2="40"/>
+                </g>
+                <line x1="60" y1="200" x2="610" y2="200" stroke="black" stroke-width="1.5"/>
+                <polygon points="610,200 602,196 602,204" fill="black"/>
+                <line x1="60" y1="200" x2="60" y2="20" stroke="black" stroke-width="1.5"/>
+                <polygon points="60,20 56,28 64,28" fill="black"/>
+                <text x="44" y="218" font-size="20" font-style="italic">O</text>
+                <text x="124" y="220" font-size="19" text-anchor="middle">8</text>
+                <text x="188" y="220" font-size="19" text-anchor="middle">16</text>
+                <text x="252" y="220" font-size="19" text-anchor="middle">24</text>
+                <text x="316" y="220" font-size="19" text-anchor="middle">32</text>
+                <text x="380" y="220" font-size="19" text-anchor="middle">40</text>
+                <text x="444" y="220" font-size="19" text-anchor="middle">48</text>
+                <text x="508" y="220" font-size="19" text-anchor="middle">56</text>
+                <text x="572" y="220" font-size="19" text-anchor="middle">64</text>
+                <text x="600" y="220" font-size="20" font-style="italic">x</text>
+                <text x="598" y="238" font-size="18" text-anchor="middle">(분)</text>
+                <text x="50" y="165" font-size="19" text-anchor="end">10</text>
+                <text x="50" y="125" font-size="19" text-anchor="end">20</text>
+                <text x="50" y="85"  font-size="19" text-anchor="end">30</text>
+                <text x="50" y="45"  font-size="19" text-anchor="end">40</text>
+                <text x="52" y="18" font-size="20" font-style="italic">y</text>
+                <text x="68" y="18" font-size="18">(m)</text>
+                <path d="
+                  M 60,200
+                  C 100,200 116,40 156,40
+                  C 196,40 212,200 252,200
+                  C 292,200 308,40 348,40
+                  C 388,40 404,200 444,200
+                  C 484,200 500,40 540,40
+                  C 572,40 590,200 604,200
+                " fill="none" stroke="black" stroke-width="2.2"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="prac-sep"></div>
+
+          <!-- 문제06 : 수가 주어진 그래프 (유사) -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              다음은 어느 지역의 어느 날 하루 동안의 기온을 나타낸 그래프이다. $x$시일 때의 기온을 $y\,℃$라 할 때, $21$시의 기온을 구하시오.
+              <div style="margin-top:6px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 240" width="250" height="194" font-family="serif" font-size="11">
+                  <line x1="50" y1="195" x2="290" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50" y1="170" x2="290" y2="170" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50" y1="145" x2="290" y2="145" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50" y1="120" x2="290" y2="120" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50" y1="95"  x2="290" y2="95"  stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50" y1="70"  x2="290" y2="70"  stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50" y1="45"  x2="290" y2="45"  stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50"  y1="45" x2="50"  y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="80"  y1="45" x2="80"  y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="110" y1="45" x2="110" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="140" y1="45" x2="140" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="170" y1="45" x2="170" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="200" y1="45" x2="200" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="230" y1="45" x2="230" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="260" y1="45" x2="260" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="290" y1="45" x2="290" y2="195" stroke="#ccc" stroke-width="0.7"/>
+                  <line x1="50" y1="195" x2="296" y2="195" stroke="#333" stroke-width="1.3"/>
+                  <line x1="50" y1="45"  x2="50"  y2="200" stroke="#333" stroke-width="1.3"/>
+                  <polygon points="296,192 304,195 296,198" fill="#333"/>
+                  <polygon points="47,45 50,37 53,45" fill="#333"/>
+                  <text x="50"  y="210" text-anchor="middle" font-size="9">0</text>
+                  <text x="80"  y="210" text-anchor="middle" font-size="9">3</text>
+                  <text x="110" y="210" text-anchor="middle" font-size="9">6</text>
+                  <text x="140" y="210" text-anchor="middle" font-size="9">9</text>
+                  <text x="170" y="210" text-anchor="middle" font-size="9">12</text>
+                  <text x="200" y="210" text-anchor="middle" font-size="9">15</text>
+                  <text x="230" y="210" text-anchor="middle" font-size="9">18</text>
+                  <text x="260" y="210" text-anchor="middle" font-size="9">21</text>
+                  <text x="290" y="210" text-anchor="middle" font-size="9">24</text>
+                  <text x="44" y="173" text-anchor="end" font-size="9">3</text>
+                  <text x="44" y="148" text-anchor="end" font-size="9">6</text>
+                  <text x="44" y="123" text-anchor="end" font-size="9">9</text>
+                  <text x="44" y="98"  text-anchor="end" font-size="9">12</text>
+                  <text x="44" y="73"  text-anchor="end" font-size="9">15</text>
+                  <text x="44" y="48"  text-anchor="end" font-size="9">18</text>
+                  <text x="305" y="208" font-size="9" fill="#333">x(시)</text>
+                  <text x="53"  y="35"  font-size="9" fill="#333">y(℃)</text>
+                  <path d="M 50,145 C 65,152 80,170 95,170 C 125,170 168,95 200,95 C 222,95 242,138 260,145 C 270,149 283,156 290,158" fill="none" stroke="black" stroke-width="2.2"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">그래프와 그 해석</span>
+    <span class="page-footer__num">004</span>
+  </div>
+
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
+<!-- 개념 한눈에 보기 -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">변수와 그래프</span>
+      </div>
+      <div class="kaynun-body">
+        <div>• <strong>변수</strong> : $x$, $y$처럼 상황에 따라 여러 가지 값으로 변할 수 있는 양을 나타내는 문자</div>
+        <div>• <strong>그래프</strong> : 두 변수 $x$, $y$의 순서쌍 $(x,\,y)$를 좌표로 하는 점 전체를 좌표평면 위에 나타낸 것</div>
+        <div style="margin-top:4px;">
+          <table class="kaynun-table" style="width:80%;">
+            <tr>
+              <th>그래프를 나타내는 순서</th>
+            </tr>
+            <tr>
+              <td style="text-align:left; padding-left:16px;">❶ 두 변수 $x$, $y$ 사이의 대응 관계를 표로 나타낸다.</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; padding-left:16px;">❷ 표에서 순서쌍 $(x,\,y)$를 구한다.</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; padding-left:16px;">❸ 순서쌍을 좌표로 하는 점을 좌표평면 위에 나타낸다.</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">그래프의 해석</span>
+      </div>
+      <div class="kaynun-body">
+        <div>그래프를 보면 $x$가 변함에 따라 $y$가 어떻게 달라지는지 한눈에 파악할 수 있다. 그래프의 모양(선의 방향)에 따라 $y$의 변화를 다음과 같이 읽는다.</div>
+        <div style="margin-top:4px;">
+          <table class="kaynun-table">
+            <tr>
+              <th>그래프 모양</th>
+              <th><svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="20" x2="32" y2="4" stroke="#e0387a" stroke-width="2" stroke-linecap="round"/></svg></th>
+              <th><svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="12" x2="32" y2="12" stroke="#e0387a" stroke-width="2" stroke-linecap="round"/></svg></th>
+              <th><svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="4" x2="32" y2="20" stroke="#e0387a" stroke-width="2" stroke-linecap="round"/></svg></th>
+            </tr>
+            <tr>
+              <td>$y$의 변화</td>
+              <td>증가한다.</td>
+              <td>변화가 없다.</td>
+              <td>감소한다.</td>
+            </tr>
+          </table>
+        </div>
+        <div style="margin-top:6px;">
+          <strong>참고</strong>&ensp;그래프는 꺾은선 그래프 외에 곡선으로도 나타낼 수 있다.
+          <ul style="margin-top:4px;">
+            <li>속력이 점점 느리게 증가 : 위로 볼록한 증가 곡선</li>
+            <li>속력이 점점 빠르게 증가 : 아래로 볼록한 증가 곡선</li>
+            <li>주기적으로 증가와 감소 반복 : 파형 곡선</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">그래프와 그 해석</span>
+    <span class="page-footer__num">005</span>
+  </div>
+
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
+<!-- 쏙쏙 유형 익히기 (01~04) -->
+<div class="page">
+
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 왼쪽 열 : 01, 02 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:1fr 1fr; align-items:start;">
+
+      <!-- 유형01 : 물통의 모양과 그래프 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">물통의 모양과 그래프</span>
+        </div>
+        <div class="umuri-q">아래의 그래프는 어떤 그릇에 시간당 일정한 양의 물을 넣는다고 할 때, 경과 시간 $x$에 따른 물의 높이 $y$의 변화를 나타낸 것이다. 다음 중 이 그릇의 모양으로 가장 알맞은 것은?
+          <div style="margin-top:5px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="120" height="103" font-family="serif">
+              <line x1="30" y1="100" x2="120" y2="100" stroke="#ddd" stroke-width="0.6"/>
+              <line x1="30" y1="75"  x2="120" y2="75"  stroke="#ddd" stroke-width="0.6"/>
+              <line x1="30" y1="50"  x2="120" y2="50"  stroke="#ddd" stroke-width="0.6"/>
+              <line x1="30" y1="25"  x2="120" y2="25"  stroke="#ddd" stroke-width="0.6"/>
+              <line x1="30"  y1="15" x2="30"  y2="100" stroke="#ddd" stroke-width="0.6"/>
+              <line x1="55"  y1="15" x2="55"  y2="100" stroke="#ddd" stroke-width="0.6"/>
+              <line x1="80"  y1="15" x2="80"  y2="100" stroke="#ddd" stroke-width="0.6"/>
+              <line x1="105" y1="15" x2="105" y2="100" stroke="#ddd" stroke-width="0.6"/>
+              <line x1="30" y1="100" x2="124" y2="100" stroke="#333" stroke-width="1.2"/>
+              <line x1="30" y1="100" x2="30"  y2="11"  stroke="#333" stroke-width="1.2"/>
+              <polygon points="124,97 132,100 124,103" fill="#333"/>
+              <polygon points="27,11 30,3 33,11" fill="#333"/>
+              <text x="22" y="104" font-size="8" font-style="italic" fill="#333">O</text>
+              <text x="128" y="103" font-size="8" font-style="italic" fill="#333">x</text>
+              <text x="33"  y="10"  font-size="8" font-style="italic" fill="#333">y</text>
+              <line x1="30" y1="100" x2="110" y2="20" stroke="black" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; margin-top:6px; align-items:end;">
+            <div style="text-align:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" width="70" height="35">
+                <text x="8" y="14" font-size="11" font-family="serif">①</text>
+                <path d="M 20,30 Q 20,72 80,75 Q 140,72 140,30" fill="#d6eaf8" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="30" rx="60" ry="10" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="50" rx="44" ry="7" fill="none" stroke="#5b9bd5" stroke-width="1" stroke-dasharray="4,3"/>
+              </svg>
+            </div>
+            <div style="text-align:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="70" height="44">
+                <text x="8" y="14" font-size="11" font-family="serif">②</text>
+                <path d="M 45,90 L 55,20 L 105,20 L 115,90 Z" fill="#d6eaf8" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="20" rx="25" ry="5" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="90" rx="35" ry="6" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="52" rx="29" ry="5" fill="none" stroke="#5b9bd5" stroke-width="1" stroke-dasharray="4,3"/>
+              </svg>
+            </div>
+            <div style="text-align:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" width="70" height="35">
+                <text x="8" y="14" font-size="11" font-family="serif">③</text>
+                <rect x="40" y="18" width="80" height="45" fill="#d6eaf8" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="18" rx="40" ry="7" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="63" rx="40" ry="7" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="40" rx="40" ry="7" fill="none" stroke="#5b9bd5" stroke-width="1" stroke-dasharray="4,3"/>
+              </svg>
+            </div>
+            <div style="text-align:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="70" height="52">
+                <text x="8" y="14" font-size="11" font-family="serif">④</text>
+                <path d="M 53,110 L 53,68 Q 53,60 61,56 L 68,38 L 68,20 L 92,20 L 92,38 L 99,56 Q 107,60 107,68 L 107,110 Z" fill="#d6eaf8" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="110" rx="27" ry="5" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="20" rx="12" ry="3" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="85" rx="27" ry="5" fill="none" stroke="#5b9bd5" stroke-width="1" stroke-dasharray="4,3"/>
+              </svg>
+            </div>
+            <div style="text-align:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 110" width="70" height="48">
+                <text x="8" y="14" font-size="11" font-family="serif">⑤</text>
+                <path d="M 20,20 L 45,55 L 115,55 L 140,20 Z" fill="#d6eaf8" stroke="#5b9bd5" stroke-width="1.5"/>
+                <path d="M 45,60 L 20,95 L 140,95 L 115,60 Z" fill="#d6eaf8" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="20" rx="60" ry="9" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="55" rx="35" ry="6" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="60" rx="35" ry="6" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="95" rx="60" ry="9" fill="#aed6f1" stroke="#5b9bd5" stroke-width="1.5"/>
+                <ellipse cx="80" cy="78" rx="48" ry="7" fill="none" stroke="#5b9bd5" stroke-width="1" stroke-dasharray="4,3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형02 : 수치가 주어진 그래프 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">수치가 주어진 그래프</span>
+        </div>
+        <div class="umuri-q">다음 그래프는 영주가 공원에서 드론을 날렸을 때, $x$초 후 드론의 높이 $y\,\text{m}$ 사이의 관계를 나타낸 것이다. 드론이 가장 높이 날 때의 높이를 $a\,\text{m}$, 같은 높이에서 머무르는 시간을 $b$초, 드론이 지면에 닿았다가 다시 떠오른 시각을 $c$초 후라고 할 때, $a+b+c$의 값은?
+          <div style="margin-top:5px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 380" width="240" height="190" font-family="serif">
+              <rect x="0" y="0" width="480" height="380" fill="white"/>
+              <g stroke="#d0d0d0" stroke-width="0.8">
+                <line x1="60" y1="300" x2="435" y2="300"/><line x1="60" y1="280" x2="435" y2="280"/>
+                <line x1="60" y1="260" x2="435" y2="260"/><line x1="60" y1="240" x2="435" y2="240"/>
+                <line x1="60" y1="220" x2="435" y2="220"/><line x1="60" y1="200" x2="435" y2="200"/>
+                <line x1="60" y1="180" x2="435" y2="180"/><line x1="60" y1="160" x2="435" y2="160"/>
+                <line x1="60" y1="140" x2="435" y2="140"/><line x1="60" y1="120" x2="435" y2="120"/>
+                <line x1="60" y1="100" x2="435" y2="100"/><line x1="60" y1="80"  x2="435" y2="80"/>
+                <line x1="60" y1="60"  x2="435" y2="60"/> <line x1="60" y1="40"  x2="435" y2="40"/>
+                <line x1="60" y1="20"  x2="435" y2="20"/>
+              </g>
+              <g stroke="#d0d0d0" stroke-width="0.8">
+                <line x1="85"  y1="20" x2="85"  y2="320"/><line x1="110" y1="20" x2="110" y2="320"/>
+                <line x1="135" y1="20" x2="135" y2="320"/><line x1="160" y1="20" x2="160" y2="320"/>
+                <line x1="185" y1="20" x2="185" y2="320"/><line x1="210" y1="20" x2="210" y2="320"/>
+                <line x1="235" y1="20" x2="235" y2="320"/><line x1="260" y1="20" x2="260" y2="320"/>
+                <line x1="285" y1="20" x2="285" y2="320"/><line x1="310" y1="20" x2="310" y2="320"/>
+                <line x1="335" y1="20" x2="335" y2="320"/><line x1="360" y1="20" x2="360" y2="320"/>
+                <line x1="385" y1="20" x2="385" y2="320"/><line x1="410" y1="20" x2="410" y2="320"/>
+              </g>
+              <line x1="60" y1="320" x2="455" y2="320" stroke="black" stroke-width="1.5"/>
+              <polygon points="455,320 447,316 447,324" fill="black"/>
+              <line x1="60" y1="320" x2="60" y2="10" stroke="black" stroke-width="1.5"/>
+              <polygon points="60,10 56,18 64,18" fill="black"/>
+              <text x="48" y="336" font-size="13" font-style="italic">O</text>
+              <text x="110" y="338" font-size="12" text-anchor="middle">10</text>
+              <text x="160" y="338" font-size="12" text-anchor="middle">20</text>
+              <text x="210" y="338" font-size="12" text-anchor="middle">30</text>
+              <text x="260" y="338" font-size="12" text-anchor="middle">40</text>
+              <text x="310" y="338" font-size="12" text-anchor="middle">50</text>
+              <text x="360" y="338" font-size="12" text-anchor="middle">60</text>
+              <text x="410" y="338" font-size="12" text-anchor="middle">70</text>
+              <text x="462" y="325" font-size="14" font-style="italic">x</text>
+              <text x="52" y="284" font-size="12" text-anchor="end">10</text>
+              <text x="52" y="244" font-size="12" text-anchor="end">20</text>
+              <text x="52" y="204" font-size="12" text-anchor="end">30</text>
+              <text x="52" y="164" font-size="12" text-anchor="end">40</text>
+              <text x="52" y="124" font-size="12" text-anchor="end">50</text>
+              <text x="52" y="84"  font-size="12" text-anchor="end">60</text>
+              <text x="52" y="44"  font-size="12" text-anchor="end">70</text>
+              <text x="55" y="14" font-size="14" font-style="italic">y</text>
+              <polyline points="60,320 110,220 160,320 210,100 285,100 360,160 410,60 435,180" fill="none" stroke="black" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="umuri-choices-wrap" style="margin-top:6px; font-size:10px;">
+            <span>① $100$</span>
+            <span>② $101$</span>
+            <span>③ $102$</span>
+            <span>④ $103$</span>
+            <span>⑤ $104$</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 열 : 03, 04 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:1fr 1fr; align-items:start;">
+
+      <!-- 유형03 : 수치가 주어진 그래프 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">수치가 주어진 그래프</span>
+        </div>
+        <div class="umuri-q">다음은 요나가 집에서 $3000\,\text{m}$ 떨어진 도서관에 다녀올 때, $x$분 후 집으로부터의 거리 $y\,\text{m}$를 나타낸 것이다. 요나가 도서관에 머무른 시간을 $a$분, 집에서부터 출발하여 도서관에 도착하는 데 걸리는 시간을 $b$분이라 할 때, $a$, $b$의 값으로 적절한 것은?
+          <div style="display:flex; justify-content:center; margin:4px 0 2px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" width="175" height="129" font-family="serif">
+              <rect x="0" y="0" width="380" height="280" fill="white"/>
+              <!-- 점선 보조선 -->
+              <g stroke="#999" stroke-width="1" stroke-dasharray="3,3" fill="none">
+                <line x1="96"  y1="70" x2="96"  y2="220"/>
+                <line x1="60"  y1="70" x2="96"  y2="70"/>
+                <line x1="264" y1="70" x2="264" y2="220"/>
+              </g>
+              <!-- x축 -->
+              <line x1="40"  y1="220" x2="335" y2="220" stroke="black" stroke-width="1.5"/>
+              <polygon points="335,220 327,216 327,224" fill="black"/>
+              <!-- y축 -->
+              <line x1="60"  y1="245" x2="60"  y2="20"  stroke="black" stroke-width="1.5"/>
+              <polygon points="60,20 56,28 64,28" fill="black"/>
+              <!-- 축 라벨 -->
+              <text x="342" y="225" font-size="16" font-weight="bold">x</text>
+              <text x="65"  y="18"  font-size="16" font-weight="bold">y</text>
+              <!-- 원점 O: y축 왼쪽 아래 비켜서 겹치지 않게 -->
+              <text x="36"  y="238" font-size="16" font-style="italic">O</text>
+              <!-- x축 눈금 라벨 -->
+              <text x="96"  y="244" font-size="18" text-anchor="middle">15</text>
+              <text x="264" y="244" font-size="18" text-anchor="middle">160</text>
+              <text x="300" y="244" font-size="18" text-anchor="middle">175</text>
+              <!-- y축 눈금 라벨 -->
+              <text x="50"  y="74"  font-size="18" text-anchor="end">3000</text>
+              <!-- 그래프 선 -->
+              <polyline points="60,220 96,70 264,70 300,220" fill="none" stroke="black" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div style="display:grid; grid-template-columns:1.2rem 1fr 1fr; gap:1px 4px; font-size:10px; line-height:16px; margin-top:6px;">
+            <span></span><span style="text-align:center;">$a$</span><span style="text-align:center;">$b$</span>
+            <span>①</span><span style="text-align:center;">$145$</span><span style="text-align:center;">$10$</span>
+            <span>②</span><span style="text-align:center;">$145$</span><span style="text-align:center;">$15$</span>
+            <span>③</span><span style="text-align:center;">$145$</span><span style="text-align:center;">$20$</span>
+            <span>④</span><span style="text-align:center;">$155$</span><span style="text-align:center;">$20$</span>
+            <span>⑤</span><span style="text-align:center;">$155$</span><span style="text-align:center;">$30$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 유형04 : 수치가 주어진 그래프 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">수치가 주어진 그래프</span>
+        </div>
+        <div class="umuri-q">동우가 원 모양의 호수의 둘레를 따라 돌고 있다. 다음 그래프는 동우가 호수를 한 바퀴 돌 때 출발점에서 떨어진 거리를 시간에 따라 나타낸 것이다. 동우가 호수를 한 바퀴 도는 데 걸리는 시간이 일정할 때, $1$시간 동안 쉬지 않고 호수를 돌면 모두 몇 바퀴 돌 수 있는지 구하시오.
+          <div style="display:flex; justify-content:center; margin:4px 0 2px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 380" width="217" height="158" font-family="serif">
+              <rect x="0" y="0" width="480" height="380" fill="white"/>
+              <g stroke="#c0c0c0" stroke-width="0.8" stroke-dasharray="3,2">
+                <line x1="70" y1="280" x2="430" y2="280"/>
+                <line x1="70" y1="240" x2="430" y2="240"/>
+                <line x1="70" y1="200" x2="430" y2="200"/>
+                <line x1="70" y1="160" x2="430" y2="160"/>
+                <line x1="70" y1="120" x2="430" y2="120"/>
+                <line x1="70" y1="80"  x2="430" y2="80"/>
+              </g>
+              <g stroke="#c0c0c0" stroke-width="0.8" stroke-dasharray="3,2">
+                <line x1="120" y1="50" x2="120" y2="320"/>
+                <line x1="170" y1="50" x2="170" y2="320"/>
+                <line x1="220" y1="50" x2="220" y2="320"/>
+                <line x1="270" y1="50" x2="270" y2="320"/>
+                <line x1="320" y1="50" x2="320" y2="320"/>
+                <line x1="370" y1="50" x2="370" y2="320"/>
+                <line x1="420" y1="50" x2="420" y2="320"/>
+              </g>
+              <line x1="70" y1="320" x2="445" y2="320" stroke="black" stroke-width="1.5"/>
+              <polygon points="445,320 437,316 437,324" fill="black"/>
+              <line x1="70" y1="320" x2="70" y2="40" stroke="black" stroke-width="1.5"/>
+              <polygon points="70,40 66,48 74,48" fill="black"/>
+              <text x="58" y="338" font-size="18" font-style="italic">O</text>
+              <text x="170" y="338" font-size="18" text-anchor="middle">2</text>
+              <text x="270" y="338" font-size="18" text-anchor="middle">4</text>
+              <text x="370" y="338" font-size="18" text-anchor="middle">6</text>
+              <text x="455" y="324" font-size="17" font-weight="bold">시간(분)</text>
+              <text x="62" y="284" font-size="17" text-anchor="end">100</text>
+              <text x="62" y="244" font-size="17" text-anchor="end">200</text>
+              <text x="62" y="204" font-size="17" text-anchor="end">300</text>
+              <text x="62" y="164" font-size="17" text-anchor="end">400</text>
+              <text x="62" y="124" font-size="17" text-anchor="end">500</text>
+              <text x="62" y="84"  font-size="17" text-anchor="end">600</text>
+              <text x="40" y="32" font-size="17" font-weight="bold">거리(m)</text>
+              <path d="M 70,320 Q 220,0 370,320" fill="none" stroke="black" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">그래프와 그 해석</span>
+    <span class="page-footer__num">006</span>
+  </div>
+
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════════════════ PAGE 008 ═══════════════════════ -->
+<!-- 빠른정답 -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">그래프와 그 해석</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+
+      <!-- 쏙쏙 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">ㄷ</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">$4$분</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$8$</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$48$분</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">$6\,℃$</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">①</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$10$바퀴</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">그래프와 그 해석</span>
+    <span class="page-footer__num">007</span>
+  </div>
+
+</div><!-- /page 008 -->
+
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
+</body>
+</html>

@@ -48,13 +48,13 @@
 | 항목 | 폰트 | 크기 | 굵기 | 기타 |
 |------|------|------|------|------|
 | 기본 폰트 | Pretendard Variable | — | — | CDN: pretendardvariable.min.css |
-| 개념 제목 | Noto Sans KR | 13px | 500 | letter-spacing: -0.7px |
+| 개념 제목 | 윤고딕 (Yoon Gothic) | 13px | 500 | letter-spacing: -0.7px |
 | 타이틀 숫자 | Pretendard Variable | 60px | 700 | letter-spacing: -7.2px |
 | 타이틀 텍스트 | Pretendard Variable | 24px | 700 | letter-spacing: -1.2px, color: `#000` |
 | 예제 번호 | Pretendard Variable | 16px | 700 | color: `--green`, letter-spacing: -1.44px |
 | 문제 번호 | Pretendard Variable | 20px | 800 | letter-spacing: -1.8px, color: `--primary` |
 | 개념 본문 | Pretendard Variable | 11.5px | 400 | letter-spacing: -0.6px, line-height: 18px |
-| 문제 본문 | Pretendard Variable | 10px | 400 | letter-spacing: -0.5px, line-height: 18px |
+| 문제 본문 | Pretendard Variable | 11px | 400 | letter-spacing: -0.5px, line-height: 18px |
 | 연습문제 보기 | Pretendard Variable | 11px | 400 | line-height: 17px |
 | 풀이 TIP 내용 | Pretendard Variable | 8px | 400 | line-height: 1.4 |
 | 개념 표 | Pretendard Variable | 8px | — | letter-spacing: -0.48px |
@@ -157,6 +157,24 @@
 - `.concept-body` — 11.5px, line-height 18px, flex column gap 10px; padding-left 26px
 - `.concept-table` — 8px, border 0.5px `#848484`, 헤더 bg `#ebebeb`
 - `.hl` — highlight 배경 `#fff5d3`
+- **방법 레이블** (`.method-badge` / 인라인 스타일) — 개념 본문 내 "방법 1", "방법 2" 등 순서 레이블에 사용
+
+```html
+<span style="background:#e8f4fd; border-radius:3px; padding:1px 5px; font-weight:700; font-size:10.5px;">방법 1</span>
+```
+
+```css
+/* 클래스로 사용할 경우 */
+.method-badge {
+  background: #e8f4fd;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-weight: 700;
+  font-size: 10.5px;
+}
+```
+
+> `.hl`(노란 하이라이트)과 구별됨 — 방법 순서 레이블 전용. 인라인 스타일과 클래스 모두 허용.
 
 #### 개념 설명 중 예시 박스 (`.concept-eg`)
 
@@ -233,6 +251,22 @@
 > ⚠️ **개념정의와 같은 `.cbox`에 배치된 예제**(예 : 예제01, 예제02)에는 유형 레이블을 붙이지 않습니다.
 
 > ⚠️ `.ex-type-label` CSS 클래스는 **사용 금지** — 별도 클래스 정의 없이 인라인 스타일만 사용합니다.
+
+#### 예제 선지 정렬 클래스
+
+| 클래스 | CSS 구조 | 사용 조건 |
+|--------|----------|----------|
+| `ex-choices-wrap` | `grid, repeat(3, max-content), gap:4px 18px` | 선지가 모두 한 줄에 들어오는 경우 — 간격 균등 분산 |
+| `ex-choices-stack` | `flex-column, gap:2px` | 선지가 긴 경우 (세로 나열) |
+| `ex-choices-3col` | `grid, 1fr 1fr 1fr, gap:4px 6px` | 선지가 짧고 3열 고정 배치가 필요할 때 |
+| `ex-choices-2col` | `grid, 1fr 1fr, gap:4px 0` | 2열 배치 필요 시 |
+
+```css
+.ex-choices-wrap  { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 11px; color: #232f39; line-height: 18px; }
+```
 
 ### 오른쪽 사이드 컬럼 (`.cbox__right`)
 - `border-left: 1px solid #F5F5F5`, `padding-left: 0`
@@ -322,6 +356,58 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 > ⚠️ **set-block 간 `set-divider` 사용 금지** — 두 set-block 사이에 `<div class="set-divider">` 를 넣지 않습니다.
 > ⚠️ **`practice-sec` 안에 반드시 `practice-inner` 감싸기** — `prac-hd`와 `prac-grid`는 항상 `practice-inner` 안에 위치합니다.
 
+#### set-block 페이지의 `page-footer` 배치 규칙
+
+`page-footer`는 **항상 모든 set-block 바깥, `.page` 직계 자식으로** 배치합니다. set-block 개수(1개 또는 2개 이상)와 무관하게 동일하게 적용됩니다.
+
+- `page-footer` 바로 위에 `<div style="flex:1;"></div>` 스페이서를 두어 푸터를 페이지 맨 아래로 밀어냅니다.
+- `page-footer`를 `practice-sec` 안에 넣지 않습니다.
+
+#### set-block이 2개인 경우 — 높이 균등 분배
+
+한 페이지에 set-block이 2개 이상 있을 때, 각 set-block의 practice-sec이 자연 높이만 차지하도록 다음 규칙을 적용합니다.
+
+- **첫 번째 set-block의 `practice-sec`**: `style="flex:none;"` — 자연 높이로만 차지하고 팽창하지 않음
+- **마지막 set-block의 `practice-sec`**: `style="flex:none;"` — 동일하게 자연 높이 유지
+- 남은 공간은 `<div style="flex:1;"></div>` 스페이서가 채우고, `page-footer`를 최하단으로 밀어냄
+
+```html
+<!-- set-block 2개 배치 예시 -->
+<div class="page" style="gap:8px;">
+  <div class="set-block">
+    <div class="cbox">...</div>
+    <div class="practice-sec" style="flex:none;">   <!-- ← flex:none 필수 -->
+      <div class="practice-inner">...</div>
+      <!-- page-footer 없음 -->
+    </div>
+  </div>
+  <div class="set-block">
+    <div class="cbox">...</div>
+    <div class="practice-sec" style="flex:none;">   <!-- ← 마지막도 flex:none -->
+      <div class="practice-inner">...</div>
+      <!-- page-footer 없음 -->
+    </div>
+  </div>
+  <div style="flex:1;"></div>                       <!-- ← 스페이서 -->
+  <div class="page-footer">...</div>                <!-- ← 항상 .page 직계 자식 -->
+</div>
+```
+
+<!-- set-block 1개만 있는 경우에도 동일 -->
+```html
+<!-- set-block 1개 배치 예시 -->
+<div class="page" style="gap:8px;">
+  <div class="set-block">
+    <div class="cbox">...</div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">...</div>
+    </div>
+  </div>
+  <div style="flex:1;"></div>
+  <div class="page-footer">...</div>
+</div>
+```
+
 ---
 
 ### 개념 한눈에 보기 페이지 구조 (`.kaynun-*`)
@@ -381,6 +467,25 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 > <span class="kaynun-chip">개념 01</span>        <!-- ❌ -->
 > ```
 
+> ⛔ **`kaynun-eg` (예 섹션) 사용 금지** — 한눈에 보는 개념 정리 페이지의 `.kaynun-body` 안에 `.kaynun-eg` 블록(예시 계산식)을 삽입하지 않습니다. 개념 설명 텍스트만 포함합니다.
+>
+> ```html
+> <!-- ✅ 허용 -->
+> <div class="kaynun-body">
+>   <div>계수는 계수끼리, 문자는 문자끼리 곱하고...</div>
+>   <div>단항식의 곱셈에서 부호는 음수가 홀수 개이면 $-$...</div>
+> </div>
+>
+> <!-- ❌ 금지 -->
+> <div class="kaynun-body">
+>   <div>계수는 계수끼리...</div>
+>   <div class="kaynun-eg">
+>     <span class="kaynun-eg__label">예</span>
+>     <div class="kaynun-eg__content">$4x^2y \times (-5xy) = ...$</div>
+>   </div>
+> </div>
+> ```
+
 ---
 
 ### 쏙쏙 개념 익히기 헤더 (`.prac-hd`)
@@ -401,7 +506,9 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
     - ⚠️ **텍스트 우선순위**: 입력 문제은행 PDF에서 해당 문제에 표기된 태그(`쌍둥이` / `유사`)를 그대로 추출하여 사용
     - PDF에서 태그를 추출할 수 없는 경우에만 기본값 적용 → 왼쪽 열 `쌍둥이`, 오른쪽 열 `유사`
     - 문제 유형명(왕복형·편도형 등) 절대 사용 금지
-- `.prob__body` — 11px, line-height 18px, letter-spacing: -0.5px
+- `.prob__body` — 11px, line-height 18px, letter-spacing: -0.5px; **`display: block` 필수**
+  - ⚠️ **`display: flex; flex-direction: column` 절대 금지** — `.prob__body`를 flex column으로 설정하면 KaTeX auto-render가 `$...$`를 변환할 때 생성하는 개별 `<span>` 토큰이 각각 독립 flex item이 되어 수식 토큰마다 줄바꿈되는 문제가 발생한다. ([`.concept-eg__content` 동일 원리 참고](#개념-설명-중-예시-박스-concept-eg))
+  - 본문 텍스트와 선지(`prob__choices-*`) 사이 간격은 `margin-top: 5px`를 선지 div에 적용하여 확보한다.
 
 **문제 선지 정렬 규칙**:
 
@@ -410,7 +517,7 @@ Set-block 페이지는 유형별 문제세트를 담는 페이지입니다.
 | `prob__choices-stack` | `flex-column, gap:3px` | 가장 긴 선지 ≥ 9자 또는 1열이 자연스러울 때 |
 | `prob__choices-2col` | `grid 1fr 1fr, gap:8px` | 가장 긴 선지 9자~13자, 2열 배치가 적합할 때 |
 | `prob__choices-3col` | `grid 1fr 1fr 1fr, gap:4px 6px` | 가장 긴 선지 **4자 이상 8자 이하** |
-| `prob__choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 선지 간격 균등 분산 |
+| `prob__choices-wrap` | `flex-wrap; gap: 4px 22px` | 선지가 모두 **한 줄에 들어오는 경우** — `justify-content` 없음, gap 고정값으로 좌측 정렬 나열 |
 
 - `.prob__boogi` — 조건 박스: border 1px `#dadde0`, border-radius 3px, bg `#fafafa`
   - 보기(선지)를 2열로 나열할 때: `prob__boogi` 안에 `display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;` 내부 div를 사용한다. 같은 줄 항목 사이 **좌우(column) 간격**을 충분히 확보하는 것이 목적이며, `&ensp;` 등 공백 문자로 간격을 흉내 내는 방식은 사용하지 않는다.
@@ -538,10 +645,10 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 | `umuri-choices-stack` | `flex-column, gap:2px` | 가장 긴 선지 ≥ 9자 또는 KaTeX 포함 |
 | `umuri-choices-2col` | `grid 1fr 1fr, gap:2px 4px` | 가장 긴 선지 9자~13자, 2열 적합할 때 |
 | `umuri-choices-3col` | `grid 1fr 1fr 1fr, gap:4px 6px` | 가장 긴 선지 **4자 이상 8자 이하** |
-| `umuri-choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 선지 간격 균등 분산 |
+| `umuri-choices-wrap` | `flex-wrap; gap: 6px 18px` | 선지가 모두 **한 줄에 들어오는 경우** — `justify-content` 없음, gap 고정값으로 좌측 정렬 나열 |
 
 > ⚠️ `prob__choices-*` 와 동일한 기준을 따르되 클래스 이름이 `umuri-choices-*` 로 다릅니다.
-> ⚠️ 선지는 각각 별도의 `<span>`으로 분리합니다 (`justify-content: space-between` / grid 작동을 위해).
+> ⚠️ 선지는 각각 별도의 `<span>`으로 분리합니다 (grid 작동 및 flex-wrap 정렬을 위해).
 
 ### 유형 익히기 조건 박스 (`.umuri-boogi`)
 
@@ -556,7 +663,7 @@ head_section = ref[:ref.find('<body>') + len('<body>')]
 | `umuri-choices-stack` | `flex-column, gap:2px` | 가장 긴 선지 ≥ 9자 또는 KaTeX 포함 |
 | `umuri-choices-2col` | `grid 1fr 1fr, gap:2px 4px` | 가장 긴 선지 9자~13자, 2열 적합할 때 |
 | `umuri-choices-3col` | `grid 1fr 1fr 1fr, gap:4px 6px` | 가장 긴 선지 **4자 이상 8자 이하** |
-| `umuri-choices-wrap` | `flex-wrap, justify-content:space-between` | 선지가 모두 **한 줄에 들어오는 경우** — 선지 간격 균등 분산 |
+| `umuri-choices-wrap` | `flex-wrap; gap: 6px 18px` | 선지가 모두 **한 줄에 들어오는 경우** — `justify-content` 없음, gap 고정값으로 좌측 정렬 나열 |
 
 - 박스 안 텍스트가 **한 줄**인 경우 → `style="justify-content:center; text-align:center;"` 추가
 - 보기를 2열로 나열할 때: 내부에 `display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:4px;` 래퍼 div 사용
@@ -786,6 +893,14 @@ SVG 저장 전 아래를 반드시 확인합니다:
 
 ---
 
+### ⇒ 앞뒤 공백
+
+- 예제, 개념익히기, 유형익히기 문제 내용 중 `⇒`이 나오는 경우, **양 옆에 반드시 스페이스 2칸** 추가
+- 형식: `단어  ⇒  단어` (⇒ 앞뒤로 각각 공백 2칸)
+- 예) `$x>-2$  ⇒  $x$의 범위는 $-2$보다 크다`
+
+---
+
 ### 콜론 앞 공백
 
 - 텍스트 콘텐츠에서 `:`이 나오는 경우, **반드시 앞에 공백** 추가
@@ -801,6 +916,40 @@ SVG 저장 전 아래를 반드시 확인합니다:
 - 예) `최대 $3\,\text{km}$` (O) &nbsp;&nbsp; `최대 $3\,\text{km}$ 지점까지 갈 수 있다.` (X)
 - 소문제 번호 닫는 괄호 뒤에 **`&ensp;`** (en space) 추가
 - 형식: `(1)&ensp;$수식$&ensp;(2)&ensp;$수식$`
+
+#### 소문제가 여러 개일 때 — 항상 2행으로 균일 배치
+
+정답 텍스트가 길어져 줄바꿈이 생기는 경우, 자동 줄바꿈에 맡기지 않고 **항상 정확히 2행**으로 구성한다.
+
+| 소문제 수 | 행 구성 | 클래스 |
+|-----------|---------|--------|
+| 2개 `(1)(2)` | 1열 2행 — (1) / (2) | `.ans-text--1col` |
+| 4개 `(1)(2)(3)(4)` | 2열 2행 — (1)(2) / (3)(4) | `.ans-text--2col` |
+
+**CSS:**
+```css
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+```
+
+**HTML 작성 방법 — 각 소문제를 별도 `<span>`으로 분리:**
+```html
+<!-- 2개: 1열 2행 -->
+<span class="ans-text ans-text--1col">
+  <span>(1) $x+4=13$</span>
+  <span>(2) $800y=4000$</span>
+</span>
+
+<!-- 4개: 2열 2행 -->
+<span class="ans-text ans-text--2col">
+  <span>(1) $x=-3$</span>
+  <span>(2) $x=-4$</span>
+  <span>(3) $x=4$</span>
+  <span>(4) $x=-8$</span>
+</span>
+```
+
+> ⚠️ 소문제가 1개이거나 짧아서 한 줄에 들어오는 경우에는 기본 `.ans-text`만 사용하고, `--1col` / `--2col` 클래스를 추가하지 않는다.
 
 ---
 
@@ -824,4 +973,42 @@ SVG 저장 전 아래를 반드시 확인합니다:
 ### 유형 익히기 페이지 (`.umuri-prob`) 높이 고정
 
 - 문제 높이를 **고정값**으로 설정하여 컬럼 내 균등 배치
-- 한 컬
+- 한 컬럼에 문제가 **3개**이면 `style="height:240px;"`, **2개**이면 `style="height:358px;"`
+
+---
+
+### 유형 익히기 페이지 문제 배치 규칙
+
+유형 익히기 페이지의 5문제는 **왼쪽 3개 + 오른쪽 2개** 배치를 기본으로 한다.
+
+| 컬럼 | 문제 수 | `.umuri-prob` 높이 |
+|------|---------|-------------------|
+| 왼쪽 (`.umuri-col`) | 3개 | `height:240px;` |
+| 오른쪽 (`.umuri-col`) | 2개 | `height:358px;` |
+
+- 문제 수가 6개 이상이면 **왼쪽 3개 + 오른쪽 3개** 배치를 사용한다.
+- 문제 수가 4개인 경우 **왼쪽 2개 + 오른쪽 2개** 배치를 사용한다.
+- **하단 단독 배치(`flex-shrink:0;` 별도 div)는 사용하지 않는다** — 모든 문제는 `.umuri-grid` 안 두 컬럼에 분배한다.
+
+```html
+<!-- 유형 익히기: 5문제 배치 예시 (왼쪽 3 + 오른쪽 2) -->
+<div class="umuri-grid" style="flex:1; min-height:0;">
+  <!-- 왼쪽 컬럼 (3문제, height:240px) -->
+  <div class="umuri-col">
+    <div class="umuri-prob" style="height:240px;">...</div>
+    <div class="umuri-ws"></div>
+    <div class="umuri-prob" style="height:240px;">...</div>
+    <div class="umuri-ws"></div>
+    <div class="umuri-prob" style="height:240px;">...</div>
+    <div class="umuri-ws"></div>
+  </div>
+  <div class="umuri-sep"></div>
+  <!-- 오른쪽 컬럼 (2문제, height:358px) -->
+  <div class="umuri-col">
+    <div class="umuri-prob" style="height:358px;">...</div>
+    <div class="umuri-ws"></div>
+    <div class="umuri-prob" style="height:358px;">...</div>
+    <div class="umuri-ws"></div>
+  </div>
+</div>
+```
