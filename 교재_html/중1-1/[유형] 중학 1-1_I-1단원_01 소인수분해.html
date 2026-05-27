@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[유형] 중학 1-1 I-1단원 01 소인수분해</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+
+/* ═══════════════════════════════════════
+   디자인 토큰
+═══════════════════════════════════════ */
+:root {
+  --primary:      #2FA5A5;
+  --primary-bg:   rgba(47, 165, 165, 0.18);
+  --badge-rep:    #FF7D56;
+  --badge-imp:    #FF5656;
+  --text-strong:  #232F39;
+  --text-sub:     #818181;
+  --num-color:    #C1C1C1;
+  --diff-on:      #FFB804;
+  --diff-off:     #D9D9D9;
+  --diff-label:   #717171;
+  --divider:      #D9D9D9;
+  --col-sep:      #F5F5F5;
+}
+
+/* ═══════════════════════════════════════
+   BODY
+═══════════════════════════════════════ */
+body {
+  background: #adadad;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+
+/* ═══════════════════════════════════════
+   PAGE
+   Figma: 595×842, padding 32px 30px 20px,
+   gap 6px, flex-col center, align-start
+═══════════════════════════════════════ */
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 30px 20px;
+  gap: 6px;
+  isolation: isolate;
+  width: 595px;
+  height: 842px;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ═══════════════════════════════════════
+   단원 배지
+   Figma: absolute, left 30px, top 0,
+   65×45px, border-radius 0 0 100px 100px
+═══════════════════════════════════════ */
+.unit-badge {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 18px 8px;
+  gap: 10px;
+  width: 65px;
+  height: 45px;
+  background: #2FA5A5;
+  border-radius: 0px 0px 100px 100px;
+  z-index: 3;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 31px;
+  letter-spacing: -0.05em;
+  color: #FFFFFF;
+}
+
+/* ═══════════════════════════════════════
+   헤더 — 첫 페이지 (대형, 가로 row)
+   Figma: flex-row, space-between,
+   align-end, h:40px
+═══════════════════════════════════════ */
+.page-hd {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0px;
+  width: 535px;
+  height: 40px;
+  flex-shrink: 0;
+  align-self: stretch;
+  margin-top: 13px; /* unit-badge(45px) - page padding(32px) */
+}
+
+/* 왼쪽: 소단원 제목 (소단원번호 배지가 별도 표시하므로 제목만) */
+.page-hd__title {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 31px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+
+/* 오른쪽: "유형 익히기" */
+.page-hd__section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 0px;
+  gap: 2px;
+  width: 112px;
+  height: 40px;
+}
+.page-hd__yn {
+  display: inline-flex;
+  align-items: flex-end;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+  color: #2FA5A5;
+  margin: 0px -2px;
+}
+.page-hd__yn-char {
+  display: block;
+}
+.page-hd__yn-char--raised {
+  width: 26px;
+  margin-left: -2px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+.page-hd__ik {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0px 4px;
+  width: 60px;
+  height: 40px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+
+/* ═══════════════════════════════════════
+   페이지 변형 — 이후 페이지 (gap 12px)
+   Figma page2: gap 12px (vs page1 gap 6px)
+═══════════════════════════════════════ */
+.page--cont {
+  gap: 12px;
+}
+
+/* ═══════════════════════════════════════
+   페이지 변형 — 심화 페이지 (유형_심화페이지)
+   유형_이후페이지와 구조 동일, 색상만 변경
+   #2FA5A5 100% → #FF4043
+   #2FA5A5 18%  → rgba(239,58,61,0.18)
+═══════════════════════════════════════ */
+.page--adv .type-label-row {
+  background: rgba(239, 58, 61, 0.18);
+}
+.page--adv .type-chip__left {
+  border-color: #FF4043;
+  color: #FF4043;
+}
+.page--adv .type-chip__right {
+  background: #FF4043;
+}
+.page--adv .prob-rep__num .nx,
+.page--adv .prob__num .nx {
+  color: #FF4043;
+}
+
+/* ═══════════════════════════════════════
+   헤더 — 이후 페이지 (소형)
+═══════════════════════════════════════ */
+.page-hd--sm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 535px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.page-hd--sm__line {
+  /* Divider bar */
+  width: 474.98px;
+  height: 1px;
+  background: #D9D9D9;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+.page-hd--sm__label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1px;
+}
+.page-hd--sm__yn {
+  display: inline-flex;
+  align-items: flex-end;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 13.0788px; /* Figma exact */
+  line-height: 1;
+  letter-spacing: -0.09em;
+  color: var(--primary);
+}
+.page-hd--sm__yn-char {
+  display: block;
+}
+.page-hd--sm__yn-char--raised {
+  width: 11.34px;
+  margin-left: -0.9px;
+  padding-bottom: 1.74px;
+  text-align: center;
+}
+.page-hd--sm__ik {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 10.4631px; /* Figma exact */
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--text-strong);
+}
+
+/* ═══════════════════════════════════════
+   구분선   Figma: 1px, #D9D9D9
+═══════════════════════════════════════ */
+.divider {
+  width: 535px;
+  height: 1px;
+  background: #D9D9D9;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* ═══════════════════════════════════════
+   중요 배지
+   Figma 구조:
+   ┌ .badge--imp (47×13.5px, absolute, left:29px top:65.22px)
+   │  flex-col, align-items: flex-end, z-index: 1
+   └─┬ .badge--imp__inner (23×13.5px)
+     │  flex-col, justify-center, align-center
+     ├─ .badge--imp__pill (21×11px)
+     │  flex-row center, #FF5656, border-radius 1000px, padding 2px 4px
+     │  text: 13×7px, Pretendard Variable 700 7px, white
+     └─ .badge--imp__tri (3.5×2.5px)
+        #FF5656, clip-path ▼ (rotate 180deg polygon)
+        → pill 11px + tri 2.5px = 13.5px 정확히 일치
+═══════════════════════════════════════ */
+.badge--imp {
+  position: absolute;
+  left: -1px;
+  top: -12.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 47px;
+  height: 13.5px;
+  z-index: 1;
+}
+.badge--imp__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 23px;
+  height: 13.5px;
+}
+.badge--imp__pill {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 10px;
+  width: 21px;
+  height: 11px;
+  background: #FF5656;
+  border-radius: 1000px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 7px;
+  line-height: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* Polygon 4 — rotate(180deg) 적용 아래 방향 삼각형
+   3.5×2.5px, #FF5656 */
+.badge--imp__tri {
+  width: 3.5px;
+  height: 2.5px;
+  background: #FF5656;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   컨텐츠 래퍼
+   Figma: flex-col, padding 4px 0 0, gap 4px
+═══════════════════════════════════════ */
+.content-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 0px 0px;
+  gap: 4px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 섹션: padding 12px 0 0, gap 26px */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 0px 0px;
+  gap: 26px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* ═══════════════════════════════════════
+   2열 행 레이아웃
+   Figma: flex-row, gap 16px
+═══════════════════════════════════════ */
+.row-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 왼쪽 열: type-group + prob 혼합 가능
+   Figma: flex-col, gap 30px, 251.5px */
+.col-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 30px;
+  width: 251.5px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 오른쪽 열: 주로 prob-group
+   Figma: flex-col, gap 30px, 251.5px */
+.col-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 30px;
+  width: 251.5px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 열 구분선 */
+.col-sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--col-sep);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   유형 그룹
+   Figma: flex-col, gap 0px, border-radius 10px
+═══════════════════════════════════════ */
+.type-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 0px;
+  width: 251.5px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* 레이블 행
+   Figma: rgba(47,165,165,0.18), h:19px,
+   border-radius 4px 4px 0 4px */
+.type-label-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 6px;
+  width: 251.5px;
+  height: 19px;
+  background: rgba(47, 165, 165, 0.18);
+  border-radius: 4px 4px 0px 4px;
+  align-self: stretch;
+}
+
+/* 유형 칩: 두 파트 구조 */
+.type-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  width: 47px;
+  height: 19px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+/* 왼쪽: "유형" + teal 테두리(L,T,B)
+   Figma: box-sizing border-box,
+   border 1px 0 1px 1px solid #2FA5A5,
+   border-radius 4px 1px 1px 4px, padding 3px 1px 3px 4px
+   inner text: 19×11px, 11px 600, -0.09em, center */
+.type-chip__left {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3px 4px 3px 4px;
+  gap: 10px;
+  width: 24px;
+  height: 19px;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #2FA5A5;
+  border-radius: 4px 1px 1px 4px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #2FA5A5;
+}
+/* 오른쪽: 소단원 2자리 번호 + teal 배경
+   Figma: #2FA5A5, border-radius 0 4px 4px 0,
+   padding 3px 3px 3px 2px, 23×19px */
+.type-chip__right {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 3px 3px 2px;
+  gap: 10px;
+  width: 23px;
+  height: 19px;
+  background: #2FA5A5;
+  border-radius: 0px 4px 4px 0px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #FFFFFF;
+}
+
+/* 유형 제목 (칩 오른쪽 텍스트) */
+.type-label-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+
+/* 유형 몸통
+   Figma: padding 6px, gap 8px,
+   rgba(245,245,245,0.4), border-radius 0 0 4px 4px */
+.type-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px 10px 10px;
+  gap: 8px;
+  width: 251.5px;
+  background: rgba(245, 245, 245, 0.4);
+  border-radius: 0px 0px 4px 4px;
+  align-self: stretch;
+}
+.type-body__text {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: -0.06em;
+  color: #232F39;
+  align-self: stretch;
+}
+
+/* 유형 내 표
+   Figma: Pretendard Variable 8px, line-height 140%,
+   letter-spacing -0.06em, color #0C0C0C,
+   border 0.5px solid #B9B9B9, padding 3px 10px */
+.type-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 8px;
+  line-height: 140%;
+  letter-spacing: -0.06em;
+  color: #0C0C0C;
+}
+.type-table th {
+  background: #F2F2F2;
+  border: 0.5px solid #B9B9B9;
+  padding: 3px 10px;
+  text-align: center;
+  font-weight: 500;
+}
+.type-table td {
+  background: white;
+  border: 0.5px solid #B9B9B9;
+  padding: 3px 10px;
+}
+.type-table tr > *:first-child { border-left: none; }
+.type-table tr > *:last-child  { border-right: none; }
+.type-table tr:first-child > * { border-top: none; }
+.type-table tr:last-child > *  { border-bottom: none; }
+
+/* ═══════════════════════════════════════
+   문제 그룹 (.prob-group)
+   여러 prob/prob-rep를 묶는 래퍼
+   Figma: flex-col, gap 16px (prob 간 간격)
+═══════════════════════════════════════ */
+.prob-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 251.5px;
+  align-self: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ═══════════════════════════════════════
+   대표문제 (.prob-rep)
+   Figma: flex-col, gap 4px, border-radius 10px
+   — 헤더: 번호 + 대표문제 배지
+═══════════════════════════════════════ */
+.prob-rep {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 251.5px;
+  border-radius: 10px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* 헤더행: 번호 + 배지
+   Figma: flex-row, gap 4px, h:20px */
+.prob-rep__hd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  width: fit-content;
+  height: 20px;
+}
+
+/* 번호 (대표문제용)
+   Figma: Pretendard 700, 20px, #C1C1C1,
+   letter-spacing -0.09em, w:33px, align flex-end */
+.prob-rep__num {
+  width: 33px;
+  height: 20px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #C1C1C1;
+  display: flex;
+  gap: 1px;
+  align-items: flex-end;
+}
+
+/* 대표문제 배지
+   Figma: #FF7D56, border-radius 20px 20px 20px 0px,
+   padding 3px 4px, hug/hug, 7px font */
+.badge--rep {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 4px;
+  gap: 10px;
+  width: fit-content;
+  height: fit-content;
+  background: #FF7D56;
+  border-radius: 20px 20px 20px 0px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 7px;
+  line-height: 100%;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+/* 몸통 (대표문제)
+   Figma: flex-col, justify-center, gap 10px,
+   border-radius 3px */
+.prob-rep__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  width: 251.5px;
+  border-radius: 3px;
+  align-self: stretch;
+}
+
+/* 문제 텍스트 (대표문제)
+   Figma: Pretendard Variable 400, 12px,
+   line-height 18px, w:219px, #232F39 */
+.prob-rep__q {
+  align-self: stretch;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #232F39;
+}
+
+/* 보기 (대표문제)
+   Figma: flex-wrap, space-between, gap 5px,
+   w:251.5px */
+/* 선지 컨테이너 공통: 우측 여백 4px 고정 */
+.prob-rep__choices-wrap,
+.prob-rep__choices-stack,
+.prob-rep__choices-2col,
+.prob-rep__choices-3col,
+.prob__choices-wrap,
+.prob__choices-stack,
+.prob__choices-2col,
+.prob__choices-3col {
+  padding-right: 4px;
+}
+
+/* 대표문제 선지 변형
+   -wrap  : 한 줄에 다 들어오는 경우 — flex-wrap, space-between
+   -stack : 긴 선지(≥9자) — 1열 세로 나열
+   -2col  : 7~9자 — 2열 grid
+   -3col  : 3~6자  — 3열 grid */
+.prob-rep__choices-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px 0;
+  align-self: stretch;
+}
+.prob-rep__choices-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-self: stretch;
+}
+.prob-rep__choices-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-self: stretch;
+}
+.prob-rep__choices-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px 6px;
+  align-self: stretch;
+}
+
+/* ═══════════════════════════════════════
+   일반 문제 (.prob)
+   Figma: flex-col, gap 4px, border-radius 10px
+   — 헤더: 번호 + 난이도 점
+═══════════════════════════════════════ */
+.prob {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 251.5px;
+  border-radius: 10px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* 헤더행: 번호 + 난이도
+   Figma: flex-row, gap 4px, h:20px */
+.prob__hd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  height: 20px;
+}
+
+/* 번호 (일반 문제)
+   Figma: Pretendard 700, 20px, #C1C1C1,
+   letter-spacing -0.09em, w:33px, align flex-end */
+.prob__num {
+  width: 33px;
+  height: 20px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #C1C1C1;
+  display: flex;
+  gap: 1px;
+  align-items: flex-end;
+}
+
+/* 번호 digit 색상 규칙
+   .n0 = '0' → #C1C1C1 (부모에서 상속, 명시 불필요)
+   .nx = 비-0 숫자 → #2FA5A5 (강조) */
+.prob-rep__num .nx,
+.prob__num .nx {
+  color: #2FA5A5;
+}
+/* .n0 는 부모 color(#C1C1C1) 그대로 상속 */
+
+/* 난이도
+   Figma: flex-row, gap 2px, h:7px */
+.prob__diff {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 2px;
+  height: 7px;
+}
+
+/* "난이도" 레이블
+   Figma: Pretendard Variable 700, 7px, #717171 */
+.diff-label {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 7px;
+  line-height: 100%;
+  color: #717171;
+}
+
+/* 난이도 점 컨테이너 */
+.diff-dots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 2px;
+}
+
+/* 난이도 점
+   Figma: 5×5px 원, 채움: #FFB804, 빔: #D9D9D9 */
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #D9D9D9;
+  flex-shrink: 0;
+}
+.dot.on { background: #FFB804; }
+
+/* 몸통 (일반 문제)
+   Figma: flex-col, justify-center, gap 10px,
+   border-radius 3px */
+.prob__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  width: 251.5px;
+  border-radius: 3px;
+  align-self: stretch;
+}
+
+/* 풀이 여백 컴포넌트
+   — 문제를 풀 빈 공간 + prob 최소 높이 균일화
+   — prob__body 내 마지막 자식으로 항상 위치 */
+.prob__space {
+  width: 100%;
+  height: var(--space, 60px);
+  flex-shrink: 0;
+}
+
+/* 조건·보기 박스 컴포넌트
+   — 문제 내 조건 목록, 보기, 〈조건〉 박스 등에 사용
+   — prob__body 내 inline 배치 */
+.prob-boogi {
+  box-sizing: border-box;
+  border: 0.75px solid #D0D0D0;
+  border-radius: 4px;
+  background: rgba(245, 245, 245, 0.7);
+  padding: 5px 8px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 11px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+  color: #232F39;
+  align-self: stretch;
+}
+
+/* 그림·도형·그래프 플레이스홀더
+   — 이미지가 들어갈 자리에 시각적 표시 */
+.prob-figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  min-height: 50px;
+  border: 1px dashed #B9B9B9;
+  border-radius: 4px;
+  font-size: 10px;
+  color: #B9B9B9;
+  letter-spacing: -0.03em;
+}
+
+/* 문제 텍스트 (일반 문제)
+   Figma: Pretendard Variable 400, 12px,
+   line-height 18px, w:219px, #232F39 */
+.prob__q {
+  align-self: stretch;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #232F39;
+}
+
+/* 일반문제 선지 변형
+   -wrap  : 한 줄에 다 들어오는 경우 — flex-wrap, space-between
+   -stack : 긴 선지(≥9자) — 1열 세로 나열
+   -2col  : 7~9자 — 2열 grid
+   -3col  : 3~6자  — 3열 grid */
+.prob__choices-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px 0;
+  align-self: stretch;
+}
+.prob__choices-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-self: stretch;
+}
+.prob__choices-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-self: stretch;
+}
+.prob__choices-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px 6px;
+  align-self: stretch;
+}
+
+/* 보기 항목 (공통): 12px, 400, #232F39 */
+.prob__choice {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #232F39;
+}
+
+/* ═══════════════════════════════════════
+   푸터
+   Figma: flex-row, space-between, h:13px
+═══════════════════════════════════════ */
+.page-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  width: 535px;
+  height: 13px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.page-footer__logo {
+  width: 59px;
+  height: 13px;
+  object-fit: contain;
+}
+.page-footer__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+.page-footer__topic {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 13px;
+  letter-spacing: -0.04em;
+  color: #818181;
+}
+.page-footer__num {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 13px;
+  letter-spacing: -0.04em;
+  color: #232F39;
+}
+
+/* ═══════════════════════════════════════
+   빠른정답 페이지 (page--ans)
+   Figma: flex-row page, padding 40px 30px 30px
+   내부 535×772 단일 컨테이너
+═══════════════════════════════════════ */
+
+/* 페이지 변형 */
+.page--ans {
+  flex-direction: row;
+  align-items: center;
+  padding: 40px 30px 30px;
+}
+
+/* 메인 래퍼 (535×772, flex-col, gap 10px) */
+.ans-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 535px;
+  height: 772px;
+}
+
+/* 헤더 + 정답 프레임 (flex-col, flex:1) */
+.ans-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── 타이틀 행 (535×38) ── */
+.ans-hd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  width: 535px;
+  height: 38px;
+  flex-shrink: 0;
+}
+.ans-hd__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+/* 섹션번호 (Ⅲ): Pretendard 700, 26px, #2FA5A5 */
+.ans-hd__sec-num {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 100%;
+  letter-spacing: -0.12em;
+  color: #2FA5A5;
+  flex-shrink: 0;
+}
+/* 소단원명: Pretendard 600, 20px, #000 */
+.ans-hd__sec-desc {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+/* 유형익히기 레이블 칩 (46×19, #2FA5A5, radius 4px) */
+.ans-hd__label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 6px;
+  gap: 10px;
+  width: 46px;
+  height: 19px;
+  background: #2FA5A5;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.ans-hd__label-text {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 9px;
+  line-height: 11px;
+  text-align: center;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+/* ── 정답 컨텐츠 영역 ── */
+.ans-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* 수평 구분선 (535×2, #F5F5F5) */
+.ans-divider-h {
+  width: 535px;
+  height: 2px;
+  background: #F5F5F5;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* 2열 정답 컬럼 컨테이너 */
+.ans-cols {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* 정답 열 (257px, padding-top 10px) */
+.ans-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 0 0;
+  gap: 10px;
+  width: 257px;
+  flex-shrink: 0;
+}
+
+/* 수직 구분선 (2px, #F5F5F5, stretch) */
+.ans-divider-v {
+  width: 2px;
+  background: #F5F5F5;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* ── 정답 유닛 (카드 + 플로팅 서브타이틀) ── */
+.ans-unit {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 257px;
+}
+
+
+/* 정답 카드 (257px, border 2px solid #F5F5F5, radius 10px, padding 14px 0) */
+.ans-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 14px 0;
+  width: 257px;
+  border: 2px solid #F5F5F5;
+  border-radius: 10px;
+  align-self: stretch;
+}
+
+/* 카드 내부 (padding-left 16px, gap 4px) */
+.ans-card__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 0 16px;
+  gap: 0;
+  align-self: stretch;
+}
+
+/* 정답 행 (flex-row, space-between, gap 20px, h:26px) */
+.ans-card__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 241px;
+  height: 26px;
+}
+
+/* 정답 아이템 (문제번호 + 답, flex:1) */
+.ans-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  height: 13px;
+}
+
+/* 문제 번호: Pretendard 600, 11px, #4A4A4A */
+.ans-item__num {
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  color: #4A4A4A;
+  flex-shrink: 0;
+}
+
+/* 정답: Noto Sans KR 500, 8px, #3D3D3D */
+.ans-item__ans {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 12px;
+  color: #3D3D3D;
+}
+</style>
+</head>
+<body>
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ]
+  }); redistributeProbs();"></script>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 1 — 유형01 소수와 합성수 (001~005)
+═══════════════════════════════════════════ -->
+<div class="page" id="page1">
+
+  <div class="unit-badge">01</div>
+
+  <div class="page-hd">
+    <div class="page-hd__title">소인수분해</div>
+    <div class="page-hd__section">
+      <span class="page-hd__yn">
+        <span class="page-hd__yn-char">유</span>
+        <span class="page-hd__yn-char page-hd__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <div class="col-left">
+          <div class="type-group">
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">01</span>
+              </div>
+              <span class="type-label-title">소수와 합성수</span>
+            </div>
+            <div class="type-body">
+              <div class="type-body__text">약수가 1과 자기 자신뿐인 수를 <strong>소수</strong>, 약수가 3개 이상인 수를 <strong>합성수</strong>라고 한다. 1은 약수가 1개뿐이어서 소수도 합성수도 아니다. 소수 중 가장 작은 수는 2이고, 짝수인 소수는 2뿐이다.</div>
+            </div>
+          </div>
+
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">1</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">다음 중 소수인 것은 모두 몇 개인가?</span>
+              <div class="prob-boogi" style="text-align:center; letter-spacing:0.08em;">13　32　57　83　97　171</div>
+              <div class="prob-rep__choices-wrap">
+                <span class="prob__choice">① 1개</span>
+                <span class="prob__choice">② 2개</span>
+                <span class="prob__choice">③ 3개</span>
+                <span class="prob__choice">④ 4개</span>
+                <span class="prob__choice">⑤ 5개</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">2</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">3, 5와 같이 차가 2인 두 소수를 쌍둥이 소수라 한다. 다음 중 쌍둥이 소수가 <u>아닌</u> 것은?</span>
+              <div class="prob__choices-3col">
+                <span class="prob__choice">① 5, 7</span>
+                <span class="prob__choice">② 11, 13</span>
+                <span class="prob__choice">③ 17, 19</span>
+                <span class="prob__choice">④ 29, 31</span>
+                <span class="prob__choice">⑤ 51, 53</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">3</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">30보다 큰 소수 중 가장 작은 수는 $a$, 20보다 작은 합성수 중 가장 큰 수를 $b$라 할 때, $a+b$의 값을 구하시오.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">4</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">진수는 15층 아파트에서 살고 있는데 엘리베이터가 자주 고장이 난다. 어느 날 엘리베이터 입구에 '약수의 개수가 2인 층에서만 선다'는 문구가 걸려 있었을 때, 다음 중 엘리베이터가 서는 층이 <u>아닌</u> 것은?</span>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① 2층</span>
+                <span class="prob__choice">② 3층</span>
+                <span class="prob__choice">③ 7층</span>
+                <span class="prob__choice">④ 11층</span>
+                <span class="prob__choice">⑤ 12층</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">5</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 두 조건을 만족시키는 두 자연수의 합을 구하시오.</span>
+              <div class="prob-boogi">(가) 두 자연수를 곱한 수의 약수는 2개뿐이다.<br>(나) 두 자연수의 차는 22이다.</div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+        <div class="col-right"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="../../bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">소인수분해</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page1 -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 2 — 유형02 소수와 합성수의 성질 (006~010)
+═══════════════════════════════════════════ -->
+<div class="page page--cont" id="page2">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <div class="col-left">
+          <div class="type-group">
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">02</span>
+              </div>
+              <span class="type-label-title">소수와 합성수의 성질</span>
+            </div>
+            <div class="type-body">
+              <div class="type-body__text">소수의 약수는 항상 2개, 합성수의 약수는 3개 이상이다. 소수 중 유일한 짝수는 2이며, 가장 작은 소수이기도 하다. 1은 약수가 1개뿐이므로 소수도 합성수도 아니다.</div>
+            </div>
+          </div>
+
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">6</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">다음 보기 중 옳은 것만을 있는 대로 고른 것은?</span>
+              <div class="prob-boogi">〈보기〉<br>ㄱ. 가장 작은 소수는 1이다.<br>ㄴ. 소수의 약수는 2개이다.<br>ㄷ. 2의 배수 중 소수는 1개뿐이다.<br>ㄹ. $a$, $b$가 모두 소수이면 $a \times b$도 소수이다.</div>
+              <div class="prob-rep__choices-3col">
+                <span class="prob__choice">① ㄱ, ㄴ</span>
+                <span class="prob__choice">② ㄴ, ㄷ</span>
+                <span class="prob__choice">③ ㄴ, ㄹ</span>
+                <span class="prob__choice">④ ㄱ, ㄷ, ㄹ</span>
+                <span class="prob__choice">⑤ ㄴ, ㄷ, ㄹ</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">7</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 중 옳지 않은 것을 모두 고르면? (정답 2개)</span>
+              <div class="prob__choices-stack">
+                <span class="prob__choice">① 37은 소수이다.</span>
+                <span class="prob__choice">② 가장 작은 소수는 3이다.</span>
+                <span class="prob__choice">③ 소수가 아닌 자연수는 합성수이다.</span>
+                <span class="prob__choice">④ 1에서 10까지의 자연수 중 소수의 개수는 1이다.</span>
+                <span class="prob__choice">⑤ 1은 소수도 아니고 합성수도 아니다.</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">8</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음을 만족시키는 자연수 $a$, $b$, $c$에 대하여 $a+b-c$의 값을 구하시오.</span>
+              <div class="prob-boogi">홀수 중에서 가장 작은 소수는 $a$, 짝수 중에서 가장 작은 합성수는 $b$이다. 또, $c$는 소수도 아니고 합성수도 아니다.</div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">9</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음을 만족시키는 한 자리 자연수 $a$, $b$, $c$에 대하여 $a+b+c$의 값을 구하시오.</span>
+              <div class="prob-boogi">가장 큰 소수는 $a$, 가장 작은 합성수는 $b$이다. 또한, $c$는 소수도 아니고 합성수도 아니다.</div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">0</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음을 만족시키는 자연수 $a$, $b$, $c$에 대하여 $a+b+c$의 값을 구하시오.</span>
+              <div class="prob-boogi">짝수 중에서 가장 작은 소수는 $a$, 홀수 중에서 가장 작은 합성수는 $b$이다. 또한, $c$는 소수도 아니고 합성수도 아니다.</div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+        <div class="col-right"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="../../bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">소인수분해</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+
+</div><!-- /page2 -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 3 — 유형03 곱을 거듭제곱으로 나타내기 (011~015)
+═══════════════════════════════════════════ -->
+<div class="page page--cont" id="page3">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <div class="col-left">
+          <div class="type-group">
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">03</span>
+              </div>
+              <span class="type-label-title">곱을 거듭제곱으로 나타내기</span>
+            </div>
+            <div class="type-body">
+              <div class="type-body__text">같은 수가 반복해서 곱해질 때, $a^n$ 형태의 거듭제곱으로 간단하게 나타낼 수 있다. 여러 종류의 수가 섞여 있으면 같은 수끼리 모아서 각각 거듭제곱으로 쓴다.<br>예) $2 \times 2 \times 3 \times 3 \times 3 = 2^2 \times 3^3$</div>
+            </div>
+          </div>
+
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">1</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">다음 중 옳은 것은?</span>
+              <div class="prob-rep__choices-stack">
+                <span class="prob__choice">① $3^3=9$</span>
+                <span class="prob__choice">② $5 \times 5 \times 5 = 5^2$</span>
+                <span class="prob__choice">③ $3 \times 3 \times 3 \times 3 = 4 \times 3$</span>
+                <span class="prob__choice">④ $2 \times 2 \times 2 \times 3 \times 3 = 2^3 \times 3^2$</span>
+                <span class="prob__choice">⑤ $\dfrac{1}{5 \times 5 \times 7 \times 7 \times 7} = \dfrac{1}{5^2} \times \dfrac{1}{7^2}$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">2</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">$a \times a \times a \times b \times b \times b \times c \times c = a^x \cdot b^y \cdot c^z$일 때, $x+y+z$의 값을 구하시오. (단, $a$, $b$, $c$는 서로 다른 소수이고 $x$, $y$, $z$는 자연수)</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">3</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 중 거듭제곱의 표현으로 옳지 않은 것은?</span>
+              <div class="prob__choices-stack">
+                <span class="prob__choice">① $3 \times 3 \times 3 = 3^3$</span>
+                <span class="prob__choice">② $2 \times 2 \times 2 \times 3 \times 3 = 2^3 \times 3^2$</span>
+                <span class="prob__choice">③ $a+a+a+a = a^4$</span>
+                <span class="prob__choice">④ $a \times b \times b \times b \times b = a \times b^4$</span>
+                <span class="prob__choice">⑤ $\dfrac{1}{2 \times 2 \times 2 \times 7 \times 7} = \dfrac{1}{2^3} \times \dfrac{1}{7^2}$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">4</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 그림은 한 변의 길이가 3인 정사각형을 가로와 세로에 각각 2개씩 빈틈없이 붙여서 만든 정사각형이다. 이 정사각형의 넓이를 거듭제곱으로 나타내면 $2^a \times 3^b$일 때, 자연수 $a$, $b$에 대하여 $b-a$의 값을 구하시오.</span>
+              <div class="prob-figure">(도형)</div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">5</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 그림은 가로가 2, 세로가 3인 직사각형을 가로와 세로에 각각 1개, 2개씩 빈틈없이 붙여서 만든 직사각형이다. 이 직사각형의 넓이를 거듭제곱으로 나타내면 $2^a \times 3^b$일 때, 자연수 $a$, $b$에 대하여 $a+b$의 값을 구하시오.</span>
+              <div class="prob-figure">(도형)</div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+        <div class="col-right"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="../../bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">소인수분해</span>
+      <span class="page-footer__num">003</span>
+    </div>
+  </div>
+
+</div><!-- /page3 -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 4 — 유형04 소인수분해 하기 (016~020)
+═══════════════════════════════════════════ -->
+<div class="page page--cont" id="page4">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <div class="col-left">
+          <div class="type-group">
+            <div class="badge--imp">
+              <div class="badge--imp__inner">
+                <div class="badge--imp__pill">중요</div>
+                <div class="badge--imp__tri"></div>
+              </div>
+            </div>
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">04</span>
+              </div>
+              <span class="type-label-title">소인수분해 하기</span>
+            </div>
+            <div class="type-body">
+              <div class="type-body__text">자연수를 소수만의 곱으로 나타내는 것을 <strong>소인수분해</strong>라고 한다. 작은 소수부터 차례로 나누다가 몫이 1이 되면 멈추고, 같은 소수가 여러 번 나오면 거듭제곱으로 묶어 쓴다.<br>예) $84 = 2^2 \times 3 \times 7$</div>
+            </div>
+          </div>
+
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">6</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">다음 중 소인수분해를 바르게 한 것을 모두 고르면? (정답 2개)</span>
+              <div class="prob-rep__choices-stack">
+                <span class="prob__choice">① $24 = 2^3 \times 3$</span>
+                <span class="prob__choice">② $36 = 2^2 \times 9$</span>
+                <span class="prob__choice">③ $42 = 2 \times 3 \times 7$</span>
+                <span class="prob__choice">④ $88 = 2 \times 4 \times 11$</span>
+                <span class="prob__choice">⑤ $160 = 2^4 \times 5^2$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">7</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">500을 소인수분해 하면?</span>
+              <div class="prob__choices-3col">
+                <span class="prob__choice">① $2^2 \times 5^2$</span>
+                <span class="prob__choice">② $2 \times 3 \times 5^2$</span>
+                <span class="prob__choice">③ $2^2 \times 3 \times 5^2$</span>
+                <span class="prob__choice">④ $2^2 \times 5^3$</span>
+                <span class="prob__choice">⑤ $2^3 \times 5^3$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">8</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 중 자연수 84를 바르게 소인수분해 한 것은?</span>
+              <div class="prob__choices-3col">
+                <span class="prob__choice">① $2^3 \times 3 \times 7$</span>
+                <span class="prob__choice">② $2 \times 3^2 \times 7$</span>
+                <span class="prob__choice">③ $2^2 \times 3^2 \times 5$</span>
+                <span class="prob__choice">④ $2^2 \times 3^3 \times 7$</span>
+                <span class="prob__choice">⑤ $2^2 \times 3 \times 7$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">9</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 중 소인수분해 한 결과가 옳지 않은 것은?</span>
+              <div class="prob__choices-stack">
+                <span class="prob__choice">① $40 = 2^3 \times 5$</span>
+                <span class="prob__choice">② $70 = 2 \times 5 \times 7$</span>
+                <span class="prob__choice">③ $81 = 9^2$</span>
+                <span class="prob__choice">④ $156 = 2^2 \times 3 \times 13$</span>
+                <span class="prob__choice">⑤ $180 = 2^2 \times 3^2 \times 5$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">0</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음은 어떤 자연수 $A$를 소인수분해 하는 과정이다. $E=D-B$를 만족시키는 모든 $A$의 값의 합은? (단, $B$, $D$, $E$는 10보다 작은 소수이다.)</span>
+              <div class="prob-figure">(그림)</div>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① 30</span>
+                <span class="prob__choice">② 50</span>
+                <span class="prob__choice">③ 70</span>
+                <span class="prob__choice">④ 100</span>
+                <span class="prob__choice">⑤ 110</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+        <div class="col-right"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="../../bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">소인수분해</span>
+      <span class="page-footer__num">004</span>
+    </div>
+  </div>
+
+</div><!-- /page4 -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 5 — 유형05 소인수 구하기 (021~025)
+═══════════════════════════════════════════ -->
+<div class="page page--cont" id="page5">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <div class="col-left">
+          <div class="type-group">
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">05</span>
+              </div>
+              <span class="type-label-title">소인수 구하기</span>
+            </div>
+            <div class="type-body">
+              <div class="type-body__text">소인수분해 결과에서 밑에 해당하는 소수들이 바로 그 수의 <strong>소인수</strong>다. 지수는 소인수 판별과 무관하고, 밑에 등장한 소수만 소인수로 센다.<br>예) $40 = 2^3 \times 5$ → 소인수: 2, 5</div>
+            </div>
+          </div>
+
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">1</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">200의 모든 소인수들의 합은?</span>
+              <div class="prob-rep__choices-wrap">
+                <span class="prob__choice">① 6</span>
+                <span class="prob__choice">② 7</span>
+                <span class="prob__choice">③ 10</span>
+                <span class="prob__choice">④ 12</span>
+                <span class="prob__choice">⑤ 15</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">2</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">서로 다른 소인수가 네 개인 가장 작은 자연수를 구하시오.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">3</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 보기 중 소인수가 같은 것끼리 짝지어진 것은?</span>
+              <div class="prob-boogi">〈보기〉<br>ㄱ. 15　　ㄴ. 20　　ㄷ. 45　　ㄹ. 120</div>
+              <div class="prob__choices-3col">
+                <span class="prob__choice">① ㄱ, ㄷ</span>
+                <span class="prob__choice">② ㄱ, ㄹ</span>
+                <span class="prob__choice">③ ㄴ, ㄷ</span>
+                <span class="prob__choice">④ ㄴ, ㄹ</span>
+                <span class="prob__choice">⑤ ㄷ, ㄹ</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">4</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 조건을 모두 만족시키는 자연수 $n$을 구하시오.</span>
+              <div class="prob-boogi">(가) $n$은 60보다 크고 70보다 작다.<br>(나) $n$의 소인수는 2개이고 이 두 소인수의 합은 10이다.</div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">5</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">자연수 $n$의 모든 소인수의 합을 $\langle n \rangle$이라 하자. 예를 들어 $\langle 10 \rangle = 2+5 = 7$이다. 다음 중 $\langle n \rangle = 10$을 만족시키는 $n$의 값이 될 수 없는 것은?</span>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① 21</span>
+                <span class="prob__choice">② 30</span>
+                <span class="prob__choice">③ 36</span>
+                <span class="prob__choice">④ 63</span>
+                <span class="prob__choice">⑤ 90</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+        <div class="col-right"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="../../bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">소인수분해</span>
+      <span class="page-footer__num">005</span>
+    </div>
+  </div>
+
+</div><!-- /page5 -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 6 — 유형06 제곱인 수 만들기(1) (026~030)
+═══════════════════════════════════════════ -->
+<div class="page page--cont page--adv" id="page6">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <div class="col-left">
+          <div class="type-group">
+            <div class="badge--imp">
+              <div class="badge--imp__inner">
+                <div class="badge--imp__pill">중요</div>
+                <div class="badge--imp__tri"></div>
+              </div>
+            </div>
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">06</span>
+              </div>
+              <span class="type-label-title">제곱인 수 만들기(1): (어떤 수)$\times a=b^2$</span>
+            </div>
+            <div class="type-body">
+              <div class="type-body__text">자연수의 제곱이 되려면 소인수분해 했을 때 모든 소인수의 지수가 짝수여야 한다. 따라서 지수가 홀수인 소인수가 있으면, 그 소인수를 한 번 더 곱해 지수를 짝수로 맞춰주면 된다.</div>
+            </div>
+          </div>
+
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">6</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">120에 자연수 $x$를 곱하여 어떤 자연수의 제곱이 되게 하려고 한다. 다음 중 $x$의 값이 될 수 없는 것은?</span>
+              <div class="prob-rep__choices-stack">
+                <span class="prob__choice">① $2 \times 3 \times 5$</span>
+                <span class="prob__choice">② $2^3 \times 3 \times 5$</span>
+                <span class="prob__choice">③ $2 \times 3^3 \times 5$</span>
+                <span class="prob__choice">④ $2 \times 3 \times 5 \times 7^2$</span>
+                <span class="prob__choice">⑤ $2^2 \times 3 \times 5$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">7</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 중 $27 \times a = b^2$ (단, $a$, $b$는 자연수)을 만족시키는 $a$의 값이 될 수 있는 수는?</span>
+              <div class="prob__choices-stack">
+                <span class="prob__choice">① $5^2 \times 7^2$</span>
+                <span class="prob__choice">② $12$</span>
+                <span class="prob__choice">③ $2^2 \times 3^2$</span>
+                <span class="prob__choice">④ $98$</span>
+                <span class="prob__choice">⑤ $2^5 \times 3 \times 5^2$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">8</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">54에 자연수를 곱하여 어떤 자연수의 제곱이 되도록 할 때, 곱할 수 있는 가장 작은 자연수는?</span>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① 2</span>
+                <span class="prob__choice">② 3</span>
+                <span class="prob__choice">③ 6</span>
+                <span class="prob__choice">④ 12</span>
+                <span class="prob__choice">⑤ 18</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">2</span><span class="nx">9</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">자연수 $a$, $b$, $c$에 대하여 $5 \times a = 7 \times b = c^2$일 때, $c$의 값이 될 수 없는 것은?</span>
+              <div class="prob__choices-3col">
+                <span class="prob__choice">① 35</span>
+                <span class="prob__choice">② 70</span>
+                <span class="prob__choice">③ 105</span>
+                <span class="prob__choice">④ 140</span>
+                <span class="prob__choice">⑤ 180</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">3</span><span class="nx">0</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">240에 자연수 $a$를 곱하여 어떤 수의 제곱이 되게 하려고 한다. 이때 450에 가장 가까운 수 $a$를 구하시오.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+        <div class="col-right"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="../../bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">소인수분해</span>
+      <span class="page-footer__num">006</span>
+    </div>
+  </div>
+
+</div><!-- /page6 -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE ANS — 빠른정답
+═══════════════════════════════════════════ -->
+<div class="page page--ans" id="page-ans">
+  <div class="ans-wrap">
+
+    <div class="ans-frame">
+      <div class="ans-hd">
+        <div class="ans-hd__info">
+          <span class="ans-hd__sec-num">01</span>
+          <span class="ans-hd__sec-desc">소인수분해</span>
+        </div>
+        <div class="ans-hd__label">
+          <span class="ans-hd__label-text">빠른정답</span>
+        </div>
+      </div>
+
+      <div class="ans-content">
+        <div class="ans-divider-h"></div>
+
+        <div class="ans-cols">
+
+          <div class="ans-col ans-col--left">
+            <div class="ans-unit">
+              <div class="ans-card">
+                <div class="ans-card__inner">
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">001</span><span class="ans-item__ans">③</span></div>
+                    <div class="ans-item"><span class="ans-item__num">002</span><span class="ans-item__ans">⑤</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">003</span><span class="ans-item__ans">49</span></div>
+                    <div class="ans-item"><span class="ans-item__num">004</span><span class="ans-item__ans">⑤</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">005</span><span class="ans-item__ans">24</span></div>
+                    <div class="ans-item"><span class="ans-item__num">006</span><span class="ans-item__ans">②</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">007</span><span class="ans-item__ans">②, ③</span></div>
+                    <div class="ans-item"><span class="ans-item__num">008</span><span class="ans-item__ans">6</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">009</span><span class="ans-item__ans">12</span></div>
+                    <div class="ans-item"><span class="ans-item__num">010</span><span class="ans-item__ans">12</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">011</span><span class="ans-item__ans">④</span></div>
+                    <div class="ans-item"><span class="ans-item__num">012</span><span class="ans-item__ans">9</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">013</span><span class="ans-item__ans">③</span></div>
+                    <div class="ans-item"><span class="ans-item__num">014</span><span class="ans-item__ans">0</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">015</span><span class="ans-item__ans">5</span></div>
+                    <div class="ans-item"><span class="ans-item__num">016</span><span class="ans-item__ans">①, ③</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">017</span><span class="ans-item__ans">④</span></div>
+                    <div class="ans-item"><span class="ans-item__num">018</span><span class="ans-item__ans">⑤</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">019</span><span class="ans-item__ans">③</span></div>
+                    <div class="ans-item"><span class="ans-item__num">020</span><span class="ans-item__ans">④</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">021</span><span class="ans-item__ans">②</span></div>
+                    <div class="ans-item"><span class="ans-item__num">022</span><span class="ans-item__ans">210</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">023</span><span class="ans-item__ans">①</span></div>
+                    <div class="ans-item"><span class="ans-item__num">024</span><span class="ans-item__ans">63</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">025</span><span class="ans-item__ans">③</span></div>
+                    <div class="ans-item"><span class="ans-item__num">026</span><span class="ans-item__ans">⑤</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">027</span><span class="ans-item__ans">②</span></div>
+                    <div class="ans-item"><span class="ans-item__num">028</span><span class="ans-item__ans">③</span></div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item"><span class="ans-item__num">029</span><span class="ans-item__ans">⑤</span></div>
+                    <div class="ans-item"><span class="ans-item__num">030</span><span class="ans-item__ans">375</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- /ans-col--left -->
+
+          <div class="ans-divider-v"></div>
+
+          <div class="ans-col ans-col--right"></div>
+
+        </div><!-- /ans-cols -->
+
+        <div class="ans-divider-h"></div>
+      </div><!-- /ans-content -->
+
+    </div><!-- /ans-frame -->
+
+    <div class="page-footer">
+      <img src="../../bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+      <div class="page-footer__right">
+        <span class="page-footer__topic">소인수분해</span>
+        <span class="page-footer__num">007</span>
+      </div>
+    </div>
+
+  </div><!-- /ans-wrap -->
+</div><!-- /page-ans -->
+
+
+<script>
+function redistributeProbs() {
+  var MAX_PROBS = 3;
+  document.querySelectorAll('.row-grid').forEach(function(grid) {
+    var colLeft  = grid.querySelector('.col-left');
+    var colRight = grid.querySelector('.col-right');
+    var typeGroup = colLeft ? colLeft.querySelector('.type-group') : null;
+    if (!colLeft || !colRight) return;
+
+    Array.from(colRight.children).reverse().forEach(function(el) {
+      if (el.classList.contains('prob-rep')) {
+        if (typeGroup && typeGroup.nextSibling) {
+          colLeft.insertBefore(el, typeGroup.nextSibling);
+        } else {
+          colLeft.appendChild(el);
+        }
+      } else if (el.classList.contains('prob')) {
+        colLeft.appendChild(el);
+      }
+    });
+
+    function getProbs() {
+      return Array.from(colLeft.children).filter(function(el) {
+        return el.classList.contains('prob-rep') || el.classList.contains('prob');
+      });
+    }
+
+    while (true) {
+      var ps = getProbs();
+      if (!ps.length) break;
+      var countOver  = ps.length > MAX_PROBS;
+      var heightOver = colLeft.scrollHeight > colLeft.offsetHeight;
+      if (!countOver && !heightOver) break;
+      colRight.insertBefore(ps[ps.length - 1], colRight.firstChild);
+    }
+  });
+}
+</script>
+
+</body>
+</html>

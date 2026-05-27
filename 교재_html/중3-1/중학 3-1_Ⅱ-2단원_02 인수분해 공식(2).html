@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 3-1 Ⅱ-2단원 02 인수분해 공식(2)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title (page 1 only) ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 700;
+}
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Bordered content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 36px;
+}
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7;
+  position: relative;
+}
+.concept-chip__n {
+  background: #338cd7;
+  height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px;
+  padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-chip__boogi {
+  background: #ff8945;
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-left: 26px;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-eg {
+  background: rgba(51,140,215,0.06); border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: nowrap; font-size: 11px; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge {
+  position: absolute; top: 0; left: 16px;
+  display: flex; align-items: center; z-index: 2;
+}
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px;
+  border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px;
+  height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white;
+  font-size: 6px; font-weight: 700; border-radius: 2px;
+  padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -0.8px; line-height: 16px; font-weight: 500; }
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+
+/* ─── Right column ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice section ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7;
+  border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: block; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Set block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+
+/* ─── 쏙쏙 유형 익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f;
+  border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: grid; grid-template-rows: 240px 240px 240px; align-items: start; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── 개념 한눈에 보기 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 20px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px; margin-bottom: 10px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white;
+  height: 19px; border-radius: 1000px;
+  padding: 0 8px;
+  font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; white-space: nowrap;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px; word-break: keep-all;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num {
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white;
+  font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start; margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer {
+  display: flex; gap: 4px; align-items: center; justify-content: flex-end;
+  flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px;
+  white-space: nowrap; margin-top: auto;
+}
+.page-footer::before {
+  content: ""; display: block; width: 59px; height: 13px; margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+.hl { background: #fff5d3; }
+.warning-label { background: transparent; color: #ff7373; font-size: 10px; font-weight: 700; margin: 0; padding: 0; border-radius: 0; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 001 ═══════════════════════ -->
+<div class="page">
+  <!-- 타이틀 -->
+  <div class="title">
+    <span class="title__num">02</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span>
+        <span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">인수분해 공식 (2)</div>
+    </div>
+  </div>
+
+  <!-- 개념박스: 개념01 + 예제01 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">$x^2+(a+b)x+ab$ 꼴의 인수분해</span>
+        </div>
+        <div class="concept-body" style="gap:8px;">
+          <div><span class="hl">$x^2+(a+b)x+ab = (x+a)(x+b)$</span></div>
+          <div>$x^2+(\square)x+(\triangle)$ 꼴을 인수분해할 때,<br>
+            <strong>곱이 $\triangle$(상수항)</strong>이 되고 <strong>합이 $\square$($x$의 계수)</strong>가 되는 두 수 $a$, $b$를 찾는다.
+          </div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$x^2+7x-8$ &ensp;→&ensp; 곱 $-8$, 합 $7$인 두 수 : $-1$과 $8$<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;$\Rightarrow$ &ensp;$(x-1)(x+8)$</div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제 01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음을 인수분해하시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $x^2+5x+6$</span>
+              <span>(2) $x^2-3x-18$</span>
+              <span>(3) $x^2+2x-35$</span>
+              <span>(4) $x^2-11xy+28y^2$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 오른쪽 사이드 -->
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          $x^2+bx+c$에서 두 수 $a$, $b$ (합 : $b$, 곱 : $c$)를 구하는 법<br><br>
+          예) $x^2+7x-8$의 인수쌍:<br>
+          $(-1,8)$ → 합 $7$ ✓<br>
+          $(1,-8)$ → 합 $-7$ ✗<br>
+          $(-2,4)$ → 합 $2$ ✗
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+        <div class="tip-body">
+          <ul>
+            <li>곱이 상수항, 합이 $x$의 계수가 되는 두 수를 체계적으로 찾는다.</li>
+            <li>$xy$ 항이 있는 경우 $y$를 하나의 단위로 처리한다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) $(x+2)(x+3)$</span>
+          <span>(2) $(x-6)(x+3)$</span>
+          <span>(3) $(x+7)(x-5)$</span>
+          <span>(4) $(x-4y)(x-7y)$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 01 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $x^2-x-12$는 두 일차식의 곱으로 인수분해된다. 이때 두 인수의 합을 구하면?
+            <div class="prob__choices-3col" style="margin-top:5px;">
+              <span>① $2x-1$</span><span>② $x-2$</span><span>③ $2x-2$</span><span>④ $x^2+1$</span><span>⑤ $2x-7$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 02 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $x^2+\dfrac{1}{6}x-\dfrac{1}{6}=(x+a)(x+b)$이고, $a>0$일 때, $a$의 값은?
+            <div class="prob__choices-wrap" style="margin-top:5px;">
+              <span>① $\dfrac{1}{6}$</span><span>② $\dfrac{1}{3}$</span><span>③ $\dfrac{1}{2}$</span><span>④ $2$</span><span>⑤ $3$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">001</span>
+  </div>
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
+<div class="page">
+  <!-- 개념박스: 개념02 + 예제02 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 02 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">$acx^2+(ad+bc)x+bd$ 꼴의 인수분해 (세로셈)</span>
+        </div>
+        <div class="concept-body" style="gap:8px;">
+          <div><span class="hl">$acx^2+(ad+bc)x+bd = (ax+b)(cx+d)$</span></div>
+          <div>첫째항과 끝항을 각각 두 인수의 곱으로 쪼갠 뒤, 아래처럼 세로로 맞춰 쓰고 <strong>엇갈려 곱한 값의 합</strong>이 $x$의 계수와 같은지 확인한다.</div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content" style="display:flex; gap:16px; align-items:flex-start;"><div><span style="display:block;"><svg width="69" height="52" viewBox="0 0 69 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.38867 13.1367C2.33789 13.1367 0.881836 12.0361 0.820312 10.416H2.35156C2.40625 11.2842 3.26758 11.8379 4.375 11.8379C5.57129 11.8379 6.43945 11.1885 6.43945 10.2246C6.43945 9.24707 5.62598 8.5498 4.21094 8.54297H3.36328V7.3125H4.21094C5.33887 7.31934 6.125 6.69043 6.125 5.74023C6.125 4.83789 5.44824 4.22266 4.40234 4.22266C3.41113 4.22266 2.52246 4.77637 2.48828 5.67188H1.03906C1.08008 4.05859 2.57031 2.96484 4.41602 2.96484C6.36426 2.96484 7.58789 4.19531 7.57422 5.6582C7.58789 6.78613 6.89062 7.59277 5.82422 7.85938V7.92773C7.17773 8.11914 7.96387 9.02832 7.95703 10.2793C7.96387 11.9268 6.43945 13.1367 4.38867 13.1367ZM10.7871 5.57617L12.4141 8.46094L14.0547 5.57617H15.6543L13.3438 9.28125L15.668 13H14.082L12.4141 10.2246L10.7598 13H9.16016L11.457 9.28125L9.17383 5.57617H10.7871ZM16.666 8.05078V7.18945L18.9629 5.2207C19.5918 4.68066 19.9404 4.33887 19.9336 3.85352C19.9404 3.31348 19.4551 2.97852 18.8398 2.97852C18.1836 2.97852 17.7461 3.34766 17.7461 3.92188H16.5977C16.5908 2.77344 17.541 2.03516 18.8535 2.03516C20.1934 2.03516 21.0752 2.81445 21.082 3.82617C21.0752 4.65332 20.5967 5.2207 19.5098 6.08203L18.3887 7.02539V7.06641H21.2188V8.05078H16.666ZM32.7441 8.44727V9.75977H26.3457V8.44727H32.7441ZM39.457 5.57617L41.084 8.46094L42.7246 5.57617H44.3242L42.0137 9.28125L44.3379 13H42.752L41.084 10.2246L39.4297 13H37.8301L40.127 9.28125L37.8438 5.57617H39.457ZM55.8359 7.39453V8.70703H49.4375V7.39453H55.8359ZM61.373 13V11.9062L64.8047 8.44727C65.8916 7.31934 66.4316 6.69043 66.4316 5.82227C66.4316 4.84473 65.6387 4.22266 64.5996 4.22266C63.499 4.22266 62.8018 4.91992 62.7949 5.97266H61.373C61.3594 4.16113 62.7402 2.96484 64.627 2.96484C66.5342 2.96484 67.8535 4.1748 67.8672 5.78125C67.8535 6.88867 67.334 7.77051 65.4746 9.5957L63.4648 11.6328V11.7148H68.0312V13H61.373Z" fill="#232F39"/><path d="M3.72656 32.1172C2.03906 32.1172 0.826172 31.2148 0.773438 29.8672H1.83984C1.89844 30.6758 2.70117 31.1797 3.71484 31.1797C4.83398 31.1797 5.64258 30.5762 5.64844 29.6914C5.64258 28.7656 4.9043 28.1152 3.58594 28.1094H2.89453V27.1836H3.58594C4.61719 27.1836 5.33789 26.6035 5.33203 25.7305C5.33789 24.8809 4.7168 24.3184 3.75 24.3125C2.8418 24.3184 2.01562 24.8164 1.96875 25.6484H0.949219C1.00195 24.3008 2.25586 23.3984 3.76172 23.3984C5.37891 23.3984 6.36328 24.459 6.35156 25.6719C6.36328 26.6387 5.80078 27.3418 4.91016 27.5938V27.6523C6.01758 27.8223 6.68555 28.6133 6.67969 29.6914C6.68555 31.0859 5.41992 32.1172 3.72656 32.1172Z" fill="#F46343"/><path d="M61.7969 32L61.7852 31.2266L64.6797 28.1797C65.6816 27.1133 66.1621 26.5391 66.168 25.7539C66.1621 24.8809 65.4355 24.3184 64.4805 24.3125C63.4668 24.3184 62.834 24.957 62.8281 25.9062H61.832C61.8203 24.4062 62.9805 23.3984 64.5156 23.3984C66.0566 23.3984 67.1465 24.4355 67.1523 25.7539C67.1465 26.7031 66.707 27.4414 65.207 28.9883L63.2617 30.9922V31.0625H67.3047V32H61.7969Z" fill="#006DC8"/><path d="M3.79688 40.5156V49H2.73047V41.6172H2.68359L0.621094 42.9883V41.9219L2.73047 40.5156H3.79688Z" fill="#006DC8"/><path d="M62.4531 44.3008V45.2266H58.7383V44.3008H62.4531ZM66.9883 40.5156V49H65.9219V41.6172H65.875L63.8125 42.9883V41.9219L65.9219 40.5156H66.9883Z" fill="#F46343"/><path d="M39.5293 44.3066V44.7441H37.4512V44.3066H39.5293ZM42.0449 47.0684C41.0947 47.0684 40.4043 46.5352 40.377 45.7559H40.8691C40.8965 46.2822 41.3989 46.6309 42.0381 46.6309C42.7354 46.6309 43.231 46.2275 43.2344 45.667C43.231 45.0825 42.7422 44.6758 41.9424 44.6758H41.6348V44.2383H41.9424C42.5918 44.2417 43.0601 43.876 43.0635 43.3154C43.0601 42.7822 42.6602 42.4097 42.0518 42.4131C41.4707 42.4097 40.9785 42.7515 40.9648 43.2881H40.4932C40.5103 42.5122 41.2007 41.9824 42.0586 41.9824C42.9609 41.9824 43.5352 42.5806 43.5283 43.2949C43.5352 43.8589 43.1934 44.2793 42.6602 44.4297V44.4639C43.3096 44.5767 43.7095 45.0415 43.7061 45.6738C43.7095 46.4702 43.0054 47.0684 42.0449 47.0684Z" fill="#F46343"/><path d="M40.4854 30V29.6445L42.1602 27.833C42.7925 27.1392 43.0557 26.7974 43.0625 26.3291C43.0557 25.7822 42.6113 25.4097 42.0234 25.4131C41.3979 25.4097 40.9912 25.8232 40.9912 26.4043H40.5264C40.5264 25.5703 41.1689 24.9824 42.0371 24.9824C42.895 24.9824 43.5137 25.5703 43.5137 26.3291C43.5137 26.8828 43.2607 27.2998 42.4062 28.2021L41.1758 29.5283V29.5625H43.6641V30H40.4854Z" fill="#006DC8"/><line y1="-0.25" x2="47.5667" y2="-0.25" transform="matrix(0.935088 0.354416 -0.305402 0.952224 12.2607 28.0708)" stroke="#F46343" stroke-width="0.5"/><line y1="-0.25" x2="47.5667" y2="-0.25" transform="matrix(-0.935088 0.354416 0.305402 0.952224 56.7393 28.0708)" stroke="#006DC8" stroke-width="0.5"/></svg></span><span style="display:block;">$\Rightarrow$  $(3x+2)(x-1)$</span></div><div><span style="display:block;"><svg width="69" height="52" viewBox="0 0 69 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.38867 13.1367C2.33789 13.1367 0.881836 12.0361 0.820312 10.416H2.35156C2.40625 11.2842 3.26758 11.8379 4.375 11.8379C5.57129 11.8379 6.43945 11.1885 6.43945 10.2246C6.43945 9.24707 5.62598 8.5498 4.21094 8.54297H3.36328V7.3125H4.21094C5.33887 7.31934 6.125 6.69043 6.125 5.74023C6.125 4.83789 5.44824 4.22266 4.40234 4.22266C3.41113 4.22266 2.52246 4.77637 2.48828 5.67188H1.03906C1.08008 4.05859 2.57031 2.96484 4.41602 2.96484C6.36426 2.96484 7.58789 4.19531 7.57422 5.6582C7.58789 6.78613 6.89062 7.59277 5.82422 7.85938V7.92773C7.17773 8.11914 7.96387 9.02832 7.95703 10.2793C7.96387 11.9268 6.43945 13.1367 4.38867 13.1367ZM10.7871 5.57617L12.4141 8.46094L14.0547 5.57617H15.6543L13.3438 9.28125L15.668 13H14.082L12.4141 10.2246L10.7598 13H9.16016L11.457 9.28125L9.17383 5.57617H10.7871ZM16.666 8.05078V7.18945L18.9629 5.2207C19.5918 4.68066 19.9404 4.33887 19.9336 3.85352C19.9404 3.31348 19.4551 2.97852 18.8398 2.97852C18.1836 2.97852 17.7461 3.34766 17.7461 3.92188H16.5977C16.5908 2.77344 17.541 2.03516 18.8535 2.03516C20.1934 2.03516 21.0752 2.81445 21.082 3.82617C21.0752 4.65332 20.5967 5.2207 19.5098 6.08203L18.3887 7.02539V7.06641H21.2188V8.05078H16.666ZM32.7441 8.44727V9.75977H26.3457V8.44727H32.7441ZM39.457 5.57617L41.084 8.46094L42.7246 5.57617H44.3242L42.0137 9.28125L44.3379 13H42.752L41.084 10.2246L39.4297 13H37.8301L40.127 9.28125L37.8438 5.57617H39.457ZM55.8359 7.39453V8.70703H49.4375V7.39453H55.8359ZM61.373 13V11.9062L64.8047 8.44727C65.8916 7.31934 66.4316 6.69043 66.4316 5.82227C66.4316 4.84473 65.6387 4.22266 64.5996 4.22266C63.499 4.22266 62.8018 4.91992 62.7949 5.97266H61.373C61.3594 4.16113 62.7402 2.96484 64.627 2.96484C66.5342 2.96484 67.8535 4.1748 67.8672 5.78125C67.8535 6.88867 67.334 7.77051 65.4746 9.5957L63.4648 11.6328V11.7148H68.0312V13H61.373Z" fill="#232F39"/><path d="M3.72656 32.1172C2.03906 32.1172 0.826172 31.2148 0.773438 29.8672H1.83984C1.89844 30.6758 2.70117 31.1797 3.71484 31.1797C4.83398 31.1797 5.64258 30.5762 5.64844 29.6914C5.64258 28.7656 4.9043 28.1152 3.58594 28.1094H2.89453V27.1836H3.58594C4.61719 27.1836 5.33789 26.6035 5.33203 25.7305C5.33789 24.8809 4.7168 24.3184 3.75 24.3125C2.8418 24.3184 2.01562 24.8164 1.96875 25.6484H0.949219C1.00195 24.3008 2.25586 23.3984 3.76172 23.3984C5.37891 23.3984 6.36328 24.459 6.35156 25.6719C6.36328 26.6387 5.80078 27.3418 4.91016 27.5938V27.6523C6.01758 27.8223 6.68555 28.6133 6.67969 29.6914C6.68555 31.0859 5.41992 32.1172 3.72656 32.1172Z" fill="#F46343"/><path d="M66.7969 23.5156V32H65.7305V24.6172H65.6836L63.6211 25.9883V24.9219L65.7305 23.5156H66.7969Z" fill="#006DC8"/><path d="M3.79688 40.5156V49H2.73047V41.6172H2.68359L0.621094 42.9883V41.9219L2.73047 40.5156H3.79688Z" fill="#006DC8"/><path d="M61.4531 44.3008V45.2266H57.7383V44.3008H61.4531ZM62.6016 49L62.5898 48.2266L65.4844 45.1797C66.4863 44.1133 66.9668 43.5391 66.9727 42.7539C66.9668 41.8809 66.2402 41.3184 65.2852 41.3125C64.2715 41.3184 63.6387 41.957 63.6328 42.9062H62.6367C62.625 41.4062 63.7852 40.3984 65.3203 40.3984C66.8613 40.3984 67.9512 41.4355 67.957 42.7539C67.9512 43.7031 67.5117 44.4414 66.0117 45.9883L64.0664 47.9922V48.0625H68.1094V49H62.6016Z" fill="#F46343"/><path d="M39.5293 44.3066V44.7441H37.4512V44.3066H39.5293ZM42.1064 47.0684C41.2485 47.0615 40.3804 46.4839 40.3838 44.7236C40.3804 43.0933 40.9956 41.9824 42.1816 41.9824C43.0225 41.9824 43.5967 42.5156 43.7061 43.2881H43.2207C43.1284 42.7891 42.7695 42.4165 42.1816 42.4199C41.3271 42.4165 40.8418 43.1855 40.8418 44.5322H40.8965C41.146 44.0947 41.6313 43.8213 42.1816 43.8213C43.043 43.8213 43.7607 44.498 43.7607 45.4346C43.7607 46.3369 43.1045 47.0752 42.1064 47.0684ZM40.9238 45.4619C40.9751 46.125 41.4536 46.6343 42.1064 46.6377C42.7832 46.6343 43.2856 46.0977 43.2891 45.4346C43.2856 44.7817 42.7866 44.252 42.1133 44.252C41.4194 44.252 40.8862 44.8262 40.9238 45.4619Z" fill="#F46343"/><path d="M42.0645 25.0508V30H41.5723V25.5566H41.5449L40.376 26.3291V25.8301L41.5586 25.0508H42.0645Z" fill="#006DC8"/><line y1="-0.25" x2="47.5667" y2="-0.25" transform="matrix(0.935088 0.354416 -0.305402 0.952224 12.2607 28.0708)" stroke="#F46343" stroke-width="0.5"/><line y1="-0.25" x2="47.5667" y2="-0.25" transform="matrix(-0.935088 0.354416 0.305402 0.952224 56.7393 28.0708)" stroke="#006DC8" stroke-width="0.5"/></svg></span><span style="display:block;">$\Rightarrow$  $x$계수가 $-5$라서 안 됨</span></div><div><span style="display:block;"><svg width="69" height="52" viewBox="0 0 69 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.38867 13.1367C2.33789 13.1367 0.881836 12.0361 0.820312 10.416H2.35156C2.40625 11.2842 3.26758 11.8379 4.375 11.8379C5.57129 11.8379 6.43945 11.1885 6.43945 10.2246C6.43945 9.24707 5.62598 8.5498 4.21094 8.54297H3.36328V7.3125H4.21094C5.33887 7.31934 6.125 6.69043 6.125 5.74023C6.125 4.83789 5.44824 4.22266 4.40234 4.22266C3.41113 4.22266 2.52246 4.77637 2.48828 5.67188H1.03906C1.08008 4.05859 2.57031 2.96484 4.41602 2.96484C6.36426 2.96484 7.58789 4.19531 7.57422 5.6582C7.58789 6.78613 6.89062 7.59277 5.82422 7.85938V7.92773C7.17773 8.11914 7.96387 9.02832 7.95703 10.2793C7.96387 11.9268 6.43945 13.1367 4.38867 13.1367ZM10.7871 5.57617L12.4141 8.46094L14.0547 5.57617H15.6543L13.3438 9.28125L15.668 13H14.082L12.4141 10.2246L10.7598 13H9.16016L11.457 9.28125L9.17383 5.57617H10.7871ZM16.666 8.05078V7.18945L18.9629 5.2207C19.5918 4.68066 19.9404 4.33887 19.9336 3.85352C19.9404 3.31348 19.4551 2.97852 18.8398 2.97852C18.1836 2.97852 17.7461 3.34766 17.7461 3.92188H16.5977C16.5908 2.77344 17.541 2.03516 18.8535 2.03516C20.1934 2.03516 21.0752 2.81445 21.082 3.82617C21.0752 4.65332 20.5967 5.2207 19.5098 6.08203L18.3887 7.02539V7.06641H21.2188V8.05078H16.666ZM32.7441 8.44727V9.75977H26.3457V8.44727H32.7441ZM39.457 5.57617L41.084 8.46094L42.7246 5.57617H44.3242L42.0137 9.28125L44.3379 13H42.752L41.084 10.2246L39.4297 13H37.8301L40.127 9.28125L37.8438 5.57617H39.457ZM55.8359 7.39453V8.70703H49.4375V7.39453H55.8359ZM61.373 13V11.9062L64.8047 8.44727C65.8916 7.31934 66.4316 6.69043 66.4316 5.82227C66.4316 4.84473 65.6387 4.22266 64.5996 4.22266C63.499 4.22266 62.8018 4.91992 62.7949 5.97266H61.373C61.3594 4.16113 62.7402 2.96484 64.627 2.96484C66.5342 2.96484 67.8535 4.1748 67.8672 5.78125C67.8535 6.88867 67.334 7.77051 65.4746 9.5957L63.4648 11.6328V11.7148H68.0312V13H61.373Z" fill="#232F39"/><path d="M3.72656 32.1172C2.03906 32.1172 0.826172 31.2148 0.773438 29.8672H1.83984C1.89844 30.6758 2.70117 31.1797 3.71484 31.1797C4.83398 31.1797 5.64258 30.5762 5.64844 29.6914C5.64258 28.7656 4.9043 28.1152 3.58594 28.1094H2.89453V27.1836H3.58594C4.61719 27.1836 5.33789 26.6035 5.33203 25.7305C5.33789 24.8809 4.7168 24.3184 3.75 24.3125C2.8418 24.3184 2.01562 24.8164 1.96875 25.6484H0.949219C1.00195 24.3008 2.25586 23.3984 3.76172 23.3984C5.37891 23.3984 6.36328 24.459 6.35156 25.6719C6.36328 26.6387 5.80078 27.3418 4.91016 27.5938V27.6523C6.01758 27.8223 6.68555 28.6133 6.67969 29.6914C6.68555 31.0859 5.41992 32.1172 3.72656 32.1172Z" fill="#F46343"/><path d="M62.4531 27.3008V28.2266H58.7383V27.3008H62.4531ZM61.7969 32L61.7852 31.2266L64.6797 28.1797C65.6816 27.1133 66.1621 26.5391 66.168 25.7539C66.1621 24.8809 65.4355 24.3184 64.4805 24.3125C63.4668 24.3184 62.834 24.957 62.8281 25.9062H61.832C61.8203 24.4062 62.9805 23.3984 64.5156 23.3984C66.0566 23.3984 67.1465 24.4355 67.1523 25.7539C67.1465 26.7031 66.707 27.4414 65.207 28.9883L63.2617 30.9922V31.0625H67.3047V32H61.7969Z" fill="#006DC8"/><path d="M3.79688 40.5156V49H2.73047V41.6172H2.68359L0.621094 42.9883V41.9219L2.73047 40.5156H3.79688Z" fill="#006DC8"/><path d="M66.7969 40.5156V49H65.7305V41.6172H65.6836L63.6211 42.9883V41.9219L65.7305 40.5156H66.7969Z" fill="#F46343"/><path d="M44.1465 47.0684C43.1963 47.0684 42.5059 46.5352 42.4785 45.7559H42.9707C42.998 46.2822 43.5005 46.6309 44.1396 46.6309C44.8369 46.6309 45.3325 46.2275 45.3359 45.667C45.3325 45.0825 44.8438 44.6758 44.0439 44.6758H43.7363V44.2383H44.0439C44.6934 44.2417 45.1616 43.876 45.165 43.3154C45.1616 42.7822 44.7617 42.4097 44.1533 42.4131C43.5723 42.4097 43.0801 42.7515 43.0664 43.2881H42.5947C42.6118 42.5122 43.3022 41.9824 44.1602 41.9824C45.0625 41.9824 45.6367 42.5806 45.6299 43.2949C45.6367 43.8589 45.2949 44.2793 44.7617 44.4297V44.4639C45.4111 44.5767 45.811 45.0415 45.8076 45.6738C45.811 46.4702 45.1069 47.0684 44.1465 47.0684Z" fill="#F46343"/><path d="M42.5293 27.3066V27.7441H40.4512V27.3066H42.5293ZM43.2334 30V29.6445L44.9082 27.833C45.5405 27.1392 45.8037 26.7974 45.8105 26.3291C45.8037 25.7822 45.3594 25.4097 44.7715 25.4131C44.146 25.4097 43.7393 25.8232 43.7393 26.4043H43.2744C43.2744 25.5703 43.917 24.9824 44.7852 24.9824C45.6431 24.9824 46.2617 25.5703 46.2617 26.3291C46.2617 26.8828 46.0088 27.2998 45.1543 28.2021L43.9238 29.5283V29.5625H46.4121V30H43.2334Z" fill="#006DC8"/><line y1="-0.25" x2="47.5667" y2="-0.25" transform="matrix(0.935088 0.354416 -0.305402 0.952224 12.2607 28.0708)" stroke="#F46343" stroke-width="0.5"/><line y1="-0.25" x2="47.5667" y2="-0.25" transform="matrix(-0.935088 0.354416 0.305402 0.952224 56.7393 28.0708)" stroke="#006DC8" stroke-width="0.5"/></svg></span><span style="display:block;">$\Rightarrow$  $x$계수가 $+1$라서 안 됨</span></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- 예제 02 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음을 인수분해하시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $2x^2-7x+6$</span>
+              <span>(2) $6x^2+13x-5$</span>
+              <span>(3) $12x^2+5x-3$</span>
+              <span>(4) $4x^2+13xy+3y^2$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 오른쪽 사이드 -->
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          세로셈에서 교차 곱:<br><br>
+          $\begin{array}{c|c} ax & b \\ cx & d \end{array}$ &ensp;→&ensp; $ad+bc$<br><br>
+          인수쌍 순서를 바꾸면 다른 결과가 나올 수 있으므로 후보를 차례로 확인한다.
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+        <div class="tip-body">
+          <ul>
+            <li>첫째항과 끝항의 인수쌍을 모두 열거한 뒤, 교차 곱의 합이 가운데 항이 되는 쌍을 선택한다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) $(2x-3)(x-2)$</span>
+          <span>(2) $(2x+5)(3x-1)$</span>
+          <span>(3) $(3x-1)(4x+3)$</span>
+          <span>(4) $(4x+y)(x+3y)$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 03 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $20x^2+22x+A=(4x+B)(Cx+3)$일 때, $ABC$의 값은?
+            <div class="prob__choices-wrap" style="margin-top:5px;">
+              <span>① 40</span><span>② 60</span><span>③ 70</span><span>④ 90</span><span>⑤ 100</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 04 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $\dfrac{3}{2}x^2+3x-12$를 인수분해한 식은?
+            <div class="prob__choices-2col" style="margin-top:5px;">
+              <span>① $\dfrac{3}{2}(x-2)(x-4)$</span>
+              <span>② $\dfrac{3}{2}(x-2)(x+4)$</span>
+              <span>③ $\dfrac{1}{2}(3x-2)(x+4)$</span>
+              <span>④ $\dfrac{1}{2}(x-2)(3x+4)$</span>
+              <span>⑤ $\dfrac{5}{2}(x+2)(x+4)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">002</span>
+  </div>
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제03 (두 다항식의 공통인수) ── -->
+  <div class="set-block" style="flex:1; min-height:0;">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">03</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">다음 두 다항식의 공통인수는? <span style="font-size:8.5px;color:#539e84;">(두 다항식의 공통인수)</span><br>
+                $x^2-2x-15$, &ensp;$3x^2+7x-6$
+              </div>
+              <div class="prob__choices-wrap" style="margin-top:4px;">
+                <span>① $x-5$</span><span>② $x-2$</span><span>③ $x+3$</span><span>④ $3x-2$</span><span>⑤ $3x+2$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body">
+            <ul>
+              <li>각 다항식을 인수분해한 뒤 공통된 인수를 찾는다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">③</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1; min-height:0;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 05 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">05</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              두 다항식 $2x^2-5x+2$와 $x^2+x-6$의 공통인수는?
+              <div class="prob__choices-2col" style="margin-top:5px;">
+                <span>① $x-2$</span><span>② $x+3$</span><span>③ $2x-1$</span><span>④ $(x+3)(x-2)$</span><span>⑤ $(2x-1)(x-2)$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 06 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">06</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              다음 두 다항식의 공통인수가 $ax+by$ ($a>0$)일 때, 정수 $a$, $b$에 대하여 $a-b$의 값을 구하시오.
+              <div class="prob__boogi" style="margin-top:5px; justify-content:center; gap:2px 24px;"><span>$2x^2-50y^2$</span><span>$x^2-xy-20y^2$</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Set 2: 예제04 (인수가 주어진 이차식) ── -->
+  <div class="set-block" style="flex:1; min-height:0;">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">04</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">$x-2$가 $3x^2-7x+a$의 인수일 때, 상수 $a$의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(인수가 주어진 이차식)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body">
+            <ul>
+              <li>$x-k$가 인수이면 $x=k$를 대입했을 때 식의 값이 $0$이 된다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$a=2$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:1; min-height:0;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 07 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">07</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              일차식 $5x-2$가 다항식 $15x^2+14x+A$의 인수일 때, 상수 $A$의 값은?
+              <div class="prob__choices-wrap" style="margin-top:5px;">
+                <span>① $-8$</span><span>② $-\dfrac{8}{5}$</span><span>③ $-2$</span><span>④ $12$</span><span>⑤ $27$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 08 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">08</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              $8x^2+ax-15$가 $4x-5$로 나누어떨어질 때, 상수 $a$의 값을 구하시오.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제05 (잘못 보고 인수분해) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">05</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">민준이는 $x$의 계수를 잘못 보고 인수분해하여 $(x-5)(x+3)$을 얻었고, 소연이는 상수항을 잘못 보고 인수분해하여 $(x+4)(x-2)$를 얻었다. 처음 이차식을 $x^2+bx+c$라 할 때, 다음을 구하시오. <span style="font-size:8.5px;color:#539e84;">(잘못 보고 인수분해한 경우)</span></div>
+              <div class="ex-choices-stack" style="margin-top:4px;">
+                <span>(1) 상수항 $c$의 값</span>
+                <span>(2) $x$의 계수 $b$의 값</span>
+                <span>(3) 처음 이차식을 바르게 인수분해하시오.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body">
+            <ul>
+              <li>민준이는 상수항을 바르게 봄, 소연이는 $x$의 계수를 바르게 봄.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text ans-text--1col">
+            <span>(1) $-15$</span>
+            <span>(2) $2$</span>
+            <span>(3) $(x+5)(x-3)$</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 09 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">09</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              어떤 이차식을 인수분해할 때, 한 학생은 $x$의 계수를 잘못 보아 $(x+3)(x-4)$로, 다른 학생은 상수항을 잘못 보아 $(x-7)(x+3)$으로 인수분해하였다. 처음 이차식을 바르게 인수분해하시오.
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 10 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">10</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              $x^2$의 계수가 1인 어떤 이차식을 인수분해할 때, 한 학생은 $x$의 계수를 잘못 보고 $(x-2)(x+5)$로, 다른 학생은 상수항을 잘못 보고 $(x+3)(x+6)$으로 인수분해하였다. 처음 이차식을 바르게 인수분해하면 $(x+a)(x-b)$일 때, $a+b$의 값은? (단, $a$, $b$는 자연수)
+              <div class="prob__choices-wrap" style="margin-top:5px;">
+                <span>① $3$</span><span>② $5$</span><span>③ $7$</span><span>④ $9$</span><span>⑤ $11$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════════════════ PAGE 005 — 예제06 (도형 활용) ═══════════════════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set 1: 예제06 (도형을 이용한 인수분해) ── -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">아래 그림과 같이 넓이가 각각 $x^2$ (2개), $x$ (7개), $1$ (3개)인 직사각형 조각들을 빈틈없이 이어 붙여 만든 큰 직사각형의 가로와 세로의 합을 구하시오. <span style="font-size:8.5px;color:#539e84;">(도형을 이용한 인수분해)</span><br>
+                <svg viewBox="0 0 430 140" xmlns="http://www.w3.org/2000/svg" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Times New Roman', serif">
+  <title>대수타일: 2x² + 7x + 3</title>
+  <desc>x² 분홍 정사각형 2개, x 연두 직사각형 7개, 1 보라 정사각형 3개로 표현된 다항식</desc>
+  <!-- ─────────── x² 그룹 (분홍 정사각형 2개) ─────────── -->
+  <!-- 위 호 (x) -->
+  <path d="M 40,38 Q 75,14 110,38" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="75" y="14" text-anchor="middle" font-size="13" fill="#222" font-style="italic">x</text>
+  <!-- 왼쪽 호 (x) -->
+  <path d="M 38,40 Q 14,75 38,110" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="14" y="80" text-anchor="middle" font-size="13" fill="#222" font-style="italic">x</text>
+  <!-- 정사각형 1 -->
+  <rect x="40" y="40" width="70" height="70" fill="#f6c4d4" stroke="#7a3046" stroke-width="1.5"/>
+  <text x="75" y="80" text-anchor="middle" font-size="14" fill="#222" font-style="italic">x²</text>
+  <!-- 정사각형 2 -->
+  <rect x="112" y="40" width="70" height="70" fill="#f6c4d4" stroke="#7a3046" stroke-width="1.5"/>
+  <text x="147" y="80" text-anchor="middle" font-size="14" fill="#222" font-style="italic">x²</text>
+  <!-- ─────────── x 그룹 (연두 직사각형 7개) ─────────── -->
+  <!-- 위 호 (1) -->
+  <path d="M 210,38 Q 217,26 224,38" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="217" y="24" text-anchor="middle" font-size="12" fill="#222">1</text>
+  <!-- 왼쪽 호 (x) -->
+  <path d="M 208,40 Q 188,75 208,110" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="190" y="80" text-anchor="middle" font-size="13" fill="#222" font-style="italic">x</text>
+  <!-- 직사각형 1~7 -->
+  <rect x="210" y="40" width="14" height="70" fill="#d4e8b8" stroke="#5c7a3c" stroke-width="1.5"/>
+  <text x="217" y="80" text-anchor="middle" font-size="11" fill="#222" font-style="italic">x</text>
+  <rect x="226" y="40" width="14" height="70" fill="#d4e8b8" stroke="#5c7a3c" stroke-width="1.5"/>
+  <text x="233" y="80" text-anchor="middle" font-size="11" fill="#222" font-style="italic">x</text>
+  <rect x="242" y="40" width="14" height="70" fill="#d4e8b8" stroke="#5c7a3c" stroke-width="1.5"/>
+  <text x="249" y="80" text-anchor="middle" font-size="11" fill="#222" font-style="italic">x</text>
+  <rect x="258" y="40" width="14" height="70" fill="#d4e8b8" stroke="#5c7a3c" stroke-width="1.5"/>
+  <text x="265" y="80" text-anchor="middle" font-size="11" fill="#222" font-style="italic">x</text>
+  <rect x="274" y="40" width="14" height="70" fill="#d4e8b8" stroke="#5c7a3c" stroke-width="1.5"/>
+  <text x="281" y="80" text-anchor="middle" font-size="11" fill="#222" font-style="italic">x</text>
+  <rect x="290" y="40" width="14" height="70" fill="#d4e8b8" stroke="#5c7a3c" stroke-width="1.5"/>
+  <text x="297" y="80" text-anchor="middle" font-size="11" fill="#222" font-style="italic">x</text>
+  <rect x="306" y="40" width="14" height="70" fill="#d4e8b8" stroke="#5c7a3c" stroke-width="1.5"/>
+  <text x="313" y="80" text-anchor="middle" font-size="11" fill="#222" font-style="italic">x</text>
+  <!-- ─────────── 1 그룹 (보라 작은 정사각형 3개) ─────────── -->
+  <!-- 위 호 (1) -->
+  <path d="M 342,68 Q 349,56 356,68" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="349" y="54" text-anchor="middle" font-size="12" fill="#222">1</text>
+  <!-- 왼쪽 호 (1) -->
+  <path d="M 340,70 Q 328,75 340,82" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="330" y="80" text-anchor="middle" font-size="12" fill="#222">1</text>
+  <!-- 작은 정사각형 1, 2, 3 -->
+  <rect x="342" y="68" width="14" height="14" fill="#cdb4dd" stroke="#5c4080" stroke-width="1.5"/>
+  <text x="349" y="79" text-anchor="middle" font-size="10" fill="#222">1</text>
+  <rect x="358" y="68" width="14" height="14" fill="#cdb4dd" stroke="#5c4080" stroke-width="1.5"/>
+  <text x="365" y="79" text-anchor="middle" font-size="10" fill="#222">1</text>
+  <rect x="374" y="68" width="14" height="14" fill="#cdb4dd" stroke="#5c4080" stroke-width="1.5"/>
+  <text x="381" y="79" text-anchor="middle" font-size="10" fill="#222">1</text>
+</svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
+          <div class="tip-body">
+            <ul>
+              <li>넓이의 합을 식으로 나타낸 뒤 인수분해하면 가로, 세로를 구할 수 있다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text">$3x+4$</span>
+        </div>
+      </div>
+    </div>
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 11 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              다음 여러 가지 사각형들의 넓이의 합과 같은 넓이를 가지는 직사각형의 둘레의 길이는? (단, 변의 길이는 모두 일차식이다.)<br>
+              <svg viewBox="0 0 295 240" xmlns="http://www.w3.org/2000/svg" style="display:block; margin-top:5px; width:200px; height:auto;" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Times New Roman', serif">
+                <path d="M 50,28 Q 90,5 130,28" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="90" y="14" text-anchor="middle" font-size="14" font-style="italic" fill="#222">x</text>
+                <path d="M 48,30 Q 22,70 48,110" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="29" y="74" text-anchor="middle" font-size="14" font-style="italic" fill="#222">x</text>
+                <rect x="50" y="30" width="80" height="80" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="90" y="76" text-anchor="middle" font-size="18" font-style="italic" fill="#222">x²</text>
+                <path d="M 155,28 Q 163,15 171,28" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="163" y="19" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <path d="M 153,30 Q 142,70 153,110" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="143" y="74" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <rect x="155" y="30" width="16" height="80" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="163" y="74" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <path d="M 190,28 Q 198,15 206,28" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="198" y="19" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <path d="M 188,30 Q 177,70 188,110" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="178" y="74" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <rect x="190" y="30" width="16" height="80" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="198" y="74" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <path d="M 155,133 Q 163,120 171,133" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="163" y="124" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <path d="M 153,135 Q 142,175 153,215" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="143" y="179" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <rect x="155" y="135" width="16" height="80" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="163" y="179" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <path d="M 190,133 Q 198,120 206,133" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="198" y="124" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <path d="M 188,135 Q 177,175 188,215" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="178" y="179" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <rect x="190" y="135" width="16" height="80" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="198" y="179" text-anchor="middle" font-size="12" font-style="italic" fill="#222">x</text>
+                <path d="M 235,30 Q 243,20 251,30" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="243" y="22" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <path d="M 253,32 Q 263,40 253,48" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="263" y="44" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <rect x="235" y="32" width="16" height="16" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="243" y="44" text-anchor="middle" font-size="10" fill="#222">1</text>
+                <rect x="235" y="112" width="16" height="16" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="243" y="124" text-anchor="middle" font-size="10" fill="#222">1</text>
+                <rect x="235" y="192" width="16" height="16" fill="#b8dceb" stroke="#3a6580" stroke-width="1.5"/>
+                <text x="243" y="204" text-anchor="middle" font-size="10" fill="#222">1</text>
+              </svg>
+              <div class="prob__choices-3col" style="margin-top:5px;">
+                <span>① $4x-2$</span><span>② $4x+8$</span><span>③ $3x+8$</span><span>④ $4x-8$</span><span>⑤ $3x-8$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 12 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              다음 그림에 주어진 직사각형을 모두 이용하여 하나의 큰 직사각형을 만들려고 한다. 큰 직사각형의 가로의 길이가 $2x+1$일 때, 세로의 길이는?<br>
+              <svg viewBox="0 0 330 130" xmlns="http://www.w3.org/2000/svg" style="display:block; margin-top:5px; width:200px; height:auto;" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Times New Roman', serif">
+                <path d="M 40,33 Q 75,10 110,33" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="75" y="19" text-anchor="middle" font-size="14" font-style="italic" fill="#222">x</text>
+                <path d="M 38,35 Q 12,70 38,105" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="20" y="74" text-anchor="middle" font-size="14" font-style="italic" fill="#222">x</text>
+                <rect x="40" y="35" width="70" height="70" fill="#f0d8a8" stroke="#3a2510" stroke-width="1.5"/>
+                <rect x="116" y="35" width="70" height="70" fill="#f0d8a8" stroke="#3a2510" stroke-width="1.5"/>
+                <path d="M 215,33 Q 222,21 229,33" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="222" y="24" text-anchor="middle" font-size="12" fill="#222">1</text>
+                <path d="M 213,35 Q 201,70 213,105" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="202" y="74" text-anchor="middle" font-size="13" font-style="italic" fill="#222">x</text>
+                <rect x="215" y="35" width="14" height="70" fill="#f0d8a8" stroke="#3a2510" stroke-width="1.5"/>
+                <rect x="233" y="35" width="14" height="70" fill="#f0d8a8" stroke="#3a2510" stroke-width="1.5"/>
+                <rect x="251" y="35" width="14" height="70" fill="#f0d8a8" stroke="#3a2510" stroke-width="1.5"/>
+                <path d="M 300,89 Q 307,79 314,89" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="307" y="81" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <path d="M 298,91 Q 288,98 298,105" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="284" y="102" text-anchor="middle" font-size="11" fill="#222">1</text>
+                <rect x="300" y="91" width="14" height="14" fill="#f0d8a8" stroke="#3a2510" stroke-width="1.5"/>
+              </svg>
+              <div class="prob__choices-3col" style="margin-top:5px;">
+                <span>① $2x-1$</span><span>② $x-2$</span><span>③ $x-1$</span><span>④ $x+1$</span><span>⑤ $2x+3$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════════════════ PAGE 006 — 개념 한눈에 보기 ═══════════════════════ -->
+<div class="page" style="padding-top:36px; gap:0;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">$x^2+(a+b)x+ab$ 꼴의 인수분해</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>핵심 :</strong> 곱이 상수항, 합이 $x$의 계수가 되는 두 수 $a$, $b$를 찾는다.</div>
+        <div style="padding-left:8px;">$x^2+(\text{합})x+(\text{곱}) = (x+a)(x+b)$</div>
+        <div>예 &ensp;$x^2+7x-8$ &ensp;→&ensp; 곱 $-8$·합 $7$인 두 수 $-1$, $8$ &ensp;→&ensp; $(x-1)(x+8)$</div>
+        <div>예 &ensp;$x^2-11xy+28y^2$ &ensp;→&ensp; 곱 $28y^2$·합 $-11y$인 두 수 $-4y$, $-7y$ &ensp;→&ensp; $(x-4y)(x-7y)$</div>
+      </div>
+    </div>
+
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">$acx^2+(ad+bc)x+bd$ 꼴의 인수분해 (세로셈)</span>
+      </div>
+      <div class="kaynun-body">
+        <div><strong>핵심 :</strong> 첫째항과 끝항을 각각 두 수의 곱으로 쪼개고, 엇갈려 곱한 합이 가운데 항($x$의 계수)과 같은 쌍을 선택한다.</div>
+        <div style="padding-left:8px;">$(ax+b)(cx+d)$ &ensp;→&ensp; 가운데 항의 계수 $= ad+bc$</div>
+        <div>예 &ensp;$3x^2-x-2$ &ensp;→&ensp; $(x-1)(3x+2)$ &ensp;(엇갈린 곱의 합 : $2-3=-1$ ✓)</div>
+        <div>예 &ensp;$4x^2+13xy+3y^2$ &ensp;→&ensp; $(4x+y)(x+3y)$ &ensp;(엇갈린 곱의 합 : $12y+y=13y$ ✓)</div>
+      </div>
+    </div>
+
+    <!-- 보충 사항 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip" style="background:#539e84;">응용</span>
+        <span class="kaynun-title">인수분해 공식의 활용</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li><strong>두 다항식의 공통인수</strong> : 각각 인수분해한 뒤 공통된 인수를 찾는다.</li>
+          <li><strong>인수가 주어진 이차식</strong> : $x-k$가 인수이면 $x=k$ 대입 시 식의 값이 $0$이다.</li>
+          <li><strong>잘못 보고 푼 경우</strong> : 바르게 본 값(상수항 or $x$계수)을 각각 찾아 원래 식을 복원한다.</li>
+          <li><strong>도형 활용</strong> : 넓이의 합을 식으로 세운 뒤 인수분해하여 가로·세로를 구한다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════════════════ PAGE 007 — 쏙쏙 유형 익히기 ═══════════════════════ -->
+<div class="page">
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 왼쪽 컬럼: 문제 01, 02, 03 (3문제) -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+      <!-- 유형 01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">인수분해공식(3)</span>
+        </div>
+        <div class="umuri-q">
+          $x^2+x-20$을 인수분해하면?
+          <div class="umuri-choices-2col" style="margin-top:6px;">
+            <span>① $(x+4)(x-5)$</span>
+            <span>② $(x+5)(x-4)$</span>
+            <span>③ $(x-4)(x-5)$</span>
+            <span>④ $(x+5)(x+4)$</span>
+            <span>⑤ $(x-5)(x-4)$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형 02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">인수분해공식(5)</span>
+        </div>
+        <div class="umuri-q">
+          $4x^2+xy-14y^2=(x+Ay)(4x+By)$일 때, $A-B$의 값을 구하시오. (단, $A$, $B$는 정수)
+        </div>
+      </div>
+      <!-- 유형 03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">두 다항식의 공통인수</span>
+        </div>
+        <div class="umuri-q">
+          $2x^2+3xy-2y^2$과 $4x^2+5xy+ay^2$의 공통인수가 $x+by$일 때, $a-b$의 값은? (단, $a$, $b$는 상수)
+          <div class="umuri-choices-3col" style="margin-top:6px;">
+            <span>① $-2$</span>
+            <span>② $-4$</span>
+            <span>③ $-6$</span>
+            <span>④ $-1$</span>
+            <span>⑤ $-8$</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 컬럼: 문제 04, 05 (2문제) -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:358px 358px; align-items:start;">
+      <!-- 유형 04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">잘못 보고 푼 경우</span>
+        </div>
+        <div class="umuri-q">
+          어떤 이차식을 인수분해할 때, 한 학생은 $x$의 계수를 잘못 보아 $2(x+2)(x-9)$로, 다른 학생은 상수항을 잘못 보아 $2(x-1)(x-2)$로 인수분해하였다. 처음 이차식을 바르게 인수분해하면 $a(x-b)(x-c)$일 때, $abc$의 값은? (단, $a$, $b$, $c$는 정수이고 $b>c$)
+          <div class="umuri-choices-3col" style="margin-top:6px;">
+            <span>① $36$</span>
+            <span>② $-18$</span>
+            <span>③ $-36$</span>
+            <span>④ $18$</span>
+            <span>⑤ $-54$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형 05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">인수분해 도형 활용</span>
+        </div>
+        <div class="umuri-q">
+          넓이가 $8x^2+6x-9$이고 세로의 길이가 $2x+3$인 직사각형의 둘레의 길이를 구하시오.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 -->
+
+
+<!-- ═══════════════════════ PAGE 008 — 빠른정답 ═══════════════════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+  <div class="qa2-title-row">
+    <span class="qa2-num">02</span>
+    <span class="qa2-name">인수분해 공식 (2)</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+      <!-- 쏙쏙 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">6</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">2</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">$(x+2)(x-6)$</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">④</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">9</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$12x$</span></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /qa2-left -->
+  </div><!-- /qa2-body -->
+  <div class="page-footer">
+    <span class="page-footer__topic">인수분해 공식 (2)</span>
+    <span class="page-footer__num">008</span>
+  </div>
+</div><!-- /page 008 -->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$', right: '$', display: false},
+      {left: '$$', right: '$$', display: true}
+    ],
+    throwOnError: false
+  });">
+</script>
+</body>
+</html>

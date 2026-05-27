@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>중학 3-1 Ⅰ-1단원 02 제곱근의 성질</title>
+<title>중학 3-1 Ⅱ-1단원 02 곱셈 공식의 응용</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="./katex/katex.min.css">
 <style>
@@ -144,10 +144,9 @@ body {
 }
 .ex-content { display: flex; flex-direction: column; gap: 8px; }
 .ex-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
-.ex-choices-wrap  { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 11px; color: #232f39; line-height: 18px; }
 .ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #232f39; line-height: 18px; }
-.ex-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; color: #232f39; line-height: 18px; }
-.ex-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 11px; color: #232f39; line-height: 18px; }
 .ex-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
 
 .ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
@@ -261,6 +260,7 @@ body {
 .umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
 .umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
 .umuri-col { display: grid; grid-template-rows: 240px 240px 240px; align-items: start; }
+.umuri-col--2row { display: grid; grid-template-rows: 358px 358px; align-items: start; }
 
 .umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 .umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
@@ -359,11 +359,10 @@ body {
   background-image: url("data:image/png;base64,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");
   background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0;
 }
-.page-footer__topic { color: #848484; font-weight: 400; }
+.page-footer__topic { color: #818181; font-weight: 400; }
 .page-footer__num { color: #232f39; font-weight: 700; }
 
 .hl { background: #fff5d3; }
-.warning-label { background: transparent; color: #ff7373; font-size: 10px; font-weight: 700; margin: 0; padding: 0; border-radius: 0; }
 
 @media print {
   @page { size: 595px 842px; margin: 0; }
@@ -386,39 +385,35 @@ body {
         <span class="title__tag-blue">개념</span>
         <span class="title__tag-black">익히기</span>
       </div>
-      <div class="title__text">제곱근의 성질</div>
+      <div class="title__text">곱셈 공식의 응용</div>
     </div>
   </div>
 
-  <!-- 개념박스 : 개념01 제곱근의 성질 + 예제01 -->
+  <!-- 개념박스 : 개념01 + 예제01 -->
   <div class="cbox">
     <div class="cbox__left">
-      <!-- 개념 01 : 제곱근의 성질 -->
+      <!-- 개념 01 -->
       <div class="concept-def">
         <div class="concept-def__hd">
           <div class="concept-chip">
             <span class="concept-chip__gae">개념</span>
             <span class="concept-chip__n">01</span>
           </div>
-          <span class="concept-title">제곱근의 성질</span>
+          <span class="concept-title">곱셈 공식으로 수를 계산할 수 있다!</span>
         </div>
         <div class="concept-body">
-          <div>$a &gt; 0$일 때</div>
-          <div>
-            (1) <span class="hl">$(\sqrt{a})^2 = a$,&ensp; $(-\sqrt{a})^2 = a$</span>
-            &ensp;— 제곱근을 제곱하면 근호가 사라진다.
-          </div>
+          <div><span class="hl">(1) 수의 제곱</span> — 가까운 십의 자리 수를 기준으로 분리한 후 공식 적용</div>
           <div class="concept-eg">
             <span class="concept-eg__label">예</span>
-            <div class="concept-eg__content">$(\sqrt{3})^2 = 3$,&ensp; $(-\sqrt{3})^2 = 3$</div>
+            <div class="concept-eg__content" style="display:flex;flex-direction:column;gap:2px;">
+              <span>① $103^2=(100+3)^2=10000+600+9=10609$</span>
+              <span>② $99^2=(100-1)^2=10000-200+1=9801$</span>
+            </div>
           </div>
-          <div>
-            (2) <span class="hl">$\sqrt{a^2} = a$,&ensp; $\sqrt{(-a)^2} = a$</span>
-            &ensp;— 양수를 제곱한 뒤 근호를 씌우면 다시 원래 수가 된다.
-          </div>
+          <div><span class="hl">(2) 두 수의 곱</span> — 합·차 꼴 또는 합·합 꼴로 변형한 후 공식 적용</div>
           <div class="concept-eg">
             <span class="concept-eg__label">예</span>
-            <div class="concept-eg__content">$\sqrt{3^2} = 3$,&ensp; $\sqrt{(-3)^2} = 3$</div>
+            <div class="concept-eg__content">$102\times98=(100+2)(100-2)=100^2-2^2=9996$</div>
           </div>
         </div>
       </div>
@@ -431,46 +426,37 @@ body {
         </div>
         <div class="ex-body">
           <div class="ex-content">
-            <div class="ex-q">다음 중 그 값이 나머지 넷과 다른 하나는?</div>
-            <div class="ex-choices-3col">
-              <span>① $\sqrt{5^2}$</span>
-              <span>② $(\sqrt{5})^2$</span>
-              <span>③ $(-\sqrt{5})^2$</span>
-              <span>④ $\sqrt{(-5)^2}$</span>
-              <span>⑤ $-\sqrt{5^2}$</span>
+            <div class="ex-q">곱셈 공식을 이용하여 다음을 계산하시오.</div>
+            <div class="ex-choices-stack" style="margin-top:4px;">
+              <span>(1) $99^2$</span>
+              <span>(2) $4.3\times3.7$</span>
+              <span>(3) $53\times64$</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 오른쪽 사이드 -->
+    <!-- 오른쪽 -->
     <div class="cbox__right">
-      <div class="side-note">
-        <div class="side-note__hd">
-          <span class="side-bar"></span>
-          <span class="side-label">참고</span>
-        </div>
-        <div class="side-body">
-          $(\sqrt{a})^2$과 $\sqrt{a^2}$의 차이<br><br>
-          $(\sqrt{a})^2$ : $\sqrt{a}$를 두 번 곱한 것<br>
-          $\sqrt{a^2}$ : $a^2$의 양의 제곱근
-        </div>
-      </div>
+      <div style="flex:1;"></div>
       <div class="tip-box">
-        <div class="tip-box__hd">
-          <span class="tip-pill">풀이 TIP</span>
-          <span class="tip-tri"></span>
-        </div>
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
         <div class="tip-body">
           <ul>
-            <li>$-\sqrt{(-2)^2} = -\sqrt{4} = -2$로, 나머지가 모두 양수임에 주목한다.</li>
+            <li>$99^2=(100-1)^2$ ⇒ $(a-b)^2$ 공식</li>
+            <li>$4.3\times3.7=(4+0.3)(4-0.3)$ ⇒ $(a+b)(a-b)$ 공식</li>
+            <li>$53\times64=(60-7)(60+4)$ ⇒ $(x+a)(x+b)$ 공식</li>
           </ul>
         </div>
       </div>
       <div class="ans-row">
         <span class="ans-badge">정답</span>
-        <span class="ans-text">⑤</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) 9801</span>
+          <span>(2) 15.91</span>
+          <span>(3) 3392</span>
+        </span>
       </div>
     </div>
   </div>
@@ -494,14 +480,7 @@ body {
             <span class="prob__badge">쌍둥이</span>
           </div>
           <div class="prob__body">
-            다음 중 그 값이 나머지 넷과 다른 하나는?
-            <div class="prob__choices-3col" style="margin-top:5px;">
-              <span>① $\sqrt{2^2}$</span>
-              <span>② $(\sqrt{2})^2$</span>
-              <span>③ $(-\sqrt{2})^2$</span>
-              <span>④ $\sqrt{(-2)^2}$</span>
-              <span>⑤ $-\sqrt{(-2)^2}$</span>
-            </div>
+            곱셈 공식을 이용하여 $58^2$을 계산하시오.
           </div>
         </div>
         <div class="prac-sep"></div>
@@ -512,14 +491,7 @@ body {
             <span class="prob__badge">유사</span>
           </div>
           <div class="prob__body">
-            다음 중 가장 작은 수는?
-            <div class="prob__choices-3col" style="margin-top:5px;">
-              <span>① $\sqrt{\dfrac{1}{9}}$</span>
-              <span>② $\left(\dfrac{1}{3}\right)^2$</span>
-              <span>③ $\sqrt{\left(-\dfrac{1}{4}\right)^2}$</span>
-              <span>④ $\sqrt{\left(\dfrac{1}{5}\right)^2}$</span>
-              <span>⑤ $\left(-\sqrt{\dfrac{1}{7}}\right)^2$</span>
-            </div>
+            곱셈 공식을 이용하여 $68\times72$를 계산하시오.
           </div>
         </div>
       </div>
@@ -527,7 +499,7 @@ body {
   </div>
 
   <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
+    <span class="page-footer__topic">곱셈 공식의 응용</span>
     <span class="page-footer__num">001</span>
   </div>
 </div><!-- /page 001 -->
@@ -535,26 +507,31 @@ body {
 
 <!-- ═══════════════════════ PAGE 002 ═══════════════════════ -->
 <div class="page">
-  <!-- 개념박스 : 개념02 √a²의 성질 + 예제02 -->
+  <!-- 개념박스 : 개념02 + 예제02 -->
   <div class="cbox">
     <div class="cbox__left">
-      <!-- 개념 02 : √a²의 성질 -->
+      <!-- 개념 02 -->
       <div class="concept-def">
         <div class="concept-def__hd">
           <div class="concept-chip">
             <span class="concept-chip__gae">개념</span>
             <span class="concept-chip__n">02</span>
           </div>
-          <span class="concept-title">$\sqrt{a^2}$의 성질</span>
+          <span class="concept-title">근호도 문자처럼 생각하면 곱셈 공식을 그대로 쓸 수 있다!</span>
         </div>
         <div class="concept-body">
-          <div>모든 수 $a$에 대하여 &ensp;<span class="hl">$\sqrt{a^2} = |a|$</span>&ensp; — $a$의 부호에 상관없이 결과는 항상 $0$ 이상이다.</div>
-          <div>
-            $a \ge 0$이면 $\sqrt{a^2} = a$ &ensp;/&ensp; $a &lt; 0$이면 $\sqrt{a^2} = -a$
-          </div>
+          <div><span class="hl">(1) 근호를 포함한 식의 계산</span> — $\sqrt{\phantom{a}}$를 문자처럼 보고 공식 적용</div>
           <div class="concept-eg">
             <span class="concept-eg__label">예</span>
-            <div class="concept-eg__content">$\sqrt{5^2} = 5$,&ensp; $\sqrt{(-5)^2} = 5$&ensp; ($a$가 음수여도 결과는 양수)</div>
+            <div class="concept-eg__content">$(\sqrt{3}+1)^2=(\sqrt{3})^2+2\cdot\sqrt{3}\cdot1+1^2=4+2\sqrt{3}$</div>
+          </div>
+          <div><span class="hl">(2) 분모의 유리화</span> — 분모에 근호가 두 항이면 반대 부호를 곱해 $(a+b)(a-b)$ 꼴로 만들기</div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content" style="display:flex;flex-direction:column;gap:2px;">
+              <span>$\dfrac{c}{\sqrt{a}+\sqrt{b}}=\dfrac{c(\sqrt{a}-\sqrt{b})}{(\sqrt{a})^2-(\sqrt{b})^2}=\dfrac{c(\sqrt{a}-\sqrt{b})}{a-b}$</span>
+              <span>$\dfrac{1}{3-\sqrt{2}}=\dfrac{3+\sqrt{2}}{(3-\sqrt{2})(3+\sqrt{2})}=\dfrac{3+\sqrt{2}}{7}$</span>
+            </div>
           </div>
         </div>
       </div>
@@ -567,42 +544,34 @@ body {
         </div>
         <div class="ex-body">
           <div class="ex-content">
-            <div class="ex-q">$a &lt; 0$일 때, 다음 수 중 그 값이 양수인 것의 개수를 구하시오.</div>
-            <div class="ex-boogi" style="justify-content:center; text-align:center;">
-              $(\sqrt{-a})^2,\enspace \sqrt{(-4a)^2},\enspace -\sqrt{a^2},\enspace -\sqrt{(2a)^2}$
+            <div class="ex-q">다음을 계산하시오.</div>
+            <div class="ex-choices-stack" style="margin-top:4px;">
+              <span>(1) $(\sqrt{3}+2\sqrt{5})(\sqrt{3}-2\sqrt{5})$</span>
+              <span>(2) $\dfrac{1}{\sqrt{7}+3}+\dfrac{1}{\sqrt{7}-3}$</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 오른쪽 사이드 -->
+    <!-- 오른쪽 -->
     <div class="cbox__right">
-      <div class="side-note">
-        <div class="side-note__hd">
-          <span class="side-bar"></span>
-          <span class="side-label">참고</span>
-        </div>
-        <div class="side-body">
-          $a &lt; 0$이면<br>
-          $\sqrt{a^2} = |a| = -a &gt; 0$<br><br>
-          즉, $a$의 부호와 $\sqrt{a^2}$의 부호는 반대가 된다.
-        </div>
-      </div>
+      <div style="flex:1;"></div>
       <div class="tip-box">
-        <div class="tip-box__hd">
-          <span class="tip-pill">풀이 TIP</span>
-          <span class="tip-tri"></span>
-        </div>
+        <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
         <div class="tip-body">
           <ul>
-            <li>$a &lt; 0$이면 $\sqrt{a^2} = -a &gt; 0$임을 이용하여 각 항의 부호를 판단한다.</li>
+            <li>(1) $(\sqrt{3}+2\sqrt{5})(\sqrt{3}-2\sqrt{5})=(\sqrt{3})^2-(2\sqrt{5})^2$</li>
+            <li>(2) 분모를 유리화한 후 합산</li>
           </ul>
         </div>
       </div>
       <div class="ans-row">
         <span class="ans-badge">정답</span>
-        <span class="ans-text">$2$</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) $-17$</span>
+          <span>(2) $-\sqrt{7}$</span>
+        </span>
       </div>
     </div>
   </div>
@@ -626,13 +595,13 @@ body {
             <span class="prob__badge">쌍둥이</span>
           </div>
           <div class="prob__body">
-            $\sqrt{(-4)^2} - \sqrt{(-15)^2} \div \{-\sqrt{(-5)^2}\}$을 계산하면?
-            <div class="prob__choices-3col" style="margin-top:5px;">
-              <span>① $1$</span>
-              <span>② $3$</span>
-              <span>③ $5$</span>
-              <span>④ $7$</span>
-              <span>⑤ $9$</span>
+            $(\sqrt{2}-2)^2+(3\sqrt{2}-4)(4\sqrt{2}+3)$을 간단히 하면?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $9-24\sqrt{2}$</span>
+              <span>② $9-11\sqrt{2}$</span>
+              <span>③ $12-10\sqrt{2}$</span>
+              <span>④ $18-24\sqrt{2}$</span>
+              <span>⑤ $18-11\sqrt{2}$</span>
             </div>
           </div>
         </div>
@@ -644,7 +613,14 @@ body {
             <span class="prob__badge">유사</span>
           </div>
           <div class="prob__body">
-            $\sqrt{(-4)^2} + (-\sqrt{5})^2 + \sqrt{10^2} - (-\sqrt{7})^2$을 계산하시오.
+            $\dfrac{1}{2-\sqrt{2}}+\dfrac{1}{2+\sqrt{2}}$을 간단히 하면?
+            <div class="prob__choices-wrap" style="margin-top:5px;">
+              <span>① $\sqrt{2}$</span>
+              <span>② $2$</span>
+              <span>③ $2\sqrt{2}$</span>
+              <span>④ $4$</span>
+              <span>⑤ $4\sqrt{2}$</span>
+            </div>
           </div>
         </div>
       </div>
@@ -652,20 +628,38 @@ body {
   </div>
 
   <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
+    <span class="page-footer__topic">곱셈 공식의 응용</span>
     <span class="page-footer__num">002</span>
   </div>
 </div><!-- /page 002 -->
 
 
 <!-- ═══════════════════════ PAGE 003 ═══════════════════════ -->
-<!-- Set 예제03: √a²꼴을 포함한 식 간단히 하기 + Set 예제04: √(a-b)²꼴을 포함한 식 간단히 하기 -->
-<div class="page" style="gap:60px;">
+<!-- Set 페이지: 예제03(곱셈공식의 변형1) + 예제04(곱셈공식의 변형2) -->
+<div class="page" style="gap:8px;">
 
   <!-- ── Set 1: 예제03 ── -->
   <div class="set-block">
     <div class="cbox">
       <div class="cbox__left">
+        <!-- 개념 03 (보충) -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__gae">개념</span>
+              <span class="concept-chip__n">03</span>
+            </div>
+            <span class="concept-title">곱셈 공식을 변형하면 모르는 식의 값을 구할 수 있다!</span>
+          </div>
+          <div class="concept-body">
+            <div><span class="hl">(1) 합·차·곱이 주어진 경우</span> — $(a+b)^2=a^2+2ab+b^2$을 변형</div>
+            <div>① $a^2+b^2=(a+b)^2-2ab$,&ensp; $(a-b)^2=(a+b)^2-4ab$</div>
+            <div><span class="hl">(2) $a\cdot\frac{1}{a}=1$인 경우</span> — (1)에서 $b=\dfrac{1}{a}$으로 놓으면</div>
+            <div>① $a^2+\dfrac{1}{a^2}=\!\left(a+\dfrac{1}{a}\right)^{\!2}-2$,&ensp; $\left(a-\dfrac{1}{a}\right)^{\!2}=\!\left(a+\dfrac{1}{a}\right)^{\!2}-4$</div>
+          </div>
+        </div>
+
+        <!-- 예제 03 -->
         <div class="ex-wrap">
           <div class="ex-badge">
             <span class="ex-badge__pill">예제</span>
@@ -673,37 +667,43 @@ body {
           </div>
           <div class="ex-body">
             <div class="ex-content">
-              <div class="ex-q">$a &gt; 0$일 때, $\sqrt{(-5a)^2} - \sqrt{9a^2}$을 간단히 하면? <span style="font-size:8.5px;color:#539e84;">($\sqrt{a^2}$꼴을 포함한 식 간단히 하기)</span></div>
-              <div class="ex-choices-3col">
-                <span>① $-8a$</span>
-                <span>② $-2a$</span>
-                <span>③ $2a$</span>
-                <span>④ $8a$</span>
-                <span>⑤ $14a$</span>
+              <div class="ex-q">$x+y=4$, $xy=3$일 때, 다음 식의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(식의 값 구하기(2) 두 수의 합 또는 차와 곱이 주어진 경우)</span>
+              <div class="prob__choices-2col" style="margin-top:6px;">
+                <span>(1) $x^2+y^2$</span>
+                <span>(2) $(x-y)^2$</span>
+                <span>(3) $\dfrac{x}{y}+\dfrac{y}{x}$</span>
+              </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 오른쪽 -->
       <div class="cbox__right">
         <div style="flex:1;"></div>
         <div class="tip-box">
-          <div class="tip-box__hd">
-            <span class="tip-pill">풀이 TIP</span>
-            <span class="tip-tri"></span>
-          </div>
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
           <div class="tip-body">
             <ul>
-              <li>$a &gt; 0$이면 $\sqrt{(na)^2} = |na| = na$임을 이용한다.</li>
+              <li>$x^2+y^2=(x+y)^2-2xy$ 이용</li>
+              <li>$(x-y)^2=(x+y)^2-4xy$ 이용</li>
+              <li>$\frac{x}{y}+\frac{y}{x}=\frac{x^2+y^2}{xy}$ 이용</li>
             </ul>
           </div>
         </div>
         <div class="ans-row">
           <span class="ans-badge">정답</span>
-          <span class="ans-text">③</span>
+          <span class="ans-text ans-text--1col">
+            <span>(1) $10$</span>
+            <span>(2) $4$</span>
+            <span>(3) $\dfrac{10}{3}$</span>
+          </span>
         </div>
       </div>
     </div>
+
+    <!-- 쏙쏙 개념 익히기 -->
     <div class="practice-sec" style="flex:none;">
       <div class="practice-inner">
         <div class="prac-hd">
@@ -722,13 +722,13 @@ body {
               <span class="prob__badge">쌍둥이</span>
             </div>
             <div class="prob__body">
-              $a &lt; 0$일 때, $\sqrt{(-6a)^2}$을 간단히 하면?
+              $x-y=5$, $xy=5$일 때, $x^2+y^2$의 값은?
               <div class="prob__choices-wrap" style="margin-top:5px;">
-                <span>① $-36a^2$</span>
-                <span>② $-6a$</span>
-                <span>③ $6a$</span>
-                <span>④ $6a^2$</span>
-                <span>⑤ $36a^2$</span>
+                <span>① 31</span>
+                <span>② 33</span>
+                <span>③ 35</span>
+                <span>④ 37</span>
+                <span>⑤ 39</span>
               </div>
             </div>
           </div>
@@ -740,25 +740,31 @@ body {
               <span class="prob__badge">유사</span>
             </div>
             <div class="prob__body">
-              $a &gt; 0$일 때, $\sqrt{(-4a)^2} - \sqrt{25a^2}$을 간단히 하면?
-              <div class="prob__choices-wrap" style="margin-top:5px;">
-                <span>① $-9a$</span>
-                <span>② $-a$</span>
-                <span>③ $a$</span>
-                <span>④ $9a$</span>
-                <span>⑤ $29a$</span>
-              </div>
+              $a-b=\sqrt{5}$, $ab=1$일 때, $\dfrac{b}{a}+\dfrac{a}{b}$의 값을 구하시오.
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /set-block 1 -->
 
-  <!-- ── Set 2: 예제04 ── -->
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식의 응용</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
+<!-- Set 페이지: 예제04(곱셈공식의 변형2) -->
+<div class="page" style="gap:8px;">
+
+  <!-- ── Set: 예제04 ── -->
   <div class="set-block">
     <div class="cbox">
       <div class="cbox__left">
+        <!-- 예제 04 -->
         <div class="ex-wrap">
           <div class="ex-badge">
             <span class="ex-badge__pill">예제</span>
@@ -766,30 +772,39 @@ body {
           </div>
           <div class="ex-body">
             <div class="ex-content">
-              <div class="ex-q">$1 &lt; x &lt; 4$일 때, $\sqrt{x^2} - \sqrt{(x-4)^2} + \sqrt{(1-x)^2}$을 간단히 하시오. <span style="font-size:8.5px;color:#539e84;">($\sqrt{(a-b)^2}$꼴을 포함한 식 간단히 하기)</span></div>
+              <div class="ex-q">$x+\dfrac{1}{x}=3$일 때, 다음 식의 값을 구하시오. <span style="font-size:8.5px;color:#539e84;">(식의 값 구하기(3) 두 수의 곱이 1인 경우)</span>
+              <div class="prob__choices-2col" style="margin-top:6px;">
+                <span>(1) $x^2+\dfrac{1}{x^2}$</span>
+                <span>(2) $\left(x-\dfrac{1}{x}\right)^{\!2}$</span>
+              </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 오른쪽 -->
       <div class="cbox__right">
         <div style="flex:1;"></div>
         <div class="tip-box">
-          <div class="tip-box__hd">
-            <span class="tip-pill">풀이 TIP</span>
-            <span class="tip-tri"></span>
-          </div>
+          <div class="tip-box__hd"><span class="tip-pill">풀이 TIP</span><span class="tip-tri"></span></div>
           <div class="tip-body">
             <ul>
-              <li>$1 &lt; x &lt; 4$이면 $x-4 &lt; 0$, $1-x &lt; 0$임을 이용하여 각 항의 부호를 결정한다.</li>
+              <li>$\left(x+\frac{1}{x}\right)^2=x^2+2+\frac{1}{x^2}$ 변형 이용</li>
             </ul>
           </div>
         </div>
         <div class="ans-row">
           <span class="ans-badge">정답</span>
-          <span class="ans-text">$3x-5$</span>
+          <span class="ans-text ans-text--1col">
+            <span>(1) $7$</span>
+            <span>(2) $5$</span>
+          </span>
         </div>
       </div>
     </div>
+
+    <!-- 쏙쏙 개념 익히기 -->
     <div class="practice-sec" style="flex:none;">
       <div class="practice-inner">
         <div class="prac-hd">
@@ -808,14 +823,7 @@ body {
               <span class="prob__badge">쌍둥이</span>
             </div>
             <div class="prob__body">
-              $a &gt; 0$일 때, $\sqrt{(-2a)^2} + \sqrt{49a^2}$을 간단히 하면?
-              <div class="prob__choices-wrap" style="margin-top:5px;">
-                <span>① $-9a$</span>
-                <span>② $-5a$</span>
-                <span>③ $5a$</span>
-                <span>④ $7a$</span>
-                <span>⑤ $9a$</span>
-              </div>
+              $x-\dfrac{1}{x}=5$일 때, $x^2+\dfrac{1}{x^2}$의 값을 구하시오.
             </div>
           </div>
           <div class="prac-sep"></div>
@@ -826,465 +834,32 @@ body {
               <span class="prob__badge">유사</span>
             </div>
             <div class="prob__body">
-              $2 &lt; x &lt; 5$일 때, $\sqrt{x^2} + \sqrt{(x-5)^2} - \sqrt{(2-x)^2}$을 간단히 하시오.
+              $x-\dfrac{1}{x}=6$일 때, $\left(x+\dfrac{1}{x}\right)^2$의 값은?
+              <div class="prob__choices-wrap" style="margin-top:5px;">
+                <span>① 40</span>
+                <span>② 41</span>
+                <span>③ 42</span>
+                <span>④ 43</span>
+                <span>⑤ 44</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /set-block -->
 
   <div style="flex:1;"></div>
   <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
-    <span class="page-footer__num">003</span>
-  </div>
-</div><!-- /page 003 -->
-
-
-<!-- ═══════════════════════ PAGE 004 ═══════════════════════ -->
-<!-- Set 예제05: √Ax가 자연수가 되도록 + Set 예제06: √A/x가 자연수가 되도록 -->
-<div class="page" style="gap:20px;">
-
-  <!-- ── Set 1: 예제05 ── -->
-  <div class="set-block">
-    <div class="cbox">
-      <div class="cbox__left">
-        <div class="ex-wrap">
-          <div class="ex-badge">
-            <span class="ex-badge__pill">예제</span>
-            <span class="ex-badge__num">05</span>
-          </div>
-          <div class="ex-body">
-            <div class="ex-content">
-              <div class="ex-q">$\sqrt{75x}$가 자연수가 되도록 하는 가장 작은 자연수 $x$의 값은? <span style="font-size:8.5px;color:#539e84;">($\sqrt{Ax}$가 자연수가 되도록 하는 자연수 $x$의 값 구하기)</span></div>
-              <div class="ex-choices-3col">
-                <span>① $3$</span>
-                <span>② $5$</span>
-                <span>③ $12$</span>
-                <span>④ $15$</span>
-                <span>⑤ $27$</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cbox__right">
-        <div style="flex:1;"></div>
-        <div class="tip-box">
-          <div class="tip-box__hd">
-            <span class="tip-pill">풀이 TIP</span>
-            <span class="tip-tri"></span>
-          </div>
-          <div class="tip-body">
-            <ul>
-              <li>$A$를 소인수분해하여 지수가 홀수인 인수를 완전제곱수로 만드는 최솟값을 찾는다.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="ans-row">
-          <span class="ans-badge">정답</span>
-          <span class="ans-text">①</span>
-        </div>
-      </div>
-    </div>
-    <div class="practice-sec" style="flex:none;">
-      <div class="practice-inner">
-        <div class="prac-hd">
-          <div class="prac-hd__tab">
-            <span class="prac-hd__ss">쏙쏙</span>
-            <span class="prac-hd__gn">개념</span>
-            <span class="prac-hd__ih">익히기</span>
-          </div>
-          <div class="prac-hd__line"></div>
-        </div>
-        <div class="prac-grid">
-          <!-- 문제 09 -->
-          <div class="prob">
-            <div class="prob__hd">
-              <span class="prob__num">09</span>
-              <span class="prob__badge">쌍둥이</span>
-            </div>
-            <div class="prob__body">
-              $\sqrt{45x}$가 자연수가 되도록 하는 가장 작은 자연수 $x$의 값은?
-              <div class="prob__choices-3col" style="margin-top:5px;">
-                <span>① $3$</span>
-                <span>② $5$</span>
-                <span>③ $10$</span>
-                <span>④ $15$</span>
-                <span>⑤ $20$</span>
-              </div>
-            </div>
-          </div>
-          <div class="prac-sep"></div>
-          <!-- 문제 10 -->
-          <div class="prob">
-            <div class="prob__hd">
-              <span class="prob__num">10</span>
-              <span class="prob__badge">유사</span>
-            </div>
-            <div class="prob__body">
-              $\sqrt{\dfrac{2 \times 11^2}{x}}$이 자연수가 되도록 하는 가장 작은 자연수 $x$의 값을 구하시오.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Set 2: 예제06 ── -->
-  <div class="set-block">
-    <div class="cbox">
-      <div class="cbox__left">
-        <div class="ex-wrap">
-          <div class="ex-badge">
-            <span class="ex-badge__pill">예제</span>
-            <span class="ex-badge__num">06</span>
-          </div>
-          <div class="ex-body">
-            <div class="ex-content">
-              <div class="ex-q">$\sqrt{50-x}$가 자연수가 되게 하는 자연수 $x$의 값 중 가장 큰 것은? <span style="font-size:8.5px;color:#539e84;">($\sqrt{A-x}$가 자연수(정수)가 되도록 하는 자연수 $x$의 값 구하기)</span></div>
-              <div class="ex-choices-3col">
-                <span>① $29$</span>
-                <span>② $34$</span>
-                <span>③ $41$</span>
-                <span>④ $46$</span>
-                <span>⑤ $49$</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cbox__right">
-        <div style="flex:1;"></div>
-        <div class="tip-box">
-          <div class="tip-box__hd">
-            <span class="tip-pill">풀이 TIP</span>
-            <span class="tip-tri"></span>
-          </div>
-          <div class="tip-body">
-            <ul>
-              <li>$50-x$가 완전제곱수 ($1, 4, 9, 16, ...$)가 되는 $x$ 중 가장 큰 것을 찾는다.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="ans-row">
-          <span class="ans-badge">정답</span>
-          <span class="ans-text">⑤</span>
-        </div>
-      </div>
-    </div>
-    <div class="practice-sec" style="flex:none;">
-      <div class="practice-inner">
-        <div class="prac-hd">
-          <div class="prac-hd__tab">
-            <span class="prac-hd__ss">쏙쏙</span>
-            <span class="prac-hd__gn">개념</span>
-            <span class="prac-hd__ih">익히기</span>
-          </div>
-          <div class="prac-hd__line"></div>
-        </div>
-        <div class="prac-grid">
-          <!-- 문제 11 -->
-          <div class="prob">
-            <div class="prob__hd">
-              <span class="prob__num">11</span>
-              <span class="prob__badge">쌍둥이</span>
-            </div>
-            <div class="prob__body">
-              다음 중에서 $\sqrt{48-x}$가 자연수가 되게 하는 자연수 $x$의 값은?
-              <div class="prob__choices-3col" style="margin-top:5px;">
-                <span>① $5$</span>
-                <span>② $11$</span>
-                <span>③ $15$</span>
-                <span>④ $23$</span>
-                <span>⑤ $30$</span>
-              </div>
-            </div>
-          </div>
-          <div class="prac-sep"></div>
-          <!-- 문제 12 -->
-          <div class="prob">
-            <div class="prob__hd">
-              <span class="prob__num">12</span>
-              <span class="prob__badge">유사</span>
-            </div>
-            <div class="prob__body">
-              다음 보기에서 $\sqrt{18-x}$가 정수가 되게 하는 자연수 $x$의 값이 아닌 것만을 있는 대로 고른 것은?
-              <div class="prob__boogi" style="margin-top:5px;">
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; column-gap:24px; row-gap:4px;">
-                  <span>ㄱ. $2$</span><span>ㄴ. $9$</span><span>ㄷ. $12$</span>
-                  <span>ㄹ. $15$</span><span>ㅁ. $16$</span><span>ㅂ. $18$</span>
-                </div>
-              </div>
-              <div class="prob__choices-2col" style="margin-top:5px;">
-                <span>① ㄱ, ㄷ, ㄹ</span>
-                <span>② ㄱ, ㄷ, ㅁ</span>
-                <span>③ ㄴ, ㄷ, ㅂ</span>
-                <span>④ ㄷ, ㄹ, ㅁ</span>
-                <span>⑤ ㄷ, ㅁ, ㅂ</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="flex:1;"></div>
-  <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
+    <span class="page-footer__topic">곱셈 공식의 응용</span>
     <span class="page-footer__num">004</span>
   </div>
 </div><!-- /page 004 -->
 
 
 <!-- ═══════════════════════ PAGE 005 ═══════════════════════ -->
-<!-- 개념03 + 예제07 set (개념익히기13, 14) -->
-<div class="page" style="gap:8px;">
-
-  <!-- 개념박스 : 개념03 제곱근의 대소 관계 + 예제07 -->
-  <div class="cbox">
-    <div class="cbox__left">
-      <!-- 개념 03 : 제곱근의 대소 관계 -->
-      <div class="concept-def">
-        <div class="concept-def__hd">
-          <div class="concept-chip">
-            <span class="concept-chip__gae">개념</span>
-            <span class="concept-chip__n">03</span>
-          </div>
-          <span class="concept-title">제곱근의 대소 관계</span>
-        </div>
-        <div class="concept-body">
-          <div>$a &gt; 0$, $b &gt; 0$일 때</div>
-          <div>
-            (1) <span class="hl">$a &lt; b$이면 $\sqrt{a} &lt; \sqrt{b}$</span>
-            &ensp;— 근호 안의 수가 클수록 제곱근도 크다.
-          </div>
-          <div>
-            (2) <span class="hl">$\sqrt{a} &lt; \sqrt{b}$이면 $a &lt; b$</span>
-            &ensp;— 제곱근이 클수록 근호 안의 수도 크다.
-          </div>
-          <div>
-            (3) <span class="hl">$\sqrt{a} &lt; \sqrt{b}$이면 $-\sqrt{a} &gt; -\sqrt{b}$</span>
-            &ensp;— 부호가 바뀌면 대소 방향도 바뀐다.
-          </div>
-          <div class="concept-eg">
-            <span class="concept-eg__label">예</span>
-            <div class="concept-eg__content">$2 &lt; 3$이므로 $\sqrt{2} &lt; \sqrt{3}$,&ensp; $-\sqrt{2} &gt; -\sqrt{3}$</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- 예제 07 -->
-      <div class="ex-wrap">
-        <div class="ex-badge">
-          <span class="ex-badge__pill">예제</span>
-          <span class="ex-badge__num">07</span>
-        </div>
-        <div class="ex-body">
-          <div class="ex-content">
-            <div class="ex-q">다음 중 두 수의 대소관계가 옳은 것은? <span style="font-size:8.5px;color:#539e84;">(제곱근의 대소 관계)</span></div>
-            <div class="ex-choices-2col">
-              <span>① $5 &gt; \sqrt{27}$</span>
-              <span>② $0.3 &gt; \sqrt{0.3}$</span>
-              <span>③ $-\sqrt{(-4)^2} &gt; -\sqrt{17}$</span>
-              <span>④ $\sqrt{\dfrac{2}{5}} &gt; \sqrt{\dfrac{2}{3}}$</span>
-              <span>⑤ $-\sqrt{26} &gt; -5$</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 오른쪽 사이드 -->
-    <div class="cbox__right">
-      <div class="side-note">
-        <div class="side-note__hd">
-          <span class="side-bar"></span>
-          <span class="side-label">참고</span>
-        </div>
-        <div class="side-body">
-          근호가 없는 수와 비교할 때<br><br>
-          방법1 근호가 없는 수를 $\sqrt{\phantom{0}}$ 형태로 바꿔 비교한다.<br>
-          방법2 두 수를 각각 제곱하여 비교한다.<br><br>
-          예) $\sqrt{7}$과 $3$: $3=\sqrt{9}$이고 $7&lt;9$이므로 $\sqrt{7}&lt;3$
-        </div>
-      </div>
-      <div class="tip-box">
-        <div class="tip-box__hd">
-          <span class="tip-pill">풀이 TIP</span>
-          <span class="tip-tri"></span>
-        </div>
-        <div class="tip-body">
-          <ul>
-            <li>근호가 없는 수는 $\sqrt{\phantom{0}}$ 형태로 바꾸거나 제곱하여 비교한다. 음수는 부등호 방향이 반대가 됨에 주의한다.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="ans-row">
-        <span class="ans-badge">정답</span>
-        <span class="ans-text">③</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 쏙쏙 개념 익히기 -->
-  <div class="practice-sec" style="flex:none;">
-    <div class="practice-inner">
-      <div class="prac-hd">
-        <div class="prac-hd__tab">
-          <span class="prac-hd__ss">쏙쏙</span>
-          <span class="prac-hd__gn">개념</span>
-          <span class="prac-hd__ih">익히기</span>
-        </div>
-        <div class="prac-hd__line"></div>
-      </div>
-      <div class="prac-grid">
-        <!-- 문제 13 -->
-        <div class="prob">
-          <div class="prob__hd">
-            <span class="prob__num">13</span>
-            <span class="prob__badge">쌍둥이</span>
-          </div>
-          <div class="prob__body">
-            다음 중 두 수의 대소관계가 옳은 것은?
-            <div class="prob__choices-2col" style="margin-top:5px;">
-              <span>① $6 &gt; \sqrt{34}$</span>
-              <span>② $0.1 &gt; \sqrt{0.1}$</span>
-              <span>③ $-\sqrt{(-3)^2} &lt; -\sqrt{10}$</span>
-              <span>④ $\sqrt{\dfrac{1}{3}} &gt; \sqrt{\dfrac{1}{2}}$</span>
-              <span>⑤ $-\sqrt{37} &gt; -6$</span>
-            </div>
-          </div>
-        </div>
-        <div class="prac-sep"></div>
-        <!-- 문제 14 -->
-        <div class="prob">
-          <div class="prob__hd">
-            <span class="prob__num">14</span>
-            <span class="prob__badge">유사</span>
-          </div>
-          <div class="prob__body">
-            다음 □ 안에 $&gt;$, $=$, $&lt;$ 중 알맞은 것을 써넣으시오.
-            <div class="prob__boogi" style="margin-top:5px; justify-content:center; text-align:center;">
-              $\sqrt{\dfrac{4}{5}} \enspace \square \enspace \sqrt{\dfrac{3}{4}}$
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="flex:1;"></div>
-  <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
-    <span class="page-footer__num">005</span>
-  </div>
-</div><!-- /page 005 -->
-
-
-<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
-<!-- 예제08 set (개념익히기15, 16) -->
-<div class="page" style="gap:20px;">
-
-  <!-- ── Set: 예제08 ── -->
-  <div class="set-block">
-    <div class="cbox">
-      <div class="cbox__left">
-        <div class="ex-wrap">
-          <div class="ex-badge">
-            <span class="ex-badge__pill">예제</span>
-            <span class="ex-badge__num">08</span>
-          </div>
-          <div class="ex-body">
-            <div class="ex-content">
-              <div class="ex-q">다음 부등식을 만족하는 정수 $x$의 개수를 구하시오. <span style="font-size:8.5px;color:#539e84;">(제곱근을 포함한 부등식)</span></div>
-              <div class="ex-boogi" style="justify-content:center; text-align:center;">
-                $2 \le \sqrt{3x} \le 4$
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cbox__right">
-        <div style="flex:1;"></div>
-        <div class="tip-box">
-          <div class="tip-box__hd">
-            <span class="tip-pill">풀이 TIP</span>
-            <span class="tip-tri"></span>
-          </div>
-          <div class="tip-body">
-            <ul>
-              <li>각 변이 모두 $0$ 이상이므로 제곱하면: $4 \le 3x \le 16$, 즉 $rac{4}{3} \le x \le rac{16}{3}$.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="ans-row">
-          <span class="ans-badge">정답</span>
-          <span class="ans-text">$4$</span>
-        </div>
-      </div>
-    </div>
-    <div class="practice-sec" style="flex:none;">
-      <div class="practice-inner">
-        <div class="prac-hd">
-          <div class="prac-hd__tab">
-            <span class="prac-hd__ss">쏙쏙</span>
-            <span class="prac-hd__gn">개념</span>
-            <span class="prac-hd__ih">익히기</span>
-          </div>
-          <div class="prac-hd__line"></div>
-        </div>
-        <div class="prac-grid">
-          <!-- 문제 15 -->
-          <div class="prob">
-            <div class="prob__hd">
-              <span class="prob__num">15</span>
-              <span class="prob__badge">쌍둥이</span>
-            </div>
-            <div class="prob__body">
-              다음 부등식을 만족하는 정수 $x$의 개수를 구하시오.
-              <div class="prob__boogi" style="margin-top:5px; justify-content:center; text-align:center;">
-                $3.2 \le \sqrt{4x} \le 5.2$
-              </div>
-            </div>
-          </div>
-          <div class="prac-sep"></div>
-          <!-- 문제 16 -->
-          <div class="prob">
-            <div class="prob__hd">
-              <span class="prob__num">16</span>
-              <span class="prob__badge">유사</span>
-            </div>
-            <div class="prob__body">
-              $3 &lt; x &lt; 5$일 때, 다음 중 옳지 않은 것은?
-              <div class="prob__choices-2col" style="margin-top:5px;">
-                <span>① $\sqrt{2} &lt; x$</span>
-                <span>② $\sqrt{3} &lt; x$</span>
-                <span>③ $x &lt; 2\sqrt{2}$</span>
-                <span>④ $x &lt; 4\sqrt{2}$</span>
-                <span>⑤ $x &lt; 5\sqrt{3}$</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="flex:1;"></div>
-  <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
-    <span class="page-footer__num">006</span>
-  </div>
-</div><!-- /page 006 -->
-
-
-<!-- ═══════════════════════ PAGE 007 ═══════════════════════ -->
 <!-- 개념 한눈에 보기 -->
-<div class="page" style="padding-top:36px; gap:10px;">
+<div class="page" style="padding-top:36px; gap:0;">
   <div class="kaynun-hd">
     <span class="kaynun-hd__small">한눈에 보는</span>
     <span class="kaynun-hd__big">개념 정리</span>
@@ -1294,46 +869,47 @@ body {
     <div class="kaynun-sec">
       <div class="kaynun-sec__hd">
         <span class="kaynun-chip">01</span>
-        <span class="kaynun-title">제곱근의 성질</span>
+        <span class="kaynun-title">곱셈 공식을 이용한 수의 계산</span>
       </div>
       <div class="kaynun-body">
-        <div>$a &gt; 0$일 때, $(\sqrt{a})^2 = a$, $(-\sqrt{a})^2 = a$, $\sqrt{a^2} = a$, $\sqrt{(-a)^2} = a$</div>
-        <div>→ 제곱근과 제곱은 서로 반대 연산이므로, 한 쪽을 적용하면 근호가 없어진다.</div>
+        <div>(1) <strong>수의 제곱의 계산</strong> : 곱셈 공식 $(a+b)^2=a^2+2ab+b^2$, $(a-b)^2=a^2-2ab+b^2$을 이용한다.</div>
+        <div>(2) <strong>두 수의 곱의 계산</strong> : 곱셈 공식 $(a+b)(a-b)=a^2-b^2$, $(x+a)(x+b)=x^2+(a+b)x+ab$를 이용한다.</div>
       </div>
     </div>
+
     <!-- 개념 02 -->
     <div class="kaynun-sec">
       <div class="kaynun-sec__hd">
         <span class="kaynun-chip">02</span>
-        <span class="kaynun-title">$\sqrt{a^2}$의 성질</span>
+        <span class="kaynun-title">곱셈 공식을 이용한 근호를 포함한 식의 계산</span>
       </div>
       <div class="kaynun-body">
-        <div>$\sqrt{a^2} = |a|$ &ensp;— $a$의 부호와 관계없이 결과는 항상 $0$ 이상이다.</div>
-        <div>$a \ge 0$이면 $\sqrt{a^2} = a$, &ensp; $a &lt; 0$이면 $\sqrt{a^2} = -a$ (부호를 반대로 바꿔 양수로 만든다)</div>
+        <div>(1) <strong>근호를 포함한 식의 계산</strong> : 제곱근을 문자로 생각하고 곱셈 공식을 이용하여 계산한다.</div>
+        <div>(2) <strong>분모의 유리화</strong> : 분모가 2개의 항으로 된 무리수일 때 $(a+b)(a-b)=a^2-b^2$을 이용하여 유리화한다.</div>
       </div>
     </div>
+
     <!-- 개념 03 -->
     <div class="kaynun-sec">
       <div class="kaynun-sec__hd">
         <span class="kaynun-chip">03</span>
-        <span class="kaynun-title">제곱근의 대소 관계</span>
+        <span class="kaynun-title">곱셈 공식의 변형</span>
       </div>
       <div class="kaynun-body">
-        <div>$a &gt; 0$, $b &gt; 0$일 때: &ensp;$a &lt; b \Leftrightarrow \sqrt{a} &lt; \sqrt{b}$ &ensp;— 근호 안의 수가 클수록 제곱근도 크다.</div>
-        <div>음수 비교: $\sqrt{a} &lt; \sqrt{b}$이면 $-\sqrt{a} &gt; -\sqrt{b}$ (부호가 바뀌면 대소도 바뀐다)</div>
-        <div>근호가 없는 수와 비교할 때는 둘 다 근호 형태로 바꾸거나, 둘 다 제곱하여 비교한다.</div>
+        <div>(1) <strong>기본 변형</strong> : $a^2+b^2=(a+b)^2-2ab=(a-b)^2+2ab$, $(a+b)^2=(a-b)^2+4ab$, $(a-b)^2=(a+b)^2-4ab$</div>
+        <div>(2) <strong>두 수의 곱이 1인 변형</strong> : $a^2+\dfrac{1}{a^2}=\left(a+\dfrac{1}{a}\right)^{\!2}-2=\left(a-\dfrac{1}{a}\right)^{\!2}+2$</div>
       </div>
     </div>
   </div>
 
   <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
-    <span class="page-footer__num">007</span>
+    <span class="page-footer__topic">곱셈 공식의 응용</span>
+    <span class="page-footer__num">005</span>
   </div>
-</div><!-- /page 007 -->
+</div><!-- /page 005 -->
 
 
-<!-- ═══════════════════════ PAGE 008 ═══════════════════════ -->
+<!-- ═══════════════════════ PAGE 006 ═══════════════════════ -->
 <!-- 쏙쏙 유형 익히기 -->
 <div class="page">
   <div class="umuri-hd">
@@ -1346,125 +922,129 @@ body {
   </div>
 
   <div class="umuri-grid" style="flex:1; min-height:0;">
-    <!-- 왼쪽 컬럼 (3문제, 각 240px) -->
+    <!-- 왼쪽 컬럼 (3문제) -->
     <div class="umuri-col">
-      <!-- 문제 01: 제곱근의 성질을 이용한 계산 -->
-      <div class="umuri-prob">
+      <!-- 문제 01 -->
+      <div class="umuri-prob" style="height:240px;">
         <div class="umuri-prob__hd">
           <span class="umuri-num">01</span>
-          <span class="umuri-desc">제곱근의 성질을 이용한 계산</span>
+          <span class="umuri-desc">곱셈 공식을 이용한 두 수의 곱의 계산</span>
         </div>
         <div class="umuri-q">
-          $\sqrt{81} - \sqrt{(-7)^2} \div \sqrt{\dfrac{1}{9}} + (\sqrt{10})^2$을 계산하면?
-          <div class="umuri-choices-wrap" style="margin-top:5px;">
-            <span>① $-3$</span>
-            <span>② $-2$</span>
-            <span>③ $-1$</span>
-            <span>④ $0$</span>
-            <span>⑤ $1$</span>
+          $199^2$과 $48\times52$를 계산할 때 이용하면 가장 편리한 곱셈 공식을 다음 보기에서 골라 차례로 나열한 것은?
+          <div class="umuri-boogi" style="margin-top:6px; flex-direction:column; gap:3px;">
+            <span>ㄱ. $(a+b)^2=a^2+2ab+b^2$</span>
+            <span>ㄴ. $(a-b)^2=a^2-2ab+b^2$</span>
+            <span>ㄷ. $(a+b)(a-b)=a^2-b^2$</span>
+            <span>ㄹ. $(x+a)(x+b)=x^2+(a+b)x+ab$</span>
+            <span>ㅁ. $(ax+b)(cx+d)=acx^2+(ad+bc)x+bd$</span>
+          </div>
+          <div class="umuri-choices-3col" style="margin-top:6px;">
+            <span>① ㄱ, ㄹ</span>
+            <span>② ㄱ, ㅁ</span>
+            <span>③ ㄴ, ㄷ</span>
+            <span>④ ㄴ, ㅁ</span>
+            <span>⑤ ㄷ, ㅁ</span>
           </div>
         </div>
       </div>
 
-      <!-- 문제 02: √(a-b)²꼴을 포함한 식 간단히 하기 -->
-      <div class="umuri-prob">
+      <!-- 문제 02 -->
+      <div class="umuri-prob" style="height:240px;">
         <div class="umuri-prob__hd">
           <span class="umuri-num">02</span>
-          <span class="umuri-desc">$\sqrt{(a-b)^2}$꼴을 포함한 식 간단히 하기</span>
+          <span class="umuri-desc">곱셈 공식을 이용한 두 수의 곱의 계산</span>
         </div>
         <div class="umuri-q">
-          $a-b &lt; 0$, $ab &lt; 0$일 때,<br>
-          $\sqrt{(a-2b)^2} + \sqrt{(-a)^2} - \sqrt{4b^2}$을 간단히 하면?
-          <div class="umuri-choices-3col" style="margin-top:5px;">
-            <span>① $-2a$</span>
-            <span>② $-a+2b$</span>
-            <span>③ $2a-3b$</span>
-            <span>④ $2a-2b$</span>
-            <span>⑤ $3a-b$</span>
-          </div>
+          $4050\times4052+1$은 어떤 자연수를 제곱한 수와 같을 때, 이 자연수를 구하시오.
         </div>
       </div>
 
-      <!-- 문제 03: √Ax가 자연수가 되도록 하는 자연수 x의 값 구하기 -->
-      <div class="umuri-prob">
+      <!-- 문제 03 -->
+      <div class="umuri-prob" style="height:240px;">
         <div class="umuri-prob__hd">
           <span class="umuri-num">03</span>
-          <span class="umuri-desc">$\sqrt{Ax}$가 자연수가 되도록 하는 자연수 $x$의 값 구하기</span>
+          <span class="umuri-desc">곱셈 공식을 이용한 수의 계산 : 제곱근을 포함한 경우</span>
         </div>
         <div class="umuri-q">
-          $\sqrt{3^2 \times 7 \times a}$가 자연수가 되도록 하는 가장 작은 자연수 $a$의 값을 구하시오.
+          다음 중에서 옳은 것은?
+          <div class="umuri-choices-stack" style="margin-top:5px;">
+            <span>① $(x-1)^2=x^2+1$</span>
+            <span>② $(x-1)(x+2)=x^2+x+2$</span>
+            <span>③ $(2x-4)(x-3)=2x^2-10x-12$</span>
+            <span>④ $(-\sqrt{5}+2)^2=9-4\sqrt{5}$</span>
+            <span>⑤ $(-\sqrt{5}+2)(-\sqrt{5}-2)=3$</span>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="umuri-sep"></div>
 
-    <!-- 오른쪽 컬럼 (3문제, 각 240px) -->
+    <!-- 오른쪽 컬럼 (3문제) -->
     <div class="umuri-col">
-      <!-- 문제 04: √(A-x)가 자연수(정수)가 되도록 하는 자연수 x의 값 구하기 -->
-      <div class="umuri-prob">
+      <!-- 문제 04 -->
+      <div class="umuri-prob" style="height:240px;">
         <div class="umuri-prob__hd">
           <span class="umuri-num">04</span>
-          <span class="umuri-desc">$\sqrt{A-x}$가 자연수(정수)가 되도록 하는 자연수 $x$의 값 구하기</span>
+          <span class="umuri-desc">곱셈 공식을 이용한 분모의 유리화</span>
         </div>
         <div class="umuri-q">
-          $\sqrt{28-x}$가 자연수가 되게 하는 가장 큰 자연수 $x$의 값을 구하시오.
+          $\dfrac{1}{5\sqrt{2}-7}+\dfrac{1}{5\sqrt{2}+7}=a+b\sqrt{2}$일 때, $a+b$의 값을 구하시오. (단, $a$, $b$는 유리수)
         </div>
       </div>
 
-      <!-- 문제 05: 제곱근의 대소 관계 -->
-      <div class="umuri-prob">
+      <!-- 문제 05 -->
+      <div class="umuri-prob" style="height:240px;">
         <div class="umuri-prob__hd">
           <span class="umuri-num">05</span>
-          <span class="umuri-desc">제곱근의 대소 관계</span>
+          <span class="umuri-desc">식의 값 구하기(2) 두 수의 합 또는 차와 곱이 주어진 경우</span>
         </div>
         <div class="umuri-q">
-          다음 수를 큰 수부터 순서대로 나열할 때, 네 번째에 오는 수는?
-          <div class="umuri-boogi" style="justify-content:center; text-align:center; margin-top:5px;">
-            $4, \enspace \sqrt{\dfrac{1}{2}}, \enspace -\sqrt{12}, \enspace -2, \enspace \sqrt{3}$
-          </div>
-          <div class="umuri-choices-wrap" style="margin-top:5px;">
-            <span>① $4$</span>
-            <span>② $\sqrt{\dfrac{1}{2}}$</span>
-            <span>③ $-\sqrt{12}$</span>
-            <span>④ $-2$</span>
-            <span>⑤ $\sqrt{3}$</span>
-          </div>
+          $a+b=3$, $a^2+b^2=7$일 때, $\dfrac{1}{a}+\dfrac{1}{b}$의 값을 구하시오.
         </div>
       </div>
 
-      <!-- 문제 06: 제곱근을 포함한 부등식 -->
-      <div class="umuri-prob">
+      <!-- 문제 06 -->
+      <div class="umuri-prob" style="height:240px;">
         <div class="umuri-prob__hd">
           <span class="umuri-num">06</span>
-          <span class="umuri-desc">제곱근을 포함한 부등식</span>
+          <span class="umuri-desc">식의 값 구하기(3) 두 수의 곱이 1인 경우</span>
         </div>
         <div class="umuri-q">
-          부등식 $-4 &lt; -\sqrt{5x} &lt; 0$을 만족시키는 자연수 $x$의 개수를 구하시오.
+          $x+\dfrac{1}{x}=2$일 때, $x^2+\dfrac{1}{x^2}$의 값은?
+          <div class="umuri-choices-wrap" style="margin-top:5px;">
+            <span>① $-2$</span>
+            <span>② $-1$</span>
+            <span>③ $0$</span>
+            <span>④ $1$</span>
+            <span>⑤ $2$</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
-    <span class="page-footer__num">008</span>
+    <span class="page-footer__topic">곱셈 공식의 응용</span>
+    <span class="page-footer__num">006</span>
   </div>
-</div><!-- /page 008 -->
+</div><!-- /page 006 -->
 
 
-<!-- ═══════════════════════ PAGE 009 ═══════════════════════ -->
+<!-- ═══════════════════════ PAGE 007 ═══════════════════════ -->
 <!-- 빠른정답 -->
 <div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
   <div class="qa2-title-row">
     <span class="qa2-num">02</span>
-    <span class="qa2-name">제곱근의 성질</span>
+    <span class="qa2-name">곱셈 공식의 응용</span>
     <span class="qa2-badge">빠른 정답</span>
   </div>
   <div class="qa2-divider"></div>
+
   <div class="qa2-body">
     <div class="qa2-left">
-      <!-- 쏙쏙 개념 익히기 -->
+      <!-- 개념익히기 -->
       <div class="qa2-box">
         <div class="qa2-box__tab">
           <span class="qa2-box__ss">쏙쏙</span>
@@ -1473,48 +1053,29 @@ body {
         </div>
         <div class="qa2-rows">
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">3364</span></div>
             <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">4896</span></div>
           </div>
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">⑤</span></div>
             <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$12$</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">②</span></div>
           </div>
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">③</span></div>
             <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">$7$</span></div>
           </div>
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">$27$</span></div>
             <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">$7-x$</span></div>
-          </div>
-          <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">②</span></div>
-            <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">$2$</span></div>
-          </div>
-          <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">④</span></div>
-            <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">④</span></div>
-          </div>
-          <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">③</span></div>
-            <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">$&gt;$</span></div>
-          </div>
-          <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">15</span><span class="qa2-rans">$4$</span></div>
-            <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">16</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">①</span></div>
           </div>
         </div>
       </div>
-      <!-- 쏙쏙 유형 익히기 -->
+
+      <!-- 유형익히기 -->
       <div class="qa2-box">
         <div class="qa2-box__tab qa2-box__tab--pink">
           <span class="qa2-box__ss">쏙쏙</span>
@@ -1523,19 +1084,19 @@ body {
         </div>
         <div class="qa2-rows">
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">②</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③</span></div>
             <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">①</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">4051</span></div>
           </div>
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">$7$</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
             <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$27$</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">$10$</span></div>
           </div>
           <div class="qa2-row">
-            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">$3$</span></div>
             <div class="qa2-rsep"></div>
-            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">$3$</span></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">⑤</span></div>
           </div>
         </div>
       </div>
@@ -1545,19 +1106,19 @@ body {
   </div>
 
   <div class="page-footer">
-    <span class="page-footer__topic">제곱근의 성질</span>
-    <span class="page-footer__num">009</span>
+    <span class="page-footer__topic">곱셈 공식의 응용</span>
+    <span class="page-footer__num">007</span>
   </div>
-</div><!-- /page 009 -->
+</div><!-- /page 007 -->
 
 <script defer src="./katex/katex.min.js"></script>
 <script defer src="./katex/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body, {
     delimiters: [
-      {left: '$', right: '$', display: false},
-      {left: '$$', right: '$$', display: true}
-    ]
-  });">
-</script>
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false}
+    ],
+    throwOnError: false
+  });"></script>
 </body>
 </html>

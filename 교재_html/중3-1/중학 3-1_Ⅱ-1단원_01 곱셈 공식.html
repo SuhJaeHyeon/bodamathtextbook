@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학 3-1 Ⅱ-1단원 01 곱셈 공식</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+body {
+  background: #adadad;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; padding: 20px;
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* ─── Page ─── */
+.page {
+  width: 595px; height: 842px; background: white;
+  display: flex; flex-direction: column;
+  padding: 32px 30px 20px 30px;
+  gap: 16px;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ─── Title (page 1 only) ─── */
+.title { display: flex; gap: 14px; align-items: flex-end; flex-shrink: 0; }
+.title__num {
+  color: #338cd7; font-size: 60px; font-weight: 700;
+  letter-spacing: -7.2px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.title__right { display: flex; flex-direction: column; gap: 3px; padding-bottom: 8px; }
+.title__tag {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 700;
+}
+.title__tag-blue { color: #338cd7; letter-spacing: -0.32px; }
+.title__tag-black { color: #000; letter-spacing: -0.32px; }
+.title__text { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -1.2px; }
+
+/* ─── Bordered content box ─── */
+.cbox {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  display: flex; gap: 10px;
+  padding: 16px 16px 16px 0;
+  flex-shrink: 0;
+}
+.cbox__left {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 36px;
+}
+.cbox__right {
+  width: 112px; flex-shrink: 0;
+  border-left: 1px solid #F5F5F5;
+  padding-left: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ─── Concept definition ─── */
+.concept-def { padding-right: 16px; }
+.concept-def__hd {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.concept-chip { display: flex; align-items: center; flex-shrink: 0; }
+.concept-chip__gae {
+  background: rgba(207,207,207,0.2);
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  margin-right: -6px;
+  font-size: 9px; font-weight: 700; color: #338cd7;
+  position: relative;
+}
+.concept-chip__n {
+  background: #338cd7;
+  height: 19px; width: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 1000px;
+  padding: 3px 6px;
+  font-size: 12px; font-weight: 700; color: white;
+  position: relative; z-index: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.concept-chip__boogi {
+  background: #ff8945;
+  height: 19px; display: flex; align-items: center; justify-content: center;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 9px 3px 6px;
+  font-size: 9px; font-weight: 700; color: white;
+}
+.concept-title {
+  font-family: '윤고딕', 'Yoon Gothic', sans-serif; font-weight: 500;
+  font-size: 13px; color: #000; letter-spacing: -0.7px;
+}
+.concept-body {
+  font-size: 11.5px; color: #232f39; line-height: 18px;
+  letter-spacing: -0.6px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-left: 26px;
+}
+.concept-body ul { list-style: disc; padding-left: 18px; }
+.concept-body li { line-height: 18px; }
+.concept-eg {
+  background: rgba(51,140,215,0.06); border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.concept-eg__label { font-size: 9px; font-weight: 700; color: #338cd7; }
+.concept-eg__content { display: block; white-space: nowrap; font-size: 11px; }
+
+/* ─── Example ─── */
+.ex-wrap { position: relative; padding: 8px 0 0 16px; }
+.ex-badge {
+  position: absolute; top: 0; left: 16px;
+  display: flex; align-items: center; z-index: 2;
+}
+.ex-badge__pill {
+  background: #539e84; color: white;
+  font-size: 9px; font-weight: 600;
+  height: 18px; padding: 3px 6px;
+  border-radius: 1000px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ex-badge__num {
+  background: white; color: #539e84;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: -1.44px; line-height: 1.25;
+  padding: 0 3px; border-radius: 1000px;
+  height: 19px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.ex-body {
+  background: rgba(245,245,245,0.4); border-radius: 10px;
+  padding: 22px 10px 12px 31px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.ex-content { display: flex; flex-direction: column; gap: 8px; }
+.ex-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
+.ex-choices-wrap { display: grid; grid-template-columns: repeat(3, max-content); gap: 4px 18px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-stack { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-choices-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; font-size: 11px; color: #232f39; line-height: 18px; }
+.ex-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+.ans-row { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+.ans-badge {
+  background: #797979; color: white;
+  font-size: 6px; font-weight: 700; border-radius: 2px;
+  padding: 2px 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ans-text { font-size: 9px; color: #000; letter-spacing: -0.8px; line-height: 16px; font-weight: 500; }
+.ans-text--1col { display: grid; grid-template-columns: 1fr; line-height: 15px; }
+.ans-text--2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6px; line-height: 15px; }
+
+/* ─── Right column ─── */
+.side-note { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; margin-left: 8px; }
+.side-note__hd { display: flex; gap: 3px; align-items: center; height: 12px; flex-shrink: 0; }
+.side-bar { width: 2.5px; height: 8px; background: #338cd7; border-radius: 1px 4px 4px 1px; flex-shrink: 0; }
+.side-label { font-size: 8px; font-weight: 700; color: #338cd7; }
+.side-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; }
+.side-body ul { list-style: disc; padding-left: 12px; }
+.side-body li { line-height: 1.4; }
+
+.tip-box { display: flex; flex-direction: column; gap: 4px; }
+.tip-box__hd { display: flex; align-items: center; flex-shrink: 0; }
+.tip-pill {
+  background: #ff7373; color: white;
+  font-size: 7px; font-weight: 700;
+  height: 14px; padding: 0 10px 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 50%, 100% 100%, 0 100%);
+}
+.tip-tri { display: none; }
+.tip-body { font-size: 8px; color: #232f39; line-height: 1.4; letter-spacing: -0.4px; padding-left: 8px; }
+.tip-body ul { list-style: none; padding: 0; }
+.tip-body li::before { content: "→ "; color: #232f39; font-weight: 700; }
+
+/* ─── Practice section ─── */
+.practice-sec { flex: 1; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+.practice-inner { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+
+.prac-hd { display: flex; align-items: center; flex-shrink: 0; }
+.prac-hd__tab {
+  border-top: 2px solid #338cd7;
+  border-right: 2px solid #338cd7;
+  border-bottom: 2px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.prac-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__gn { font-size: 13px; font-weight: 700; color: #338cd7; line-height: 1; }
+.prac-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.prac-hd__line { flex: 1; height: 2px; background: #338cd7; min-width: 1px; }
+
+.prac-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0 10px;
+  flex: 1; min-height: 0;
+}
+.prac-grid--single { grid-template-columns: 1fr; }
+.prac-sep { width: 1px; align-self: stretch; border-left: 1px solid #F5F5F5; }
+
+.prob { display: flex; flex-direction: column; gap: 0; }
+.prob__hd { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-bottom: 0; }
+.prob__num {
+  font-size: 20px; font-weight: 800; color: #338cd7;
+  letter-spacing: -1.8px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.prob__badge {
+  border-top: 0.8px solid #338cd7;
+  border-right: 0.8px solid #338cd7;
+  border-bottom: 0.8px solid #338cd7;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 4px 2px 2px;
+  font-size: 8px; font-weight: 700; color: #338cd7;
+  display: inline-flex; align-items: center;
+}
+.prob__body { font-size: 11px; color: #232f39; line-height: 18px; display: block; letter-spacing: -0.5px; margin-left: 3px; }
+.prob__choices-wrap  { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 6px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 17px; color: #232f39; }
+.prob__boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── Set block ─── */
+.set-block { display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+
+/* ─── 쏙쏙 유형 익히기 ─── */
+.umuri-hd { display: flex; align-items: center; flex-shrink: 0; }
+.umuri-hd__tab {
+  border-top: 2px solid #eb749f;
+  border-right: 2px solid #eb749f;
+  border-bottom: 2px solid #eb749f;
+  border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 5px 8px 4px 4px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  flex-shrink: 0;
+}
+.umuri-hd__ss { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__yh { font-size: 13px; font-weight: 700; color: #eb749f; line-height: 1; }
+.umuri-hd__ih { font-size: 10px; font-weight: 600; color: #78797a; line-height: 1; padding: 1px 0; }
+.umuri-hd__line { flex: 1; height: 2px; background: #eb749f; min-width: 1px; }
+
+.umuri-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0 10px; flex: 1; min-height: 0; }
+.umuri-sep { width: 1px; align-self: stretch; border-left: 1px solid #f0f0f0; }
+.umuri-col { display: grid; grid-template-rows: 240px 240px 240px; align-items: start; }
+
+.umuri-prob { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.umuri-prob__hd { display: flex; align-items: center; justify-content: space-between; }
+.umuri-num { font-size: 20px; font-weight: 800; color: #eb749f; letter-spacing: -1.8px; line-height: 1; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.umuri-desc { font-size: 7px; font-weight: 600; color: #9a9a9a; line-height: 1; text-align: right; }
+.umuri-q { font-size: 11px; color: #232f39; line-height: 18px; letter-spacing: -0.5px; display: block; }
+.umuri-choices-wrap  { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-stack { display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-3col  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-choices-2col  { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 4px; font-size: 11px; line-height: 17px; color: #232f39; }
+.umuri-boogi { border: 0.5px solid #dadde0; border-radius: 3px; padding: 8px 7px; background: none; font-size: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; line-height: 16px; }
+
+/* ─── 개념 한눈에 보기 ─── */
+.kaynun-hd {
+  background: #338cd7; border-radius: 6px;
+  padding: 6px 10px;
+  display: flex; align-items: baseline; gap: 4px;
+  flex-shrink: 0; width: 100%;
+}
+.kaynun-hd__small { font-size: 10px; font-weight: 600; color: white; }
+.kaynun-hd__big   { font-size: 13px; font-weight: 700; color: white; }
+.kaynun-box {
+  border: 2px solid rgba(51,140,215,0.2); border-radius: 10px;
+  padding: 16px 20px 16px 16px;
+  display: flex; flex-direction: column; gap: 20px;
+  flex: 1; min-height: 0; overflow: hidden;
+  margin-top: -1px; margin-bottom: 10px;
+}
+.kaynun-sec { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.kaynun-sec__hd { display: flex; align-items: center; gap: 6px; }
+.kaynun-chip {
+  background: #338cd7; color: white;
+  height: 19px; border-radius: 1000px;
+  padding: 0 8px;
+  font-size: 9px; font-weight: 700;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; white-space: nowrap;
+}
+.kaynun-title { font-size: 14px; font-weight: 500; color: #000; letter-spacing: -0.6px; }
+.kaynun-body {
+  padding-left: 33px; padding-right: 8px;
+  font-size: 11px; line-height: 18px; color: #232f39;
+  display: flex; flex-direction: column; gap: 6px;
+  letter-spacing: -0.5px; word-break: keep-all;
+}
+.kaynun-body ul { list-style: disc; padding-left: 16px; }
+.kaynun-body li { line-height: 18px; }
+
+/* ─── 빠른정답 v2 ─── */
+.qa2-title-row { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qa2-num {
+  font-size: 26px; font-weight: 700; color: #338cd7;
+  letter-spacing: -3.12px; line-height: 1;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+.qa2-name { font-size: 20px; font-weight: 600; color: #000; letter-spacing: -1px; flex: 1; }
+.qa2-badge {
+  background: #338cd7; color: white;
+  font-size: 9px; font-weight: 700;
+  border-radius: 4px; padding: 4px 6px; flex-shrink: 0;
+}
+.qa2-divider { height: 2px; background: #f5f5f5; flex-shrink: 0; margin: 0; }
+.qa2-body { display: flex; flex: 1; min-height: 0; gap: 0; }
+.qa2-left { width: 256px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.qa2-vdivider { width: 1px; background: #f5f5f5; align-self: stretch; flex-shrink: 0; margin: 0 16px; }
+.qa2-right { flex: 1; }
+.qa2-box { border: 2px solid #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; padding: 0 10px 6px; }
+.qa2-box__tab {
+  border-top: 2px solid #338cd7; border-right: 2px solid #338cd7; border-bottom: 2px solid #338cd7; border-left: none;
+  border-radius: 0 1000px 1000px 0;
+  padding: 3px 10px 3px 6px;
+  display: inline-flex; align-items: flex-end; gap: 2px;
+  align-self: flex-start; margin: 8px 0 6px -10px;
+}
+.qa2-box__tab--pink { border-top-color: #eb749f; border-right-color: #eb749f; border-bottom-color: #eb749f; }
+.qa2-box__ss { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-box__gn { font-size: 10px; font-weight: 700; color: #338cd7; line-height: 1; }
+.qa2-box__gn--pink { color: #eb749f; }
+.qa2-box__ih { font-size: 8px; font-weight: 600; color: #78797a; line-height: 1; }
+.qa2-rows { display: flex; flex-direction: column; }
+.qa2-row { display: flex; align-items: center; height: 30px; border-bottom: none; }
+.qa2-rg { display: flex; align-items: center; flex: 1; min-width: 0; }
+.qa2-rnum { font-size: 11px; font-weight: 600; color: #4a4a4a; width: 22px; flex-shrink: 0; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+.qa2-rans { font-size: 9px; color: #3d3d3d; }
+.qa2-rsep { width: 1px; height: 16px; background: transparent; flex-shrink: 0; margin: 0 6px; }
+
+/* ─── Footer ─── */
+.page-footer {
+  display: flex; gap: 4px; align-items: center; justify-content: flex-end;
+  flex-shrink: 0; font-size: 8px; line-height: 13px; letter-spacing: -0.4px;
+  white-space: nowrap; margin-top: auto;
+}
+.page-footer::before {
+  content: ""; display: block; width: 59px; height: 13px; margin-right: auto;
+  background-image: url("data:image/png;base64,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");
+  background-position: center; background-size: contain; background-repeat: no-repeat; flex-shrink: 0;
+}
+.page-footer__topic { color: #818181; font-weight: 400; }
+.page-footer__num { color: #232f39; font-weight: 700; }
+
+.hl { background: #fff5d3; }
+.warning-label { background: transparent; color: #ff7373; font-size: 10px; font-weight: 700; margin: 0; padding: 0; border-radius: 0; }
+
+@media print {
+  @page { size: 595px 842px; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { width: 595px; margin: 0; padding: 0; background: white !important; gap: 0 !important; }
+  .page { width: 595px !important; height: 842px !important; box-shadow: none !important; page-break-after: always; break-after: page; page-break-inside: avoid; overflow: hidden; margin: 0 !important; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$', right: '$', display: false},
+      {left: '$$', right: '$$', display: true}
+    ]
+  });">
+</script>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 001 ═══════════ -->
+<div class="page">
+  <!-- 타이틀 -->
+  <div class="title">
+    <span class="title__num">01</span>
+    <div class="title__right">
+      <div class="title__tag">
+        <span class="title__tag-blue">개념</span>
+        <span class="title__tag-black">익히기</span>
+      </div>
+      <div class="title__text">곱셈 공식</div>
+    </div>
+  </div>
+
+  <!-- 개념박스 : 개념01 + 예제01 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 01 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">01</span>
+          </div>
+          <span class="concept-title">(다항식)×(다항식)의 전개</span>
+        </div>
+        <div class="concept-body">
+          <div>앞 괄호의 각 항을 뒤 괄호의 모든 항에 곱한 뒤, 동류항끼리 모은다.</div>
+          <div><span class="hl">$(a+b)(c+d)=ac+ad+bc+bd$</span></div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$(2x+y)(3x-5y)$<br>$=2x\cdot3x+2x\cdot(-5y)+y\cdot3x+y\cdot(-5y)$<br>$=6x^2-10xy+3xy-5y^2=6x^2-7xy-5y^2$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제 01 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">01</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 식을 전개하시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $(3x-2y)(4x+y)$</span>
+              <span>(2) $(x+3)(x^2-3x+9)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오른쪽 사이드 -->
+    <div class="cbox__right">
+      <div class="side-note">
+        <div class="side-note__hd">
+          <span class="side-bar"></span>
+          <span class="side-label">참고</span>
+        </div>
+        <div class="side-body">
+          오른쪽 그림에서<br>$(a+b)(c+d)=$<br>(가장 큰 직사각형의 넓이)<br>$=ac+ad+bc+bd$
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>분배법칙으로 모든 항끼리 곱한 후 동류항을 정리한다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--2col">
+          <span>(1) $12x^2-5xy-2y^2$</span>
+          <span>(2) $x^3+27$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 01 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">01</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $(2x+y-2)(3x+2y+4)$를 전개하면?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $3x^2+3xy+2y^2-8$</span>
+              <span>② $6x^2+7xy+2y^2-2y-8$</span>
+              <span>③ $6x^2+7xy+2y^2+2y-8$</span>
+              <span>④ $6x^2+4xy+3xy+2y^2-3y-8$</span>
+              <span>⑤ $12x^2+2x+7xy-8y^2$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 02 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">02</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $(x+3y-1)(2x+y-2)$를 전개하면?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $2x^2+7xy-3y^2+7x+5y+2$</span>
+              <span>② $2x^2+7xy+3y^2-5x+5y+2$</span>
+              <span>③ $2x^2+7xy+3y^2-4x-7y+2$</span>
+              <span>④ $2x^2+7xy+3y^2+5x-5y+2$</span>
+              <span>⑤ $2x^2-7xy+3y^2-5x+5y+2$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">001</span>
+  </div>
+</div><!-- /page 001 -->
+
+
+<!-- ═══════════ PAGE 002 ═══════════ -->
+<div class="page">
+  <!-- 개념박스 : 개념02 + 예제02 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 02 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">02</span>
+          </div>
+          <span class="concept-title">$(a+b)^2$, $(a-b)^2$의 전개 — 합과 차의 제곱</span>
+        </div>
+        <div class="concept-body">
+          <div>
+            (1) <span class="hl">$(a+b)^2=a^2+2ab+b^2$</span> &ensp;앞²&ensp;$+$&ensp;$2\times$앞$\times$뒤&ensp;$+$&ensp;뒤²<br>
+            (2) <span class="hl">$(a-b)^2=a^2-2ab+b^2$</span> &ensp;앞²&ensp;$-$&ensp;$2\times$앞$\times$뒤&ensp;$+$&ensp;뒤²
+          </div>
+          <div>
+            <span class="warning-label">주의&ensp;</span>
+            부호가 모두 음수일 때: $(-a-b)^2=(a+b)^2$, &ensp;$(-a+b)^2=(a-b)^2$
+          </div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">
+              (1) $(x+2)^2=x^2+2\cdot x\cdot2+4=x^2+4x+4$<br>
+              (2) $(x-2)^2=x^2-2\cdot x\cdot2+4=x^2-4x+4$
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제 02 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">02</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 식을 전개하시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $(x+4)^2$</span>
+              <span>(2) $\left(\dfrac{1}{3}x-2\right)^2$</span>
+              <span>(3) $(-3x+y)^2$</span>
+              <span>(4) $(-2x-3y)^2$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오른쪽 사이드 -->
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$(a+b)^2=a^2+2ab+b^2$에서 $a$, $b$에 맞는 항을 대입한다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--2col">
+          <span>(1) $x^2+8x+16$</span>
+          <span>(2) $\dfrac{1}{9}x^2-\dfrac{4}{3}x+4$</span>
+          <span>(3) $9x^2-6xy+y^2$</span>
+          <span>(4) $4x^2+12xy+9y^2$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 03 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">03</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 중 옳지 않은 것은?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $(x+2)^2=x^2+4x+4$</span>
+              <span>② $(2a+3)^2=4a^2+12a+9$</span>
+              <span>③ $\left(\dfrac{1}{2}x+4\right)^2=\dfrac{1}{4}x^2+4x+16$</span>
+              <span>④ $(3a+b)^2=3a^2+3ab+b^2$</span>
+              <span>⑤ $\left(-4x-\dfrac{1}{4}\right)^2=16x^2+2x+\dfrac{1}{16}$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 04 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">04</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $(2x-5y)^2$을 전개한 것은?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $4x^2-25y^2$</span>
+              <span>② $4x^2+20xy+25y^2$</span>
+              <span>③ $4x^2-10xy+25y^2$</span>
+              <span>④ $4x^2+20xy-25y^2$</span>
+              <span>⑤ $4x^2-20xy+25y^2$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">002</span>
+  </div>
+</div><!-- /page 002 -->
+
+
+<!-- ═══════════ PAGE 003 ═══════════ -->
+<div class="page">
+  <!-- 개념박스 : 개념03 + 예제03 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 03 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">03</span>
+          </div>
+          <span class="concept-title">$(a+b)(a-b)$의 전개 — 합과 차의 곱</span>
+        </div>
+        <div class="concept-body">
+          <div>같은 두 항의 합과 차를 곱하면 중간 항이 사라지고 제곱의 차만 남는다.</div>
+          <div><span class="hl">$(a+b)(a-b)=a^2-b^2$</span></div>
+          <div>
+            <span class="warning-label">주의&ensp;</span>
+            부호가 달라도 절댓값이 같은 쌍을 찾으면 공식 적용 가능.<br>
+            $(-a+b)(-a-b)=a^2-b^2$, &ensp;$(-a-b)(a-b)=b^2-a^2$
+          </div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$(x+4)(x-4)=x^2-4^2=x^2-16$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제 03 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">03</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 식을 전개하시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $(3x+5)(3x-5)$</span>
+              <span>(2) $\left(\dfrac{3}{4}x+2y\right)\left(\dfrac{3}{4}x-2y\right)$</span>
+              <span>(3) $(-5x+3)(-5x-3)$</span>
+              <span>(4) $\left(-\dfrac{1}{4}x+\dfrac{1}{3}y\right)\left(\dfrac{1}{4}x+\dfrac{1}{3}y\right)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오른쪽 사이드 -->
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$(a+b)(a-b)=a^2-b^2$에서 $a^2$에서 $b^2$을 뺀다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--2col">
+          <span>(1) $9x^2-25$</span>
+          <span>(2) $\dfrac{9}{16}x^2-4y^2$</span>
+          <span>(3) $25x^2-9$</span>
+          <span>(4) $\dfrac{1}{9}y^2-\dfrac{1}{16}x^2$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 05 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">05</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            다음 중 옳지 않은 것은?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $(x+9)(x-9)=x^2-81$</span>
+              <span>② $\left(y+\dfrac{1}{3}\right)\left(y-\dfrac{1}{3}\right)=y^2-\dfrac{1}{9}$</span>
+              <span>③ $(-4+x)(-4-x)=x^2-16$</span>
+              <span>④ $(3a+5)(3a-5)=9a^2-25$</span>
+              <span>⑤ $(-x-y)(x-y)=-x^2+y^2$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 06 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">06</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $\left(\dfrac{1}{7}x-\dfrac{1}{2}y\right)\left(\dfrac{1}{7}x+\dfrac{1}{2}y\right)=ax^2+by^2$일 때, 상수 $a$, $b$에 대하여 $\dfrac{a}{b}$의 값은?
+            <div class="prob__choices-wrap" style="margin-top:5px;">
+              <span>① $-\dfrac{49}{2}$</span>
+              <span>② $-\dfrac{49}{4}$</span>
+              <span>③ $-\dfrac{4}{49}$</span>
+              <span>④ $\dfrac{4}{49}$</span>
+              <span>⑤ $\dfrac{49}{4}$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">003</span>
+  </div>
+</div><!-- /page 003 -->
+
+
+<!-- ═══════════ PAGE 004 ═══════════ -->
+<div class="page">
+  <!-- 개념박스 : 개념04 + 예제04 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 04 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">04</span>
+          </div>
+          <span class="concept-title">$(x+a)(x+b)$의 전개</span>
+        </div>
+        <div class="concept-body">
+          <div><span class="hl">$(x+a)(x+b)=x^2+(a+b)x+ab$</span></div>
+          <div>$x$의 계수 = 상수항의 <span class="hl">합</span> $(a+b)$, &ensp;상수항 = 상수항의 <span class="hl">곱</span> $ab$</div>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$(x+3)(x-5)=x^2+(3-5)x+3\cdot(-5)=x^2-2x-15$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제 04 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">04</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 식을 전개하시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $(x+4)(x-5)$</span>
+              <span>(2) $(x-3)(x-8)$</span>
+              <span>(3) $\left(x+\dfrac{1}{3}\right)(x+6)$</span>
+              <span>(4) $(x-4y)(x+3y)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오른쪽 사이드 -->
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$x$의 계수가 1인 두 일차식의 곱 → 상수항의 합이 $x$의 계수, 상수항의 곱이 상수항</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--2col">
+          <span>(1) $x^2-x-20$</span>
+          <span>(2) $x^2-11x+24$</span>
+          <span>(3) $x^2+\dfrac{19}{3}x+2$</span>
+          <span>(4) $x^2-xy-12y^2$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 07 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">07</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $(x+3)(x-2)+(x-3)(x+5)$를 간단히 하면?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $x^2+3x-21$</span>
+              <span>② $x^2+6x-15$</span>
+              <span>③ $2x^2+6x-21$</span>
+              <span>④ $2x^2+3x-21$</span>
+              <span>⑤ $2x^2+6x-6$</span>
+            </div>
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 08 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">08</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            다음 중 □ 안에 알맞은 수가 나머지 넷과 다른 하나는?
+            <div class="prob__choices-stack" style="margin-top:5px;">
+              <span>① $(a-4)(a+5)=a^2+\square a-20$</span>
+              <span>② $(x+2)\left(x-\dfrac{1}{2}\right)=x^2+\dfrac{3}{2}x-\square$</span>
+              <span>③ $(x+2)(x-1)=x^2+\square x-2$</span>
+              <span>④ $(a-3b)(a+4b)=a^2-\square ab-12b^2$</span>
+              <span>⑤ $(-x+3y)(-x-4y)=x^2+\square xy-12y^2$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">004</span>
+  </div>
+</div><!-- /page 004 -->
+
+
+<!-- ═══════════ PAGE 005 ═══════════ -->
+<div class="page">
+  <!-- 개념박스 : 개념05 + 예제05 -->
+  <div class="cbox">
+    <div class="cbox__left">
+      <!-- 개념 05 -->
+      <div class="concept-def">
+        <div class="concept-def__hd">
+          <div class="concept-chip">
+            <span class="concept-chip__gae">개념</span>
+            <span class="concept-chip__n">05</span>
+          </div>
+          <span class="concept-title">$(ax+b)(cx+d)$의 전개</span>
+        </div>
+        <div class="concept-body">
+          <div><span class="hl">$(ax+b)(cx+d)=acx^2+(ad+bc)x+bd$</span></div>
+          <ul>
+            <li>$x^2$의 계수: 바깥쪽 $a,c$를 곱한다.</li>
+            <li>$x$의 계수: 대각선 곱 두 개를 더한다.</li>
+            <li>상수항: 안쪽 $b,d$를 곱한다.</li>
+          </ul>
+          <div class="concept-eg">
+            <span class="concept-eg__label">예</span>
+            <div class="concept-eg__content">$(2x-1)(3x+2)$<br>$x^2$의 계수: $2\times3=6$, &ensp;$x$의 계수: $2\times2+(-1)\times3=1$, &ensp;상수항: $(-1)\times2=-2$<br>$\therefore\; 6x^2+x-2$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 예제 05 -->
+      <div class="ex-wrap">
+        <div class="ex-badge">
+          <span class="ex-badge__pill">예제</span>
+          <span class="ex-badge__num">05</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-content">
+            <div class="ex-q">다음 식을 전개하시오.</div>
+            <div class="ex-choices-2col">
+              <span>(1) $(3x+4)(2x-5)$</span>
+              <span>(2) $(5x-2)(2x+3)$</span>
+              <span>(3) $(3x+4)\left(\dfrac{1}{3}x+\dfrac{1}{2}\right)$</span>
+              <span>(4) $(-3x+5y)(4x-7y)$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오른쪽 사이드 -->
+    <div class="cbox__right">
+      <div style="flex:1;"></div>
+      <div class="tip-box">
+        <div class="tip-box__hd">
+          <span class="tip-pill">풀이 TIP</span>
+          <span class="tip-tri"></span>
+        </div>
+        <div class="tip-body">
+          <ul>
+            <li>$(ax+b)(cx+d)$에서 $x^2$의 계수는 $ac$, $x$의 계수는 $ad+bc$, 상수항은 $bd$</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans-row">
+        <span class="ans-badge">정답</span>
+        <span class="ans-text ans-text--1col">
+          <span>(1) $6x^2-7x-20$</span>
+          <span>(2) $10x^2+11x-6$</span>
+          <span>(3) $x^2+\dfrac{17}{6}x+2$</span>
+          <span>(4) $-12x^2+41xy-35y^2$</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쏙쏙 개념 익히기 -->
+  <div class="practice-sec">
+    <div class="practice-inner">
+      <div class="prac-hd">
+        <div class="prac-hd__tab">
+          <span class="prac-hd__ss">쏙쏙</span>
+          <span class="prac-hd__gn">개념</span>
+          <span class="prac-hd__ih">익히기</span>
+        </div>
+        <div class="prac-hd__line"></div>
+      </div>
+      <div class="prac-grid">
+        <!-- 문제 09 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">09</span>
+            <span class="prob__badge">쌍둥이</span>
+          </div>
+          <div class="prob__body">
+            $(2x+a)(3x-7)=6x^2-5x+b$일 때, $a-b$의 값을 구하여라.
+          </div>
+        </div>
+        <div class="prac-sep"></div>
+        <!-- 문제 10 -->
+        <div class="prob">
+          <div class="prob__hd">
+            <span class="prob__num">10</span>
+            <span class="prob__badge">유사</span>
+          </div>
+          <div class="prob__body">
+            $(3x+1)(Ax+B)$를 전개하여 간단히 하였을 때, 상수항은 2이고 $x$의 계수는 상수항보다 5만큼 크다. 이때 $x^2$의 계수를 구하시오.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">005</span>
+  </div>
+</div><!-- /page 005 -->
+
+
+<!-- ═══════════ PAGE 006 ═══════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- set-block 1 : 예제06 + 개념익히기 11,12 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">06</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">
+                오른쪽 그림과 같이 가로, 세로의 길이가 각각 $7x$, $4x$인 직사각형에서 가로의 길이는 2만큼 늘이고 세로의 길이는 3만큼 줄여서 만든 직사각형의 넓이를 구하시오.
+                <span style="font-size:8.5px;color:#539e84;">(곱셈 공식의 도형에의 활용)</span>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -10 520 370" width="182" height="129" font-family="serif" style="display:block;margin-top:6px;">
+  <rect x="-20" y="-10" width="520" height="370" fill="white"/>
+  <polygon points="80,60 370,60 370,220 80,220" fill="#f6c4d4" fill-opacity="0.95"/>
+  <polygon points="80,220 320,220 320,250 80,250" fill="#fde0e8" fill-opacity="0.7"/>
+  <polygon points="80,60 370,60 370,220 80,220" fill="none" stroke="black" stroke-width="1.4"/>
+  <polygon points="80,60 320,60 320,250 80,250" fill="none" stroke="black" stroke-width="3"/>
+  <path d="M 80,60 Q 200,20 320,60" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 320,60 Q 345,40 370,60" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 80,60 Q 30,155 80,250" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 320,220 Q 355,235 320,250" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="200" y="16" font-size="26" font-style="italic" text-anchor="middle">7x</text>
+  <text x="345" y="34" font-size="24" text-anchor="middle">2</text>
+  <text x="20" y="162" font-size="26" font-style="italic">4x</text>
+  <text x="362" y="244" font-size="24">3</text>
+</svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>바뀐 가로와 세로를 각각 구해 곱하면 $(ax+b)(cx+d)$ 형태</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text ans-text--1col">
+            <span>$28x^2-13x-6$</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 11 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">11</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              아래 그림은 가로, 세로의 길이가 각각 $5x$, $4x$인 직사각형 모양의 땅에 폭이 2로 일정한 길을 낸 것이다. 이때 색칠한 부분의 넓이를 나타내는 식은?
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 480 380" width="170" height="133" font-family="serif" style="display:block;margin-top:4px;">
+  <rect x="-10" y="-10" width="480" height="380" fill="white"/>
+  <rect x="80"  y="80"  width="135" height="90" fill="#7a6437"/>
+  <rect x="245" y="80"  width="135" height="90" fill="#7a6437"/>
+  <rect x="80"  y="200" width="135" height="80" fill="#7a6437"/>
+  <rect x="245" y="200" width="135" height="80" fill="#7a6437"/>
+  <rect x="80" y="80" width="300" height="200" fill="none" stroke="black" stroke-width="1.8"/>
+  <line x1="80"  y1="170" x2="215" y2="170" stroke="black" stroke-width="1.2"/>
+  <line x1="245" y1="170" x2="380" y2="170" stroke="black" stroke-width="1.2"/>
+  <line x1="80"  y1="200" x2="215" y2="200" stroke="black" stroke-width="1.2"/>
+  <line x1="245" y1="200" x2="380" y2="200" stroke="black" stroke-width="1.2"/>
+  <line x1="215" y1="80"  x2="215" y2="170" stroke="black" stroke-width="1.2"/>
+  <line x1="245" y1="80"  x2="245" y2="170" stroke="black" stroke-width="1.2"/>
+  <line x1="215" y1="200" x2="215" y2="280" stroke="black" stroke-width="1.2"/>
+  <line x1="245" y1="200" x2="245" y2="280" stroke="black" stroke-width="1.2"/>
+  <path d="M 80,80 Q 230,30 380,80" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 80,80 Q 30,180 80,280" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 380,170 Q 415,185 380,200" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 215,280 Q 230,310 245,280" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="230" y="22" font-size="28" font-style="italic" text-anchor="middle">5x</text>
+  <text x="18" y="186" font-size="28" font-style="italic">4x</text>
+  <text x="425" y="192" font-size="26">2</text>
+  <text x="230" y="328" font-size="26" text-anchor="middle">2</text>
+</svg>
+              <div class="prob__choices-stack" style="margin-top:3px;">
+                <span>① $-14x^2+18x+8$</span>
+                <span>② $-14x^2-18x+4$</span>
+                <span>③ $20x^2+18x+4$</span>
+                <span>④ $20x^2-18x+6$</span>
+                <span>⑤ $20x^2-18x+4$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 12 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">12</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              다음 그림은 가로의 길이가 $9x$, 세로의 길이가 $6x$인 직사각형 모양의 땅에 폭이 1로 일정한 길을 낸 것이다. 길을 제외한 땅의 넓이가 $ax^2+bx+c$일 때, 상수 $a$, $b$, $c$에 대하여 $a-b+c$의 값을 구하시오.
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 480 360" width="170" height="127" font-family="serif" style="display:block;margin-top:4px;">
+  <rect x="-10" y="-10" width="480" height="360" fill="white"/>
+  <rect x="70"  y="60"  width="152" height="98" fill="#7fc8d2"/>
+  <rect x="248" y="60"  width="152" height="98" fill="#7fc8d2"/>
+  <rect x="70"  y="182" width="152" height="98" fill="#7fc8d2"/>
+  <rect x="248" y="182" width="152" height="98" fill="#7fc8d2"/>
+  <rect x="70" y="60" width="330" height="220" fill="none" stroke="black" stroke-width="1.8"/>
+  <line x1="70"  y1="158" x2="222" y2="158" stroke="black" stroke-width="1.2"/>
+  <line x1="248" y1="158" x2="400" y2="158" stroke="black" stroke-width="1.2"/>
+  <line x1="70"  y1="182" x2="222" y2="182" stroke="black" stroke-width="1.2"/>
+  <line x1="248" y1="182" x2="400" y2="182" stroke="black" stroke-width="1.2"/>
+  <line x1="222" y1="60"  x2="222" y2="158" stroke="black" stroke-width="1.2"/>
+  <line x1="248" y1="60"  x2="248" y2="158" stroke="black" stroke-width="1.2"/>
+  <line x1="222" y1="182" x2="222" y2="280" stroke="black" stroke-width="1.2"/>
+  <line x1="248" y1="182" x2="248" y2="280" stroke="black" stroke-width="1.2"/>
+  <path d="M 70,60 Q 235,15 400,60" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 70,60 Q 20,170 70,280" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 400,158 Q 430,170 400,182" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 222,280 Q 235,310 248,280" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="235" y="14" font-size="26" font-style="italic" text-anchor="middle">9x</text>
+  <text x="8" y="176" font-size="26" font-style="italic">6x</text>
+  <text x="438" y="176" font-size="24">1</text>
+  <text x="235" y="328" font-size="24" text-anchor="middle">1</text>
+</svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">006</span>
+  </div>
+</div><!-- /page 006 -->
+
+
+<!-- ═══════════ PAGE 007 ═══════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- set-block 1 : 예제07 + 개념익히기 13,14 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <!-- 보충 개념 칩 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__boogi">보충 개념</span>
+            </div>
+            <span class="concept-title" style="margin-left:8px;">복잡한 식의 전개 — 공통부분이 있는 식의 전개</span>
+          </div>
+          <div class="concept-body">
+            <div>❶ 두 괄호에 공통으로 나타나는 부분을 찾는다. &ensp;❷ 그 부분을 $A$로 치환한다. &ensp;❸ 공식으로 전개 후 $A$를 원래 식으로 되돌린다.</div>
+            <div class="concept-eg">
+              <span class="concept-eg__label">예</span>
+              <div class="concept-eg__content">
+                $(x+y+1)(x+y-1)$ → 공통: $x+y=A$<br>
+                $=(A+1)(A-1)=A^2-1=(x+y)^2-1=x^2+2xy+y^2-1$
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">07</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">
+                다음 식을 전개하시오.
+                <span style="font-size:8.5px;color:#539e84;">(공통부분이 있는 식의 전개)</span>
+              </div>
+              <div class="ex-choices-2col">
+                <span>(1) $(3x+2y-5)(3x+2y+1)$</span>
+                <span>(2) $(4x-y+3)(4x+y-3)$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>두 식에 공통으로 들어있는 부분을 찾아 한 문자로 치환한다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text ans-text--1col">
+            <span>(1) $9x^2+12xy-12x+4y^2-8y-5$</span>
+            <span>(2) $16x^2-y^2+6y-9$</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 13 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">13</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              $(x+y-3)(x+y+1)$을 전개하면?
+              <div class="prob__choices-stack" style="margin-top:5px;">
+                <span>① $x^2-2xy+y^2-2x-2y-3$</span>
+                <span>② $x^2+2xy+y^2+2x+2y-3$</span>
+                <span>③ $x^2+2xy+y^2-2x-2y-3$</span>
+                <span>④ $x^2+2xy+y^2-2x+2y-3$</span>
+                <span>⑤ $x^2-4xy+y^2-2x-2y-3$</span>
+              </div>
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 14 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">14</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              $(x-3y+4)(x+5y+4)$를 전개한 식에서 상수항을 포함한 모든 항의 계수의 합을 구하시오.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">007</span>
+  </div>
+</div><!-- /page 007 -->
+
+
+<!-- ═══════════ PAGE 008 ═══════════ -->
+<div class="page" style="gap:8px;">
+
+  <!-- set-block 1 : 예제08 + 개념익히기 15,16 -->
+  <div class="set-block">
+    <div class="cbox">
+      <div class="cbox__left">
+        <!-- 보충 개념 칩 -->
+        <div class="concept-def">
+          <div class="concept-def__hd">
+            <div class="concept-chip">
+              <span class="concept-chip__boogi">보충 개념</span>
+            </div>
+            <span class="concept-title" style="margin-left:8px;">복잡한 식의 전개 — ( )( )( )( )의 꼴의 전개</span>
+          </div>
+          <div class="concept-body">
+            <div>❶ 전개했을 때 $x^2$의 계수가 같아지는 쌍끼리 묶는다. &ensp;❷ 각 쌍을 전개하면 공통부분 등장. &ensp;❸ 공통부분을 $A$로 치환해 마무리.</div>
+            <div class="concept-eg">
+              <span class="concept-eg__label">예</span>
+              <div class="concept-eg__content">
+                $(x+1)(x+4)=x^2+5x+4$, &ensp;$(x+2)(x+3)=x^2+5x+6$ &ensp;→ 공통: $x^2+5x=A$<br>
+                $=(A+4)(A+6)=A^2+10A+24=(x^2+5x)^2+10(x^2+5x)+24$<br>
+                $=x^4+10x^3+35x^2+50x+24$
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ex-wrap">
+          <div class="ex-badge">
+            <span class="ex-badge__pill">예제</span>
+            <span class="ex-badge__num">08</span>
+          </div>
+          <div class="ex-body">
+            <div class="ex-content">
+              <div class="ex-q">
+                $(x+1)(x+3)(x-2)(x+6)$을 전개하시오.
+                <span style="font-size:8.5px;color:#539e84;">(( )( )( )( )의 꼴의 전개)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cbox__right">
+        <div style="flex:1;"></div>
+        <div class="tip-box">
+          <div class="tip-box__hd">
+            <span class="tip-pill">풀이 TIP</span>
+            <span class="tip-tri"></span>
+          </div>
+          <div class="tip-body">
+            <ul>
+              <li>상수항의 합이 같아지는 쌍끼리 짝짓는다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ans-row">
+          <span class="ans-badge">정답</span>
+          <span class="ans-text ans-text--1col">
+            <span>$x^4+8x^3+7x^2-36x-36$</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-sec" style="flex:none;">
+      <div class="practice-inner">
+        <div class="prac-hd">
+          <div class="prac-hd__tab">
+            <span class="prac-hd__ss">쏙쏙</span>
+            <span class="prac-hd__gn">개념</span>
+            <span class="prac-hd__ih">익히기</span>
+          </div>
+          <div class="prac-hd__line"></div>
+        </div>
+        <div class="prac-grid">
+          <!-- 문제 15 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">15</span>
+              <span class="prob__badge">쌍둥이</span>
+            </div>
+            <div class="prob__body">
+              $(x+3)(x+5)(x-1)(x-3)$의 전개식에서 $x$의 계수를 $a$, 상수항을 $b$라 할 때, $a+b$의 값을 구하시오.
+            </div>
+          </div>
+          <div class="prac-sep"></div>
+          <!-- 문제 16 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num">16</span>
+              <span class="prob__badge">유사</span>
+            </div>
+            <div class="prob__body">
+              $(x-1)(x-2)(x+2)(x+3)$을 전개했을 때 $x$의 계수를 구하여라.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">008</span>
+  </div>
+</div><!-- /page 008 -->
+
+
+<!-- ═══════════ PAGE 009 — 개념 한눈에 보기 ═══════════ -->
+<div class="page" style="padding-top:36px; gap:10px;">
+
+  <div class="kaynun-hd">
+    <span class="kaynun-hd__small">한눈에 보는</span>
+    <span class="kaynun-hd__big">개념 정리</span>
+  </div>
+
+  <div class="kaynun-box">
+    <!-- 개념 01 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">01</span>
+        <span class="kaynun-title">(다항식)×(다항식)의 전개</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$(a+b)(c+d)=ac+ad+bc+bd$</div>
+        <div>분배법칙으로 모든 항끼리 곱한 후 동류항을 정리한다.</div>
+      </div>
+    </div>
+
+    <!-- 개념 02 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">02</span>
+        <span class="kaynun-title">합과 차의 제곱</span>
+      </div>
+      <div class="kaynun-body">
+        <ul>
+          <li>$(a+b)^2=a^2+2ab+b^2$</li>
+          <li>$(a-b)^2=a^2-2ab+b^2$</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 개념 03 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">03</span>
+        <span class="kaynun-title">합과 차의 곱</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$(a+b)(a-b)=a^2-b^2$</div>
+      </div>
+    </div>
+
+    <!-- 개념 04 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">04</span>
+        <span class="kaynun-title">$(x+a)(x+b)$의 전개</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$(x+a)(x+b)=x^2+(a+b)x+ab$</div>
+        <div>상수항의 합이 $x$의 계수, 상수항의 곱이 상수항이 된다.</div>
+      </div>
+    </div>
+
+    <!-- 개념 05 -->
+    <div class="kaynun-sec">
+      <div class="kaynun-sec__hd">
+        <span class="kaynun-chip">05</span>
+        <span class="kaynun-title">$(ax+b)(cx+d)$의 전개</span>
+      </div>
+      <div class="kaynun-body">
+        <div>$(ax+b)(cx+d)=acx^2+(ad+bc)x+bd$</div>
+        <div>$x^2$의 계수는 $ac$, $x$의 계수는 $ad+bc$, 상수항은 $bd$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">009</span>
+  </div>
+</div><!-- /page 009 -->
+
+
+<!-- ═══════════ PAGE 010 — 쏙쏙 유형 익히기 ═══════════ -->
+<div class="page">
+  <div class="umuri-hd">
+    <div class="umuri-hd__tab">
+      <span class="umuri-hd__ss">쏙쏙</span>
+      <span class="umuri-hd__yh">유형</span>
+      <span class="umuri-hd__ih">익히기</span>
+    </div>
+    <div class="umuri-hd__line"></div>
+  </div>
+
+  <div class="umuri-grid" style="flex:1; min-height:0;">
+    <!-- 왼쪽 컬럼 : 문제 01, 02, 03 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+      <!-- 유형 01 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">01</span>
+          <span class="umuri-desc">계수 구하기</span>
+        </div>
+        <div class="umuri-q">
+          $(2x-1)(3x+a)$의 전개식에서 $x$의 계수가 3일 때, 상수 $a$의 값은?
+          <div class="umuri-choices-3col" style="margin-top:6px;">
+            <span>① $-2$</span>
+            <span>② $0$</span>
+            <span>③ $3$</span>
+            <span>④ $4$</span>
+            <span>⑤ $6$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형 02 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">02</span>
+          <span class="umuri-desc">곱셈 공식 종합</span>
+        </div>
+        <div class="umuri-q">
+          다음 중 옳은 것은?
+          <div class="umuri-choices-stack" style="margin-top:6px;">
+            <span>① $(-x-9)^2=-x^2+18x-81$</span>
+            <span>② $\left(\dfrac{1}{3}x-1\right)^2=\dfrac{1}{9}x^2-\dfrac{2}{3}x+1$</span>
+            <span>③ $(x-5)^2=x^2-10x-10$</span>
+            <span>④ $(x+6)^2=x^2-12x+36$</span>
+            <span>⑤ $\left(2x-\dfrac{1}{2}\right)^2=4x^2-2x-\dfrac{1}{4}$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형 03 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">03</span>
+          <span class="umuri-desc">연속한 합과 차의 곱</span>
+        </div>
+        <div class="umuri-q">
+          $(x-2)(x+2)(x^2+4)$를 전개한 것은?
+          <div class="umuri-choices-3col" style="margin-top:6px;">
+            <span>① $x^2-4$</span>
+            <span>② $x^2-16$</span>
+            <span>③ $x^4-4$</span>
+            <span>④ $x^4-8$</span>
+            <span>⑤ $x^4-16$</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="umuri-sep"></div>
+
+    <!-- 오른쪽 컬럼 : 문제 04, 05, 06 -->
+    <div class="umuri-col" style="display:grid; grid-template-rows:240px 240px 240px; align-items:start;">
+      <!-- 유형 04 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">04</span>
+          <span class="umuri-desc">상수 구하기</span>
+        </div>
+        <div class="umuri-q">
+          상수 $a$, $b$에 대하여 $(ax+1)(2x+b)=-6x^2-7x+3$일 때, $a+b$의 값을 구하시오.
+        </div>
+      </div>
+      <!-- 유형 05 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">05</span>
+          <span class="umuri-desc">도형 활용</span>
+        </div>
+        <div class="umuri-q">
+          다음 그림의 직사각형에서 색칠한 부분의 넓이는?
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 500 380" width="160" height="122" font-family="serif" style="display:block;margin-top:4px;">
+  <rect x="-10" y="-10" width="500" height="380" fill="white"/>
+  <rect x="300" y="60" width="80" height="40" fill="#9bd3c8" fill-opacity="0.85"/>
+  <rect x="80" y="100" width="220" height="160" fill="#9bd3c8" fill-opacity="0.85"/>
+  <rect x="80" y="60" width="300" height="200" fill="none" stroke="black" stroke-width="2"/>
+  <line x1="80"  y1="100" x2="380" y2="100" stroke="black" stroke-width="1.5"/>
+  <line x1="300" y1="60"  x2="300" y2="260" stroke="black" stroke-width="1.5"/>
+  <path d="M 80,60 Q 60,80 80,100" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 80,60 Q 20,160 80,260" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 80,260 Q 230,330 380,260" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 300,260 Q 340,290 380,260" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="52" y="86" font-size="22" font-style="italic" text-anchor="end">b</text>
+  <text x="8" y="166" font-size="24" font-style="italic">2a</text>
+  <text x="230" y="345" font-size="24" font-style="italic" text-anchor="middle">3a</text>
+  <text x="358" y="296" font-size="22" font-style="italic">2b</text>
+</svg>
+          <div class="umuri-choices-2col" style="margin-top:4px;">
+            <span>① $5a^2-ab+2b^2$</span>
+            <span>② $5a^2-7ab+2b^2$</span>
+            <span>③ $6a^2+ab-2b^2$</span>
+            <span>④ $6a^2-7ab+4b^2$</span>
+            <span>⑤ $6a^2-9ab+4b^2$</span>
+          </div>
+        </div>
+      </div>
+      <!-- 유형 06 -->
+      <div class="umuri-prob">
+        <div class="umuri-prob__hd">
+          <span class="umuri-num">06</span>
+          <span class="umuri-desc">공통부분 있는 식의 전개</span>
+        </div>
+        <div class="umuri-q">
+          다음 식의 전개에서 $A$에 들어갈 식은?<br>
+          $(x+2y-4)^2=x^2+4xy+4y^2+A$
+          <div class="umuri-choices-2col" style="margin-top:6px;">
+            <span>① $4x+4y+8$</span>
+            <span>② $4x-4y+16$</span>
+            <span>③ $-8x+16y+16$</span>
+            <span>④ $-8x-16y+16$</span>
+            <span>⑤ $8x+16y-16$</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">010</span>
+  </div>
+</div><!-- /page 010 -->
+
+
+<!-- ═══════════ PAGE 011 — 빠른정답 ═══════════ -->
+<div class="page" style="padding-top:40px; padding-bottom:30px; gap:12px;">
+  <div class="qa2-title-row">
+    <span class="qa2-num">01</span>
+    <span class="qa2-name">곱셈 공식</span>
+    <span class="qa2-badge">빠른 정답</span>
+  </div>
+  <div class="qa2-divider"></div>
+
+  <div class="qa2-body">
+    <div class="qa2-left">
+      <!-- 쏙쏙 개념 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn">개념</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">⑤</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">③</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">07</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">08</span><span class="qa2-rans">④</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">09</span><span class="qa2-rans">24</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">10</span><span class="qa2-rans">3</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">11</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">12</span><span class="qa2-rans">70</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">13</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">14</span><span class="qa2-rans">20</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">15</span><span class="qa2-rans">9</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">16</span><span class="qa2-rans">-8</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 쏙쏙 유형 익히기 -->
+      <div class="qa2-box">
+        <div class="qa2-box__tab qa2-box__tab--pink">
+          <span class="qa2-box__ss">쏙쏙</span>
+          <span class="qa2-box__gn qa2-box__gn--pink">유형</span>
+          <span class="qa2-box__ih">익히기</span>
+        </div>
+        <div class="qa2-rows">
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">01</span><span class="qa2-rans">③</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">02</span><span class="qa2-rans">②</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">03</span><span class="qa2-rans">⑤</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">04</span><span class="qa2-rans">0</span></div>
+          </div>
+          <div class="qa2-row">
+            <div class="qa2-rg"><span class="qa2-rnum">05</span><span class="qa2-rans">④</span></div>
+            <div class="qa2-rsep"></div>
+            <div class="qa2-rg"><span class="qa2-rnum">06</span><span class="qa2-rans">④</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="qa2-vdivider"></div>
+    <div class="qa2-right"></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer__topic">곱셈 공식</span>
+    <span class="page-footer__num">011</span>
+  </div>
+</div><!-- /page 011 -->
+
+</body>
+</html>
