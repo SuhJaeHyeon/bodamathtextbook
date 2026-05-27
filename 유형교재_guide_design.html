@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유형교재 가이드 디자인</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="./katex/katex.min.css">
+<style>
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; }
+.katex { font-size: 1em; }
+.katex .mbin,
+.katex .mrel { margin-left: 0.06em !important; margin-right: 0.06em !important; }
+
+/* ═══════════════════════════════════════
+   디자인 토큰
+═══════════════════════════════════════ */
+:root {
+  --primary:      #2FA5A5;
+  --primary-bg:   rgba(47, 165, 165, 0.18);
+  --badge-rep:    #FF7D56;
+  --badge-imp:    #FF5656;
+  --text-strong:  #232F39;
+  --text-sub:     #818181;
+  --num-color:    #C1C1C1;
+  --diff-on:      #FFB804;
+  --diff-off:     #D9D9D9;
+  --diff-label:   #717171;
+  --divider:      #D9D9D9;
+  --col-sep:      #F5F5F5;
+}
+
+/* ═══════════════════════════════════════
+   BODY
+═══════════════════════════════════════ */
+body {
+  background: #adadad;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+}
+
+/* ═══════════════════════════════════════
+   PAGE
+   Figma: 595×842, padding 32px 30px 20px,
+   gap 6px, flex-col center, align-start
+═══════════════════════════════════════ */
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 30px 20px;
+  gap: 6px;
+  isolation: isolate;
+  width: 595px;
+  height: 842px;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* ═══════════════════════════════════════
+   단원 배지
+   Figma: absolute, left 30px, top 0,
+   65×45px, border-radius 0 0 100px 100px
+═══════════════════════════════════════ */
+.unit-badge {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 18px 8px;
+  gap: 10px;
+  width: 65px;
+  height: 45px;
+  background: #2FA5A5;
+  border-radius: 0px 0px 100px 100px;
+  z-index: 3;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 31px;
+  letter-spacing: -0.05em;
+  color: #FFFFFF;
+}
+
+/* ═══════════════════════════════════════
+   헤더 — 첫 페이지 (대형, 가로 row)
+   Figma: flex-row, space-between,
+   align-end, h:40px
+═══════════════════════════════════════ */
+.page-hd {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0px;
+  width: 535px;
+  height: 40px;
+  flex-shrink: 0;
+  align-self: stretch;
+  margin-top: 13px; /* unit-badge(45px) - page padding(32px) */
+}
+
+/* 왼쪽: 소단원 제목 (소단원번호 배지가 별도 표시하므로 제목만) */
+.page-hd__title {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 31px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+
+/* 오른쪽: "유형 익히기" */
+.page-hd__section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 0px;
+  gap: 2px;
+  width: 112px;
+  height: 40px;
+}
+.page-hd__yn {
+  display: inline-flex;
+  align-items: flex-end;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+  color: #2FA5A5;
+  margin: 0px -2px;
+}
+.page-hd__yn-char {
+  display: block;
+}
+.page-hd__yn-char--raised {
+  width: 26px;
+  margin-left: -2px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+.page-hd__ik {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0px 4px;
+  width: 60px;
+  height: 40px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+
+/* ═══════════════════════════════════════
+   페이지 변형 — 이후 페이지 (gap 12px)
+   Figma page2: gap 12px (vs page1 gap 6px)
+═══════════════════════════════════════ */
+.page--cont {
+  gap: 12px;
+}
+
+/* ═══════════════════════════════════════
+   페이지 변형 — 심화 페이지 (유형_심화페이지)
+   유형_이후페이지와 구조 동일, 색상만 변경
+   #2FA5A5 100% → #FF4043
+   #2FA5A5 18%  → rgba(239,58,61,0.18)
+═══════════════════════════════════════ */
+.page--adv .type-label-row {
+  background: rgba(239, 58, 61, 0.18);
+}
+.page--adv .type-chip__left {
+  border-color: #FF4043;
+  color: #FF4043;
+}
+.page--adv .type-chip__right {
+  background: #FF4043;
+}
+.page--adv .prob-rep__num .nx,
+.page--adv .prob__num .nx {
+  color: #FF4043;
+}
+
+/* ═══════════════════════════════════════
+   헤더 — 이후 페이지 (소형)
+═══════════════════════════════════════ */
+.page-hd--sm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 535px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.page-hd--sm__line {
+  /* Divider bar */
+  width: 474.98px;
+  height: 1px;
+  background: #D9D9D9;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+.page-hd--sm__label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1px;
+}
+.page-hd--sm__yn {
+  display: inline-flex;
+  align-items: flex-end;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 13.0788px; /* Figma exact */
+  line-height: 1;
+  letter-spacing: -0.09em;
+  color: var(--primary);
+}
+.page-hd--sm__yn-char {
+  display: block;
+}
+.page-hd--sm__yn-char--raised {
+  width: 11.34px;
+  margin-left: -0.9px;
+  padding-bottom: 1.74px;
+  text-align: center;
+}
+.page-hd--sm__ik {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 10.4631px; /* Figma exact */
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--text-strong);
+}
+
+/* ═══════════════════════════════════════
+   구분선   Figma: 1px, #D9D9D9
+═══════════════════════════════════════ */
+.divider {
+  width: 535px;
+  height: 1px;
+  background: #D9D9D9;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* ═══════════════════════════════════════
+   중요 배지
+   Figma 구조:
+   ┌ .badge--imp (47×13.5px, absolute, left:29px top:65.22px)
+   │  flex-col, align-items: flex-end, z-index: 1
+   └─┬ .badge--imp__inner (23×13.5px)
+     │  flex-col, justify-center, align-center
+     ├─ .badge--imp__pill (21×11px)
+     │  flex-row center, #FF5656, border-radius 1000px, padding 2px 4px
+     │  text: 13×7px, Pretendard Variable 700 7px, white
+     └─ .badge--imp__tri (3.5×2.5px)
+        #FF5656, clip-path ▼ (rotate 180deg polygon)
+        → pill 11px + tri 2.5px = 13.5px 정확히 일치
+═══════════════════════════════════════ */
+.badge--imp {
+  position: absolute;
+  left: -1px;
+  top: -12.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 47px;
+  height: 13.5px;
+  z-index: 1;
+}
+.badge--imp__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 23px;
+  height: 13.5px;
+}
+.badge--imp__pill {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 10px;
+  width: 21px;
+  height: 11px;
+  background: #FF5656;
+  border-radius: 1000px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 7px;
+  line-height: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* Polygon 4 — rotate(180deg) 적용 아래 방향 삼각형
+   3.5×2.5px, #FF5656 */
+.badge--imp__tri {
+  width: 3.5px;
+  height: 2.5px;
+  background: #FF5656;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   컨텐츠 래퍼
+   Figma: flex-col, padding 4px 0 0, gap 4px
+═══════════════════════════════════════ */
+.content-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 0px 0px;
+  gap: 4px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 섹션: padding 12px 0 0, gap 26px */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 0px 0px;
+  gap: 26px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* ═══════════════════════════════════════
+   2열 행 레이아웃
+   Figma: flex-row, gap 16px
+═══════════════════════════════════════ */
+.row-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 왼쪽 열: type-group + prob 혼합 가능
+   Figma: flex-col, gap 30px, 251.5px */
+.col-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 30px;
+  width: 251.5px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 오른쪽 열: 주로 prob-group
+   Figma: flex-col, gap 30px, 251.5px */
+.col-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 30px;
+  width: 251.5px;
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* 열 구분선 */
+.col-sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--col-sep);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   유형 그룹
+   Figma: flex-col, gap 0px, border-radius 10px
+═══════════════════════════════════════ */
+.type-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 0px;
+  width: 251.5px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* 레이블 행
+   Figma: rgba(47,165,165,0.18), h:19px,
+   border-radius 4px 4px 0 4px */
+.type-label-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 6px;
+  width: 251.5px;
+  height: 19px;
+  background: rgba(47, 165, 165, 0.18);
+  border-radius: 4px 4px 0px 4px;
+  align-self: stretch;
+}
+
+/* 유형 칩: 두 파트 구조 */
+.type-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  width: 47px;
+  height: 19px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+/* 왼쪽: "유형" + teal 테두리(L,T,B)
+   Figma: box-sizing border-box,
+   border 1px 0 1px 1px solid #2FA5A5,
+   border-radius 4px 1px 1px 4px, padding 3px 1px 3px 4px
+   inner text: 19×11px, 11px 600, -0.09em, center */
+.type-chip__left {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3px 4px 3px 4px;
+  gap: 10px;
+  width: 24px;
+  height: 19px;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #2FA5A5;
+  border-radius: 4px 1px 1px 4px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #2FA5A5;
+}
+/* 오른쪽: 소단원 2자리 번호 + teal 배경
+   Figma: #2FA5A5, border-radius 0 4px 4px 0,
+   padding 3px 3px 3px 2px, 23×19px */
+.type-chip__right {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 3px 3px 2px;
+  gap: 10px;
+  width: 23px;
+  height: 19px;
+  background: #2FA5A5;
+  border-radius: 0px 4px 4px 0px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #FFFFFF;
+}
+
+/* 유형 제목 (칩 오른쪽 텍스트) */
+.type-label-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+
+/* 유형 몸통
+   Figma: padding 6px, gap 8px,
+   rgba(245,245,245,0.4), border-radius 0 0 4px 4px */
+.type-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px 10px 10px;
+  gap: 8px;
+  width: 251.5px;
+  background: rgba(245, 245, 245, 0.4);
+  border-radius: 0px 0px 4px 4px;
+  align-self: stretch;
+}
+.type-body__text {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: -0.06em;
+  color: #232F39;
+  align-self: stretch;
+}
+
+/* 유형 내 표
+   Figma: Pretendard Variable 8px, line-height 140%,
+   letter-spacing -0.06em, color #0C0C0C,
+   border 0.5px solid #B9B9B9, padding 3px 10px */
+.type-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 8px;
+  line-height: 140%;
+  letter-spacing: -0.06em;
+  color: #0C0C0C;
+}
+.type-table th {
+  background: #F2F2F2;
+  border: 0.5px solid #B9B9B9;
+  padding: 3px 10px;
+  text-align: center;
+  font-weight: 500;
+}
+.type-table td {
+  background: white;
+  border: 0.5px solid #B9B9B9;
+  padding: 3px 10px;
+}
+.type-table tr > *:first-child { border-left: none; }
+.type-table tr > *:last-child  { border-right: none; }
+.type-table tr:first-child > * { border-top: none; }
+.type-table tr:last-child > *  { border-bottom: none; }
+
+/* ═══════════════════════════════════════
+   문제 그룹 (.prob-group)
+   여러 prob/prob-rep를 묶는 래퍼
+   Figma: flex-col, gap 16px (prob 간 간격)
+═══════════════════════════════════════ */
+.prob-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 251.5px;
+  align-self: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ═══════════════════════════════════════
+   대표문제 (.prob-rep)
+   Figma: flex-col, gap 4px, border-radius 10px
+   — 헤더: 번호 + 대표문제 배지
+═══════════════════════════════════════ */
+.prob-rep {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 251.5px;
+  border-radius: 10px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* 헤더행: 번호 + 배지
+   Figma: flex-row, gap 4px, h:20px */
+.prob-rep__hd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  width: fit-content;
+  height: 20px;
+}
+
+/* 번호 (대표문제용)
+   Figma: Pretendard 700, 20px, #C1C1C1,
+   letter-spacing -0.09em, w:33px, align flex-end */
+.prob-rep__num {
+  width: 33px;
+  height: 20px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #C1C1C1;
+  display: flex;
+  gap: 1px;
+  align-items: flex-end;
+}
+
+/* 대표문제 배지
+   Figma: #FF7D56, border-radius 20px 20px 20px 0px,
+   padding 3px 4px, hug/hug, 7px font */
+.badge--rep {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 4px;
+  gap: 10px;
+  width: fit-content;
+  height: fit-content;
+  background: #FF7D56;
+  border-radius: 20px 20px 20px 0px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 7px;
+  line-height: 100%;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+/* 몸통 (대표문제)
+   Figma: flex-col, justify-center, gap 10px,
+   border-radius 3px */
+.prob-rep__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  width: 251.5px;
+  border-radius: 3px;
+  align-self: stretch;
+}
+
+/* 문제 텍스트 (대표문제)
+   Figma: Pretendard Variable 400, 12px,
+   line-height 18px, w:219px, #232F39 */
+.prob-rep__q {
+  align-self: stretch;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #232F39;
+}
+
+/* 보기 (대표문제)
+   Figma: flex-wrap, space-between, gap 5px,
+   w:251.5px */
+/* 선지 컨테이너 공통: 우측 여백 4px 고정 */
+.prob-rep__choices-wrap,
+.prob-rep__choices-stack,
+.prob-rep__choices-2col,
+.prob-rep__choices-3col,
+.prob__choices-wrap,
+.prob__choices-stack,
+.prob__choices-2col,
+.prob__choices-3col {
+  padding-right: 4px;
+}
+
+/* 대표문제 선지 변형
+   -wrap  : 한 줄에 다 들어오는 경우 — flex-wrap, space-between
+   -stack : 긴 선지(≥9자) — 1열 세로 나열
+   -2col  : 7~9자 — 2열 grid
+   -3col  : 3~6자  — 3열 grid */
+.prob-rep__choices-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px 0;
+  align-self: stretch;
+}
+.prob-rep__choices-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-self: stretch;
+}
+.prob-rep__choices-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-self: stretch;
+}
+.prob-rep__choices-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px 6px;
+  align-self: stretch;
+}
+
+/* ═══════════════════════════════════════
+   일반 문제 (.prob)
+   Figma: flex-col, gap 4px, border-radius 10px
+   — 헤더: 번호 + 난이도 점
+═══════════════════════════════════════ */
+.prob {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 251.5px;
+  border-radius: 10px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* 헤더행: 번호 + 난이도
+   Figma: flex-row, gap 4px, h:20px */
+.prob__hd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  height: 20px;
+}
+
+/* 번호 (일반 문제)
+   Figma: Pretendard 700, 20px, #C1C1C1,
+   letter-spacing -0.09em, w:33px, align flex-end */
+.prob__num {
+  width: 33px;
+  height: 20px;
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.09em;
+  color: #C1C1C1;
+  display: flex;
+  gap: 1px;
+  align-items: flex-end;
+}
+
+/* 번호 digit 색상 규칙
+   .n0 = '0' → #C1C1C1 (부모에서 상속, 명시 불필요)
+   .nx = 비-0 숫자 → #2FA5A5 (강조) */
+.prob-rep__num .nx,
+.prob__num .nx {
+  color: #2FA5A5;
+}
+/* .n0 는 부모 color(#C1C1C1) 그대로 상속 */
+
+/* 난이도
+   Figma: flex-row, gap 2px, h:7px */
+.prob__diff {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 2px;
+  height: 7px;
+}
+
+/* "난이도" 레이블
+   Figma: Pretendard Variable 700, 7px, #717171 */
+.diff-label {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 7px;
+  line-height: 100%;
+  color: #717171;
+}
+
+/* 난이도 점 컨테이너 */
+.diff-dots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 2px;
+}
+
+/* 난이도 점
+   Figma: 5×5px 원, 채움: #FFB804, 빔: #D9D9D9 */
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #D9D9D9;
+  flex-shrink: 0;
+}
+.dot.on { background: #FFB804; }
+
+/* 몸통 (일반 문제)
+   Figma: flex-col, justify-center, gap 10px,
+   border-radius 3px */
+.prob__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  width: 251.5px;
+  border-radius: 3px;
+  align-self: stretch;
+}
+
+/* 풀이 여백 컴포넌트
+   — 문제를 풀 빈 공간 + prob 최소 높이 균일화
+   — prob__body 내 마지막 자식으로 항상 위치 */
+.prob__space {
+  width: 100%;
+  height: var(--space, 60px);
+  flex-shrink: 0;
+}
+
+/* 조건·보기 박스 컴포넌트
+   — 문제 내 조건 목록, 보기, 〈조건〉 박스 등에 사용
+   — prob__body 내 inline 배치 */
+.prob-boogi {
+  box-sizing: border-box;
+  border: 0.75px solid #D0D0D0;
+  border-radius: 4px;
+  background: rgba(245, 245, 245, 0.7);
+  padding: 5px 8px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 11px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+  color: #232F39;
+  align-self: stretch;
+}
+
+/* 그림·도형·그래프 플레이스홀더
+   — 이미지가 들어갈 자리에 시각적 표시 */
+.prob-figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  min-height: 50px;
+  border: 1px dashed #B9B9B9;
+  border-radius: 4px;
+  font-size: 10px;
+  color: #B9B9B9;
+  letter-spacing: -0.03em;
+}
+
+/* 문제 텍스트 (일반 문제)
+   Figma: Pretendard Variable 400, 12px,
+   line-height 18px, w:219px, #232F39 */
+.prob__q {
+  align-self: stretch;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #232F39;
+}
+
+/* 일반문제 선지 변형
+   -wrap  : 한 줄에 다 들어오는 경우 — flex-wrap, space-between
+   -stack : 긴 선지(≥9자) — 1열 세로 나열
+   -2col  : 7~9자 — 2열 grid
+   -3col  : 3~6자  — 3열 grid */
+.prob__choices-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px 0;
+  align-self: stretch;
+}
+.prob__choices-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-self: stretch;
+}
+.prob__choices-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-self: stretch;
+}
+.prob__choices-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px 6px;
+  align-self: stretch;
+}
+
+/* 보기 항목 (공통): 12px, 400, #232F39 */
+.prob__choice {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #232F39;
+}
+
+/* ═══════════════════════════════════════
+   푸터
+   Figma: flex-row, space-between, h:13px
+═══════════════════════════════════════ */
+.page-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  width: 535px;
+  height: 13px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.page-footer__logo {
+  width: 59px;
+  height: 13px;
+  object-fit: contain;
+}
+.page-footer__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+.page-footer__topic {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 13px;
+  letter-spacing: -0.04em;
+  color: #818181;
+}
+.page-footer__num {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 13px;
+  letter-spacing: -0.04em;
+  color: #232F39;
+}
+
+/* ═══════════════════════════════════════
+   빠른정답 페이지 (page--ans)
+   Figma: flex-row page, padding 40px 30px 30px
+   내부 535×772 단일 컨테이너
+═══════════════════════════════════════ */
+
+/* 페이지 변형 */
+.page--ans {
+  flex-direction: row;
+  align-items: center;
+  padding: 40px 30px 30px;
+}
+
+/* 메인 래퍼 (535×772, flex-col, gap 10px) */
+.ans-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 535px;
+  height: 772px;
+}
+
+/* 헤더 + 정답 프레임 (flex-col, flex:1) */
+.ans-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── 타이틀 행 (535×38) ── */
+.ans-hd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  width: 535px;
+  height: 38px;
+  flex-shrink: 0;
+}
+.ans-hd__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+/* 섹션번호 (Ⅲ): Pretendard 700, 26px, #2FA5A5 */
+.ans-hd__sec-num {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 100%;
+  letter-spacing: -0.12em;
+  color: #2FA5A5;
+  flex-shrink: 0;
+}
+/* 소단원명: Pretendard 600, 20px, #000 */
+.ans-hd__sec-desc {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+/* 유형익히기 레이블 칩 (46×19, #2FA5A5, radius 4px) */
+.ans-hd__label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 6px;
+  gap: 10px;
+  width: 46px;
+  height: 19px;
+  background: #2FA5A5;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.ans-hd__label-text {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 9px;
+  line-height: 11px;
+  text-align: center;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+/* ── 정답 컨텐츠 영역 ── */
+.ans-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* 수평 구분선 (535×2, #F5F5F5) */
+.ans-divider-h {
+  width: 535px;
+  height: 2px;
+  background: #F5F5F5;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* 2열 정답 컬럼 컨테이너 */
+.ans-cols {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  width: 535px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* 정답 열 (257px, padding-top 10px) */
+.ans-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 0 0;
+  gap: 10px;
+  width: 257px;
+  flex-shrink: 0;
+}
+
+/* 수직 구분선 (2px, #F5F5F5, stretch) */
+.ans-divider-v {
+  width: 2px;
+  background: #F5F5F5;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* ── 정답 유닛 (카드 + 플로팅 서브타이틀) ── */
+.ans-unit {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 257px;
+}
+
+
+/* 정답 카드 (257px, border 2px solid #F5F5F5, radius 10px, padding 14px 0) */
+.ans-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 14px 0;
+  width: 257px;
+  border: 2px solid #F5F5F5;
+  border-radius: 10px;
+  align-self: stretch;
+}
+
+/* 카드 내부 (padding-left 16px, gap 4px) */
+.ans-card__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 0 16px;
+  gap: 0;
+  align-self: stretch;
+}
+
+/* 정답 행 (flex-row, space-between, gap 20px, h:26px) */
+.ans-card__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 241px;
+  height: 26px;
+}
+
+/* 정답 아이템 (문제번호 + 답, flex:1) */
+.ans-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  height: 13px;
+}
+
+/* 문제 번호: Pretendard 600, 11px, #4A4A4A */
+.ans-item__num {
+  font-family: 'Pretendard', 'Pretendard Variable', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  color: #4A4A4A;
+  flex-shrink: 0;
+}
+
+/* 정답: Noto Sans KR 500, 8px, #3D3D3D */
+.ans-item__ans {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 12px;
+  color: #3D3D3D;
+}
+</style>
+</head>
+<body>
+
+<!--
+════════════════════════════════════════════════════════════════
+  텍스트 값 가이드 — 고정값 vs 가변값
+════════════════════════════════════════════════════════════════
+
+  ── 고정값 (항상 동일, 절대 변경 금지) ──────────────────────
+  · type-chip__left          → "유형"
+  · page-hd__yn              → "유형"
+  · page-hd__ik              → "익히기"
+  · page-hd--sm__yn          → "유형"
+  · page-hd--sm__ik          → "익히기"
+  · badge--rep               → "대표문제"
+  · badge--imp__pill         → "중요"
+  · diff-label               → "난이도"
+  · ans-hd__label-text       → "빠른정답"
+
+  ── 가변값 (자료마다 달라지는 값) ───────────────────────────
+  · unit-badge               → 단원번호         예) "01"
+  · ans-hd__sec-num          → 단원번호         ※ unit-badge와 항상 동일
+  · page-hd__title           → 소단원명         예) "방정식과 그 해"
+  · page-footer__topic       → 소단원명         ※ page-hd__title과 항상 동일
+  · ans-hd__sec-desc         → 소단원명         ※ page-hd__title과 항상 동일
+  · type-chip__right         → 유형번호         예) "01", "02"
+  · type-label-title         → 유형명           예) "등식의 성질"  ※ 소단원명과 무관
+  · type-body 내부           → 유형 개념 내용   텍스트 또는 표
+  · prob-rep__num / prob__num→ 문제번호 (3자리) 예) "001", "006"
+  · prob-rep__q / prob__q    → 문제 지문
+  · prob__choice             → 선지 내용
+  · dot.on 개수              → 난이도           1개(하) / 2개(중) / 3개(상)
+  · page-footer__num         → 페이지번호 (3자리) 예) "001", "002", "003"
+  · ans-item__num            → 문제번호 (3자리) 예) "001" ~ "009"
+  · ans-item__ans            → 정답             예) "②", "5", "풀이 참조"
+
+  ── 연동 규칙 ────────────────────────────────────────────────
+  · ans-hd__sec-num    = unit-badge (동일값)
+  · page-footer__topic = ans-hd__sec-desc = page-hd__title (동일값)
+  · 문제번호는 유형01의 첫 문제가 001부터 시작하고 이후 유형에서 이어짐
+  · page-footer__num은 001부터 페이지 순서대로 증가 (빠른정답 페이지 포함)
+
+════════════════════════════════════════════════════════════════
+-->
+
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ]
+  }); redistributeProbs();"></script>
+
+<!-- ══════════════════════════════════════════
+     PAGE 1 — 유형_첫페이지
+     col-left : type-group (prob-rep 포함) + prob×3 (최대)
+     col-right: prob×3 (최대, col-left 오버플로)
+══════════════════════════════════════════ -->
+<div class="page" id="page1">
+
+  <div class="unit-badge">01</div>
+
+  <div class="page-hd">
+    <div class="page-hd__title">방정식과 그 해</div>
+    <div class="page-hd__section">
+      <span class="page-hd__yn">
+        <span class="page-hd__yn-char">유</span>
+        <span class="page-hd__yn-char page-hd__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <!-- col-left: type-group → prob-rep(sibling) → prob 순서, JS가 overflow를 col-right으로 이동 -->
+        <div class="col-left">
+          <div class="type-group">
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">01</span>
+              </div>
+              <span class="type-label-title">방정식과 그 해</span>
+            </div>
+            <div class="type-body">
+              <div class="type-body__text">미지수의 값에 따라 참이 되기도 하고 거짓이 되기도 하는 등식을 <strong>방정식</strong>이라 하고, 방정식을 참이 되게 하는 값을 <strong>해</strong>(또는 <strong>근</strong>)라 한다.</div>
+            </div>
+          </div><!-- /type-group -->
+
+          <!-- prob-rep: type-group 바로 아래 sibling -->
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">1</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">다음 중 $x$에 대한 방정식인 것은?</span>
+              <div class="prob-rep__choices-2col">
+                <span class="prob__choice">① $x+3=3+x$</span>
+                <span class="prob__choice">② $2x+1=5$</span>
+                <span class="prob__choice">③ $x+y=5$</span>
+                <span class="prob__choice">④ $3{\times}2=6$</span>
+                <span class="prob__choice">⑤ $2x-1>3$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">2</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">$x=2$가 방정식 $3x-a=x+2$의 해일 때, 상수 $a$의 값을 구하여라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">3</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">다음 중 [ ] 안의 수가 방정식의 해인 것은?</span>
+              <div class="prob__choices-stack">
+                <span class="prob__choice">① $x+4=2$ $[-2]$</span>
+                <span class="prob__choice">② $3x=12$ $[3]$</span>
+                <span class="prob__choice">③ $2x-1=3$ $[2]$</span>
+                <span class="prob__choice">④ $\frac{x}{2}=3$ $[4]$</span>
+                <span class="prob__choice">⑤ $5x+3=8$ $[2]$</span>
+              </div>
+              <div class="prob__space" style="--space: 20px"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">4</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">$x=a$가 방정식 $2x+3=b$의 해이고, $x=1$이 방정식 $x+b=5$의 해일 때, $a+b$의 값은?</span>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① $1$</span>
+                <span class="prob__choice">② $2$</span>
+                <span class="prob__choice">③ $3$</span>
+                <span class="prob__choice">④ $4$</span>
+                <span class="prob__choice">⑤ $5$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">5</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">방정식 $ax+2=4$의 해가 $x=-1$이고, 방정식 $3x-b=x$의 해가 $x=3$일 때, $a-b$의 값을 구하여라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+
+        <!-- col-right: JS가 overflow prob을 이동시킴 -->
+        <div class="col-right">
+        </div><!-- /col-right -->
+
+      </div><!-- /row-grid -->
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="./bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">방정식과 그 해</span>
+      <span class="page-footer__num">001</span>
+    </div>
+  </div>
+
+</div><!-- /page1 -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 — 유형_이후페이지 (중요 + 표 유형)
+     col-left : type-group (prob-rep 포함) + prob×3 (최대)
+     col-right: prob×3 (최대, col-left 오버플로)
+══════════════════════════════════════════ -->
+<div class="page page--cont" id="page2">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <!-- col-left: type-group(표 + prob-rep 하단 고정) + prob 최대 3개 -->
+        <div class="col-left">
+          <div class="type-group">
+            <!-- 중요 배지: type-group 기준 absolute (top:-5.5px, left:-1px)
+                 구조: wrapper(47×13.5) → inner(23×13.5) → pill(21×11) + tri(3.5×2.5) -->
+            <div class="badge--imp">
+              <div class="badge--imp__inner">
+                <div class="badge--imp__pill">중요</div>
+                <div class="badge--imp__tri"></div>
+              </div>
+            </div>
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">02</span>
+              </div>
+              <span class="type-label-title">등식의 성질</span>
+            </div>
+            <div class="type-body">
+              <table class="type-table">
+                <thead>
+                  <tr>
+                    <th>등식의 성질 ($a=b$이면)</th>
+                    <th>예</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>$a+c=b+c$</td>
+                    <td>$x-2=3$  ⇒  $x=5$</td>
+                  </tr>
+                  <tr>
+                    <td>$a-c=b-c$</td>
+                    <td>$x+2=5$  ⇒  $x=3$</td>
+                  </tr>
+                  <tr>
+                    <td>$ac=bc$</td>
+                    <td>$\frac{x}{3}=2$  ⇒  $x=6$</td>
+                  </tr>
+                  <tr>
+                    <td>$\frac{a}{c}=\frac{b}{c}$ ($c{\neq}0$)</td>
+                    <td>$3x=9$  ⇒  $x=3$</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- /type-group -->
+
+          <!-- prob-rep: type-group 바로 아래 sibling -->
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">6</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">등식의 성질을 이용하여 다음 방정식을 풀어라.</span>
+              <div class="prob-rep__choices-2col">
+                <span class="prob__choice">(1) $x-4=3$</span>
+                <span class="prob__choice">(2) $x+6=10$</span>
+                <span class="prob__choice">(3) $3x=15$</span>
+                <span class="prob__choice">(4) $\dfrac{x}{5}=2$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+
+          <!-- col-left probs: 최대 3개 -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">7</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">등식의 성질을 이용하여 방정식 $5(x-1)=2x+7$을 풀어라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">8</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">두 방정식 $2x-1=5$와 $3x+a=x+7$의 해가 같을 때, 상수 $a$의 값은?</span>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① $-2$</span>
+                <span class="prob__choice">② $-1$</span>
+                <span class="prob__choice">③ $0$</span>
+                <span class="prob__choice">④ $1$</span>
+                <span class="prob__choice">⑤ $2$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+
+        <!-- col-right: col-left 오버플로 prob 최대 3개 -->
+        <div class="col-right">
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="n0">0</span><span class="nx">9</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">방정식 $\dfrac{x-a}{3}=2$의 해가 $x=b+1$이고, $a+b=4$일 때, $a$의 값을 구하여라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-right -->
+
+      </div><!-- /row-grid -->
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="./bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">방정식과 그 해</span>
+      <span class="page-footer__num">002</span>
+    </div>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ══════════════════════════════════════════
+     PAGE 3 — 유형_심화페이지 (page--adv)
+     유형_이후페이지와 구조 동일, 색상만 변경
+     col-left : type-group (prob-rep 포함) + prob×3 (최대)
+     col-right: prob×3 (최대, col-left 오버플로)
+══════════════════════════════════════════ -->
+<div class="page page--cont page--adv" id="page3">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <!-- col-left: type-group(표 + prob-rep 하단 고정) + prob 최대 3개 -->
+        <div class="col-left">
+          <!-- badge--imp 없는 변형 예시 -->
+          <div class="type-group">
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">03</span>
+              </div>
+              <span class="type-label-title">일차방정식의 풀이</span>
+            </div>
+            <div class="type-body">
+              <!-- type-body__text: 보통 있음, 없을 수도 있음 -->
+              <span class="type-body__text">등식의 양변에 같은 수를 더하거나 빼거나 곱하거나 나누어도 등식은 성립한다. 이를 이용해 미지수를 한쪽으로 이항하여 풀이한다.</span>
+              <!-- type-table: 있을 수도 없을 수도 있음 -->
+              <table class="type-table">
+                <thead>
+                  <tr>
+                    <th>풀이 단계</th>
+                    <th>예시</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>이항하여 정리</td>
+                    <td>$2x+3=7$ ⇒ $2x=4$</td>
+                  </tr>
+                  <tr>
+                    <td>계수로 나누기</td>
+                    <td>$2x=4$ ⇒ $x=2$</td>
+                  </tr>
+                  <tr>
+                    <td>검산</td>
+                    <td>$x=2$ 대입 확인</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- /type-group -->
+
+          <!-- prob-rep -->
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">0</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">다음 일차방정식을 풀어라.</span>
+              <div class="prob-rep__choices-2col">
+                <span class="prob__choice">(1) $3x-5=7$</span>
+                <span class="prob__choice">(2) $2x+1=x+4$</span>
+                <span class="prob__choice">(3) $4(x-1)=2x+6$</span>
+                <span class="prob__choice">(4) $\dfrac{x}{2}-1=3$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <!-- col-left probs -->
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">1</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">방정식 $5x-3=2x+9$를 풀어라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">2</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">방정식 $3(x+2)-2(x-1)=9$를 풀 때, 해를 구하여라.</span>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① $-1$</span>
+                <span class="prob__choice">② $0$</span>
+                <span class="prob__choice">③ $1$</span>
+                <span class="prob__choice">④ $2$</span>
+                <span class="prob__choice">⑤ $3$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+
+        <!-- col-right: col-left 오버플로 prob 최대 3개 -->
+        <div class="col-right">
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">3</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">$\dfrac{2x-1}{3}=\dfrac{x+2}{2}$를 풀어라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-right -->
+
+      </div><!-- /row-grid -->
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="./bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">방정식과 그 해</span>
+      <span class="page-footer__num">003</span>
+    </div>
+  </div>
+
+</div><!-- /page3 -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 4 — 유형_이후페이지 (type-body__text만, 테이블 없음)
+     col-left : type-group (prob-rep 포함) + prob×3 (최대)
+     col-right: prob×3 (최대, col-left 오버플로)
+══════════════════════════════════════════ -->
+<div class="page page--cont" id="page4">
+
+  <div class="page-hd--sm">
+    <div class="page-hd--sm__line"></div>
+    <div class="page-hd--sm__label">
+      <span class="page-hd--sm__yn">
+        <span class="page-hd--sm__yn-char">유</span>
+        <span class="page-hd--sm__yn-char page-hd--sm__yn-char--raised">형</span>
+      </span>
+      <span class="page-hd--sm__ik">익히기</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="content-section">
+      <div class="row-grid">
+
+        <div class="col-left">
+          <!-- badge--imp 없음, type-body__text만 있는 케이스 -->
+          <div class="type-group">
+            <div class="type-label-row">
+              <div class="type-chip">
+                <span class="type-chip__left">유형</span>
+                <span class="type-chip__right">04</span>
+              </div>
+              <span class="type-label-title">비례식의 성질</span>
+            </div>
+            <div class="type-body">
+              <!-- type-body__text만, type-table 없음 -->
+              <span class="type-body__text">$a:b=c:d$이면 $ad=bc$이다. 이를 <strong>비례식의 성질</strong>이라 하며, 비례식을 포함한 방정식을 풀 때 이 성질을 이용하여 분수 형태를 제거한다.</span>
+            </div>
+          </div><!-- /type-group -->
+
+          <div class="prob-rep">
+            <div class="prob-rep__hd">
+              <span class="prob-rep__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">4</span></span>
+              <span class="badge--rep">대표문제</span>
+            </div>
+            <div class="prob-rep__body">
+              <span class="prob-rep__q">다음 비례식을 풀어라.</span>
+              <div class="prob-rep__choices-2col">
+                <span class="prob__choice">(1) $x:3=4:6$</span>
+                <span class="prob__choice">(2) $2:x=5:10$</span>
+                <span class="prob__choice">(3) $(x+1):4=3:2$</span>
+                <span class="prob__choice">(4) $3:(x-1)=6:4$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">5</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">비례식 $(x-2):3=x:5$를 풀어라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">6</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">$x:y=2:3$이고 $x+y=15$일 때, $x$의 값을 구하여라.</span>
+              <div class="prob__choices-wrap">
+                <span class="prob__choice">① $3$</span>
+                <span class="prob__choice">② $4$</span>
+                <span class="prob__choice">③ $5$</span>
+                <span class="prob__choice">④ $6$</span>
+                <span class="prob__choice">⑤ $7$</span>
+              </div>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <div class="col-sep"></div>
+
+        <div class="col-right">
+
+          <div class="prob">
+            <div class="prob__hd">
+              <span class="prob__num"><span class="n0">0</span><span class="nx">1</span><span class="nx">7</span></span>
+              <div class="prob__diff">
+                <span class="diff-label">난이도</span>
+                <div class="diff-dots">
+                  <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                </div>
+              </div>
+            </div>
+            <div class="prob__body">
+              <span class="prob__q">비례식 $\dfrac{x+1}{3}=\dfrac{2x-1}{5}$를 만족하는 $x$의 값을 구하여라.</span>
+              <div class="prob__space"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-right -->
+
+      </div><!-- /row-grid -->
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <img src="./bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+    <div class="page-footer__right">
+      <span class="page-footer__topic">방정식과 그 해</span>
+      <span class="page-footer__num">004</span>
+    </div>
+  </div>
+
+</div><!-- /page4 -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE ANS — 빠른정답
+     Figma: flex-row 페이지, padding 40px 30px 30px
+     내부: ans-wrap(535×772) = ans-frame(flex:1) + page-footer(13px)
+══════════════════════════════════════════ -->
+<div class="page page--ans" id="page-ans">
+  <div class="ans-wrap">
+
+    <div class="ans-frame">
+
+      <!-- 타이틀: 섹션번호 · 소단원명 · 유형익히기 레이블 -->
+      <div class="ans-hd">
+        <div class="ans-hd__info">
+          <span class="ans-hd__sec-num">01</span>
+          <span class="ans-hd__sec-desc">방정식과 그 해</span>
+        </div>
+        <div class="ans-hd__label">
+          <span class="ans-hd__label-text">빠른정답</span>
+        </div>
+      </div>
+
+      <!-- 정답 영역 -->
+      <div class="ans-content">
+        <div class="ans-divider-h"></div>
+
+        <div class="ans-cols">
+
+          <!-- 왼쪽 열: 모든 정답 (001–009) -->
+          <div class="ans-col ans-col--left">
+            <div class="ans-unit">
+              <div class="ans-card">
+                <div class="ans-card__inner">
+                  <div class="ans-card__row">
+                    <div class="ans-item">
+                      <span class="ans-item__num">001</span>
+                      <span class="ans-item__ans">②</span>
+                    </div>
+                    <div class="ans-item">
+                      <span class="ans-item__num">002</span>
+                      <span class="ans-item__ans">5</span>
+                    </div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item">
+                      <span class="ans-item__num">003</span>
+                      <span class="ans-item__ans">③</span>
+                    </div>
+                    <div class="ans-item">
+                      <span class="ans-item__num">004</span>
+                      <span class="ans-item__ans">③</span>
+                    </div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item">
+                      <span class="ans-item__num">005</span>
+                      <span class="ans-item__ans">6</span>
+                    </div>
+                    <div class="ans-item">
+                      <span class="ans-item__num">006</span>
+                      <span class="ans-item__ans">풀이 참조</span>
+                    </div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item">
+                      <span class="ans-item__num">007</span>
+                      <span class="ans-item__ans">풀이 참조</span>
+                    </div>
+                    <div class="ans-item">
+                      <span class="ans-item__num">008</span>
+                      <span class="ans-item__ans">③</span>
+                    </div>
+                  </div>
+                  <div class="ans-card__row">
+                    <div class="ans-item">
+                      <span class="ans-item__num">009</span>
+                      <span class="ans-item__ans">1</span>
+                    </div>
+                    <div class="ans-item"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- /ans-col--left -->
+
+          <!-- 수직 구분선 -->
+          <div class="ans-divider-v"></div>
+
+          <!-- 오른쪽 열: 비어있음 (추후 사용) -->
+          <div class="ans-col ans-col--right">
+          </div><!-- /ans-col--right -->
+
+        </div><!-- /ans-cols -->
+
+        <div class="ans-divider-h"></div>
+      </div><!-- /ans-content -->
+
+    </div><!-- /ans-frame -->
+
+    <!-- footer: ans-wrap 내 마지막 자식 (gap 10px으로 분리) -->
+    <div class="page-footer">
+      <img src="./bodamath_logo.png" alt="보다수학" class="page-footer__logo">
+      <div class="page-footer__right">
+        <span class="page-footer__topic">방정식과 그 해</span>
+        <span class="page-footer__num">003</span>
+      </div>
+    </div>
+
+  </div><!-- /ans-wrap -->
+</div><!-- /page-ans -->
+
+
+<script>
+/* ── redistributeProbs ────────────────────────────────────────────────────
+   "prob"은 .prob-rep과 .prob 모두를 지칭함.
+   규칙:
+     - col-left 총 prob 수 = type-group 내 .prob-rep (있으면 1) + 직접 자식 .prob
+     - 이 합이 MAX_PROBS(3)를 초과하거나 col-left 높이를 초과하면
+       직접 자식 .prob 중 마지막 것을 col-right 상단으로 이동.
+   KaTeX 렌더 완료 후 호출되므로 수학식 높이도 정확히 반영됨.
+──────────────────────────────────────────────────────────────────────── */
+function redistributeProbs() {
+  var MAX_PROBS = 3;
+
+  document.querySelectorAll('.row-grid').forEach(function(grid) {
+    var colLeft  = grid.querySelector('.col-left');
+    var colRight = grid.querySelector('.col-right');
+    var typeGroup = colLeft ? colLeft.querySelector('.type-group') : null;
+    if (!colLeft || !colRight) return;
+
+    /* 1. reset — col-right의 직접 자식 .prob-rep / .prob을 col-left로 복원 */
+    Array.from(colRight.children).reverse().forEach(function(el) {
+      if (el.classList.contains('prob-rep')) {
+        /* prob-rep은 type-group 바로 다음 위치로 */
+        if (typeGroup && typeGroup.nextSibling) {
+          colLeft.insertBefore(el, typeGroup.nextSibling);
+        } else {
+          colLeft.appendChild(el);
+        }
+      } else if (el.classList.contains('prob')) {
+        colLeft.appendChild(el);
+      }
+    });
+
+    /* col-left 직접 자식 중 prob-rep / prob 목록 */
+    function getProbs() {
+      return Array.from(colLeft.children).filter(function(el) {
+        return el.classList.contains('prob-rep') || el.classList.contains('prob');
+      });
+    }
+
+    /* 2. 카운트 초과 OR 높이 초과 동안 마지막 prob을 col-right 맨 앞으로 */
+    while (true) {
+      var ps = getProbs();
+      if (!ps.length) break;
+      var countOver  = ps.length > MAX_PROBS;
+      var heightOver = colLeft.scrollHeight > colLeft.offsetHeight;
+      if (!countOver && !heightOver) break;
+      colRight.insertBefore(ps[ps.length - 1], colRight.firstChild);
+    }
+  });
+}
+</script>
+
+</body>
+</html>
